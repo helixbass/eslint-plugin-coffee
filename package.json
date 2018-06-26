@@ -1,0 +1,25 @@
+{
+  "name": "eslint-plugin-coffee",
+  "version": "0.0.0-development",
+  "description": "ESLint plugin for Coffeescript",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "node_modules/mocha/bin/_mocha lib/tests/**/*.js",
+    "watch": "coffee -o lib/ -wc src/"
+  },
+  "keywords": [
+    "eslint",
+    "coffeescript",
+    "eslintplugin"
+  ],
+  "author": "Julian Rosse <julian@helixbass.net> (http://helixbass.net/)",
+  "license": "MIT",
+  "devDependencies": {
+    "coffee-eslint": "file:../coffee-eslint",
+    "eslint": "^5.0.0",
+    "mocha": "^5.2.0"
+  },
+  "peerDependencies": {
+    "eslint": ">=0.8.0"
+  }
+}
