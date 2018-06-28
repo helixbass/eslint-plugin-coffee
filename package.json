@@ -5,14 +5,12 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "node_modules/mocha/bin/_mocha lib/tests/**/*.js",
-    "watch": "coffee -o lib/ -wc src/"
+    "watch": "coffee -o lib/ -wc src/",
+    "lint": "eslint src/*.coffee src/*/*.coffee",
+    "lint-js": "eslint src/*.coffee src/*/*.coffee -c .eslintrc-js.yml"
   },
-  "keywords": [
-    "eslint",
-    "coffeescript",
-    "eslintplugin"
-  ],
-  "author": "Julian Rosse <julian@helixbass.net> (http://helixbass.net/)",
+  "keywords": ["eslint", "coffeescript", "eslintplugin"],
+  "author": "Julian Rosse <@helixbass>",
   "license": "MIT",
   "devDependencies": {
     "coffee-eslint": "file:../coffee-eslint",
@@ -21,5 +19,11 @@
   },
   "peerDependencies": {
     "eslint": ">=0.8.0"
+  },
+  "dependencies": {
+    "babel-eslint": "^7.2.2",
+    "babylon": "^7.0.0-beta.44",
+    "coffeescript": "file:../coffeescript_orig",
+    "lodash": "^4.17.10"
   }
 }

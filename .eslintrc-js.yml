@@ -1,0 +1,7 @@
+parser: ./lib/parser-js.js
+rules:
+  no-undef: error
+  no-unused-vars: error
+env:
+  node: true
+  mocha: true

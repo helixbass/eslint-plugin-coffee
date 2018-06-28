@@ -1,0 +1,5 @@
+parser: ./lib/index.js
+rules:
+  use-isnan: error
+# extends:
+#   - plugin:coffee/all
