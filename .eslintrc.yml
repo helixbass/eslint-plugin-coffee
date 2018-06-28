@@ -1,5 +1,14 @@
 parser: ./lib/index.js
 rules:
   use-isnan: error
+  spaced-comment: [error, always, exceptions: ['-']]
+  # no-warning-comments: error
+  # capitalized-comments: error
+  require-jsdoc: error
+  prefer-rest-params: error
+  no-else-return: error
+  # id-length: error
+  # no-multi-assign: error
+  no-self-compare: error
 # extends:
 #   - plugin:coffee/all
