@@ -17,7 +17,7 @@ rule = require '../../rules/use-isnan'
 #------------------------------------------------------------------------------
 
 
-ruleTester = new RuleTester parser: 'coffee-eslint'
+ruleTester = new RuleTester parser: '../../..'
 
 ruleTester.run 'use-isnan', rule,
   valid: [

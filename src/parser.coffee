@@ -44,12 +44,13 @@ tokensForESLint = ({tokens, ast}) ->
       popped.push extraTokens.shift()
     popped
   flatten [
-    ...(for [type, value, locationData] in tokens
+    ...(for token in tokens when not token.generated
+      [type, value, locationData] = token
       [
         ...(popExtraTokens {nextStart: locationData.range[0]})
         {
           type: getEspreeTokenType type
-          value
+          value: value.toString()
           ...locationDataToBabylon(locationData)
         }
       ])
@@ -65,3 +66,5 @@ exports.getParser = getParser = (getAstAndTokens) -> (code, opts) ->
   {ast}
 
 exports.parseForESLint = getParser (code, opts) -> CoffeeScript.ast code, {...opts, withTokens: yes}
+
+dump = (obj) -> console.log require('util').inspect obj, no, null
