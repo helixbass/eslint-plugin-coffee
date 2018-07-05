@@ -10,6 +10,8 @@ rules = flow(
   'use-isnan'
   'no-self-compare'
   'no-eq-null'
+  'valid-typeof'
+  'no-negated-condition'
 ]
 
 configureAsError = flow(
