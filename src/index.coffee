@@ -1,16 +1,19 @@
 {flow, map: fmap, flatten: fflatten, fromPairs: ffromPairs} = require 'lodash/fp'
+fmapWithKey = fmap.convert cap: no
 
 {parseForESLint} = require './parser'
 
 rules = flow(
-  (rule) -> [rule, require "./rules/#{rule}"]
+  fmap (rule) -> [rule, require "./rules/#{rule}"]
   ffromPairs
 ) [
   'use-isnan'
+  'no-self-compare'
+  'no-eq-null'
 ]
 
 configureAsError = flow(
-  fmap (rule) -> [
+  fmapWithKey (_, rule) -> [
     ["coffee/#{rule}", "error"]
     [rule, "off"]
   ]
@@ -23,7 +26,7 @@ module.exports = {
   configs:
     all:
       plugins: ['coffee']
-      parser: 'coffee-eslint'
+      parser: 'eslint-plugin-coffee'
       rules: configureAsError rules
   parseForESLint
 }

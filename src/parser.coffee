@@ -44,7 +44,7 @@ tokensForESLint = ({tokens, ast}) ->
       popped.push extraTokens.shift()
     popped
   flatten [
-    ...(for token in tokens when not token.generated
+    ...(for token in tokens when not token.generated and token[0] not in ['INDENT', 'OUTDENT'] # excluding INDENT/OUTDENT seems necessary to avoid eslint createIndexMap() potentially choking on comment/token with same start location
       [type, value, locationData] = token
       [
         ...(popExtraTokens {nextStart: locationData.range[0]})
