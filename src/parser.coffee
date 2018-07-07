@@ -50,7 +50,7 @@ tokensForESLint = ({tokens, ast}) ->
         ...(popExtraTokens {nextStart: locationData.range[0]})
         {
           type: getEspreeTokenType type
-          value: value.toString()
+          value: value.original ? value.toString()
           ...locationDataToBabylon(locationData)
         }
       ])

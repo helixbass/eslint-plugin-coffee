@@ -12,6 +12,7 @@ rules = flow(
   'no-eq-null'
   'valid-typeof'
   'no-negated-condition'
+  'yoda'
 ]
 
 configureAsError = flow(
