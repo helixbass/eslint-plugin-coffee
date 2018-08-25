@@ -1,9 +1,11 @@
 CoffeeScript = require 'coffeescript'
-{locationDataToBabylon, traverseBabylonAst} = require 'coffeescript/lib/coffeescript/helpers'
+{locationDataToAst, traverseBabylonAst} = require 'coffeescript/lib/coffeescript/helpers'
 babylonToEspree = require '../node_modules/babel-eslint/babylon-to-espree'
 babelTraverse = require('babel-traverse').default
 babylonTokenTypes = require('babylon').tokTypes
 {flatten} = require 'lodash'
+# patchCodePathAnalysis = require './patch-code-path-analysis'
+analyzeScope = require './analyze-scope'
 
 espreeTokenTypes =
   '{': 'Punctuator'
@@ -51,7 +53,7 @@ tokensForESLint = ({tokens, ast}) ->
         {
           type: getEspreeTokenType type
           value: value.original ? value.toString()
-          ...locationDataToBabylon(locationData)
+          ...locationDataToAst(locationData)
         }
       ])
     ...popExtraTokens({nextStart: 'END'})
@@ -59,11 +61,15 @@ tokensForESLint = ({tokens, ast}) ->
   ]
 
 exports.getParser = getParser = (getAstAndTokens) -> (code, opts) ->
+  # patchCodePathAnalysis()
   {ast, tokens} = getAstAndTokens code, opts
   ast.tokens = tokensForESLint {tokens, ast}
   babylonToEspree ast, babelTraverse, babylonTokenTypes, code
   # dump espreeAst: ast
-  {ast}
+  {
+    ast
+    scopeManager: analyzeScope ast, opts
+  }
 
 exports.parseForESLint = getParser (code, opts) -> CoffeeScript.ast code, {...opts, withTokens: yes}
 
