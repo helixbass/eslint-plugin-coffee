@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-coffee",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "ESLint plugin for Coffeescript",
   "main": "lib/index.js",
   "scripts": {
@@ -20,9 +20,9 @@
   "devDependencies": {
     "eslint": "^5.0.0",
     "eslint-config-prettier": "^3.0.1",
-    "eslint-plugin-coffee": "^0.0.1",
     "eslint-plugin-prettier": "^2.6.2",
     "mocha": "^5.2.0",
+    "prettier": "^1.14.2",
     "prettier-plugin-coffeescript": "^0.0.1"
   },
   "peerDependencies": {
@@ -31,7 +31,7 @@
   "dependencies": {
     "babel-eslint": "^7.2.2",
     "babylon": "^7.0.0-beta.44",
-    "coffeescript": "file:../coffeescript_orig",
+    "coffeescript": "github:helixbass/coffeescript#0805392",
     "eslint-scope": "~3.7.3",
     "lodash": "^4.17.10"
   }
