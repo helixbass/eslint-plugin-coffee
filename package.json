@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-coffee",
-  "version": "0.0.0-development",
+  "version": "0.0.1",
   "description": "ESLint plugin for Coffeescript",
   "main": "lib/index.js",
   "scripts": {
@@ -12,6 +12,7 @@
   "keywords": [
     "eslint",
     "coffeescript",
+    "eslint-plugin",
     "eslintplugin"
   ],
   "author": "Julian Rosse <@helixbass>",
@@ -21,12 +22,13 @@
     "mocha": "^5.2.0"
   },
   "peerDependencies": {
-    "eslint": ">=0.8.0"
+    "eslint": ">=4.14.0"
   },
   "dependencies": {
     "babel-eslint": "^7.2.2",
     "babylon": "^7.0.0-beta.44",
     "coffeescript": "file:../coffeescript_orig",
+    "eslint-scope": "~3.7.3",
     "lodash": "^4.17.10"
   }
 }
