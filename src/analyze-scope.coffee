@@ -11,6 +11,16 @@ class Referencer extends OriginalReferencer
 
     super node
 
+  For: (node) ->
+    @visitPattern node.name, (identifier) =>
+      @_createScopeVariable identifier if identifier.isDeclaration
+    @visitPattern node.index, (identifier) =>
+      @_createScopeVariable identifier if identifier.isDeclaration
+
+    @visitChildren node
+
+  Identifier: (node) ->
+    super node unless node.isDeclaration
   # Identifier: (node) ->
   #   dump {node}
   #   @_createScopeVariable node if node.isDeclaration

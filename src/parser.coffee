@@ -7,6 +7,9 @@ babylonTokenTypes = require('babylon').tokTypes
 # patchCodePathAnalysis = require './patch-code-path-analysis'
 analyzeScope = require './analyze-scope'
 
+extendVisitorKeys = ->
+  t = require('babel-types')
+  t.VISITOR_KEYS.For = ['index', 'name', 'step', 'guard', 'body']
 espreeTokenTypes =
   '{': 'Punctuator'
   '}': 'Punctuator'
@@ -64,6 +67,7 @@ exports.getParser = getParser = (getAstAndTokens) -> (code, opts) ->
   # patchCodePathAnalysis()
   {ast, tokens} = getAstAndTokens code, opts
   ast.tokens = tokensForESLint {tokens, ast}
+  extendVisitorKeys()
   babylonToEspree ast, babelTraverse, babylonTokenTypes, code
   # dump espreeAst: ast
   {
