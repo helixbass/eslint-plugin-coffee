@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-coffee",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "ESLint plugin for Coffeescript",
   "main": "lib/index.js",
   "scripts": {
@@ -20,10 +20,11 @@
   "devDependencies": {
     "eslint": "^5.0.0",
     "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-coffee": "^0.0.3",
     "eslint-plugin-prettier": "^2.6.2",
     "mocha": "^5.2.0",
     "prettier": "^1.14.2",
-    "prettier-plugin-coffeescript": "^0.0.1"
+    "prettier-plugin-coffeescript": "^0.0.2"
   },
   "peerDependencies": {
     "eslint": ">=4.14.0"
