@@ -7,23 +7,23 @@ class Referencer extends OriginalReferencer
   AssignmentExpression: (node) ->
     # @visit node.left if node.left.type is 'Identifier'
     @visitPattern node.left, (identifier) =>
-      @_createScopeVariable identifier if identifier.isDeclaration
+      @_createScopeVariable identifier if identifier.declaration
 
     super node
 
   For: (node) ->
     @visitPattern node.name, (identifier) =>
-      @_createScopeVariable identifier if identifier.isDeclaration
+      @_createScopeVariable identifier if identifier.declaration
     @visitPattern node.index, (identifier) =>
-      @_createScopeVariable identifier if identifier.isDeclaration
+      @_createScopeVariable identifier if identifier.declaration
 
     @visitChildren node
 
   Identifier: (node) ->
-    super node unless node.isDeclaration
+    super node unless node.declaration
   # Identifier: (node) ->
   #   dump {node}
-  #   @_createScopeVariable node if node.isDeclaration
+  #   @_createScopeVariable node if node.declaration
   #   super node
 
   _createScopeVariable: (node) ->
