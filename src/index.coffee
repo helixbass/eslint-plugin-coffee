@@ -19,6 +19,11 @@ rules =
     'valid-typeof'
     'no-negated-condition'
     'yoda'
+    'camelcase'
+    'dot-notation'
+    'no-compare-neg-zero'
+    # 'no-unreachable'
+    'object-shorthand'
   ]
 
 configureAsError = flow(
