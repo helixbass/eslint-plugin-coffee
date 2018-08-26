@@ -3,6 +3,7 @@
 
 - figure out how to not commit lib/ and publish to npm
 - restrict eslint peerDependency range or detect version - looks like eg ast-utils has moved to lib/util/ast-utils
+- should we always be parsing as module?
 
 rule ideas:
 - no-unnecessary-fat-arrow
