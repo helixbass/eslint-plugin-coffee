@@ -1,5 +1,6 @@
 {
   flow
+  concat: fconcat
   map: fmap
   flatten: fflatten
   fromPairs: ffromPairs
@@ -7,6 +8,8 @@
 fmapWithKey = fmap.convert cap: no
 
 {parseForESLint} = require './parser'
+
+unusable = ['no-sequences']
 
 rules =
   flow(fmap((rule) -> [rule, require("./rules/#{rule}")]), ffromPairs) [
@@ -21,6 +24,7 @@ rules =
 configureAsError = flow(
   fmapWithKey (_, rule) -> [["coffee/#{rule}", 'error'], [rule, 'off']]
   fflatten
+  fconcat fmap((rule) -> [rule, 'off']) unusable
   ffromPairs
 )
 
