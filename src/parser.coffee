@@ -1,5 +1,8 @@
 CoffeeScript = require 'coffeescript'
-{locationDataToAst, traverseBabylonAst} = require 'coffeescript/lib/coffeescript/helpers'
+{
+  locationDataToAst
+  traverseBabylonAst
+} = require 'coffeescript/lib/coffeescript/helpers'
 # babylonToEspree = require '../node_modules/babel-eslint/babylon-to-espree'
 babylonToEspree = require 'babel-eslint/babylon-to-espree'
 babelTraverse = require('babel-traverse').default
@@ -9,17 +12,17 @@ babylonTokenTypes = require('babylon').tokTypes
 analyzeScope = require './analyze-scope'
 
 extendVisitorKeys = ->
-  t = require('babel-types')
+  t = require 'babel-types'
   t.VISITOR_KEYS.For = ['index', 'name', 'step', 'guard', 'body']
 espreeTokenTypes =
   '{': 'Punctuator'
   '}': 'Punctuator'
   '[': 'Punctuator'
   ']': 'Punctuator'
-  'INDEX_START': 'Punctuator'
-  'INDEX_END':   'Punctuator'
+  INDEX_START: 'Punctuator'
+  INDEX_END: 'Punctuator'
   '+': 'Punctuator'
-  'REGEX': 'RegularExpression'
+  REGEX: 'RegularExpression'
 getEspreeTokenType = (type) ->
   espreeTokenTypes[type] ? type
 
@@ -46,36 +49,45 @@ tokensForESLint = ({tokens, ast}) ->
   extraTokens = extraTokensForESLint ast
   popExtraTokens = ({nextStart}) ->
     popped = []
-    while (nextExtra = extraTokens[0]) and (nextStart is 'END' or nextExtra.start < nextStart)
+    while (
+      (nextExtra = extraTokens[0]) and
+      (nextStart is 'END' or nextExtra.start < nextStart)
+    )
       popped.push extraTokens.shift()
     popped
   flatten [
-    ...(for token in tokens when not token.generated and token[0] not in ['INDENT', 'OUTDENT'] # excluding INDENT/OUTDENT seems necessary to avoid eslint createIndexMap() potentially choking on comment/token with same start location
+    ...(for token in tokens when (
+      not token.generated and token[0] not in ['INDENT', 'OUTDENT'] # excluding INDENT/OUTDENT seems necessary to avoid eslint createIndexMap() potentially choking on comment/token with same start location
+    )
       [type, value, locationData] = token
       [
-        ...(popExtraTokens {nextStart: locationData.range[0]})
+        ...popExtraTokens(nextStart: locationData.range[0])
+      ,
         {
           type: getEspreeTokenType type
           value: value.original ? value.toString()
           ...locationDataToAst(locationData)
         }
       ])
-    ...popExtraTokens({nextStart: 'END'})
+    ...popExtraTokens(nextStart: 'END')
+  ,
     {}
   ]
 
-exports.getParser = getParser = (getAstAndTokens) -> (code, opts) ->
-  # patchCodePathAnalysis()
-  {ast, tokens} = getAstAndTokens code, opts
-  ast.tokens = tokensForESLint {tokens, ast}
-  extendVisitorKeys()
-  babylonToEspree ast, babelTraverse, babylonTokenTypes, code
-  # dump espreeAst: ast
-  {
-    ast
-    scopeManager: analyzeScope ast, opts
-  }
+exports.getParser =
+  getParser = (getAstAndTokens) -> (code, opts) ->
+    # patchCodePathAnalysis()
+    {ast, tokens} = getAstAndTokens code, opts
+    ast.tokens = tokensForESLint {tokens, ast}
+    extendVisitorKeys()
+    babylonToEspree ast, babelTraverse, babylonTokenTypes, code
+    # dump espreeAst: ast
+    {
+      ast
+      scopeManager: analyzeScope ast, opts
+    }
 
-exports.parseForESLint = getParser (code, opts) -> CoffeeScript.ast code, {...opts, withTokens: yes}
+exports.parseForESLint = getParser (code, opts) ->
+  CoffeeScript.ast code, {...opts, withTokens: yes}
 
-dump = (obj) -> console.log require('util').inspect obj, no, null
+# dump = (obj) -> console.log require('util').inspect obj, no, null

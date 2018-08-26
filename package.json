@@ -20,10 +20,10 @@
   "devDependencies": {
     "eslint": "^5.0.0",
     "eslint-config-prettier": "^3.0.1",
-    "eslint-plugin-coffee": "^0.0.3",
+    "eslint-plugin-coffee": "^0.0.4",
     "eslint-plugin-prettier": "^2.6.2",
     "mocha": "^5.2.0",
-    "prettier": "^1.14.2",
+    "prettier": "github:helixbass/prettier#f5366a5",
     "prettier-plugin-coffeescript": "^0.0.2"
   },
   "peerDependencies": {

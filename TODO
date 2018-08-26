@@ -1,0 +1,7 @@
+- is this a bug in prefer-destructuring? shouldn't it ignore it b/c optional?
+  requireStringLiterals = context.options[0]?.requireStringLiterals
+
+- figure out how to not commit lib/ and publish to npm
+
+rule ideas:
+- no-unnecessary-fat-arrow

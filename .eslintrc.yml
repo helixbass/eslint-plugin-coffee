@@ -1,5 +1,14 @@
-parser: ./lib/index.js
+# parser: ./lib/index.js
+plugins:
+  - coffee
+  - prettier
+extends:
+  - plugin:coffee/all
 rules:
+  no-undef: error
+  no-unused-vars: error
+  prefer-destructuring: [error, {object: true}]
+  prettier/prettier: [error, {parser: coffeescript, pluginSearchDirs: [.]}]
   use-isnan: error
   spaced-comment: [error, always, exceptions: ['-']]
   # no-warning-comments: error
@@ -10,5 +19,7 @@ rules:
   # id-length: error
   # no-multi-assign: error
   no-self-compare: error
-# extends:
-#   - plugin:coffee/all
+env:
+  node: true
+  es6: true
+  mocha: true

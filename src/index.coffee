@@ -1,25 +1,25 @@
-{flow, map: fmap, flatten: fflatten, fromPairs: ffromPairs} = require 'lodash/fp'
+{
+  flow
+  map: fmap
+  flatten: fflatten
+  fromPairs: ffromPairs
+} = require 'lodash/fp'
 fmapWithKey = fmap.convert cap: no
 
 {parseForESLint} = require './parser'
 
-rules = flow(
-  fmap (rule) -> [rule, require "./rules/#{rule}"]
-  ffromPairs
-) [
-  'use-isnan'
-  'no-self-compare'
-  'no-eq-null'
-  'valid-typeof'
-  'no-negated-condition'
-  'yoda'
-]
+rules =
+  flow(fmap((rule) -> [rule, require("./rules/#{rule}")]), ffromPairs) [
+    'use-isnan'
+    'no-self-compare'
+    'no-eq-null'
+    'valid-typeof'
+    'no-negated-condition'
+    'yoda'
+  ]
 
 configureAsError = flow(
-  fmapWithKey (_, rule) -> [
-    ["coffee/#{rule}", "error"]
-    [rule, "off"]
-  ]
+  fmapWithKey (_, rule) -> [["coffee/#{rule}", 'error'], [rule, 'off']]
   fflatten
   ffromPairs
 )
