@@ -19,6 +19,7 @@ rules:
   # id-length: error
   # no-multi-assign: error
   no-self-compare: error
+  no-console: error
 env:
   node: true
   es6: true

@@ -19,6 +19,10 @@ espreeTokenTypes =
   '}': 'Punctuator'
   '[': 'Punctuator'
   ']': 'Punctuator'
+  '(': 'Punctuator'
+  ')': 'Punctuator'
+  CALL_START: 'Punctuator'
+  CALL_END: 'Punctuator'
   INDEX_START: 'Punctuator'
   INDEX_END: 'Punctuator'
   '+': 'Punctuator'
@@ -57,7 +61,15 @@ tokensForESLint = ({tokens, ast}) ->
     popped
   flatten [
     ...(for token in tokens when (
-      not token.generated and token[0] not in ['INDENT', 'OUTDENT'] # excluding INDENT/OUTDENT seems necessary to avoid eslint createIndexMap() potentially choking on comment/token with same start location
+      not token.generated and
+        token[0] not in
+          [
+            # excluding INDENT/OUTDENT seems necessary to avoid eslint createIndexMap() potentially choking on comment/token with same start location
+            'INDENT'
+            'OUTDENT'
+            # espree doesn't seem to include tokens for \n
+            'TERMINATOR'
+          ]
     )
       [type, value, locationData] = token
       [

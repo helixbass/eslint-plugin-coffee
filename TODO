@@ -2,6 +2,7 @@
   requireStringLiterals = context.options[0]?.requireStringLiterals
 
 - figure out how to not commit lib/ and publish to npm
+- restrict eslint peerDependency range or detect version - looks like eg ast-utils has moved to lib/util/ast-utils
 
 rule ideas:
 - no-unnecessary-fat-arrow
