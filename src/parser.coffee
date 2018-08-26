@@ -14,6 +14,7 @@ analyzeScope = require './analyze-scope'
 extendVisitorKeys = ->
   t = require 'babel-types'
   t.VISITOR_KEYS.For = ['index', 'name', 'step', 'guard', 'body']
+  t.VISITOR_KEYS.InterpolatedRegExpLiteral = ['expressions']
 espreeTokenTypes =
   '{': 'Punctuator'
   '}': 'Punctuator'

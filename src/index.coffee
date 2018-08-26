@@ -24,6 +24,7 @@ rules =
     'no-compare-neg-zero'
     # 'no-unreachable'
     'object-shorthand'
+    'no-empty-character-class'
   ]
 
 configureAsError = flow(
