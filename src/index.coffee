@@ -29,6 +29,8 @@ rules =
     'no-regex-spaces'
     'no-implicit-coercion'
     'no-magic-numbers'
+    'no-self-assign'
+    'operator-assignment'
   ]
 
 configureAsError = flow(
