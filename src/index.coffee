@@ -28,6 +28,7 @@ rules =
     'no-extra-boolean-cast'
     'no-regex-spaces'
     'no-implicit-coercion'
+    'no-magic-numbers'
   ]
 
 configureAsError = flow(
