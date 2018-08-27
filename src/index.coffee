@@ -25,6 +25,9 @@ rules =
     # 'no-unreachable'
     'object-shorthand'
     'no-empty-character-class'
+    'no-extra-boolean-cast'
+    'no-regex-spaces'
+    'no-implicit-coercion'
   ]
 
 configureAsError = flow(
