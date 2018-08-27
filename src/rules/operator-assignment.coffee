@@ -196,7 +196,7 @@ module.exports =
                   utils.getPrecedence(
                     type:
                       switch newOperator
-                        when '||', 'or', '&&', 'and'
+                        when '||', 'or', '&&', 'and', '?'
                           'LogicalExpression'
                         else
                           'BinaryExpression'

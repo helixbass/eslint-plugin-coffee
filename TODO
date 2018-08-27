@@ -1,5 +1,6 @@
 - is this a bug in prefer-destructuring? shouldn't it ignore it b/c optional?
   requireStringLiterals = context.options[0]?.requireStringLiterals
+- for no-unused-expressions to not flag eg -> a (implicit return), should we use code path analysis or get the AST to include eg returns: yes on nodes that can be returned?
 
 - figure out how to not commit lib/ and publish to npm
 - restrict eslint peerDependency range or detect version - looks like eg ast-utils has moved to lib/util/ast-utils

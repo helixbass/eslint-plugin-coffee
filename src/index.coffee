@@ -31,6 +31,7 @@ rules =
     'no-magic-numbers'
     'no-self-assign'
     'operator-assignment'
+    'no-unused-expressions'
   ]
 
 configureAsError = flow(

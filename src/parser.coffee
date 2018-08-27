@@ -93,7 +93,10 @@ exports.getParser =
     {ast, tokens} = getAstAndTokens code, opts
     ast.tokens = tokensForESLint {tokens, ast}
     extendVisitorKeys()
+    firstCommentLine = ast.comments?[0]?.loc.start.line
     babylonToEspree ast, babelTraverse, babylonTokenTypes, code
+    # babylonToEspree seems to like to change the file-leading comment's start line
+    ast.comments?[0]?.loc.start.line = firstCommentLine
     # dump espreeAst: ast
     {
       ast
@@ -103,4 +106,4 @@ exports.getParser =
 exports.parseForESLint = getParser (code, opts) ->
   CoffeeScript.ast code, {...opts, withTokens: yes}
 
-# dump = (obj) -> console.log require('util').inspect obj, no, null
+dump = (obj) -> console.log require('util').inspect obj, no, null

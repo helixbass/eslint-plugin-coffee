@@ -21,7 +21,7 @@ module.exports =
       # when 'SequenceExpression'
       #   return 0
 
-      when 'AssignmentExpression' #,           'ArrowFunctionExpression', 'YieldExpression'
+      when 'AssignmentExpression' #,                     'ArrowFunctionExpression', 'YieldExpression'
         return 1
 
       # when 'ConditionalExpression'
@@ -29,6 +29,8 @@ module.exports =
 
       when 'LogicalExpression'
         switch node.operator
+          when '?'
+            return 3
           when '||', 'or'
             return 4
           when '&&', 'and'
@@ -40,8 +42,6 @@ module.exports =
 
       when 'BinaryExpression'
         switch node.operator
-          when '?'
-            return 3
           when '|'
             return 6
           when '^'
