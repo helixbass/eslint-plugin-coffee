@@ -846,7 +846,7 @@ class CodePathState
           brokenForkContext: breakContext.brokenForkContext
         }
 
-      when 'ForInStatement', 'ForOfStatement'
+      when 'ForInStatement', 'ForOfStatement', 'For'
         @loopContext = {
           upper: @loopContext
           type
@@ -898,9 +898,11 @@ class CodePathState
           makeLooped @, segmentsList[i], context.entrySegments
           ++i
 
-      when 'ForInStatement', 'ForOfStatement'
+      when 'ForInStatement', 'ForOfStatement', 'For'
         brokenForkContext.add forkContext.head
-        makeLooped @, forkContext.head, context.leftSegments
+        makeLooped @, forkContext.head, context.leftSegments if (
+          context.leftSegments
+        )
 
       ### istanbul ignore next ###
       else
@@ -984,8 +986,7 @@ class CodePathState
   # @returns {void}
   ###
   makeForTest: (test) ->
-    context = @loopContext
-    forkContext = @forkContext
+    {loopContext: context, forkContext} = @
     endOfInitSegments = forkContext.head
     testSegments = forkContext.makeNext -1, -1
 
@@ -1001,9 +1002,7 @@ class CodePathState
   # @returns {void}
   ###
   makeForUpdate: ->
-    context = @loopContext
-    choiceContext = @choiceContext
-    forkContext = @forkContext
+    {loopContext: context, choiceContext, forkContext} = @
 
     # Make the next paths of the test.
     if context.testSegments
@@ -1023,9 +1022,7 @@ class CodePathState
   # @returns {void}
   ###
   makeForBody: ->
-    context = @loopContext
-    choiceContext = @choiceContext
-    forkContext = @forkContext
+    {loopContext: context, choiceContext, forkContext} = @
 
     # Update state.
     if context.updateSegments
@@ -1053,7 +1050,7 @@ class CodePathState
         prevForkContext.add context.endOfUpdateSegments
 
       bodySegments = prevForkContext.makeNext 0, -1
-    context.continueDestSegments = context.continueDestSegments or bodySegments
+    context.continueDestSegments or= bodySegments
     forkContext.replaceHead bodySegments
 
   ###*
@@ -1064,7 +1061,8 @@ class CodePathState
   ###
   makeForInOfLeft: ->
     context = @loopContext
-    forkContext = @forkContext
+    return if context.leftSegments
+    {forkContext} = @
     leftSegments = forkContext.makeDisconnected -1, -1
 
     # Update state.
@@ -1079,15 +1077,17 @@ class CodePathState
   # @returns {void}
   ###
   makeForInOfRight: ->
-    context = @loopContext
-    forkContext = @forkContext
+    {loopContext: context, forkContext} = @
     temp = ForkContext.newEmpty forkContext
-
-    temp.add context.prevSegments
+    if context.leftSegments
+      temp.add context.prevSegments
+    else
+      temp.add forkContext.head
     rightSegments = temp.makeNext -1, -1
 
     # Update state.
-    context.endOfLeftSegments = forkContext.head
+    if context.leftSegments
+      context.endOfLeftSegments = forkContext.head
     forkContext.replaceHead rightSegments
 
   ###*
@@ -1098,14 +1098,19 @@ class CodePathState
   ###
   makeForInOfBody: ->
     context = @loopContext
-    forkContext = @forkContext
+    {forkContext} = @
     temp = ForkContext.newEmpty forkContext
 
-    temp.add context.endOfLeftSegments
+    if context.leftSegments
+      temp.add context.endOfLeftSegments
+    else
+      temp.add forkContext.head
     bodySegments = temp.makeNext -1, -1
 
     # Make a path: `right` -> `left`.
-    makeLooped @, forkContext.head, context.leftSegments
+    makeLooped @, forkContext.head, context.leftSegments if context.leftSegments
+
+    context.continueDestSegments or= bodySegments
 
     # Update state.
     context.brokenForkContext.add forkContext.head

@@ -148,6 +148,7 @@ module.exports =
     ForInStatement: reportIfUnreachable
     ForOfStatement: reportIfUnreachable
     ForStatement: reportIfUnreachable
+    For: reportIfUnreachable
     IfStatement: reportIfUnreachable
     ImportDeclaration: reportIfUnreachable
     LabeledStatement: reportIfUnreachable

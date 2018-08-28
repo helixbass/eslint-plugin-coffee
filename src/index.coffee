@@ -22,7 +22,7 @@ rules =
     'camelcase'
     'dot-notation'
     'no-compare-neg-zero'
-    # 'no-unreachable'
+    'no-unreachable'
     'object-shorthand'
     'no-empty-character-class'
     'no-extra-boolean-cast'

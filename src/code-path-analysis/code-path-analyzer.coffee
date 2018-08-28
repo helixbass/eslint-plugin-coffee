@@ -237,6 +237,14 @@ preprocess = ({codePath}, node) ->
         assert parent.body is node
         state.makeForInOfBody()
 
+    when 'For'
+      if node in [parent.name, parent.index]
+        state.makeForInOfLeft()
+      else if parent.source is node
+        state.makeForInOfRight()
+      else if parent.body is node
+        state.makeForInOfBody()
+
     when 'AssignmentPattern'
       ###
       # Fork if this node is at `right`.
@@ -301,7 +309,7 @@ processCodePathToEnter = (analyzer, node) ->
       if parent.discriminant isnt node and parent.cases[0] isnt node
         state.forkPath()
 
-    when 'WhileStatement', 'DoWhileStatement', 'ForStatement', 'ForInStatement', 'ForOfStatement'
+    when 'WhileStatement', 'DoWhileStatement', 'ForStatement', 'ForInStatement', 'ForOfStatement', 'For'
       state.pushLoopContext node.type, astUtils.getLabel node
 
     when 'LabeledStatement'
@@ -375,7 +383,7 @@ processCodePathToExit = (analyzer, node) ->
     when 'CallExpression', 'MemberExpression', 'NewExpression'
       state.makeFirstThrowablePathInTryBlock()
 
-    when 'WhileStatement', 'DoWhileStatement', 'ForStatement', 'ForInStatement', 'ForOfStatement'
+    when 'WhileStatement', 'DoWhileStatement', 'ForStatement', 'ForInStatement', 'ForOfStatement', 'For'
       state.popLoopContext()
 
     when 'AssignmentPattern'

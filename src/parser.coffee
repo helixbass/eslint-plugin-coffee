@@ -10,11 +10,12 @@ babylonTokenTypes = require('babylon').tokTypes
 {flatten, assign: extend} = require 'lodash'
 # patchCodePathAnalysis = require './patch-code-path-analysis'
 analyzeScope = require './analyze-scope'
+{KEYS} = require 'eslint-visitor-keys'
 
 extendVisitorKeys = ->
   t = require 'babel-types'
   extend t.VISITOR_KEYS,
-    For: ['index', 'name', 'step', 'guard', 'body']
+    For: ['index', 'name', 'source', 'step', 'guard', 'body']
     InterpolatedRegExpLiteral: ['expressions']
     Range: ['from', 'to']
 espreeTokenTypes =
@@ -103,6 +104,11 @@ exports.getParser =
     {
       ast
       scopeManager: analyzeScope ast, opts
+      visitorKeys: {
+        ...KEYS
+        For: ['index', 'name', 'guard', 'step', 'source', 'body']
+        # Identifier: [...KEYS.Identifier, 'declaration']
+      }
     }
 
 exports.parseForESLint = getParser (code, opts) ->
