@@ -313,52 +313,60 @@ class CodePathState
   ###
   popChoiceContext: ->
     context = @choiceContext
+    {
+      trueForkContext
+      falseForkContext
+      processed
+      upper
+      kind
+      isForkingAsResult
+    } = context
 
-    @choiceContext = context.upper
+    @choiceContext = upper
 
-    forkContext = @forkContext
+    {forkContext} = @
     headSegments = forkContext.head
 
-    switch context.kind
+    switch kind
       when '&&', '||'
         ###
         # If any result were not transferred from child contexts,
         # this sets the head segments to both cases.
         # The head segments are the path of the right-hand operand.
         ###
-        unless context.processed
-          context.trueForkContext.add headSegments
-          context.falseForkContext.add headSegments
+        unless processed
+          trueForkContext.add headSegments
+          falseForkContext.add headSegments
 
         ###
         # Transfers results to upper context if this context is in
         # test chunk.
         ###
-        if context.isForkingAsResult
+        if isForkingAsResult
           parentContext = @choiceContext
 
-          parentContext.trueForkContext.addAll context.trueForkContext
-          parentContext.falseForkContext.addAll context.falseForkContext
+          parentContext.trueForkContext.addAll trueForkContext
+          parentContext.falseForkContext.addAll falseForkContext
           parentContext.processed = yes
 
           return context
 
       when 'test'
-        unless context.processed
+        unless processed
           ###
           # The head segments are the path of the `if` block here.
           # Updates the `true` path with the end of the `if` block.
           ###
-          context.trueForkContext.clear()
-          context.trueForkContext.add headSegments
+          trueForkContext.clear()
+          trueForkContext.add headSegments
         else
           ###
           # The head segments are the path of the `else` block here.
           # Updates the `false` path with the end of the `else`
           # block.
           ###
-          context.falseForkContext.clear()
-          context.falseForkContext.add headSegments
+          falseForkContext.clear()
+          falseForkContext.add headSegments
 
       when 'loop'
         ###
@@ -372,9 +380,9 @@ class CodePathState
         throw new Error 'unreachable'
 
     # Merges all paths.
-    prevForkContext = context.trueForkContext
+    prevForkContext = trueForkContext
 
-    prevForkContext.addAll context.falseForkContext
+    prevForkContext.addAll falseForkContext
     forkContext.replaceHead prevForkContext.makeNext 0, -1
 
     context
@@ -426,22 +434,23 @@ class CodePathState
   # @returns {void}
   ###
   makeIfConsequent: ->
-    context = @choiceContext
-    forkContext = @forkContext
+    {choiceContext: context, forkContext} = @
+    {processed, trueForkContext, falseForkContext} = context
+    {head} = forkContext
 
     ###
     # If any result were not transferred from child contexts,
     # this sets the head segments to both cases.
     # The head segments are the path of the test expression.
     ###
-    unless context.processed
-      context.trueForkContext.add forkContext.head
-      context.falseForkContext.add forkContext.head
+    unless processed
+      trueForkContext.add head
+      falseForkContext.add head
 
     context.processed = no
 
     # Creates new path from the `true` case.
-    forkContext.replaceHead context.trueForkContext.makeNext 0, -1
+    forkContext.replaceHead trueForkContext.makeNext 0, -1
 
   ###*
   # Makes a code path segment of the `else` block.
@@ -449,19 +458,20 @@ class CodePathState
   # @returns {void}
   ###
   makeIfAlternate: ->
-    context = @choiceContext
-    forkContext = @forkContext
+    {choiceContext: context, forkContext} = @
+    {trueForkContext, falseForkContext} = context
+    {head} = forkContext
 
     ###
     # The head segments are the path of the `if` block.
     # Updates the `true` path with the end of the `if` block.
     ###
-    context.trueForkContext.clear()
-    context.trueForkContext.add forkContext.head
+    trueForkContext.clear()
+    trueForkContext.add head
     context.processed = yes
 
     # Creates new path from the `false` case.
-    forkContext.replaceHead context.falseForkContext.makeNext 0, -1
+    forkContext.replaceHead falseForkContext.makeNext 0, -1
 
   #--------------------------------------------------------------------------
   # SwitchStatement
@@ -764,7 +774,7 @@ class CodePathState
   # @returns {void}
   ###
   makeFirstThrowablePathInTryBlock: ->
-    forkContext = @forkContext
+    {forkContext} = @
 
     return unless forkContext.reachable
 
@@ -1236,15 +1246,14 @@ class CodePathState
 # The head segments.
 # @type {CodePathSegment[]}
 ###
-Object.defineProperty CodePathState.prototype, 'headSegments',
-  get: -> @forkContext.head
+Object.defineProperty CodePathState::, 'headSegments', get: -> @forkContext.head
 
 ###*
 # The parent forking context.
 # This is used for the root of new forks.
 # @type {ForkContext}
 ###
-Object.defineProperty CodePathState.prototype, 'parentForkContext',
+Object.defineProperty CodePathState::, 'parentForkContext',
   get: ->
     @forkContext?.upper
 

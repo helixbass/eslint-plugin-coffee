@@ -41,27 +41,14 @@ isReachable = (segment) -> segment.reachable
 # @param {Function} create - A factory function of new segments.
 # @returns {CodePathSegment[]} New segments.
 ###
-makeSegments = (context, begin, end, create) ->
-  list = context.segmentsList
-
+makeSegments = ({segmentsList: list, count, idGenerator}, begin, end, create) ->
   normalizedBegin = if begin >= 0 then begin else list.length + begin
   normalizedEnd = if end >= 0 then end else list.length + end
 
-  segments = []
-
-  i = 0
-  while i < context.count
-    allPrevSegments = []
-
-    j = normalizedBegin
-    while j <= normalizedEnd
-      allPrevSegments.push list[j][i]
-      ++j
-
-    segments.push create context.idGenerator.next(), allPrevSegments
-    ++i
-
-  segments
+  create(
+    idGenerator.next()
+    (list[j][i] for j in [normalizedBegin..normalizedEnd])
+  ) for i in [0...count]
 
 ###*
 # `segments` becomes doubly in a `finally` block. Then if a code path exits by a
@@ -73,16 +60,16 @@ makeSegments = (context, begin, end, create) ->
 # @param {CodePathSegment[]} segments - Segments to merge.
 # @returns {CodePathSegment[]} The merged segments.
 ###
-mergeExtraSegments = (context, segments) ->
+mergeExtraSegments = ({count, idGenerator}, segments) ->
   currentSegments = segments
 
-  while currentSegments.length > context.count
+  while currentSegments.length > count
     merged = []
 
     length = (currentSegments.length / 2) | 0
     for i in [0...length]
       merged.push(
-        CodePathSegment.newNext context.idGenerator.next(), [
+        CodePathSegment.newNext idGenerator.next(), [
           currentSegments[i]
           currentSegments[i + length]
         ]
@@ -168,15 +155,10 @@ class ForkContext
   # @param {ForkContext} context - A fork context to add.
   # @returns {void}
   ###
-  addAll: (context) ->
-    assert context.count is @count
+  addAll: ({count, segmentsList: source}) ->
+    assert count is @count
 
-    source = context.segmentsList
-
-    i = 0
-    while i < source.length
-      @segmentsList.push source[i]
-      ++i
+    @segmentsList.push source...
 
   ###*
   # Clears all secments in this context.

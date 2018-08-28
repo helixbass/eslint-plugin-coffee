@@ -81,23 +81,23 @@ getBooleanValueIfSimpleConstant = (node) ->
 # @returns {boolean} `true` if the node is a reference.
 ###
 isIdentifierReference = (node) ->
-  parent = node.parent
+  {parent} = node
 
   switch parent.type
     when 'LabeledStatement', 'BreakStatement', 'ContinueStatement', 'ArrayPattern', 'RestElement', 'ImportSpecifier', 'ImportDefaultSpecifier', 'ImportNamespaceSpecifier', 'CatchClause'
-      return no
+      no
 
     when 'FunctionDeclaration', 'FunctionExpression', 'ArrowFunctionExpression', 'ClassDeclaration', 'ClassExpression', 'VariableDeclarator'
-      return parent.id isnt node
+      parent.id isnt node
 
     when 'Property', 'MethodDefinition'
-      return parent.key isnt node or parent.computed or parent.shorthand
+      parent.key isnt node or parent.computed or parent.shorthand
 
     when 'AssignmentPattern'
-      return parent.key isnt node
+      parent.key isnt node
 
     else
-      return yes
+      yes
 
 ###*
 # Updates the current segment with the head segment.
@@ -112,8 +112,7 @@ isIdentifierReference = (node) ->
 # @param {ASTNode} node - The current AST node.
 # @returns {void}
 ###
-forwardCurrentToHead = (analyzer, node) ->
-  {codePath} = analyzer
+forwardCurrentToHead = ({codePath, emitter}, node) ->
   state = CodePath.getState codePath
   {currentSegments, headSegments} = state
   end = Math.max currentSegments.length, headSegments.length
@@ -126,7 +125,7 @@ forwardCurrentToHead = (analyzer, node) ->
       debug.dump "onCodePathSegmentEnd #{currentSegment.id}"
 
       if currentSegment.reachable
-        analyzer.emitter.emit 'onCodePathSegmentEnd', currentSegment, node
+        emitter.emit 'onCodePathSegmentEnd', currentSegment, node
 
   # Update state.
   state.currentSegments = headSegments
@@ -141,7 +140,7 @@ forwardCurrentToHead = (analyzer, node) ->
 
       CodePathSegment.markUsed headSegment
       if headSegment.reachable
-        analyzer.emitter.emit 'onCodePathSegmentStart', headSegment, node
+        emitter.emit 'onCodePathSegmentStart', headSegment, node
 
 ###*
 # Updates the current segment with empty.
@@ -177,8 +176,7 @@ leaveFromCurrentSegment = (analyzer, node) ->
 # @param {ASTNode} node - The current AST node.
 # @returns {void}
 ###
-preprocess = (analyzer, node) ->
-  {codePath} = analyzer
+preprocess = ({codePath}, node) ->
   state = CodePath.getState codePath
   {parent} = node
 
@@ -322,7 +320,7 @@ processCodePathToEnter = (analyzer, node) ->
 # @returns {void}
 ###
 processCodePathToExit = (analyzer, node) ->
-  codePath = analyzer.codePath
+  {codePath} = analyzer
   state = CodePath.getState codePath
   dontForward = no
 
@@ -401,7 +399,7 @@ processCodePathToExit = (analyzer, node) ->
 postprocess = (analyzer, node) ->
   switch node.type
     when 'Program', 'FunctionDeclaration', 'FunctionExpression', 'ArrowFunctionExpression'
-      codePath = analyzer.codePath
+      {codePath} = analyzer
 
       # Mark the current path as the final node.
       CodePath.getState(codePath).makeFinal()

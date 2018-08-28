@@ -7,14 +7,16 @@ CoffeeScript = require 'coffeescript'
 babylonToEspree = require 'babel-eslint/babylon-to-espree'
 babelTraverse = require('babel-traverse').default
 babylonTokenTypes = require('babylon').tokTypes
-{flatten} = require 'lodash'
+{flatten, assign: extend} = require 'lodash'
 # patchCodePathAnalysis = require './patch-code-path-analysis'
 analyzeScope = require './analyze-scope'
 
 extendVisitorKeys = ->
   t = require 'babel-types'
-  t.VISITOR_KEYS.For = ['index', 'name', 'step', 'guard', 'body']
-  t.VISITOR_KEYS.InterpolatedRegExpLiteral = ['expressions']
+  extend t.VISITOR_KEYS,
+    For: ['index', 'name', 'step', 'guard', 'body']
+    InterpolatedRegExpLiteral: ['expressions']
+    Range: ['from', 'to']
 espreeTokenTypes =
   '{': 'Punctuator'
   '}': 'Punctuator'
@@ -106,4 +108,4 @@ exports.getParser =
 exports.parseForESLint = getParser (code, opts) ->
   CoffeeScript.ast code, {...opts, withTokens: yes}
 
-dump = (obj) -> console.log require('util').inspect obj, no, null
+# dump = (obj) -> console.log require('util').inspect obj, no, null
