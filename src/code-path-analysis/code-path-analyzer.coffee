@@ -36,8 +36,7 @@ isCaseNode = (node) -> Boolean node.test
 # @returns {boolean} `true` if the operator is "&&" or "||"
 ###
 isHandledLogicalOperator = (operator) ->
-  # operator in ['&&', '||', 'and', 'or', '?']
-  operator in ['&&', '||']
+  operator in ['&&', '||', 'and', 'or', '?']
 
 ###*
 # Checks whether or not a given logical expression node goes different path
@@ -95,6 +94,9 @@ isIdentifierReference = (node) ->
 
     when 'AssignmentPattern'
       parent.key isnt node
+
+    when 'For'
+      parent.index isnt node and parent.name isnt node
 
     else
       yes
@@ -350,7 +352,14 @@ processCodePathToExit = (analyzer, node) ->
       ###
       if node.consequent.length is 0
         state.makeSwitchCaseBody yes, not node.test
-      if state.forkContext.reachable then dontForward = yes
+
+      # implicit BreakStatement
+      if node.trailing
+        forwardCurrentToHead analyzer, node
+        state.makeBreak node.label?.name
+        dontForward = yes
+
+    # if state.forkContext.reachable then dontForward = yes
 
     when 'TryStatement'
       state.popTryContext()

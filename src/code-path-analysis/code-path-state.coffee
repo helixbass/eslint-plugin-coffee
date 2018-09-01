@@ -328,7 +328,7 @@ class CodePathState
     headSegments = forkContext.head
 
     switch kind
-      when '&&', '||'
+      when '&&', '||', 'and', 'or', '?'
         ###
         # If any result were not transferred from child contexts,
         # this sets the head segments to both cases.
@@ -394,8 +394,7 @@ class CodePathState
   # @returns {void}
   ###
   makeLogicalRight: ->
-    context = @choiceContext
-    forkContext = @forkContext
+    {choiceContext: context, forkContext} = @
 
     if context.processed
       ###
@@ -403,7 +402,7 @@ class CodePathState
       # Creates the next path from own true/false fork context.
       ###
       prevForkContext =
-        if context.kind is '&&'
+        if context.kind in ['&&', 'and']
           context.trueForkContext
         ### kind === "||" ###
         else
@@ -419,7 +418,7 @@ class CodePathState
       # So addresses the head segments.
       # The head segments are the path of the left-hand operand.
       ###
-      if context.kind is '&&'
+      if context.kind in ['&&', 'and']
         # The path does short-circuit if false.
         context.falseForkContext.add forkContext.head
       else
@@ -967,8 +966,7 @@ class CodePathState
   # @returns {void}
   ###
   makeDoWhileTest: (test) ->
-    context = @loopContext
-    forkContext = @forkContext
+    {loopContext: context, forkContext} = @
 
     context.test = test
 
@@ -1189,7 +1187,7 @@ class CodePathState
   # @returns {void}
   ###
   makeContinue: (label) ->
-    forkContext = @forkContext
+    {forkContext} = @
 
     return unless forkContext.reachable
 
@@ -1201,7 +1199,7 @@ class CodePathState
         makeLooped @, forkContext.head, context.continueDestSegments
 
         # If the context is a for-in/of loop, this effects a break also.
-        if context.type in ['ForInStatement', 'ForOfStatement']
+        if context.type in ['ForInStatement', 'ForOfStatement', 'For']
           context.brokenForkContext.add forkContext.head
       else
         context.continueForkContext.add forkContext.head

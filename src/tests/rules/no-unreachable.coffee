@@ -85,6 +85,12 @@ ruleTester.run 'no-unreachable', rule,
       x = 2
     '''
     '''
+      x = 1
+      for x in [1, 2, 3] when foo x
+        return
+      x = 2
+    '''
+    '''
       ->
         x = 1
         try

@@ -387,9 +387,9 @@ co@^4.6.0:
     eslint-plugin-standard "^3.0.1"
     prettier "github:helixbass/prettier#just-format-ast"
 
-"coffeescript@github:helixbass/coffeescript#d2bada7":
+"coffeescript@github:helixbass/coffeescript#55cce05":
   version "2.3.1"
-  resolved "https://codeload.github.com/helixbass/coffeescript/tar.gz/d2bada7b5e91befbf15712b7da0639d36300ea06"
+  resolved "https://codeload.github.com/helixbass/coffeescript/tar.gz/55cce0565682205690abb0b019cb409d536e27fe"
   dependencies:
     babel-eslint "^7.2.2"
     babylon "^7.0.0-beta.44"

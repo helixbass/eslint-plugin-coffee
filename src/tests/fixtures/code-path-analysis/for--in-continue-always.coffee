@@ -2,6 +2,7 @@
 initial->s1_1->s1_3->s1_2->s1_4->s1_2;
 s1_3->s1_6;
 s1_4->s1_5->s1_2;
+s1_4->s1_6;
 s1_5->s1_6->final;
 ###
 for x in list
@@ -21,6 +22,7 @@ s1_5[style="rounded,dashed,filled",fillcolor="#FF9800",label="<<unreachable>>\nB
 initial->s1_1->s1_3->s1_2->s1_4->s1_2;
 s1_3->s1_6;
 s1_4->s1_5->s1_2;
+s1_4->s1_6;
 s1_5->s1_6->final;
 }
 ###
