@@ -20,6 +20,8 @@ rules:
   # no-multi-assign: error
   no-self-compare: error
   no-console: error
+  coffee/no-unused-expressions: off
+  coffee/no-magic-numbers: off
 env:
   node: true
   es6: true

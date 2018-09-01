@@ -9,7 +9,7 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-debug = require './debug-helpers'
+debug = require 'eslint/lib/code-path-analysis/debug-helpers'
 
 #------------------------------------------------------------------------------
 # Helpers

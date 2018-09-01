@@ -10,6 +10,7 @@ babylonTokenTypes = require('babylon').tokTypes
 {flatten, assign: extend} = require 'lodash'
 # patchCodePathAnalysis = require './patch-code-path-analysis'
 analyzeScope = require './analyze-scope'
+CodePathAnalyzer = require './code-path-analysis/code-path-analyzer'
 {KEYS} = require 'eslint-visitor-keys'
 
 extendVisitorKeys = ->
@@ -109,6 +110,7 @@ exports.getParser =
         For: ['index', 'name', 'guard', 'step', 'source', 'body']
         # Identifier: [...KEYS.Identifier, 'declaration']
       }
+      CodePathAnalyzer
     }
 
 exports.parseForESLint = getParser (code, opts) ->

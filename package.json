@@ -18,7 +18,7 @@
   "author": "Julian Rosse <@helixbass>",
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^5.0.0",
+    "eslint": "github:helixbass/eslint#967ef170",
     "eslint-config-prettier": "^3.0.1",
     "eslint-plugin-coffee": "^0.0.4",
     "eslint-plugin-import": "^2.14.0",
@@ -33,7 +33,7 @@
   "dependencies": {
     "babel-eslint": "^7.2.2",
     "babylon": "^7.0.0-beta.44",
-    "coffeescript": "github:helixbass/coffeescript#0805392",
+    "coffeescript": "github:helixbass/coffeescript#d2bada7",
     "eslint-scope": "~3.7.3",
     "eslint-visitor-keys": "^1.0.0",
     "lodash": "^4.17.10"
