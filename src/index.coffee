@@ -32,6 +32,8 @@ rules =
     'no-self-assign'
     'operator-assignment'
     'no-unused-expressions'
+    'class-methods-use-this'
+    'no-await-in-loop'
   ]
 
 configureAsError = flow(

@@ -98,9 +98,11 @@ exports.getParser =
     ast.tokens = tokensForESLint {tokens, ast}
     extendVisitorKeys()
     firstCommentLine = ast.comments?[0]?.loc.start.line
+    firstCommentColumn = ast.comments?[0]?.loc.start.column
     babylonToEspree ast, babelTraverse, babylonTokenTypes, code
     # babylonToEspree seems to like to change the file-leading comment's start line
     ast.comments?[0]?.loc.start.line = firstCommentLine
+    ast.comments?[0]?.loc.start.column = firstCommentColumn
     # dump espreeAst: ast
     {
       ast
