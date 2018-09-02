@@ -65,7 +65,7 @@ module.exports =
     # @private
     ###
     isBooleanLiteral = (node) ->
-      node.type is 'Literal' and typeof node.value is 'boolean'
+      node and node.type is 'Literal' and typeof node.value is 'boolean'
 
     ###*
     # Creates an expression that represents the boolean inverse of the expression represented by the original node
@@ -126,6 +126,7 @@ module.exports =
     # @private
     ###
     matchesDefaultAssignment = (node) ->
+      return unless node.alternate
       return unless (testIdentifierName = justIdentifierName node.test)
       return unless (
         (consequentIdentifierName = justIdentifierName node.consequent)

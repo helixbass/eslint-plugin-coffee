@@ -38,6 +38,7 @@ rules =
     'no-constant-condition'
     'no-template-curly-in-string'
     'no-unneeded-ternary'
+    'no-unmodified-loop-condition'
   ]
 
 configureAsError = flow(
