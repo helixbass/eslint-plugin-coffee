@@ -20,7 +20,7 @@ module.exports =
       type: 'object'
       properties:
         allowShortCircuit: type: 'boolean'
-        allowTernary: type: 'boolean'
+        # allowTernary: type: 'boolean'
         allowTaggedTemplates: type: 'boolean'
       additionalProperties: no
     ]
@@ -28,7 +28,7 @@ module.exports =
   create: (context) ->
     config = context.options[0] or {}
     allowShortCircuit = config.allowShortCircuit or no
-    allowTernary = config.allowTernary or no
+    # allowTernary = config.allowTernary or no
     allowTaggedTemplates = config.allowTaggedTemplates or no
 
     ###*
@@ -78,12 +78,14 @@ module.exports =
     # @returns {boolean} whether the given node is a valid expression
     ###
     isValidExpression = (node) ->
-      if allowTernary
-        # Recursive check for ternary and logical expressions
-        return (
-          isValidExpression(node.consequent) and
-          isValidExpression node.alternate
-        ) if node.type is 'ConditionalExpression'
+      return yes if node.returns
+
+      # if allowTernary
+      # Recursive check for ternary and logical expressions
+      return (
+        isValidExpression(node.consequent) and
+        (not node.alternate or isValidExpression node.alternate)
+      ) if node.type is 'ConditionalExpression'
 
       if allowShortCircuit
         return isValidExpression node.right if node.type is 'LogicalExpression'
@@ -95,6 +97,8 @@ module.exports =
       /^(?:Assignment|Call|New|Update|Yield|Await)Expression$/.test(
         node.type
       ) or
+        # our ConditionalExpression could have statements
+        /Statement/.test(node.type) or
         (node.type is 'UnaryExpression' and
           ['delete', 'void', 'do'].indexOf(node.operator) >= 0)
 

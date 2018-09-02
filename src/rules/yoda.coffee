@@ -163,8 +163,7 @@ module.exports =
     # @returns {boolean} Whether node is a range test.
     ###
     isRangeTest = (node) ->
-      left = node.left
-      right = node.right
+      {left, right} = node
 
       ###*
       # Determines whether node is of the form `0 <= x && x < 1`.
@@ -211,8 +210,8 @@ module.exports =
         isParenWrapped()
 
     OPERATOR_FLIP_MAP =
-      'is': 'is'
-      'isnt': 'isnt'
+      is: 'is'
+      isnt: 'isnt'
       '==': '=='
       '!=': '!='
       '<': '>'

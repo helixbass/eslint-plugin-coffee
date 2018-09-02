@@ -22,30 +22,54 @@ ruleTester.run 'no-negated-condition', rule,
   valid: [
     'if (a) then ;'
     'if (a) then ; else ;'
-    code: 'if (!a) then ;', options: [requireElse: yes]
-    code: 'x if (!a)', options: [requireElse: yes]
-    code: 'if (!a) then ; else if (b) then ;', options: [requireElse: yes]
-    code: 'if (!a) then ; else if (b) then ; else ;', options: [requireElse: yes]
+  ,
+    code: 'if (!a) then ;'
+    options: [requireElse: yes]
+    code: 'x if (!a)'
+    options: [requireElse: yes]
+    code: 'if (!a) then ; else if (b) then ;'
+    options: [requireElse: yes]
+    code: 'if (!a) then ; else if (b) then ; else ;'
+    options: [requireElse: yes]
+  ,
     'if (a == b) then ;'
     'if (a == b) then ; else ;'
-    code: 'if (a != b) then ;', options: [requireElse: yes]
-    code: 'if (a != b) then ; else if (b) then ;', options: [requireElse: yes]
-    code: 'if (a != b) then ; else if (b) then ; else ;', options: [requireElse: yes]
-    code: 'if (a isnt b) then ;', options: [requireElse: yes]
+  ,
+    code: 'if (a != b) then ;'
+    options: [requireElse: yes]
+    code: 'if (a != b) then ; else if (b) then ;'
+    options: [requireElse: yes]
+    code: 'if (a != b) then ; else if (b) then ; else ;'
+    options: [requireElse: yes]
+    code: 'if (a isnt b) then ;'
+    options: [requireElse: yes]
+  ,
     'if (a is b) then ; else ;'
     '(if a then b else c)'
     'unless (a) then ;'
     'unless (a) then ; else ;'
-    code: 'unless (!a) then ;', options: [requireElse: yes]
-    code: 'x unless (!a)', options: [requireElse: yes]
-    code: 'unless (!a) then ; else if (b) then ;', options: [requireElse: yes]
-    code: 'unless (!a) then ; else if (b) then ; else ;', options: [requireElse: yes]
+  ,
+    code: 'unless (!a) then ;'
+    options: [requireElse: yes]
+    code: 'x unless (!a)'
+    options: [requireElse: yes]
+    code: 'unless (!a) then ; else if (b) then ;'
+    options: [requireElse: yes]
+    code: 'unless (!a) then ; else if (b) then ; else ;'
+    options: [requireElse: yes]
+  ,
     'unless (a == b) then ;'
     'unless (a == b) then ; else ;'
-    code: 'unless (a != b) then ;', options: [requireElse: yes]
-    code: 'unless (a != b) then ; else if (b) then ;', options: [requireElse: yes]
-    code: 'unless (a != b) then ; else if (b) then ; else ;', options: [requireElse: yes]
-    code: 'unless (a isnt b) then ;', options: [requireElse: yes]
+  ,
+    code: 'unless (a != b) then ;'
+    options: [requireElse: yes]
+    code: 'unless (a != b) then ; else if (b) then ;'
+    options: [requireElse: yes]
+    code: 'unless (a != b) then ; else if (b) then ; else ;'
+    options: [requireElse: yes]
+    code: 'unless (a isnt b) then ;'
+    options: [requireElse: yes]
+  ,
     'unless (a is b) then ; else ;'
     '(unless a then b else c)'
   ]
@@ -142,7 +166,7 @@ ruleTester.run 'no-negated-condition', rule,
       type: 'ConditionalExpression'
     ]
   ,
-    code: '(if (a isnt b) then ;)'
+    code: '(if (a isnt b) then c)'
     errors: [
       message: 'Unexpected negated condition.'
       type: 'ConditionalExpression'
@@ -244,7 +268,7 @@ ruleTester.run 'no-negated-condition', rule,
       type: 'IfStatement'
     ]
   ,
-    code: '(unless (a isnt b) then ;)'
+    code: '(unless (a isnt b) then c)'
     errors: [
       message: 'Unexpected negated condition.'
       type: 'ConditionalExpression'

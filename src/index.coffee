@@ -34,6 +34,7 @@ rules =
     'no-unused-expressions'
     'class-methods-use-this'
     'no-await-in-loop'
+    'prefer-destructuring'
   ]
 
 configureAsError = flow(

@@ -12,8 +12,11 @@
 isBoundary = (node) ->
   t = node.type
 
-  t in
-    ['FunctionDeclaration', 'FunctionExpression', 'ArrowFunctionExpression'] or
+  t in [
+    'FunctionDeclaration'
+    'FunctionExpression'
+    'ArrowFunctionExpression'
+  ] or
     ###
     # Don't report the await expressions on for-await-of loop since it's
     # asynchronous iteration intentionally.

@@ -21,7 +21,7 @@ module.exports =
       # when 'SequenceExpression'
       #   return 0
 
-      when 'AssignmentExpression' #,                     'ArrowFunctionExpression', 'YieldExpression'
+      when 'AssignmentExpression' # ,'ArrowFunctionExpression', 'YieldExpression'
         return 1
 
       # when 'ConditionalExpression'

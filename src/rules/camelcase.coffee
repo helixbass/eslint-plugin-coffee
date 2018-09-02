@@ -61,7 +61,7 @@ module.exports =
       while parent
         return yes if parent.type is 'ObjectPattern'
 
-        parent = parent.parent
+        {parent} = parent
 
       no
 

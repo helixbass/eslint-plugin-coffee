@@ -7,7 +7,7 @@ extends:
 rules:
   no-undef: error
   no-unused-vars: error
-  prefer-destructuring: [error, {object: true}]
+  coffee/prefer-destructuring: [error, {object: true}]
   prettier/prettier: [error, {parser: coffeescript, pluginSearchDirs: [.]}]
   use-isnan: error
   spaced-comment: [error, always, exceptions: ['-']]
@@ -20,8 +20,8 @@ rules:
   # no-multi-assign: error
   no-self-compare: error
   no-console: error
-  coffee/no-unused-expressions: off
   coffee/no-magic-numbers: off
+  coffee/no-implicit-coercion: off
 env:
   node: true
   es6: true

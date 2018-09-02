@@ -512,8 +512,8 @@ class CodePathState
 
     @switchContext = context.upper
 
-    forkContext = @forkContext
-    brokenForkContext = @popBreakContext().brokenForkContext
+    {forkContext} = @
+    {brokenForkContext} = @popBreakContext()
 
     if context.countForks is 0
       ###
@@ -691,8 +691,7 @@ class CodePathState
   # @returns {void}
   ###
   makeCatchBlock: ->
-    context = @tryContext
-    forkContext = @forkContext
+    {tryContext: context, forkContext} = @
     thrown = context.thrownForkContext
 
     # Update state.
@@ -719,8 +718,7 @@ class CodePathState
   # @returns {void}
   ###
   makeFinallyBlock: ->
-    context = @tryContext
-    forkContext = @forkContext
+    {tryContext: context, forkContext} = @
     returned = context.returnedForkContext
     thrown = context.thrownForkContext
     headOfLeavingSegments = forkContext.head
@@ -729,7 +727,7 @@ class CodePathState
     if context.position is 'catch'
       # Merges two paths from the `try` block and `catch` block.
       @popForkContext()
-      forkContext = @forkContext
+      {forkContext} = @
 
       context.lastOfCatchIsReachable = forkContext.reachable
     else
@@ -951,8 +949,7 @@ class CodePathState
   # @returns {void}
   ###
   makeDoWhileBody: ->
-    context = @loopContext
-    forkContext = @forkContext
+    {loopContext: context, forkContext} = @
     bodySegments = forkContext.makeNext -1, -1
 
     # Update state.
@@ -1141,14 +1138,13 @@ class CodePathState
   # @returns {Object} The removed context.
   ###
   popBreakContext: ->
-    context = @breakContext
-    forkContext = @forkContext
+    {breakContext: context, forkContext} = @
 
     @breakContext = context.upper
 
     # Process this context here for other than switches and loops.
     unless context.breakable
-      brokenForkContext = context.brokenForkContext
+      {brokenForkContext} = context
 
       unless brokenForkContext.empty
         brokenForkContext.add forkContext.head
@@ -1166,7 +1162,7 @@ class CodePathState
   # @returns {void}
   ###
   makeBreak: (label) ->
-    forkContext = @forkContext
+    {forkContext} = @
 
     return unless forkContext.reachable
 
@@ -1214,7 +1210,7 @@ class CodePathState
   # @returns {void}
   ###
   makeReturn: ->
-    forkContext = @forkContext
+    {forkContext} = @
 
     if forkContext.reachable
       getReturnContext(@).returnedForkContext.add forkContext.head

@@ -278,8 +278,11 @@ processCodePathToEnter = (analyzer, node) ->
         debug.dumpState node, state, no
 
       # Create the code path of this scope.
-      codePath =
-        analyzer.codePath = new CodePath idGenerator.next(), codePath, onLooped
+      codePath = analyzer.codePath = new CodePath(
+        idGenerator.next()
+        codePath
+        onLooped
+      )
       state = CodePath.getState codePath
 
       # Emits onCodePathStart events.

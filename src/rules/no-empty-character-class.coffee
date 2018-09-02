@@ -21,8 +21,7 @@
 # 4. `[gimuy]*`: optional regexp flags
 # 5. `$`: fix the match at the end of the string
 ###
-regex =
-  ///
+regex = ///
   ^
   /
   (
@@ -42,8 +41,7 @@ regex =
   [gimuys]*
   $
 ///
-justContentRegex =
-  ///
+justContentRegex = ///
   ^
   (
     [^\\[]

@@ -31,8 +31,8 @@ ruleTester.run 'no-unused-expressions', rule,
     'a()'
     'a?()'
     'do a'
+    'do -> a'
   ,
-    # 'do -> a'
     code: 'a && a()', options: [allowShortCircuit: yes]
   ,
     code: 'a and a()', options: [allowShortCircuit: yes]
@@ -43,10 +43,10 @@ ruleTester.run 'no-unused-expressions', rule,
   ,
     code: 'a() ? (b = c)', options: [allowShortCircuit: yes]
   ,
-    code: '(if a then b() else c())', options: [allowTernary: yes]
+    code: '(if a then b() else c())'
   ,
     code: '(if a then b() || (c = d) else e())'
-    options: [allowShortCircuit: yes, allowTernary: yes]
+    options: [allowShortCircuit: yes]
   ,
     'delete foo.bar'
     '"use strict"'
@@ -55,11 +55,11 @@ ruleTester.run 'no-unused-expressions', rule,
       "directive two"
       f()
     '''
-    # '''
-    #   foo = ->
-    #     "use strict"
-    #     true
-    # '''
+    '''
+      foo = ->
+        "use strict"
+        true
+    '''
     '''
       foo = ->
         "directive one"
@@ -78,14 +78,73 @@ ruleTester.run 'no-unused-expressions', rule,
     code: 'foo = -> bar && await baz'
     options: [allowShortCircuit: yes]
   ,
-    code: 'foo = -> (if foo then await bar else await baz)'
-    options: [allowTernary: yes]
+    'foo = -> (if foo then await bar else await baz)'
   ,
     code: 'tag"tagged template literal"'
     options: [allowTaggedTemplates: yes]
   ,
     code: 'shouldNotBeAffectedByAllowTemplateTagsOption()'
     options: [allowTaggedTemplates: yes]
+  ,
+    '''
+      foo = ->
+        return b if c
+        d
+    '''
+    '''
+      foo = ->
+        x for x in y
+    '''
+    '''
+      foo =
+        x for x in y
+    '''
+    '''
+      foo = ->
+        switch a
+          when b
+            c
+          when d
+            e
+          else
+            f
+    '''
+    '''
+      foo =
+        switch a
+          when b
+            c
+          when d
+            e
+          else
+            f
+    '''
+    '''
+      foo = ->
+        while a
+          b
+    '''
+    '''
+      foo =
+        while a
+          b
+    '''
+    '''
+      foo = ->
+        if a
+          b()
+          c
+        else
+          d
+    '''
+    '''
+      foo =
+        if a
+          b()
+          c
+        else
+          d
+    '''
   ]
   invalid: [
     code: '0'
@@ -162,15 +221,6 @@ ruleTester.run 'no-unused-expressions', rule,
     ]
   ,
     code: 'a && b()'
-    options: [allowTernary: yes]
-    errors: [
-      message:
-        'Expected an assignment or function call and instead saw an expression.'
-      type: 'ExpressionStatement'
-    ]
-  ,
-    code: '(if a then b() else c())'
-    options: [allowShortCircuit: yes]
     errors: [
       message:
         'Expected an assignment or function call and instead saw an expression.'
@@ -194,15 +244,6 @@ ruleTester.run 'no-unused-expressions', rule,
     ]
   ,
     code: '(if a then b else 0)'
-    options: [allowTernary: yes]
-    errors: [
-      message:
-        'Expected an assignment or function call and instead saw an expression.'
-      type: 'ExpressionStatement'
-    ]
-  ,
-    code: '(if a then b else c())'
-    options: [allowTernary: yes]
     errors: [
       message:
         'Expected an assignment or function call and instead saw an expression.'
@@ -246,6 +287,7 @@ ruleTester.run 'no-unused-expressions', rule,
         "directive one"
         f()
         "directive two"
+        ret
     '''
     errors: [
       message:
@@ -268,6 +310,7 @@ ruleTester.run 'no-unused-expressions', rule,
       foo = ->
         foo = yes
         "use strict"
+        ret
     '''
     errors: [
       message:
@@ -291,5 +334,36 @@ ruleTester.run 'no-unused-expressions', rule,
     options: [allowTaggedTemplates: no]
     errors: [
       'Expected an assignment or function call and instead saw an expression.'
+    ]
+  ,
+    code: '''
+      for x in y
+        z
+    '''
+    errors: [
+      message:
+        'Expected an assignment or function call and instead saw an expression.'
+      type: 'ExpressionStatement'
+    ]
+  ,
+    code: '''
+      while x
+        y
+    '''
+    errors: [
+      message:
+        'Expected an assignment or function call and instead saw an expression.'
+      type: 'ExpressionStatement'
+    ]
+  ,
+    code: '''
+      switch x
+        when y
+          z
+    '''
+    errors: [
+      message:
+        'Expected an assignment or function call and instead saw an expression.'
+      type: 'ExpressionStatement'
     ]
   ]
