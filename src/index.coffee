@@ -35,6 +35,7 @@ rules =
     'class-methods-use-this'
     'no-await-in-loop'
     'prefer-destructuring'
+    'no-constant-condition'
   ]
 
 configureAsError = flow(
