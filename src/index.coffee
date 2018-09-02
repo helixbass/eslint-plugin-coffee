@@ -36,6 +36,8 @@ rules =
     'no-await-in-loop'
     'prefer-destructuring'
     'no-constant-condition'
+    'no-template-curly-in-string'
+    'no-unneeded-ternary'
   ]
 
 configureAsError = flow(
