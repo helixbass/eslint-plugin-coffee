@@ -40,6 +40,7 @@ rules =
     'no-unneeded-ternary'
     'no-unmodified-loop-condition'
     'no-unused-vars'
+    'no-use-before-define'
   ]
 
 configureAsError = flow(
