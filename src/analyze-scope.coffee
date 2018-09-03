@@ -1,6 +1,7 @@
 escope = require 'eslint-scope'
 {Definition} = require 'eslint-scope/lib/definition'
 OriginalReferencer = require 'eslint-scope/lib/referencer'
+Reference = require 'eslint-scope/lib/reference'
 # PatternVisitor = require 'eslint-scope/lib/pattern-visitor'
 
 class Referencer extends OriginalReferencer
@@ -12,11 +13,19 @@ class Referencer extends OriginalReferencer
     super node
 
   For: (node) ->
-    @visitPattern node.name, (identifier) =>
+    visitForVariable = (identifier) =>
       @_createScopeVariable identifier if identifier.declaration
-    @visitPattern node.index, (identifier) =>
-      @_createScopeVariable identifier if identifier.declaration
+      @currentScope().__referencing(
+        identifier
+        Reference.WRITE
+        node.source
+        null
+        yes
+        yes
+      )
 
+    @visitPattern node.name, visitForVariable
+    @visitPattern node.index, visitForVariable
     @visitChildren node
 
   Identifier: (node) ->
