@@ -116,6 +116,18 @@ isInInitializer = (variable, reference) ->
 
   no
 
+isInPostfixBody = (variable, reference) ->
+  node = variable.identifiers[0].parent
+  location = reference.identifier.range[1]
+
+  while node
+    if node.postfix
+      return isInRange node.consequent ? node.body, location
+
+    node = node.parent
+
+  no
+
 #------------------------------------------------------------------------------
 # Rule Definition
 #------------------------------------------------------------------------------
@@ -183,6 +195,8 @@ module.exports =
             not isInInitializer(variable, reference)) or
           not isForbidden variable, reference
         )
+
+        return if isInPostfixBody variable, reference
 
         # Reports.
         context.report

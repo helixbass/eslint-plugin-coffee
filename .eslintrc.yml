@@ -20,6 +20,8 @@ rules:
   no-console: error
   coffee/no-magic-numbers: off
   coffee/no-implicit-coercion: off
+  coffee/vars-on-top: off
+  coffee/max-depth: off
 env:
   node: true
   es6: true

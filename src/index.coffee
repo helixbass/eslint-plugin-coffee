@@ -41,6 +41,8 @@ rules =
     'no-unmodified-loop-condition'
     'no-unused-vars'
     'no-use-before-define'
+    'max-depth'
+    'vars-on-top'
   ]
 
 configureAsError = flow(

@@ -137,7 +137,7 @@ module.exports =
       if definition
         {node} = definition
 
-        if node.type is 'VariableDeclarator'
+        if node.declaration
           node = node.parent
         else
           return no if definition.type is 'Parameter'
@@ -452,7 +452,7 @@ module.exports =
 
             # skip catch variables
             if type is 'CatchClause'
-              if config.caughtErrors is 'none' then continue
+              continue if config.caughtErrors is 'none'
 
               # skip ignored parameters
               continue if config.caughtErrorsIgnorePattern?.test def.name.name

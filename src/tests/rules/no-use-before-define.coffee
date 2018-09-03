@@ -72,6 +72,15 @@ ruleTester.run 'no-use-before-define', rule,
       for a in a
         ;
     '''
+    '''
+      b for b in [0...1]
+    '''
+    '''
+      b++ while b
+    '''
+    '''
+      not b unless b
+    '''
   ,
     # object style options
     code: '''
