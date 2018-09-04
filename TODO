@@ -1,20 +1,13 @@
-- is this a bug in prefer-destructuring? shouldn't it ignore it b/c optional?
-  requireStringLiterals = context.options[0]?.requireStringLiterals
-- for no-unused-expressions to not flag eg -> a (implicit return), should we use code path analysis or get the AST to include eg returns: yes on nodes that can be returned?
-  no-unused-expressions flags eg return x if y
 - yoda isn't safe wrt eg implicit call parens
 - code path analysis needs to actually understand for when, since it considers anything after a for when whose body returns to be unreachable? or is eslint-plugin-known-imports using outdated?
-- no-unused-vars reports eg
-  a = 1
-  x = ->
-    a ?= 2
-  I guess it's not respecting the implicit return as a "use", does this mean I need to customize no-unused-vars?
 
 - figure out how to not commit lib/ and publish to npm
 - restrict eslint peerDependency range or detect version - looks like eg ast-utils has moved to lib/util/ast-utils
 - should we always be parsing as module?
 - expose prettier/prettier w/ prettier-plugin-coffeescript config set up eg as plugin:coffee/prettier?
 - add test like eslint-plugin-react (?) that checks that everything in src/rules/ is exposed
+- monkeypatch code path analysis
 
 rule ideas:
 - no-unnecessary-fat-arrow
+- prefer-implicit-return

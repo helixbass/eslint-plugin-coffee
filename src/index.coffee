@@ -43,6 +43,8 @@ rules =
     'no-use-before-define'
     'max-depth'
     'vars-on-top'
+    'guard-for-in'
+    'no-useless-return'
   ]
 
 configureAsError = flow(
