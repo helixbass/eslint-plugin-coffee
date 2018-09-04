@@ -11,3 +11,4 @@
 rule ideas:
 - no-unnecessary-fat-arrow
 - prefer-implicit-return
+- prefer-unless
