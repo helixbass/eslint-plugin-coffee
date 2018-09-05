@@ -237,11 +237,17 @@ module.exports =
       recommended: no
       url: 'https://eslint.org/docs/rules/no-invalid-this'
 
-    schema: []
+    schema: [
+      type: 'object'
+      properties:
+        fatArrowsOk: type: 'boolean'
+      additionalProperties: no
+    ]
 
   create: (context) ->
     stack = []
     sourceCode = context.getSourceCode()
+    {fatArrowsOk} = context.options[0] ? {}
 
     ###*
     # Gets the current checking context.
@@ -257,7 +263,11 @@ module.exports =
 
       unless current.init
         current.init = yes
-        current.valid = not isDefaultThisBinding current.node, sourceCode
+        current.valid =
+          if fatArrowsOk and current.node.bound
+            yes
+          else
+            not isDefaultThisBinding current.node, sourceCode
       current
 
     ###*
@@ -271,7 +281,7 @@ module.exports =
     # @returns {void}
     ###
     enterFunction = (node) ->
-      return if node.bound
+      return if node.bound and not fatArrowsOk
       # `this` can be invalid only under strict mode.
       stack.push {
         init: not context.getScope().isStrict

@@ -93,6 +93,11 @@ ruleTester.run 'no-invalid-this', rule,
         z (x) => console.log(x, this)
     '''
     '''
+      obj::foo = ->
+        console.log(this)
+        z (x) => console.log(x, this)
+    '''
+    '''
       Reflect.apply ->
         console.log this
         z (x) => console.log(x, this)
@@ -190,7 +195,7 @@ ruleTester.run 'no-invalid-this', rule,
     '''
     '''
       class A
-        constructor: ->
+        constructor: ({@b} = {}) ->
           console.log(@)
           z (x) => console.log(x, @)
     '''
@@ -244,6 +249,12 @@ ruleTester.run 'no-invalid-this', rule,
         console.log(this)
         z (x) => console.log(x, this)
     '''
+    # https://github.com/eslint/eslint/issues/6824
+    '''
+      Ctor = (@b) ->
+        console.log(this)
+        z (x) => console.log(x, this)
+    '''
     # @this tag.
     '''
       ###* @this Obj ### foo = ->
@@ -259,6 +270,9 @@ ruleTester.run 'no-invalid-this', rule,
         console.log this
         z (x) => console.log(x, this)
     '''
+  ,
+    code: '(@a) => @bcd'
+    options: [fatArrowsOk: yes]
   ]
   invalid: [
     {
@@ -570,6 +584,14 @@ ruleTester.run 'no-invalid-this', rule,
           console.log(this)
           z (x) => console.log(x, this)
         ) ->
+      '''
+      errors
+    }
+  ,
+    {
+      code: '''
+        (@b) ->
+          z (x) => console.log(x, this)
       '''
       errors
     }
