@@ -5,6 +5,7 @@ plugins:
 extends:
   - plugin:coffee/all
 rules:
+  no-undef: error
   coffee/prefer-destructuring: [error, {object: true}]
   prettier/prettier: [error, {parser: coffeescript, pluginSearchDirs: [.]}]
   use-isnan: error

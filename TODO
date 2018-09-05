@@ -17,3 +17,4 @@ rule ideas:
 - no-unnecessary-fat-arrow
 - prefer-implicit-return
 - prefer-unless
+- comprehension-parens (somewhat like coffeelint ensure_comprehensions, but maybe have options for assignment (eg a = b for b in c), inlineFunction (eg a = -> b for b in c))?

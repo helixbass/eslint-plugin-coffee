@@ -48,6 +48,8 @@ rules =
     'arrow-spacing'
     'object-curly-spacing'
     'capitalized-class-names'
+    'complexity'
+    'max-len'
   ]
 
 configureAsError = flow(

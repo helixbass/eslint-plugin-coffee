@@ -1,0 +1,486 @@
+###*
+# @fileoverview Tests for max-len rule.
+# @author Matt DuVall <http://www.mattduvall.com>
+###
+
+'use strict'
+
+#------------------------------------------------------------------------------
+# Requirements
+#------------------------------------------------------------------------------
+rule = require '../../rules/max-len'
+{RuleTester} = require 'eslint'
+
+#------------------------------------------------------------------------------
+# Tests
+#------------------------------------------------------------------------------
+
+ruleTester = new RuleTester parser: '../../..'
+
+ruleTester.run 'max-len', rule,
+  valid: [
+    'x = 5\nx = 2'
+  ,
+    code: 'x = 5\nx = 2'
+    options: [80, 4]
+  ,
+    code: '\t\t\ti = 1\n\t\t\tj = 1'
+    options: [15, 1]
+  ,
+    code: 'one\t\t= 1\nthree\t= 3'
+    options: [16, 4]
+  ,
+    code: '\tone\t\t= 1\n\tthree\t= 3'
+    options: [20, 4]
+  ,
+    code: 'i = 1\r\ni = 1\n'
+    options: [10, 4]
+  ,
+    code: '\n# Blank line on top\nfoo = module.exports = {}\n'
+    options: [80, 4]
+  ,
+    '\n# Blank line on top\nfoo = module.exports = {}\n'
+  ,
+    code: 'foo = module.exports = {} # really long trailing comment'
+    options: [40, 4, {ignoreComments: yes}]
+  ,
+    code: 'foo() \t# strips entire comment *and* trailing whitespace'
+    options: [6, 4, {ignoreComments: yes}]
+  ,
+    code: '# really long comment on its own line sitting here'
+    options: [40, 4, {ignoreComments: yes}]
+  ,
+    '###inline-comment### i = 1'
+  ,
+    code: '###inline-comment### i = 1 # with really long trailing comment'
+    options: [40, 4, {ignoreComments: yes}]
+  ,
+    code: "foo('http://example.com/this/is/?a=longish&url=in#here')"
+    options: [40, 4, {ignoreUrls: yes}]
+  ,
+    code: "foo(bar(bazz('this is a long'), 'line of'), 'stuff')"
+    options: [40, 4, {ignorePattern: 'foo.+bazz\\('}]
+  ,
+    code:
+      '### hey there! this is a multiline\n' +
+      '   comment with longish lines in various places\n' +
+      '   but\n' +
+      '   with a short line-length ###'
+    options: [10, 4, {ignoreComments: yes}]
+  ,
+    code:
+      '# I like short comments\n' + 'butLongSourceLines = -> weird(eh())'
+    options: [80, {tabWidth: 4, comments: 30}]
+  ,
+    code:
+      '# I like longer comments and shorter code\n' + 'see = -> odd(eh())'
+    options: [30, {tabWidth: 4, comments: 80}]
+  ,
+    code:
+      '# Full line comment\n' + 'someCode() # With a long trailing comment.'
+    options: [code: 30, tabWidth: 4, comments: 20, ignoreTrailingComments: yes]
+  ,
+    code: 'foo = module.exports = {} # really long trailing comment'
+    options: [40, 4, {ignoreTrailingComments: yes}]
+  ,
+    code: 'foo = module.exports = {} # really long trailing comment'
+    options: [40, 4, {ignoreComments: yes, ignoreTrailingComments: no}]
+  ,
+    # ignoreStrings, ignoreTemplateLiterals and ignoreRegExpLiterals options
+    code:
+      "foo = veryLongIdentifier\nbar = 'this is a very long string'"
+    options: [29, 4, {ignoreStrings: yes}]
+  ,
+    code:
+      'foo = veryLongIdentifier\nbar = "this is a very long string"'
+    options: [29, 4, {ignoreStrings: yes}]
+  ,
+    code: 'str = "this is a very long string\\\nwith continuation"'
+    options: [29, 4, {ignoreStrings: yes}]
+  ,
+    code:
+      'str = "this is a very long string\\\nwith continuation\\\nand with another very very long continuation\\\nand ending"'
+    options: [29, 4, {ignoreStrings: yes}]
+  ,
+    code: 'foo = <div className="this is a very long string"></div>'
+    options: [29, 4, {ignoreStrings: yes}]
+  ,
+    ### eslint-disable coffee/no-template-curly-in-string ###
+    code:
+      'foo = veryLongIdentifier\nbar = "this is a #{very} long string"'
+    options: [29, 4, {ignoreTemplateLiterals: yes}]
+  ,
+    code:
+      'foo = veryLongIdentifier\nbar = "this is a very long string\nand #{this} is another line that is very long"'
+    options: [29, 4, {ignoreTemplateLiterals: yes}]
+  ,
+    code:
+      'foo = veryLongIdentifier\nbar = "this is a very long string\nand this is another line that is very long\nand #{here} is another\n and another!"'
+    options: [29, 4, {ignoreTemplateLiterals: yes}]
+  ,
+    ### eslint-enable coffee/no-template-curly-in-string ###
+    code: 'foo = /this is a very long pattern/'
+    options: [29, 4, {ignoreRegExpLiterals: yes}]
+  ,
+    # check indented comment lines - https://github.com/eslint/eslint/issues/6322
+    code:
+      '->\n' + '# this line has 29 characters\n'
+    options: [40, 4, {comments: 29}]
+  ,
+    code:
+      '->\n' + '    # this line has 33 characters\n'
+    options: [40, 4, {comments: 33}]
+  ,
+    code:
+      '->\n' + '###this line has29 characters\n' + 'and this one has21###\n'
+    options: [40, 4, {comments: 29}]
+  ,
+    code:
+      '->\n' +
+      '    ###this line has33 characters\n' +
+      '    and this one has25###\n'
+    options: [40, 4, {comments: 33}]
+  ,
+    code:
+      '->\n' +
+      '    a ###this line has40 characters\n' +
+      '    and this one has36 characters###\n'
+    options: [40, 4, {comments: 36}]
+  ,
+    code:
+      '->\n' +
+      '    ###this line has33 characters\n' +
+      '    and this one has43 characters### a\n'
+    options: [43, 4, {comments: 33}]
+  ,
+    # blank line
+    ''
+  ,
+    # Multi-code-point unicode glyphs
+    code: "'🙂😀😆😎😊😜😉👍'"
+    options: [10]
+  ]
+
+  invalid: [
+    code: '\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ti = 1'
+    errors: [
+      message: 'Line 1 exceeds the maximum line length of 80.'
+      type: 'Program'
+      line: 1
+      column: 1
+    ]
+  ,
+    code: 'x = 5; y = 2; z = 5'
+    options: [10, 4]
+    errors: [
+      message: 'Line 1 exceeds the maximum line length of 10.'
+      type: 'Program'
+      line: 1
+      column: 1
+    ]
+  ,
+    code: '\t\t\ti = 1'
+    options: [15, 4]
+    errors: [
+      message: 'Line 1 exceeds the maximum line length of 15.'
+      type: 'Program'
+      line: 1
+      column: 1
+    ]
+  ,
+    code: '\t\t\ti = 1\n\t\t\tj = 1'
+    options: [15, 4]
+    errors: [
+      message: 'Line 1 exceeds the maximum line length of 15.'
+      type: 'Program'
+      line: 1
+      column: 1
+    ,
+      message: 'Line 2 exceeds the maximum line length of 15.'
+      type: 'Program'
+      line: 2
+      column: 1
+    ]
+  ,
+    code: '###this is a long non-removed inline comment### i = 1'
+    options: [20, 4, {ignoreComments: yes}]
+    errors: [
+      message: 'Line 1 exceeds the maximum line length of 20.'
+      type: 'Program'
+      line: 1
+      column: 1
+    ]
+  ,
+    code:
+      "foobar = 'this line isn\\'t matched by the regexp'\n" +
+      "fizzbuzz = 'but this one is matched by the regexp'\n"
+    options: [20, 4, {ignorePattern: 'fizzbuzz'}]
+    errors: [
+      message: 'Line 1 exceeds the maximum line length of 20.'
+      type: 'Program'
+      line: 1
+      column: 1
+    ]
+  ,
+    code: "longLine = 'will trigger' # even with a comment"
+    options: [10, 4, {ignoreComments: yes}]
+    errors: [
+      message: 'Line 1 exceeds the maximum line length of 10.'
+      type: 'Program'
+      line: 1
+      column: 1
+    ]
+  ,
+    code: 'foo = module.exports = {} # really long trailing comment'
+    options: [40, 4] # ignoreComments is disabled
+    errors: [
+      message: 'Line 1 exceeds the maximum line length of 40.'
+      type: 'Program'
+      line: 1
+      column: 1
+    ]
+  ,
+    code: "foo('http://example.com/this/is/?a=longish&url=in#here')"
+    options: [40, 4] # ignoreUrls is disabled
+    errors: [
+      message: 'Line 1 exceeds the maximum line length of 40.'
+      type: 'Program'
+      line: 1
+      column: 1
+    ]
+  ,
+    code: "foo(bar(bazz('this is a long'), 'line of'), 'stuff')"
+    options: [40, 4] # ignorePattern is disabled
+    errors: [
+      message: 'Line 1 exceeds the maximum line length of 40.'
+      type: 'Program'
+      line: 1
+      column: 1
+    ]
+  ,
+    code: '# A comment that exceeds the max comment length.'
+    options: [80, 4, {comments: 20}]
+    errors: [
+      message: 'Line 1 exceeds the maximum comment line length of 20.'
+      type: 'Program'
+      line: 1
+      column: 1
+    ]
+  ,
+    code:
+      '# A comment that exceeds the max comment length and the max code length, but will fail for being too long of a comment'
+    options: [40, 4, {comments: 80}]
+    errors: [
+      message: 'Line 1 exceeds the maximum comment line length of 80.'
+      type: 'Program'
+      line: 1
+      column: 1
+    ]
+  ,
+    code: '# A comment that exceeds the max comment length.'
+    options: [code: 20]
+    errors: [
+      message: 'Line 1 exceeds the maximum line length of 20.'
+      type: 'Program'
+      line: 1
+      column: 1
+    ]
+  ,
+    code:
+      '#This is very long comment with more than 40 characters which is invalid'
+    options: [40, 4, {ignoreTrailingComments: yes}]
+    errors: [
+      message: 'Line 1 exceeds the maximum line length of 40.'
+      type: 'Program'
+      line: 1
+      column: 1
+    ]
+  ,
+    # check indented comment lines - https://github.com/eslint/eslint/issues/6322
+    code:
+      '->\n' + '# this line has 29 characters\n'
+    options: [40, 4, {comments: 28}]
+    errors: [
+      message: 'Line 2 exceeds the maximum comment line length of 28.'
+      type: 'Program'
+      line: 2
+      column: 1
+    ]
+  ,
+    code:
+      '->\n' + '    # this line has 33 characters\n'
+    options: [40, 4, {comments: 32}]
+    errors: [
+      message: 'Line 2 exceeds the maximum comment line length of 32.'
+      type: 'Program'
+      line: 2
+      column: 1
+    ]
+  ,
+    code:
+      '->\n' +
+      '###this line has29 characters\n' +
+      'and this one has32 characters###\n'
+    options: [40, 4, {comments: 28}]
+    errors: [
+      message: 'Line 2 exceeds the maximum comment line length of 28.'
+      type: 'Program'
+      line: 2
+      column: 1
+    ,
+      message: 'Line 3 exceeds the maximum comment line length of 28.'
+      type: 'Program'
+      line: 3
+      column: 1
+    ]
+  ,
+    code:
+      '->\n' +
+      '    ###this line has33 characters\n' +
+      '    and this one has36 characters###\n'
+    options: [40, 4, {comments: 32}]
+    errors: [
+      message: 'Line 2 exceeds the maximum comment line length of 32.'
+      type: 'Program'
+      line: 2
+      column: 1
+    ,
+      message: 'Line 3 exceeds the maximum comment line length of 32.'
+      type: 'Program'
+      line: 3
+      column: 1
+    ]
+  ,
+    code:
+      '->\n' +
+      '    a ###this line has40 characters     \n' +
+      '    and this one has36 characters###\n'
+    options: [39, 4, {comments: 35}]
+    errors: [
+      message: 'Line 2 exceeds the maximum line length of 39.'
+      type: 'Program'
+      line: 2
+      column: 1
+    ,
+      message: 'Line 3 exceeds the maximum comment line length of 35.'
+      type: 'Program'
+      line: 3
+      column: 1
+    ]
+  ,
+    code:
+      '->\n' +
+      '    ###this line has33 characters\n' +
+      '         and this one has43 characters### a\n'
+    options: [42, 4, {comments: 32}]
+    errors: [
+      message: 'Line 2 exceeds the maximum comment line length of 32.'
+      type: 'Program'
+      line: 2
+      column: 1
+    ,
+      message: 'Line 3 exceeds the maximum line length of 42.'
+      type: 'Program'
+      line: 3
+      column: 1
+    ]
+  ,
+    # check comments with the same length as non-comments - https://github.com/eslint/eslint/issues/6564
+    code:
+      '#  This commented line has precisely 51 characters.\n' +
+      "x = 'This line also has exactly 51 characters'"
+    options: [20, {ignoreComments: yes}]
+    errors: [
+      message: 'Line 2 exceeds the maximum line length of 20.'
+      type: 'Program'
+      line: 2
+      column: 1
+    ]
+  ,
+    # ignoreStrings and ignoreTemplateLiterals options
+    code:
+      "foo = veryLongIdentifier\nbar = 'this is a very long string'"
+    options: [29, {ignoreStrings: no, ignoreTemplateLiterals: yes}]
+    errors: [
+      message: 'Line 2 exceeds the maximum line length of 29.'
+      type: 'Program'
+      line: 2
+      column: 1
+    ]
+  ,
+    code:
+      'foo = veryLongIdentifier\nbar = /this is a very very long pattern/'
+    options: [29, {ignoreStrings: no, ignoreRegExpLiterals: no}]
+    errors: [
+      message: 'Line 2 exceeds the maximum line length of 29.'
+      type: 'Program'
+      line: 2
+      column: 1
+    ]
+  ,
+    code:
+      "foo = veryLongIdentifier\nbar = new RegExp('this is a very very long pattern')"
+    options: [29, {ignoreStrings: no, ignoreRegExpLiterals: yes}]
+    errors: [
+      message: 'Line 2 exceeds the maximum line length of 29.'
+      type: 'Program'
+      line: 2
+      column: 1
+    ]
+  ,
+    code:
+      'foo = veryLongIdentifier\nbar = "this is a very long string"'
+    options: [29, {ignoreStrings: no, ignoreTemplateLiterals: yes}]
+    errors: [
+      message: 'Line 2 exceeds the maximum line length of 29.'
+      type: 'Program'
+      line: 2
+      column: 1
+    ]
+  ,
+    ### eslint-disable coffee/no-template-curly-in-string ###
+    code:
+      'foo = veryLongIdentifier\nbar = "this is a #{very} long string"'
+    options: [29, {ignoreStrings: no, ignoreTemplateLiterals: no}]
+    errors: [
+      message: 'Line 2 exceeds the maximum line length of 29.'
+      type: 'Program'
+      line: 2
+      column: 1
+    ]
+  ,
+    code:
+      'foo = veryLongIdentifier\nbar = "this is a #{very} long string\nand this is another line that is very long"'
+    options: [29, {ignoreStrings: no, ignoreTemplateLiterals: no}]
+    errors: [
+      message: 'Line 2 exceeds the maximum line length of 29.'
+      type: 'Program'
+      line: 2
+      column: 1
+    ,
+      message: 'Line 3 exceeds the maximum line length of 29.'
+      type: 'Program'
+      line: 3
+      column: 1
+    ]
+  ,
+    code: 'foo = <div>this is a very very very long string</div>'
+    options: [29, 4, {ignoreStrings: yes}]
+    errors: [
+      message: 'Line 1 exceeds the maximum line length of 29.'
+      type: 'Program'
+      line: 1
+      column: 1
+    ]
+  ,
+    ### eslint-enable coffee/no-template-curly-in-string ###
+    # Multi-code-point unicode glyphs
+    code: "'🙁😁😟☹️😣😖😩😱👎'"
+    options: [10]
+    errors: [
+      message: 'Line 1 exceeds the maximum line length of 10.'
+      type: 'Program'
+      line: 1
+      column: 1
+    ]
+  ]

@@ -39,6 +39,7 @@ espreeTokenTypes =
   ':': 'Punctuator'
   REGEX: 'RegularExpression'
   IDENTIFIER: 'Identifier'
+  STRING: 'String'
 getEspreeTokenType = (type) ->
   espreeTokenTypes[type] ? type
 
@@ -102,12 +103,14 @@ exports.getParser = getParser = (getAstAndTokens) -> (code, opts) ->
   {ast, tokens} = getAstAndTokens code, opts
   ast.tokens = tokensForESLint {tokens}
   extendVisitorKeys()
-  firstCommentLine = ast.comments?[0]?.loc.start.line
-  firstCommentColumn = ast.comments?[0]?.loc.start.column
+  commentLocs =
+    for comment in ast.comments ? []
+      start: {...comment.loc.start}
+      end: {...comment.loc.end}
   babylonToEspree ast, babelTraverse, babylonTokenTypes, code
   # babylonToEspree seems to like to change the file-leading comment's start line
-  ast.comments?[0]?.loc.start.line = firstCommentLine
-  ast.comments?[0]?.loc.start.column = firstCommentColumn
+  for comment, commentIndex in ast.comments ? []
+    comment.loc = commentLocs[commentIndex]
   # dump espreeAst: ast
   {
     ast
