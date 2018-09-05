@@ -12,6 +12,7 @@
 - didn't include tests for first couple rules
 - add excludeLoop option to no-constant-condition?
 - documentation
+- code path analysis for optional call/member expressions?
 
 rule ideas:
 - no-unnecessary-fat-arrow

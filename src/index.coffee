@@ -50,6 +50,7 @@ rules =
     'capitalized-class-names'
     'complexity'
     'max-len'
+    'no-invalid-this'
   ]
 
 configureAsError = flow(

@@ -36,16 +36,6 @@ module.exports =
     stack = []
 
     ###*
-    # Initializes the current context to false and pushes it onto the stack.
-    # These booleans represent whether 'this' has been used in the context.
-    # @returns {void}
-    # @private
-    ###
-    enterFunction = (node) ->
-      return if not isInstanceMethod(node) and node.bound
-      stack.push no
-
-    ###*
     # Check if the node is an instance method
     # @param {ASTNode} node - node to check
     # @returns {boolean} True if its an instance method
@@ -55,6 +45,16 @@ module.exports =
       not node.static and
       node.kind isnt 'constructor' and
       node.type is 'MethodDefinition'
+
+    ###*
+    # Initializes the current context to false and pushes it onto the stack.
+    # These booleans represent whether 'this' has been used in the context.
+    # @returns {void}
+    # @private
+    ###
+    enterFunction = (node) ->
+      return if not isInstanceMethod(node) and node.bound
+      stack.push no
 
     ###*
     # Check if the node is an instance method not excluded by config

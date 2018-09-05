@@ -23,6 +23,8 @@ rules:
   coffee/no-implicit-coercion: off
   coffee/vars-on-top: off
   coffee/max-depth: off
+  coffee/max-len: off
+  coffee/complexity: off
 env:
   node: true
   es6: true

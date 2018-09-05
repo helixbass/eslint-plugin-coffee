@@ -93,4 +93,12 @@ isInLoop = (node) ->
     currentNode = currentNode.parent
   no
 
-module.exports = {getPrecedence, isInLoop}
+getFunctionName = (node) ->
+  return null unless (
+    node?.type is 'FunctionExpression' and
+    node.parent.type is 'AssignmentExpression' and
+    node.parent.left.type is 'Identifier'
+  )
+  node.parent.left.name
+
+module.exports = {getPrecedence, isInLoop, getFunctionName}
