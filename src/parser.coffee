@@ -28,10 +28,16 @@ espreeTokenTypes =
   ')': 'Punctuator'
   CALL_START: 'Punctuator'
   CALL_END: 'Punctuator'
+  PARAM_START: 'Punctuator'
+  PARAM_END: 'Punctuator'
   INDEX_START: 'Punctuator'
   INDEX_END: 'Punctuator'
   '+': 'Punctuator'
+  '=>': 'Punctuator'
+  '->': 'Punctuator'
+  ',': 'Punctuator'
   REGEX: 'RegularExpression'
+  IDENTIFIER: 'Identifier'
 getEspreeTokenType = (type) ->
   espreeTokenTypes[type] ? type
 

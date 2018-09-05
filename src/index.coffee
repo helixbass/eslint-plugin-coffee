@@ -45,6 +45,8 @@ rules =
     'vars-on-top'
     'guard-for-in'
     'no-useless-return'
+    'arrow-spacing'
+    'object-curly-spacing'
   ]
 
 configureAsError = flow(

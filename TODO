@@ -7,6 +7,9 @@
 - expose prettier/prettier w/ prettier-plugin-coffeescript config set up eg as plugin:coffee/prettier?
 - add test like eslint-plugin-react (?) that checks that everything in src/rules/ is exposed
 - monkeypatch code path analysis
+- comprehensively go through expected token types and include in espreeTokenTypes
+- include tests from coffeelint?
+- didn't include tests for first couple rules
 
 rule ideas:
 - no-unnecessary-fat-arrow
