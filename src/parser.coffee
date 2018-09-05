@@ -36,6 +36,7 @@ espreeTokenTypes =
   '=>': 'Punctuator'
   '->': 'Punctuator'
   ',': 'Punctuator'
+  ':': 'Punctuator'
   REGEX: 'RegularExpression'
   IDENTIFIER: 'Identifier'
 getEspreeTokenType = (type) ->

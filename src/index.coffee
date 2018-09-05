@@ -47,6 +47,7 @@ rules =
     'no-useless-return'
     'arrow-spacing'
     'object-curly-spacing'
+    'capitalized-class-names'
   ]
 
 configureAsError = flow(
