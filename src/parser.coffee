@@ -37,6 +37,7 @@ espreeTokenTypes =
   '->': 'Punctuator'
   ',': 'Punctuator'
   ':': 'Punctuator'
+  '.': 'Punctuator'
   REGEX: 'RegularExpression'
   IDENTIFIER: 'Identifier'
   STRING: 'String'

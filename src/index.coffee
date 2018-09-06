@@ -51,6 +51,9 @@ rules =
     'complexity'
     'max-len'
     'no-invalid-this'
+    'lines-between-class-members'
+    'max-lines-per-function'
+    'no-backticks'
   ]
 
 configureAsError = flow(
