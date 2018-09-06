@@ -8,7 +8,7 @@ path = require 'path'
 
 ruleFiles = fs
   .readdirSync path.resolve __dirname, '../rules/'
-  .map (f) => path.basename f, '.js'
+  .map (f) -> path.basename f, '.js'
 
 describe 'all rule files should be exported by the plugin', ->
   ruleFiles.forEach (ruleName) ->

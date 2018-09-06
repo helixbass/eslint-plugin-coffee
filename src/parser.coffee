@@ -8,7 +8,7 @@ babylonToEspree = require 'babel-eslint/babylon-to-espree'
 babelTraverse = require('babel-traverse').default
 babylonTokenTypes = require('babylon').tokTypes
 {flatten, assign: extend} = require 'lodash'
-# patchCodePathAnalysis = require './patch-code-path-analysis'
+patchCodePathAnalysis = require './patch-code-path-analysis'
 analyzeScope = require './analyze-scope'
 CodePathAnalyzer = require './code-path-analysis/code-path-analyzer'
 {KEYS} = require 'eslint-visitor-keys'
@@ -122,7 +122,7 @@ tokensForESLint = ({tokens}) ->
   ]
 
 exports.getParser = getParser = (getAstAndTokens) -> (code, opts) ->
-  # patchCodePathAnalysis()
+  patchCodePathAnalysis() unless opts.eslintCodePathAnalyzer
   {ast, tokens} = getAstAndTokens code, opts
   ast.tokens = tokensForESLint {tokens}
   extendVisitorKeys()

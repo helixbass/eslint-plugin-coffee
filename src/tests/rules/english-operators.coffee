@@ -40,6 +40,7 @@ ruleTester.run 'english-operators', rule,
     '!!a'
     '"&&"'
     '# &&'
+    'a + b'
   ,
     code: 'a && b'
     options: ['never']

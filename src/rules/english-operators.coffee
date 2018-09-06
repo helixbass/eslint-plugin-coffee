@@ -53,12 +53,12 @@ module.exports =
     useEnglish = context.options?[0] isnt 'never'
 
     checkOp = (node) ->
-      return if (
+      return unless (
         node.operator of (
           if useEnglish
-            ENGLISH_OPERATORS
-          else
             NON_ENGLISH_OPERATORS
+          else
+            ENGLISH_OPERATORS
         )
       )
       return if isDoubleBang node

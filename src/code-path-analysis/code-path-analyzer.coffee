@@ -355,14 +355,16 @@ processCodePathToExit = (analyzer, node) ->
       ###
       if node.consequent.length is 0
         state.makeSwitchCaseBody yes, not node.test
+      unless (
+        node.trailing? # preserve JS compatibility
+      )
+        if state.forkContext.reachable then dontForward = yes
 
       # implicit BreakStatement
       if node.trailing
         forwardCurrentToHead analyzer, node
         state.makeBreak node.label?.name
         dontForward = yes
-
-    # if state.forkContext.reachable then dontForward = yes
 
     when 'TryStatement'
       state.popTryContext()

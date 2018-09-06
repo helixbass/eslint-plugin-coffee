@@ -25,6 +25,7 @@ rules:
   coffee/max-depth: off
   coffee/max-len: off
   coffee/complexity: off
+  coffee/max-lines-per-function: off
 env:
   node: true
   es6: true
