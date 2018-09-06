@@ -57,6 +57,9 @@ rules =
     'space-infix-ops'
     'space-unary-ops'
     'english-operators'
+    'no-unnecessary-fat-arrow'
+    'no-this-before-super'
+    'no-cond-assign'
   ]
 
 configureAsError = flow(
