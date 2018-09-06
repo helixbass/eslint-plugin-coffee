@@ -38,10 +38,32 @@ espreeTokenTypes =
   ',': 'Punctuator'
   ':': 'Punctuator'
   '.': 'Punctuator'
+  '+': 'Punctuator'
+  '++': 'Punctuator'
+  '-': 'Punctuator'
+  '--': 'Punctuator'
+  '**': 'Punctuator'
+  MATH: 'Punctuator'
+  '=': 'Punctuator'
+  '||': 'Punctuator'
+  '&&': 'Punctuator'
+  '|': 'Punctuator'
+  'BIN?': 'Punctuator'
+  COMPOUND_ASSIGN: 'Punctuator'
+  UNARY_MATH: 'Punctuator'
+  RELATION: 'Keyword'
   REGEX: 'RegularExpression'
   IDENTIFIER: 'Identifier'
   STRING: 'String'
-getEspreeTokenType = (type) ->
+getEspreeTokenType = (token) ->
+  [type, value] = token
+  {original} = value
+  value = original if original?
+  return 'JSX_COMMA' if type is ',' and value is 'JSX_COMMA'
+  return 'Keyword' if (
+    (type is 'UNARY' and value in ['typeof', 'new', 'delete', 'not']) or
+    (type is 'COMPARE' and value in ['is', 'isnt'])
+  )
   espreeTokenTypes[type] ? type
 
 # extraTokensForESLint = (ast) ->
@@ -84,12 +106,12 @@ tokensForESLint = ({tokens}) ->
           'TERMINATOR'
         ]
     )
-      [type, value, locationData] = token
+      [, value, locationData] = token
       [
         # ...popExtraTokens(nextStart: locationData.range[0])
         # ,
         {
-          type: getEspreeTokenType type
+          type: getEspreeTokenType token
           value: value.original ? value.toString()
           ...locationDataToAst(locationData)
         }

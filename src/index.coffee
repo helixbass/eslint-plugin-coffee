@@ -54,6 +54,9 @@ rules =
     'lines-between-class-members'
     'max-lines-per-function'
     'no-backticks'
+    'space-infix-ops'
+    'space-unary-ops'
+    'english-operators'
   ]
 
 configureAsError = flow(
