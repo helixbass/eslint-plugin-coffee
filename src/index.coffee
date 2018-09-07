@@ -60,6 +60,7 @@ rules =
     'no-unnecessary-fat-arrow'
     'no-this-before-super'
     'no-cond-assign'
+    'no-inner-declarations'
   ]
 
 configureAsError = flow(
