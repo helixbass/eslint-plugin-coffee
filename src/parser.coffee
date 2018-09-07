@@ -32,7 +32,6 @@ espreeTokenTypes =
   PARAM_END: 'Punctuator'
   INDEX_START: 'Punctuator'
   INDEX_END: 'Punctuator'
-  '+': 'Punctuator'
   '=>': 'Punctuator'
   '->': 'Punctuator'
   ',': 'Punctuator'

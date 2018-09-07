@@ -3,7 +3,9 @@ plugins:
   - coffee
   - prettier
 extends:
-  - plugin:coffee/all
+  - eslint:recommended
+  # - plugin:coffee/all
+  - plugin:coffee/eslint-recommended
 rules:
   no-undef: error
   coffee/prefer-destructuring: [error, {object: true}]
