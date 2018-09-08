@@ -151,6 +151,14 @@ rules =
     'no-return-await': {}
     'no-anonymous-default-export':
       plugin: 'import'
+    export:
+      plugin: 'import'
+    'no-commonjs':
+      plugin: 'import'
+    'no-default-export':
+      plugin: 'import'
+    'dynamic-import-chunkname':
+      plugin: 'import'
   )
 
 configureAsError = flow(

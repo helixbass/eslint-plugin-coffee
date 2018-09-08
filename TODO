@@ -13,6 +13,8 @@
 - code path analysis for optional call/member expressions?
 - push id-length fixes upstream to eslint?
 - add exceptNullInitializers option to no-multi-assign?
+- no-useless-escape should flag unnecessary escapes in heredocs/heregexes (delimiters)
+- get added to docs Configuring list of compatible parsers
 
 rule ideas:
 - prefer-implicit-return
@@ -20,3 +22,4 @@ rule ideas:
 - comprehension-parens (somewhat like coffeelint ensure_comprehensions, but maybe have options for assignment (eg a = b for b in c), inlineFunction (eg a = -> b for b in c))?
 - no-negated-not-relation eg not (a not in b) should just be a in b
 - prefer-not-relation eg not (a in b) should be a not in b
+- normalized heredoc spacing (eg initial/final linebreaks, indentation level wrt whatever (ending quotes?))

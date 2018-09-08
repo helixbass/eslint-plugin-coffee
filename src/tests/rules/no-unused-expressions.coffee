@@ -145,6 +145,12 @@ ruleTester.run 'no-unused-expressions', rule,
         else
           d
     '''
+    '''
+      foo = "a#{
+        b()
+        c
+      }"
+    '''
   ]
   invalid: [
     code: '0'

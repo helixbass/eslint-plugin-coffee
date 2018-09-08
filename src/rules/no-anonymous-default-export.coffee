@@ -5,7 +5,6 @@
 
 # import docsUrl from '../docsUrl'
 docsUrl = -> ''
-{has} = require 'lodash'
 {flow, map: fmap, fromPairs: ffromPairs} = require 'lodash/fp'
 
 defs =
@@ -63,7 +62,7 @@ schemaProperties =
 
 defaults =
   flow(
-    fmap ({option, default}) -> [option, default ? no]
+    fmap ({option, default: defaultVal}) -> [option, defaultVal ? no]
     ffromPairs
   ) defs
 

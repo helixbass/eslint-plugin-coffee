@@ -48,6 +48,18 @@ ruleTester.run 'space-unary-ops', rule,
     code: 'delete(foo.bar)'
     options: [words: no]
   ,
+    code: 'do->'
+    options: [words: no]
+  ,
+    code: 'do ->'
+    options: [words: yes]
+  ,
+    code: 'do a'
+    options: [words: no]
+  ,
+    code: 'do a'
+    options: [words: yes]
+  ,
     code: 'new Foo'
     options: [words: yes]
   ,

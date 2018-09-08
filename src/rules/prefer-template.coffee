@@ -179,7 +179,7 @@ module.exports =
             return "\\#{matched}" if matched.lastIndexOf('\\') % 2
             matched
 
-        if currentNode.raw[0] isnt '"'
+        unless currentNode.raw[0] is '"'
           # Unescape any quotes that appear in the original Literal that no longer need to be escaped.
           str = str.replace(
             new RegExp "\\\\#{currentNode.raw[0]}", 'g'

@@ -4,6 +4,8 @@
 ###
 'use strict'
 
+{last} = require 'lodash'
+
 #------------------------------------------------------------------------------
 # Rule Definition
 #------------------------------------------------------------------------------
@@ -72,6 +74,11 @@ module.exports =
           /Function/.test(grandparent.type))) and
         directives(parent).indexOf(node) >= 0
 
+    isBlockWhereSequenceIsExpected = (node) ->
+      return unless node.type is 'BlockStatement'
+      return yes if node.parent.type is 'TemplateLiteral'
+      no
+
     ###*
     # Determines whether or not a given node is a valid expression. Recurses on short circuit eval and ternary nodes if enabled by flags.
     # @param {ASTNode} node - any node
@@ -79,6 +86,11 @@ module.exports =
     ###
     isValidExpression = (node) ->
       return yes if node.returns
+      return yes if (
+        node.parent.type is 'ExpressionStatement' and
+        node.parent is last(node.parent.parent.body) and
+        isBlockWhereSequenceIsExpected node.parent.parent
+      )
 
       # if allowTernary
       # Recursive check for ternary and logical expressions

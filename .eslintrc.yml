@@ -4,16 +4,11 @@ plugins:
   - prettier
 extends:
   - eslint:recommended
-  # - plugin:coffee/all
-  - plugin:coffee/eslint-recommended
+  - plugin:coffee/all
 rules:
   no-undef: error
   coffee/prefer-destructuring: [error, {object: true}]
   prettier/prettier: [error, {parser: coffeescript, pluginSearchDirs: [.]}]
-  use-isnan: error
-  spaced-comment: [error, always, exceptions: ['-']]
-  # no-warning-comments: error
-  # capitalized-comments: error
   require-jsdoc: error
   prefer-rest-params: error
   # no-else-return: error
@@ -28,6 +23,10 @@ rules:
   coffee/max-len: off
   coffee/complexity: off
   coffee/max-lines-per-function: off
+  coffee/capitalized-comments: off
+  coffee/spaced-comment: off
+  coffee/no-underscore-dangle: off
+  coffee/no-commonjs: off
 env:
   node: true
   es6: true

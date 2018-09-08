@@ -51,6 +51,8 @@ espreeTokenTypes =
   COMPOUND_ASSIGN: 'Punctuator'
   UNARY_MATH: 'Punctuator'
   RELATION: 'Keyword'
+  DO: 'Keyword'
+  DO_IIFE: 'Keyword'
   REGEX: 'RegularExpression'
   IDENTIFIER: 'Identifier'
   AWAIT: 'Identifier'
