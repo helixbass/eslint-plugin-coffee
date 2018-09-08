@@ -149,6 +149,8 @@ rules =
     'no-useless-escape':
       'eslint-recommended': yes
     'no-return-await': {}
+    'no-anonymous-default-export':
+      plugin: 'import'
   )
 
 configureAsError = flow(
@@ -156,7 +158,15 @@ configureAsError = flow(
     ["coffee/#{rule}", 'error']
     ...(
       unless plugin is no
-        [[rule, 'off']]
+        [
+          [
+            if plugin
+              "#{plugin}/#{rule}"
+            else
+              rule
+            'off'
+          ]
+        ]
       else
         []
     )
