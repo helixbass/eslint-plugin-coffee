@@ -30,7 +30,6 @@ ruleTester.run 'yoda', rule,
   ,
     code: 'if (5 is 4) then ;', options: ['never']
   ,
-
     # "always" mode
     code: 'if ("blue" is value) then ;', options: ['always']
   ,
@@ -42,7 +41,6 @@ ruleTester.run 'yoda', rule,
   ,
     code: 'if (5 is 4) then ;', options: ['always']
   ,
-
     # Range exception
     code: 'if (0 < x && x <= 1) then ;'
     options: ['never', {exceptRange: yes}]
@@ -98,9 +96,9 @@ ruleTester.run 'yoda', rule,
     code: 'if (0 <= a.b && a["b"] <= 100) then ;'
     options: ['never', {exceptRange: yes}]
   ,
-
     # onlyEquality
-    code: 'if (0 < x && x <= 1) then ;', options: ['never', {onlyEquality: yes}]
+    code: 'if (0 < x && x <= 1) then ;'
+    options: ['never', {onlyEquality: yes}]
   ,
     code: "if (x isnt 'foo' && 'foo' isnt x) then ;"
     options: ['never', {onlyEquality: yes}]
@@ -110,7 +108,7 @@ ruleTester.run 'yoda', rule,
   ]
   invalid: [
     code: 'if ("red" == value) then ;'
-    output: 'if (value == "red") then ;'
+    # output: 'if (value == "red") then ;'
     options: ['never']
     errors: [
       message: 'Expected literal to be on the right side of ==.'
@@ -118,7 +116,7 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: 'if (true is value) then ;'
-    output: 'if (value is true) then ;'
+    # output: 'if (value is true) then ;'
     options: ['never']
     errors: [
       message: 'Expected literal to be on the right side of is.'
@@ -126,7 +124,7 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: 'if (5 != value) then ;'
-    output: 'if (value != 5) then ;'
+    # output: 'if (value != 5) then ;'
     options: ['never']
     errors: [
       message: 'Expected literal to be on the right side of !=.'
@@ -134,7 +132,7 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: 'if (null isnt value) then ;'
-    output: 'if (value isnt null) then ;'
+    # output: 'if (value isnt null) then ;'
     options: ['never']
     errors: [
       message: 'Expected literal to be on the right side of isnt.'
@@ -142,7 +140,7 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: 'if ("red" <= value) then ;'
-    output: 'if (value >= "red") then ;'
+    # output: 'if (value >= "red") then ;'
     options: ['never']
     errors: [
       message: 'Expected literal to be on the right side of <=.'
@@ -150,7 +148,7 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: 'if (true >= value) then ;'
-    output: 'if (value <= true) then ;'
+    # output: 'if (value <= true) then ;'
     options: ['never']
     errors: [
       message: 'Expected literal to be on the right side of >=.'
@@ -158,7 +156,7 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: 'foo = (5 < value) ? true : false'
-    output: 'foo = (value > 5) ? true : false'
+    # output: 'foo = (value > 5) ? true : false'
     options: ['never']
     errors: [
       message: 'Expected literal to be on the right side of <.'
@@ -166,7 +164,7 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: '-> return (null > value)'
-    output: '-> return (value < null)'
+    # output: '-> return (value < null)'
     options: ['never']
     errors: [
       message: 'Expected literal to be on the right side of >.'
@@ -174,7 +172,7 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: 'if (-1 < str.indexOf(substr)) then ;'
-    output: 'if (str.indexOf(substr) > -1) then ;'
+    # output: 'if (str.indexOf(substr) > -1) then ;'
     options: ['never']
     errors: [
       message: 'Expected literal to be on the right side of <.'
@@ -182,7 +180,7 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: 'if (value == "red") then ;'
-    output: 'if ("red" == value) then ;'
+    # output: 'if ("red" == value) then ;'
     options: ['always']
     errors: [
       message: 'Expected literal to be on the left side of ==.'
@@ -190,7 +188,7 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: 'if (value is true) then ;'
-    output: 'if (true is value) then ;'
+    # output: 'if (true is value) then ;'
     options: ['always']
     errors: [
       message: 'Expected literal to be on the left side of is.'
@@ -198,7 +196,7 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: 'if (a < 0 && 0 <= b && b < 1) then ;'
-    output: 'if (a < 0 && b >= 0 && b < 1) then ;'
+    # output: 'if (a < 0 && b >= 0 && b < 1) then ;'
     options: ['never', {exceptRange: yes}]
     errors: [
       message: 'Expected literal to be on the right side of <=.'
@@ -206,7 +204,7 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: 'if (0 <= a && a < 1 && b < 1) then ;'
-    output: 'if (a >= 0 && a < 1 && b < 1) then ;'
+    # output: 'if (a >= 0 && a < 1 && b < 1) then ;'
     options: ['never', {exceptRange: yes}]
     errors: [
       message: 'Expected literal to be on the right side of <=.'
@@ -214,7 +212,7 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: 'if (1 < a && a < 0) then ;'
-    output: 'if (a > 1 && a < 0) then ;'
+    # output: 'if (a > 1 && a < 0) then ;'
     options: ['never', {exceptRange: yes}]
     errors: [
       message: 'Expected literal to be on the right side of <.'
@@ -222,7 +220,7 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: '0 < a && a < 1'
-    output: 'a > 0 && a < 1'
+    # output: 'a > 0 && a < 1'
     options: ['never', {exceptRange: yes}]
     errors: [
       message: 'Expected literal to be on the right side of <.'
@@ -230,7 +228,7 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: 'a = b < 0 || 1 <= b'
-    output: 'a = b < 0 || b >= 1'
+    # output: 'a = b < 0 || b >= 1'
     options: ['never', {exceptRange: yes}]
     errors: [
       message: 'Expected literal to be on the right side of <=.'
@@ -238,7 +236,7 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: 'if (0 <= x && x < -1) then ;'
-    output: 'if (x >= 0 && x < -1) then ;'
+    # output: 'if (x >= 0 && x < -1) then ;'
     options: ['never', {exceptRange: yes}]
     errors: [
       message: 'Expected literal to be on the right side of <=.'
@@ -246,7 +244,7 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: 'a = (b < 0 && 0 <= b)'
-    output: 'a = (0 > b && 0 <= b)'
+    # output: 'a = (0 > b && 0 <= b)'
     options: ['always', {exceptRange: yes}]
     errors: [
       message: 'Expected literal to be on the left side of <.'
@@ -254,7 +252,7 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: "if (0 <= a[b] && a['b'] < 1) then ;"
-    output: "if (a[b] >= 0 && a['b'] < 1) then ;"
+    # output: "if (a[b] >= 0 && a['b'] < 1) then ;"
     options: ['never', {exceptRange: yes}]
     errors: [
       message: 'Expected literal to be on the right side of <=.'
@@ -262,7 +260,7 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: 'if (0 <= a[b] && a.b < 1) then ;'
-    output: 'if (a[b] >= 0 && a.b < 1) then ;'
+    # output: 'if (a[b] >= 0 && a.b < 1) then ;'
     options: ['never', {exceptRange: yes}]
     errors: [
       message: 'Expected literal to be on the right side of <=.'
@@ -270,7 +268,7 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: 'if (0 <= a[b()] && a[b()] < 1) then ;'
-    output: 'if (a[b()] >= 0 && a[b()] < 1) then ;'
+    # output: 'if (a[b()] >= 0 && a[b()] < 1) then ;'
     options: ['never', {exceptRange: yes}]
     errors: [
       message: 'Expected literal to be on the right side of <=.'
@@ -278,7 +276,7 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: 'if (3 == a) then ;'
-    output: 'if (a == 3) then ;'
+    # output: 'if (a == 3) then ;'
     options: ['never', {onlyEquality: yes}]
     errors: [
       message: 'Expected literal to be on the right side of ==.'
@@ -286,7 +284,7 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: 'foo(3 is a)'
-    output: 'foo(a is 3)'
+    # output: 'foo(a is 3)'
     options: ['never', {onlyEquality: yes}]
     errors: [
       message: 'Expected literal to be on the right side of is.'
@@ -294,7 +292,7 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: 'foo(a is 3)'
-    output: 'foo(3 is a)'
+    # output: 'foo(3 is a)'
     options: ['always', {onlyEquality: yes}]
     errors: [
       message: 'Expected literal to be on the left side of is.'
@@ -302,14 +300,14 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: 'if (0 <= x && x < 1) then ;'
-    output: 'if (x >= 0 && x < 1) then ;'
+    # output: 'if (x >= 0 && x < 1) then ;'
     errors: [
       message: 'Expected literal to be on the right side of <=.'
       type: 'BinaryExpression'
     ]
   ,
     code: 'if ( ### a ### 0 ### b ### < ### c ### foo ### d ### ) then ;'
-    output: 'if ( ### a ### foo ### b ### > ### c ### 0 ### d ### ) then ;'
+    # output: 'if ( ### a ### foo ### b ### > ### c ### 0 ### d ### ) then ;'
     options: ['never']
     errors: [
       message: 'Expected literal to be on the right side of <.'
@@ -317,7 +315,7 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: 'if ( ### a ### foo ### b ### > ### c ### 0 ### d ### ) then ;'
-    output: 'if ( ### a ### 0 ### b ### < ### c ### foo ### d ### ) then ;'
+    # output: 'if ( ### a ### 0 ### b ### < ### c ### foo ### d ### ) then ;'
     options: ['always']
     errors: [
       message: 'Expected literal to be on the left side of >.'
@@ -325,7 +323,7 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: 'if (foo() is 1) then ;'
-    output: 'if (1 is foo()) then ;'
+    # output: 'if (1 is foo()) then ;'
     options: ['always']
     errors: [
       message: 'Expected literal to be on the left side of is.'
@@ -333,17 +331,16 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: 'if (foo()     is 1) then ;'
-    output: 'if (1     is foo()) then ;'
+    # output: 'if (1     is foo()) then ;'
     options: ['always']
     errors: [
       message: 'Expected literal to be on the left side of is.'
       type: 'BinaryExpression'
     ]
   ,
-
     # https://github.com/eslint/eslint/issues/7326
     code: 'while (0 is (a)) then ;'
-    output: 'while ((a) is 0) then ;'
+    # output: 'while ((a) is 0) then ;'
     options: ['never']
     errors: [
       message: 'Expected literal to be on the right side of is.'
@@ -351,7 +348,7 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: 'while (0 is (a = b)) then ;'
-    output: 'while ((a = b) is 0) then ;'
+    # output: 'while ((a = b) is 0) then ;'
     options: ['never']
     errors: [
       message: 'Expected literal to be on the right side of is.'
@@ -359,7 +356,7 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: 'while ((a) is 0) then ;'
-    output: 'while (0 is (a)) then ;'
+    # output: 'while (0 is (a)) then ;'
     options: ['always']
     errors: [
       message: 'Expected literal to be on the left side of is.'
@@ -367,7 +364,7 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: 'while ((a = b) is 0) then ;'
-    output: 'while (0 is (a = b)) then ;'
+    # output: 'while (0 is (a = b)) then ;'
     options: ['always']
     errors: [
       message: 'Expected literal to be on the left side of is.'
@@ -375,7 +372,7 @@ ruleTester.run 'yoda', rule,
     ]
   ,
     code: 'if (((((((((((foo)))))))))) is ((((((5))))))) then ;'
-    output: 'if (((((((5)))))) is ((((((((((foo))))))))))) then ;'
+    # output: 'if (((((((5)))))) is ((((((((((foo))))))))))) then ;'
     options: ['always']
     errors: [
       message: 'Expected literal to be on the left side of is.'

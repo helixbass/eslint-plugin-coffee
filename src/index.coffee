@@ -139,6 +139,15 @@ rules =
       'eslint-recommended': yes
     'no-inner-declarations':
       'eslint-recommended': yes
+    'consistent-this': {}
+    'no-unsafe-negation':
+      'eslint-recommended': yes
+    'spaced-comment': {}
+    'capitalized-comments': {}
+    'no-underscore-dangle': {}
+    'prefer-template': {}
+    'no-useless-escape':
+      'eslint-recommended': yes
   )
 
 configureAsError = flow(

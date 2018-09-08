@@ -142,7 +142,7 @@ module.exports =
       additionalProperties: no
     ]
 
-    fixable: 'code'
+    # fixable: 'code'
 
   create: (context) ->
     # Default to "never" (!always) if no option
@@ -224,6 +224,7 @@ module.exports =
     # @param {ASTNode} node The BinaryExpression node
     # @returns {string} A string representation of the node with the sides and operator flipped
     ###
+    # eslint-disable-next-line coffee/no-unused-vars
     getFlippedString = (node) ->
       operatorToken = sourceCode.getFirstTokenBetween node.left, node.right, (
         token
@@ -279,5 +280,5 @@ module.exports =
           data:
             operator: node.operator
             expectedSide: if always then 'left' else 'right'
-          fix: (fixer) -> fixer.replaceText node, getFlippedString node
+            # fix: (fixer) -> fixer.replaceText node, getFlippedString node
         }

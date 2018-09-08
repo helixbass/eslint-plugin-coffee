@@ -1,21 +1,22 @@
-- yoda isn't safe wrt eg implicit call parens
 - code path analysis needs to actually understand for when, since it considers anything after a for when whose body returns to be unreachable? or is eslint-plugin-known-imports using outdated?
 
 - figure out how to not commit lib/ and publish to npm
 - restrict eslint peerDependency range or detect version - looks like eg ast-utils has moved to lib/util/ast-utils
 - should we always be parsing as module?
-- expose prettier/prettier w/ prettier-plugin-coffeescript config set up eg as plugin:coffee/prettier?
+- expose prettier/prettier w/ prettier-plugin-coffeescript config set up eg as plugin:coffee/prettier? and disable conflicting rules
 - add test like eslint-plugin-react (?) that checks that everything in src/rules/ is exposed
-- monkeypatch code path analysis
 - comprehensively go through expected token types and include in espreeTokenTypes
 - include tests from coffeelint?
 - didn't include tests for first couple rules
 - add excludeLoop option to no-constant-condition?
 - documentation
 - code path analysis for optional call/member expressions?
+- push id-length fixes upstream to eslint?
+- add exceptNullInitializers option to no-multi-assign?
 
 rule ideas:
-- no-unnecessary-fat-arrow
 - prefer-implicit-return
 - prefer-unless
 - comprehension-parens (somewhat like coffeelint ensure_comprehensions, but maybe have options for assignment (eg a = b for b in c), inlineFunction (eg a = -> b for b in c))?
+- no-negated-not-relation eg not (a not in b) should just be a in b
+- prefer-not-relation eg not (a in b) should be a not in b

@@ -122,6 +122,8 @@ tokensForESLint = ({tokens}) ->
 
 exports.getParser = getParser = (getAstAndTokens) -> (code, opts) ->
   patchCodePathAnalysis() unless opts.eslintCodePathAnalyzer
+  # ESLint replace shebang #! with //
+  code = code.replace /// ^ // ///, '#'
   {ast, tokens} = getAstAndTokens code, opts
   ast.tokens = tokensForESLint {tokens}
   extendVisitorKeys()
