@@ -53,6 +53,7 @@ espreeTokenTypes =
   RELATION: 'Keyword'
   REGEX: 'RegularExpression'
   IDENTIFIER: 'Identifier'
+  AWAIT: 'Identifier'
   STRING: 'String'
 getEspreeTokenType = (token) ->
   [type, value] = token

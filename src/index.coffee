@@ -148,6 +148,7 @@ rules =
     'prefer-template': {}
     'no-useless-escape':
       'eslint-recommended': yes
+    'no-return-await': {}
   )
 
 configureAsError = flow(
