@@ -99,16 +99,16 @@ module.exports =
           (body.type is 'Program' and body.distance is 1) or body.distance is 2
         return if valid
 
-      context.report {
-        node
-        message: 'Move {{type}} declaration to {{body}} root.'
-        data:
-          type:
-            if isFunctionDeclaration
-              'function'
-            else
-              'variable'
-          body: if body.type is 'Program' then 'program' else 'function body'
-      }
+        context.report {
+          node
+          message: 'Move {{type}} declaration to {{body}} root.'
+          data:
+            type:
+              if isFunctionDeclaration
+                'function'
+              else
+                'variable'
+            body: if body.type is 'Program' then 'program' else 'function body'
+        }
 
     Identifier: check

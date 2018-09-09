@@ -1264,7 +1264,16 @@ ruleTester.run 'valid-jsdoc', rule,
         if t
           process(t)
     '''
+  ,
     # options: [requireReturn: no]
+    code: '''
+      ###*
+      * Foo
+      * @returns {string} something 
+      * @param {string} p desc
+      ###
+      foo = (@p) ->
+    '''
   ]
 
   invalid: [
@@ -1581,6 +1590,19 @@ ruleTester.run 'valid-jsdoc', rule,
       * @returns {string} something 
       ###
       foo = (p) ->
+    '''
+    output: null
+    errors: [
+      message: "Missing JSDoc for parameter 'p'."
+      type: 'Block'
+    ]
+  ,
+    code: '''
+      ###*
+      * Foo
+      * @returns {string} something 
+      ###
+      foo = (@p) ->
     '''
     output: null
     errors: [

@@ -389,6 +389,11 @@ module.exports =
               else
                 param
 
+            if (
+              bindingParam.type is 'MemberExpression' and
+              bindingParam.object.type is 'ThisExpression'
+            )
+              bindingParam = bindingParam.property
             # TODO(nzakas): Figure out logical things to do with destructured, default, rest params
             if bindingParam.type is 'Identifier'
               {name} = bindingParam
