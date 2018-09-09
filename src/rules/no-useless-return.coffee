@@ -202,6 +202,7 @@ module.exports =
         node
         loc: node.loc
         message: 'Unnecessary return statement.'
+        # eslint-disable-next-line coffee/no-loop-func
         fix: (fixer) ->
           ###
           # Extend the replacement range to include the

@@ -159,6 +159,9 @@ rules =
       plugin: 'import'
     'dynamic-import-chunkname':
       plugin: 'import'
+    'no-lonely-if': {}
+    'no-loop-func': {}
+    'valid-jsdoc': {}
   )
 
 configureAsError = flow(

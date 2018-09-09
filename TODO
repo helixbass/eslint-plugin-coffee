@@ -15,6 +15,7 @@
 - add exceptNullInitializers option to no-multi-assign?
 - no-useless-escape should flag unnecessary escapes in heredocs/heregexes (delimiters)
 - get added to docs Configuring list of compatible parsers
+- no-unused-vars doesn't understand do (x) -> as a usage of outer x
 
 rule ideas:
 - prefer-implicit-return
@@ -23,3 +24,4 @@ rule ideas:
 - no-negated-not-relation eg not (a not in b) should just be a in b
 - prefer-not-relation eg not (a in b) should be a not in b
 - normalized heredoc spacing (eg initial/final linebreaks, indentation level wrt whatever (ending quotes?))
+- prefer-at-param
