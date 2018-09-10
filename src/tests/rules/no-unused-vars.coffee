@@ -606,6 +606,25 @@ ruleTester.run 'no-unused-vars', rule,
     # https://github.com/eslint/eslint/issues/8119
     code: '({a, ...rest}) => rest'
     options: [args: 'all', ignoreRestSiblings: yes]
+  ,
+    '''
+      foo = ->
+      x = 1
+      do (x) ->
+        foo x
+    '''
+    '''
+      foo = ->
+      x = 1
+      do (y = x) ->
+        foo y
+    '''
+    '''
+      foo = ->
+      x = 1
+      do ([x]) ->
+        foo x
+    '''
   ]
   invalid: [
     code: 'foox = -> foox()', errors: [assignedError 'foox']

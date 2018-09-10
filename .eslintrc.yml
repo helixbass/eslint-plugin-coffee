@@ -28,6 +28,7 @@ rules:
   coffee/no-underscore-dangle: off
   coffee/no-commonjs: off
   coffee/valid-jsdoc: off
+  coffee/multiline-comment-style: off
 env:
   node: true
   es6: true

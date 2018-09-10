@@ -74,9 +74,19 @@ module.exports =
           /Function/.test(grandparent.type))) and
         directives(parent).indexOf(node) >= 0
 
+    shouldTreatAsConditional = (node) ->
+      return yes if node.type is 'ConditionalExpression'
+      return no unless node.type is 'IfStatement'
+      return no if node.parent.type in ['BlockStatement', 'Program']
+      return shouldTreatAsConditional node.parent if (
+        node.parent.type is 'IfStatement'
+      )
+      yes
+
     isBlockWhereSequenceIsExpected = (node) ->
       return unless node.type is 'BlockStatement'
       return yes if node.parent.type is 'TemplateLiteral'
+      return yes if shouldTreatAsConditional node.parent
       no
 
     ###*
@@ -97,7 +107,7 @@ module.exports =
       return (
         isValidExpression(node.consequent) and
         (not node.alternate or isValidExpression node.alternate)
-      ) if node.type is 'ConditionalExpression'
+      ) if shouldTreatAsConditional node
 
       if allowShortCircuit
         return isValidExpression node.right if node.type is 'LogicalExpression'

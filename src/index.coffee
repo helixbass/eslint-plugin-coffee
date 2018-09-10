@@ -60,6 +60,10 @@ dontApply = [
   'no-extra-semi'
   'no-unexpected-multiline'
   'no-mixed-spaces-and-tabs'
+  'no-nested-ternary'
+  'no-implicit-globals'
+  'array-callback-return'
+  'consistent-return'
 ]
 
 rules =
@@ -162,6 +166,16 @@ rules =
     'no-lonely-if': {}
     'no-loop-func': {}
     'valid-jsdoc': {}
+    'require-jsdoc': {}
+    'multiline-comment-style': {}
+    'no-div-regex': {}
+    'no-extra-bind': {}
+    'no-return-assign': {}
+    'no-shadow': {}
+    'no-class-assign':
+      'eslint-recommended': yes
+    'no-overwrite':
+      plugin: no
   )
 
 configureAsError = flow(

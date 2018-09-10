@@ -151,6 +151,15 @@ ruleTester.run 'no-unused-expressions', rule,
         c
       }"
     '''
+    '''
+      a =
+        if b
+          c
+        else if d
+          e
+        else
+          g
+    '''
   ]
   invalid: [
     code: '0'
@@ -372,4 +381,12 @@ ruleTester.run 'no-unused-expressions', rule,
         'Expected an assignment or function call and instead saw an expression.'
       type: 'ExpressionStatement'
     ]
+  ,
+    code: '''
+      if b
+        c()
+      else if d
+        e
+    '''
+    errors: 1
   ]

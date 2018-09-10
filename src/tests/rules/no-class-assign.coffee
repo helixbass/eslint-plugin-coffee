@@ -9,7 +9,7 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-rule = require 'eslint/lib/rules/no-class-assign'
+rule = require '../../rules/no-class-assign'
 {RuleTester} = require 'eslint'
 
 #------------------------------------------------------------------------------

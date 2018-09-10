@@ -5,6 +5,43 @@ Reference = require 'eslint-scope/lib/reference'
 # PatternVisitor = require 'eslint-scope/lib/pattern-visitor'
 
 class Referencer extends OriginalReferencer
+  visitClass: (node) ->
+    if node.id?.declaration
+      @currentScope().__define(
+        node.id
+        new Definition 'ClassName', node.id, node, null, null, null
+      )
+
+    @visit node.superClass
+
+    @scopeManager.__nestClassScope node
+
+    @currentScope().__define(
+      node.id
+      new Definition 'ClassName', node.id, node
+    ) if node.id
+
+    @visit node.body
+    @close node
+
+  markDoIifeParamsAsRead: (node) ->
+    for param in node.params when param.type isnt 'AssignmentPattern'
+      @visit param
+
+  visitFunction: (node) ->
+    @markDoIifeParamsAsRead node if (
+      # node.parent.type is 'UnaryExpression' and node.parent.operator is 'do'
+      node._isDoIife
+    )
+    super node
+
+  UnaryExpression: (node) ->
+    isDoIife =
+      node.operator is 'do' and node.argument.type is 'FunctionExpression'
+    node.argument._isDoIife = yes if isDoIife
+    @visitChildren node
+    delete node.argument._isDoIife if isDoIife
+
   AssignmentExpression: (node) ->
     # @visit node.left if node.left.type is 'Identifier'
     @visitPattern node.left, (identifier) =>
