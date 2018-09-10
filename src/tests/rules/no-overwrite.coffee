@@ -43,15 +43,14 @@ ruleTester.run 'no-overwrite', rule,
       else
         a = 2
     '''
-  ,
-    code: '''
-      if x
-        a = 1
-      else
-        a = 2
-    '''
-    options: [sameScope: no]
-  ,
+    # ,
+    #   code: '''
+    #     if x
+    #       a = 1
+    #     else
+    #       a = 2
+    #   '''
+    #   options: [sameScope: no]
     '''
       a = 1
       a = 2 unless b
@@ -87,12 +86,73 @@ ruleTester.run 'no-overwrite', rule,
     '''
       a = (a) ->
     '''
+    '''
+      x = 1
+      for x in y
+        ;
+    '''
+    '''
+      x = null
+      ->
+        for x in y
+          ;
+    '''
+    '''
+      a = null
+      ->
+        for b, a of c
+          ;
+    '''
+    '''
+      a = 1
+      ->
+        a ###:###= 2
+    '''
+  ,
+    code: '''
+      a = 1
+      a ###:=### = 2
+    '''
+    options: [sameScope: no]
+  ,
+    '''
+      a = 1
+      ->
+        for b, ###:=### a of c
+          ;
+    '''
+    '''
+      a = 1
+      ->
+        for ###:=### a, b in c
+          ;
+    '''
+    '''
+      a = ->
+        class ###:=### a
+    '''
+    '''
+      a = ->
+        class a ###:=###
+    '''
+    '''
+      a = 1
+      ->
+        [a, b] ###:### = 2
+    '''
   ]
   invalid: [
     code: '''
       a = 1
       ->
         a = 2
+    '''
+    errors: [error]
+  ,
+    code: '''
+      a = 1
+      ->
+        [a, b] = 2
     '''
     errors: [error]
   ,
@@ -115,14 +175,14 @@ ruleTester.run 'no-overwrite', rule,
       a = 1
     '''
     errors: [error]
-    options: [nullInitializers: no]
+    options: [sameScope: no, nullInitializers: no]
   ,
     code: '''
       a = null
       a = -> 1
     '''
     errors: [error]
-    options: [nullInitializers: no]
+    options: [sameScope: no, nullInitializers: no]
   ,
     code: '''
       a = null
@@ -176,6 +236,39 @@ ruleTester.run 'no-overwrite', rule,
       class a
         constructor: ->
           class a
+    '''
+    errors: [error]
+  ,
+    code: '''
+      a = 1
+      for a in b
+        ;
+    '''
+    options: [sameScope: no]
+    errors: [error]
+  ,
+    code: '''
+      a = null
+      ->
+        for a in b
+          ;
+    '''
+    options: [nullInitializers: no]
+    errors: [error]
+  ,
+    code: '''
+      a = 1
+      ->
+        for b, a of c
+          ;
+    '''
+    errors: [error]
+  ,
+    code: '''
+      a = 1
+      ->
+        for i in [0..10]
+          a = i
     '''
     errors: [error]
   ]

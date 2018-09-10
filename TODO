@@ -26,6 +26,11 @@
           return e
 
       b = b.parent
+- should no-overwrite sameScope: no be able to allow "parallel" assignments eg
+  if yes
+    a = 1
+  else
+    a = 2
 
 rule ideas:
 - prefer-implicit-return
