@@ -141,7 +141,7 @@ module.exports =
           thisParams: []
         }
       else
-        funcInfo = {
+        funcInfo ###:### = {
           upper: funcInfo
           isConstructor: no
           hasExtends: no
@@ -164,7 +164,7 @@ module.exports =
       isDerivedClass = funcInfo.hasExtends
       {thisParams} = funcInfo
 
-      funcInfo = funcInfo.upper
+      funcInfo ###:### = funcInfo.upper
       return unless isDerivedClass
 
       codePath.traverseSegments (segment, controller) ->
@@ -264,4 +264,4 @@ module.exports =
     # Resets state.
     # @returns {void}
     ###
-    'Program:exit': -> segInfoMap = Object.create null
+    'Program:exit': -> segInfoMap ###:### = Object.create null

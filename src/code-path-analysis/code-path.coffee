@@ -102,10 +102,10 @@ class CodePath
     controller =
       skip: ->
         if stack.length <= 1
-          broken = yes
+          broken ###:### = yes
         else
           skippedSegment = stack[stack.length - 2][0]
-      break: -> broken = yes
+      break: -> broken ###:### = yes
 
     ###*
     # Checks a given previous segment has been visited.

@@ -49,6 +49,7 @@ module.exports =
           return
             identifier: found.identifiers[0]
             scope: upper
+            variable: found
         {upper} = upper
 
     isBeingAssignedTo = (node) ->
@@ -57,6 +58,7 @@ module.exports =
       while currentNode
         switch currentNode.type
           when 'AssignmentExpression'
+            return no unless currentNode.operator is '='
             if prevNode is currentNode.left
               return currentNode
             else
@@ -76,6 +78,15 @@ module.exports =
 
         prevNode = currentNode
         currentNode = currentNode.parent
+
+    hasPrecedingNonInitialAssignment = (node, variable) ->
+      def = variable.defs?[0]
+      return unless def?
+      variable.references.some (reference) ->
+        reference.writeExpr and
+        reference.identifier isnt node and
+        reference.identifier isnt def.node and
+        reference.identifier.range[0] < node.range[0]
 
     isNullInitializer = (node) ->
       return no unless node?.type is 'Identifier'
@@ -111,10 +122,13 @@ module.exports =
       return if assignmentHasAllowingComment assignmentExpression
       declaration = getDeclaration node
       return unless declaration?
-      {scope, identifier} = declaration
+      {scope, identifier, variable} = declaration
       if scope.variableScope is context.getScope().variableScope
         return if sameScope
-      if isNullInitializer identifier
+      if (
+        isNullInitializer(identifier) and
+        not hasPrecedingNonInitialAssignment node, variable
+      )
         return if nullInitializers
       context.report {
         node

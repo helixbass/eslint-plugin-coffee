@@ -259,20 +259,20 @@ module.exports =
               paramTags.push tag
 
             when 'return', 'returns'
-              hasReturns = yes
+              hasReturns ###:### = yes
               returnsTag = tag
 
             when 'constructor', 'class'
-              hasConstructor = yes
+              hasConstructor ###:### = yes
 
             when 'override', 'inheritdoc'
-              isOverride = yes
+              isOverride ###:### = yes
 
             when 'abstract', 'virtual'
-              isAbstract = yes
+              isAbstract ###:### = yes
 
             when 'interface'
-              isInterface = yes
+              isInterface ###:### = yes
 
             # no default
 

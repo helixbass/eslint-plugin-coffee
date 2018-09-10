@@ -116,7 +116,7 @@ module.exports =
       return exitArrowFunction node if node.bound
       if scopeInfo.isBound and not scopeInfo.thisFound then report node
 
-      scopeInfo = scopeInfo.upper
+      scopeInfo ###:### = scopeInfo.upper
 
     ###*
     # Set the mark as the `this` keyword was found in this scope.

@@ -53,7 +53,7 @@ module.exports =
       remoteExports.forEach (
         v
         name # poor man's filter
-      ) -> name isnt 'default' and (any = yes) and addNamed name, node
+      ) -> name isnt 'default' and (any ###:### = yes) and addNamed name, node
 
       unless any
         context.report(

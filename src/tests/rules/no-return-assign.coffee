@@ -73,6 +73,24 @@ ruleTester.run 'no-return-assign', rule,
         null
     '''
     options: ['except-parens']
+  ,
+    '''
+      ->
+        while yes
+          return a if b
+          c = d
+    '''
+    '''
+      ->
+        for a in b
+          return c
+          d = e
+    '''
+    '''
+      class A
+        constructor: ->
+          @a = 1
+    '''
   ]
   invalid: [
     code: '-> return result = a * b'

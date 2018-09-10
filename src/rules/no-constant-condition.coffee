@@ -160,7 +160,7 @@ module.exports =
     ###
     enterFunction = ->
       loopSetStack.push loopsInCurrentScope
-      loopsInCurrentScope = new Set()
+      loopsInCurrentScope ###:### = new Set()
 
     ###*
     # Reports when the set still contains stored constant conditions
@@ -168,7 +168,7 @@ module.exports =
     # @returns {void}
     # @private
     ###
-    exitFunction = -> loopsInCurrentScope = loopSetStack.pop()
+    exitFunction = -> loopsInCurrentScope ###:### = loopSetStack.pop()
 
     ###*
     # Checks node when checkLoops option is enabled

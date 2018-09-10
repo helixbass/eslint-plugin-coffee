@@ -18,14 +18,6 @@
 - no-unused-vars doesn't understand do (x) -> as a usage of outer x
   - does no-loop-func understand do (x) -> ?
 - no-extra-bind doesn't check if bind expression it's removing could have side effects
-- no-return-assign flags:
-  ->
-    while b
-      switch c
-        when d
-          return e
-
-      b = b.parent
 - should no-overwrite sameScope: no be able to allow "parallel" assignments eg
   if yes
     a = 1

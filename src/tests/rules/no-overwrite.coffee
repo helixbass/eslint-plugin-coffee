@@ -140,6 +140,11 @@ ruleTester.run 'no-overwrite', rule,
       ->
         [a, b] ###:### = 2
     '''
+    '''
+      a = 1
+      ->
+        a += 2
+    '''
   ]
   invalid: [
     code: '''
@@ -269,6 +274,14 @@ ruleTester.run 'no-overwrite', rule,
       ->
         for i in [0..10]
           a = i
+    '''
+    errors: [error]
+  ,
+    code: '''
+      a = null
+      ->
+        a = 1
+        a = 2
     '''
     errors: [error]
   ]

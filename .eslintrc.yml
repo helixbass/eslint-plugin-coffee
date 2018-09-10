@@ -29,6 +29,8 @@ rules:
   coffee/no-commonjs: off
   coffee/valid-jsdoc: off
   coffee/multiline-comment-style: off
+  coffee/no-return-assign: off
+  # coffee/no-overwrite: [error, sameScope: false]
 env:
   node: true
   es6: true

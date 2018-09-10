@@ -227,7 +227,7 @@ module.exports =
         visitorKeys: sourceCode.visitorKeys
         enter: (node) ->
           if DYNAMIC_PATTERN.test node.type
-            retv = yes
+            retv ###:### = yes
             @break()
           else if SKIP_PATTERN.test node.type
             @skip()
@@ -310,4 +310,4 @@ module.exports =
         scope.variables.forEach checkReferences
 
       groupMap.forEach checkConditionsInGroup
-      groupMap = null
+      groupMap ###:### = null

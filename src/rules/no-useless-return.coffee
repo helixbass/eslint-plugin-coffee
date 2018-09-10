@@ -216,7 +216,7 @@ module.exports =
           null
       }
 
-      scopeInfo = scopeInfo.upper
+      scopeInfo ###:### = scopeInfo.upper
 
     ###
     # Initializes segments.

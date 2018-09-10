@@ -290,7 +290,7 @@ module.exports =
           message: 'Unexpected string concatenation.'
           fix: (fixer) -> fixNonStringBinaryExpression fixer, node
 
-    Program: -> done = Object.create null
+    Program: -> done ###:### = Object.create null
 
     Literal: checkForStringConcat
     TemplateLiteral: checkForStringConcat

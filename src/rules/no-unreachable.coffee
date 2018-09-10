@@ -134,7 +134,7 @@ module.exports =
     # Manages the current code path.
     onCodePathStart: (codePath) -> currentCodePath = codePath
 
-    onCodePathEnd: -> currentCodePath = currentCodePath.upper
+    onCodePathEnd: -> currentCodePath ###:### = currentCodePath.upper
 
     # Registers for all statement nodes (excludes FunctionDeclaration).
     BlockStatement: reportIfUnreachable
