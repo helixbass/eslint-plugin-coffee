@@ -31,6 +31,7 @@ rules:
   coffee/multiline-comment-style: off
   coffee/no-return-assign: off
   # coffee/no-overwrite: [error, sameScope: false]
+  coffee/block-scoped-var: off
 env:
   node: true
   es6: true

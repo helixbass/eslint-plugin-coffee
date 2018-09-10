@@ -176,6 +176,7 @@ rules =
       'eslint-recommended': yes
     'no-overwrite':
       plugin: no
+    'block-scoped-var': {}
   )
 
 configureAsError = flow(
