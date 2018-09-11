@@ -10,7 +10,150 @@ fmapWithKey = fmap.convert cap: no
 
 {parseForESLint} = require './parser'
 
-unusable = ['no-sequences']
+# eslint-disable-next-line coffee/no-unused-vars
+usable = [
+  'no-console'
+  'no-control-regex'
+  'no-debugger'
+  'no-dupe-keys'
+  'no-duplicate-case'
+  'no-empty'
+  'no-ex-assign'
+  'no-invalid-regexp'
+  'no-irregular-whitespace'
+  'no-obj-calls'
+  'no-prototype-builtins'
+  'no-sparse-arrays'
+  'no-unsafe-finally'
+  'accessor-pairs' # wouldn't work for backticked get/set
+  'default-case'
+  'dot-location'
+  'max-classes-per-file'
+  'no-alert'
+  'no-caller'
+  'no-eval'
+  'no-extend-native'
+  'no-global-assign' # only ++ applies since we generate declarations on other write references
+  'no-implied-eval'
+  'no-iterator'
+  'no-multi-str'
+  'no-new'
+  'no-new-func'
+  'no-new-wrappers'
+  'no-param-reassign'
+  'no-proto'
+  'no-restricted-properties'
+  'no-script-url'
+  'no-throw-literal'
+  'no-useless-call'
+  'no-useless-concat'
+  'no-warning-comments'
+  'prefer-promise-reject-errors'
+  'radix'
+  'no-delete-var'
+  'no-restricted-globals'
+  'callback-return'
+  'global-require'
+  'handle-callback-err'
+  'no-buffer-constructor'
+  'no-new-require'
+  'no-path-concat'
+  'no-process-env'
+  'no-process-exit'
+  'no-restricted-modules'
+  'no-sync'
+  'comma-spacing'
+  'eol-last'
+  'id-blacklist'
+  'id-length'
+  'key-spacing'
+  'line-comment-position'
+  'linebreak-style'
+  'max-lines'
+  'max-nested-callbacks'
+  'max-params'
+  'max-statements'
+  'new-cap'
+  'new-parens'
+  'no-array-constructor'
+  'no-bitwise'
+  'no-continue'
+  'no-inline-comments'
+  'no-multi-assign'
+  'no-new-object'
+  'no-plusplus'
+  'no-restricted-syntax'
+  'sort-keys'
+  'constructor-super'
+  'no-dupe-class-members'
+  'no-duplicate-imports'
+  'no-new-symbol'
+  'no-restricted-imports'
+  'no-useless-computed-key'
+  'no-useless-constructor'
+  'no-useless-rename'
+  'prefer-numeric-literals'
+  'prefer-rest-params'
+  'prefer-spread'
+  'sort-imports'
+  'symbol-description'
+  'no-catch-shadow'
+  'import/no-webpack-loader-syntax'
+  'import/prefer-default-export'
+  'import/first'
+  'import/no-amd'
+  'import/no-nodejs-modules'
+  'import/exports-last'
+  'import/no-namespace'
+  'import/prefer-default-export'
+  'import/max-dependencies'
+  'import/newline-after-export'
+  'import/group-exports'
+]
+
+# eslint-disable-next-line coffee/no-unused-vars
+yet = [
+  'no-extra-parens'
+  'no-misleading-character-class'
+  'require-atomic-updates'
+  'no-else-return' # since we conflate else [nested if] with else if, can't currently just disallow the former
+  'no-floating-decimal'
+  'no-multi-spaces'
+  'require-unicode-regexp'
+  'strict'
+  'no-undef'
+  'array-element-newline'
+  'comma-dangle'
+  'comma-style'
+  'computed-property-spacing'
+  'func-call-spacing'
+  'function-paren-newline'
+  'id-match'
+  'implicit-arrow-linebreak'
+  'indent'
+  'jsx-quotes'
+  'keyword-spacing'
+  'lines-around-comment'
+  'multiline-ternary' # maybe this should be multiline-control and check all "inline" (non-postfix) forms of control structures (which use then)?
+  'newline-per-chained-call'
+  'no-mixed-operators'
+  'no-multiple-empty-lines'
+  'no-tabs'
+  'no-trailing-spaces'
+  'no-whitespace-before-property'
+  'object-property-newline'
+  'operator-linebreak' # mostly doesn't apply as leading operators aren't allowed (when leading logical lands, could support that). could support "none" (don't allow breaking operators)
+  'padded-blocks' # I think only leading padding would apply (since trailing padding is considered outside the block)
+  'padding-line-between-statements' # I think only leading padding would apply (since trailing padding is considered outside the block)
+  'quote-props'
+  'quotes'
+  'space-in-parens'
+  'unicode-bom'
+  'wrap-regex'
+  'rest-spread-spacing'
+  'template-curly-spacing'
+  'yield-star-spacing'
+]
 
 dontApply = [
   'prefer-const'
@@ -61,9 +204,19 @@ dontApply = [
   'no-unexpected-multiline'
   'no-mixed-spaces-and-tabs'
   'no-nested-ternary'
-  'no-implicit-globals'
-  'array-callback-return'
-  'consistent-return'
+  'no-implicit-globals' # it seems like non-bare compilation covers this
+  'array-callback-return' # though could presumably support allowImplicit: false checking and possibly detect implicit returns of nullish values?
+  'consistent-return' # could probably do some form of comparing implicitly (and/or explicitly) returned values?
+  'block-spacing'
+  'brace-style'
+  'nonblock-statement-body-position'
+  'object-curly-newline'
+  'one-var-declaration-per-line'
+  'space-before-blocks'
+  'space-before-function-paren'
+  'arrow-parens'
+  'generator-star-spacing'
+  'no-confusing-arrow'
 ]
 
 rules =
@@ -177,6 +330,12 @@ rules =
     'no-overwrite':
       plugin: no
     'block-scoped-var': {}
+    'no-sequences': {}
+    'no-empty-function': {}
+    'no-async-promise-executor': {}
+    'array-bracket-newline': {}
+    'array-bracket-spacing': {}
+    'prefer-object-spread': {}
   )
 
 configureAsError = flow(
@@ -212,7 +371,7 @@ module.exports = {
       rules: {
         ...configureAsError(rules)
         ...turnOff(dontApply)
-        ...turnOff(unusable)
+        # ...turnOff(unusable)
       }
     'eslint-recommended':
       plugins: ['coffee']
@@ -220,7 +379,7 @@ module.exports = {
       rules: {
         ...configureAsError(fpickBy('eslint-recommended') rules)
         ...turnOff(dontApply)
-        ...turnOff(unusable)
+        # ...turnOff(unusable)
       }
   parseForESLint
 }

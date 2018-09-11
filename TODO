@@ -4,7 +4,8 @@
 - restrict eslint peerDependency range or detect version - looks like eg ast-utils has moved to lib/util/ast-utils
 - should we always be parsing as module?
 - expose prettier/prettier w/ prettier-plugin-coffeescript config set up eg as plugin:coffee/prettier? and disable conflicting rules
-- add test like eslint-plugin-react (?) that checks that everything in src/rules/ is exposed
+- add test like eslint-plugin-react (?) that checks that everything in src/rules/ is exposed and has tests
+  and that everything in usable has tests
 - comprehensively go through expected token types and include in espreeTokenTypes
 - include tests from coffeelint?
 - didn't include tests for first couple rules
@@ -23,6 +24,8 @@
     a = 1
   else
     a = 2
+- should probably use explicit whitelist of compatible rules (so that new unknown ESLint rules don't blindly get run)
+- make sure prettier turns off any customized rules from this plugin that would conflict
 
 rule ideas:
 - prefer-implicit-return

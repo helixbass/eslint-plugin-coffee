@@ -105,8 +105,8 @@ tokensForESLint = ({tokens}) ->
           'INDENT'
           'OUTDENT'
           # espree doesn't seem to include tokens for \n
-          'TERMINATOR'
-        ]
+        ] and
+        not (token[0] is 'TERMINATOR' and token[1] isnt ';')
     )
       [, value, locationData] = token
       [
