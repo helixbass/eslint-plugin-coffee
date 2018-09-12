@@ -54,9 +54,9 @@ SCHEMA_BODY =
 # @returns {Object} The normalized options.
 ###
 getNormalizedOptions = (rawOptions, which) ->
-  return Object.assign {}, DEFAULTS unless rawOptions
+  return {...DEFAULTS} unless rawOptions
 
-  Object.assign {}, DEFAULTS, rawOptions[which] or rawOptions
+  {...DEFAULTS, ...(rawOptions[which] or rawOptions)}
 
 ###*
 # Get normalized options for block and line comments.

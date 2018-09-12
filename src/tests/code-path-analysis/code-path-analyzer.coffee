@@ -63,7 +63,7 @@ describe 'CodePathAnalyzer', ->
     actual = []
 
     beforeEach ->
-      actual = []
+      actual ###:### = []
       linter.defineRule 'test', ->
         onCodePathStart: (codePath) -> actual.push codePath
       linter.verify(
@@ -148,7 +148,7 @@ describe 'CodePathAnalyzer', ->
     actual = []
 
     beforeEach ->
-      actual = []
+      actual ###:### = []
       linter.defineRule 'test', ->
         onCodePathSegmentStart: (segment) -> actual.push segment
       linter.verify(
@@ -273,10 +273,12 @@ describe 'CodePathAnalyzer', ->
             assert node.type is 'ArrowFunctionExpression'
           assert node.type is lastNodeType
         'Program:exit': -> lastNodeType = 'Program'
-        'FunctionDeclaration:exit': -> lastNodeType = 'FunctionDeclaration'
-        'FunctionExpression:exit': -> lastNodeType = 'FunctionExpression'
+        'FunctionDeclaration:exit': ->
+          lastNodeType ###:### = 'FunctionDeclaration'
+        'FunctionExpression:exit': ->
+          lastNodeType ###:### = 'FunctionExpression'
         'ArrowFunctionExpression:exit': ->
-          lastNodeType = 'ArrowFunctionExpression'
+          lastNodeType ###:### = 'ArrowFunctionExpression'
       linter.verify(
         'foo(); function foo() {} var foo = function() {}; var foo = () => {};'
         rules: {test: 2}, env: es6: yes
@@ -337,10 +339,12 @@ describe 'CodePathAnalyzer', ->
             assert node.type is 'ArrowFunctionExpression'
           assert node.type is lastNodeType
         'Program:exit': -> lastNodeType = 'Program'
-        'FunctionDeclaration:exit': -> lastNodeType = 'FunctionDeclaration'
-        'FunctionExpression:exit': -> lastNodeType = 'FunctionExpression'
+        'FunctionDeclaration:exit': ->
+          lastNodeType ###:### = 'FunctionDeclaration'
+        'FunctionExpression:exit': ->
+          lastNodeType ###:### = 'FunctionExpression'
         'ArrowFunctionExpression:exit': ->
-          lastNodeType = 'ArrowFunctionExpression'
+          lastNodeType ###:### = 'ArrowFunctionExpression'
       linter.verify(
         'foo(); function foo() {} var foo = function() {}; var foo = () => {};'
         rules: {test: 2}, env: es6: yes

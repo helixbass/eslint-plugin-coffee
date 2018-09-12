@@ -353,9 +353,9 @@ ruleTester.run 'no-useless-return', rule,
       message: 'Unnecessary return statement.', type: 'ReturnStatement'
     ]
   ].map (invalidCase) ->
-    Object.assign
+    {
       errors: [
         message: 'Unnecessary return statement.', type: 'ReturnStatement'
       ]
-    ,
-      invalidCase
+      ...invalidCase
+    }

@@ -7,7 +7,7 @@ CoffeeScript = require 'coffeescript'
 babylonToEspree = require 'babel-eslint/babylon-to-espree'
 babelTraverse = require('babel-traverse').default
 babylonTokenTypes = require('babylon').tokTypes
-{flatten, assign: extend} = require 'lodash'
+{flatten, assign: extend, repeat} = require 'lodash'
 patchCodePathAnalysis = require './patch-code-path-analysis'
 analyzeScope = require './analyze-scope'
 CodePathAnalyzer = require './code-path-analysis/code-path-analyzer'
@@ -32,6 +32,10 @@ espreeTokenTypes =
   PARAM_END: 'Punctuator'
   INDEX_START: 'Punctuator'
   INDEX_END: 'Punctuator'
+  INTERPOLATION_START: 'Punctuator'
+  INTERPOLATION_END: 'Punctuator'
+  STRING_START: 'Punctuator'
+  STRING_END: 'Punctuator'
   '=>': 'Punctuator'
   '->': 'Punctuator'
   ',': 'Punctuator'
@@ -67,6 +71,14 @@ getEspreeTokenType = (token) ->
     (type is 'COMPARE' and value in ['is', 'isnt'])
   )
   espreeTokenTypes[type] ? type
+
+getTokenValue = ([type, value, {range}]) ->
+  return '#{' if type is 'INTERPOLATION_START'
+  return '}' if type is 'INTERPOLATION_END'
+  return repeat '"', range[1] - range[0] if (
+    type in ['STRING_START', 'STRING_END']
+  )
+  value.original ? value.toString()
 
 # extraTokensForESLint = (ast) ->
 #   extraTokens = []
@@ -106,15 +118,20 @@ tokensForESLint = ({tokens}) ->
           'OUTDENT'
           # espree doesn't seem to include tokens for \n
         ] and
-        not (token[0] is 'TERMINATOR' and token[1] isnt ';')
+        not (token[0] is 'TERMINATOR' and token[1] isnt ';') and
+        not (
+          token[0] is 'STRING' and
+          token[1].length is 2 and
+          token[2].range[1] - token[2].range[0] < 2
+        )
     )
-      [, value, locationData] = token
+      [, , locationData] = token
       [
         # ...popExtraTokens(nextStart: locationData.range[0])
         # ,
         {
           type: getEspreeTokenType token
-          value: value.original ? value.toString()
+          value: getTokenValue token
           ...locationDataToAst(locationData)
         }
       ])
@@ -129,6 +146,7 @@ exports.getParser = getParser = (getAstAndTokens) -> (code, opts) ->
   code = code.replace /// ^ // ///, '#'
   {ast, tokens} = getAstAndTokens code, opts
   ast.tokens = tokensForESLint {tokens}
+  # dump transformedTokens: ast.tokens
   extendVisitorKeys()
   commentLocs =
     for comment in ast.comments ? []

@@ -18,6 +18,7 @@ rule = require '../../rules/no-implicit-coercion'
 
 ruleTester = new RuleTester parser: '../../..'
 
+### eslint-disable coffee/no-template-curly-in-string ###
 ruleTester.run 'no-implicit-coercion', rule,
   valid: [
     'Boolean(foo)'

@@ -86,7 +86,7 @@ ruleTester.run 'no-await-in-loop', rule,
           for await x from xs
             ;
     '''
-    errors: [Object.assign {}, error, type: 'For']
+    errors: [{...error, type: 'For'}]
   ,
     # For of loops
     code: '''

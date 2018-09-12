@@ -64,9 +64,11 @@ ruleTester.run 'object-curly-spacing', rule,
     code: '{ x: { z }, y } = y'
     options: ['always']
   ,
-    code: '{
-      y,
-    } = x'
+    code: '''
+      {
+        y,
+      } = x
+    '''
     options: ['always']
   ,
     code: '{ y, } = x', options: ['always']

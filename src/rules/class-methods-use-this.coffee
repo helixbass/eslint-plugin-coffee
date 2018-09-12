@@ -29,8 +29,7 @@ module.exports =
     messages:
       missingThis: "Expected 'this' to be used by class method '{{name}}'."
   create: (context) ->
-    config =
-      if context.options[0] then Object.assign {}, context.options[0] else {}
+    config = if context.options[0] then {...context.options[0]} else {}
     exceptMethods = new Set config.exceptMethods or []
 
     stack = []

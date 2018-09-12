@@ -277,6 +277,7 @@ ruleTester.run 'no-irregular-whitespace', rule,
   invalid: [
     code: "any \u000B = 'thing'"
     errors: expectedErrors
+  ,
     code: "any \u000C = 'thing'"
     errors: expectedErrors
   ,

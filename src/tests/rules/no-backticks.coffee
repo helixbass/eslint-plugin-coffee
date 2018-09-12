@@ -38,6 +38,7 @@ ruleTester.run 'no-backticks', rule,
   ,
     code: 'foo = `a`'
     errors: [error]
+  ,
     code: '''
       class A
         `get b() {}`

@@ -113,12 +113,26 @@ module.exports =
     # @param {string} match - string slice to validate.
     # @returns {void}
     ###
-    validateString = (node, match) ->
+    validateString = (node, match, value) ->
       isTemplateElement = node.type is 'TemplateElement'
       escapedChar = match[0][1]
       isUnnecessaryEscape = not VALID_STRING_ESCAPES.has escapedChar
       if isTemplateElement
-        isQuoteEscape = escapedChar is '"'
+        {quote} = node.parent
+        isQuoteEscape = quote? and escapedChar is quote[0]
+        if isQuoteEscape and quote.length is 3
+          isQuoteEscape = no
+          followingQuoteEscapes = /// ^ (?: \\#{quote[0]} )+ ///.exec(
+            value[(match.index + match[0].length)..]
+          )
+          precedingQuoteEscapes = /// (?: \\#{quote[0]} )+ $ ///.exec(
+            value[...match.index]
+          )
+          isQuoteEscape = yes if (
+            (followingQuoteEscapes ? [''])[0].length +
+              (precedingQuoteEscapes ? [''])[0].length >=
+            4
+          )
 
         if escapedChar is '#'
           # Warn if `\$` is not followed by `{`
@@ -166,7 +180,9 @@ module.exports =
         value =
           if isTemplateElement then node.value.raw else node.raw.slice 1, -1
         pattern = /\\[^\d]/g
-        while (match = pattern.exec value) then validateString node, match
+
+        while (match = pattern.exec value)
+          validateString node, match, value
       else if node.regex
         parseRegExp node.regex.pattern
           ###

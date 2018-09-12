@@ -78,7 +78,7 @@ module.exports =
     ]
 
   create: (context) ->
-    options = Object.assign {}, defaults, context.options[0]
+    options = {...defaults, ...context.options[0]}
 
     ExportDefaultDeclaration: (node) ->
       def = defs[node.declaration.type]

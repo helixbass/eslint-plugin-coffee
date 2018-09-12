@@ -19,7 +19,7 @@ rule = require 'eslint/lib/rules/accessor-pairs'
 ruleTester = new RuleTester parser: '../../..'
 
 getterError = messageId: 'getter'
-setterError = messageId: 'setter'
+# setterError = messageId: 'setter'
 
 ruleTester.run 'accessor-pairs', rule,
   valid: [

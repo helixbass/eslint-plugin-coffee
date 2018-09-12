@@ -5,6 +5,7 @@ rule = require '../../rules/no-anonymous-default-export'
 
 test = (x) -> x
 
+### eslint-disable coffee/no-template-curly-in-string ###
 ruleTester.run 'no-anonymous-default-export', rule,
   valid: [
     # Exports with identifiers are valid

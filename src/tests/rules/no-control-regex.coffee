@@ -18,6 +18,7 @@ rule = require 'eslint/lib/rules/no-control-regex'
 
 ruleTester = new RuleTester parser: '../../..'
 
+### eslint-disable no-control-regex ###
 ruleTester.run 'no-control-regex', rule,
   valid: [
     'regex = /x1f/'

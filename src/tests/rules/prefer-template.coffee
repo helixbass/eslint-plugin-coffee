@@ -23,6 +23,7 @@ errors = [
 
 ruleTester = new RuleTester parser: '../../..'
 
+### eslint-disable coffee/no-template-curly-in-string ###
 ruleTester.run 'prefer-template', rule,
   valid: [
     "'use strict'"

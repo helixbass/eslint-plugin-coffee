@@ -25,10 +25,13 @@ ruleTester.run 'no-negated-condition', rule,
   ,
     code: 'if (!a) then ;'
     options: [requireElse: yes]
+  ,
     code: 'x if (!a)'
     options: [requireElse: yes]
+  ,
     code: 'if (!a) then ; else if (b) then ;'
     options: [requireElse: yes]
+  ,
     code: 'if (!a) then ; else if (b) then ; else ;'
     options: [requireElse: yes]
   ,
@@ -37,10 +40,13 @@ ruleTester.run 'no-negated-condition', rule,
   ,
     code: 'if (a != b) then ;'
     options: [requireElse: yes]
+  ,
     code: 'if (a != b) then ; else if (b) then ;'
     options: [requireElse: yes]
+  ,
     code: 'if (a != b) then ; else if (b) then ; else ;'
     options: [requireElse: yes]
+  ,
     code: 'if (a isnt b) then ;'
     options: [requireElse: yes]
   ,
@@ -51,10 +57,13 @@ ruleTester.run 'no-negated-condition', rule,
   ,
     code: 'unless (!a) then ;'
     options: [requireElse: yes]
+  ,
     code: 'x unless (!a)'
     options: [requireElse: yes]
+  ,
     code: 'unless (!a) then ; else if (b) then ;'
     options: [requireElse: yes]
+  ,
     code: 'unless (!a) then ; else if (b) then ; else ;'
     options: [requireElse: yes]
   ,
@@ -63,10 +72,13 @@ ruleTester.run 'no-negated-condition', rule,
   ,
     code: 'unless (a != b) then ;'
     options: [requireElse: yes]
+  ,
     code: 'unless (a != b) then ; else if (b) then ;'
     options: [requireElse: yes]
+  ,
     code: 'unless (a != b) then ; else if (b) then ; else ;'
     options: [requireElse: yes]
+  ,
     code: 'unless (a isnt b) then ;'
     options: [requireElse: yes]
   ,

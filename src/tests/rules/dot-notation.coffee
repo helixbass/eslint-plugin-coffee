@@ -26,6 +26,7 @@ ruleTester = new RuleTester parser: '../../..'
 ###
 q = (str) -> "\"#{str}\""
 
+### eslint-disable coffee/no-template-curly-in-string ###
 ruleTester.run 'dot-notation', rule,
   valid: [
     'a.b'

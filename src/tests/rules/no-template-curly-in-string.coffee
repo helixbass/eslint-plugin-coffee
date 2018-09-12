@@ -19,6 +19,7 @@ ruleTester = new RuleTester parser: '../../..'
 
 message = 'Unexpected template string expression.'
 
+### eslint-disable coffee/no-template-curly-in-string ###
 ruleTester.run 'no-template-curly-in-string', rule,
   valid: [
     '"Hello, #{name}"'

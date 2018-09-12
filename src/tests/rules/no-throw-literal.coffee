@@ -18,6 +18,7 @@ rule = require 'eslint/lib/rules/no-throw-literal'
 
 ruleTester = new RuleTester parser: '../../..'
 
+### eslint-disable coffee/no-template-curly-in-string ###
 ruleTester.run 'no-throw-literal', rule,
   valid: [
     'throw new Error()'

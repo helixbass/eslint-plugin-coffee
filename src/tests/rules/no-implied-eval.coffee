@@ -21,6 +21,7 @@ expectedErrorMessage =
   'Implied eval. Consider passing a function instead of a string.'
 expectedError = message: expectedErrorMessage, type: 'CallExpression'
 
+### eslint-disable coffee/no-template-curly-in-string ###
 ruleTester.run 'no-implied-eval', rule,
   valid: [
     # normal usage

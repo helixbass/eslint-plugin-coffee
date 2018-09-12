@@ -86,5 +86,12 @@ ruleTester.run 'prefer-promise-reject-errors', rule,
         type: 'CallExpression'
       ]
 
-    Object.assign {}, errors,
-      if typeof invalidCase is 'string' then code: invalidCase else invalidCase
+    {
+      ...errors
+      ...(
+        if typeof invalidCase is 'string'
+          code: invalidCase
+        else
+          invalidCase
+      )
+    }

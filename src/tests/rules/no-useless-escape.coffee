@@ -14,6 +14,7 @@ rule = require '../../rules/no-useless-escape'
 
 ruleTester = new RuleTester parser: '../../..'
 
+### eslint-disable coffee/no-template-curly-in-string ###
 ruleTester.run 'no-useless-escape', rule,
   valid: [
     'foo = /\\./'
@@ -158,6 +159,17 @@ ruleTester.run 'no-useless-escape', rule,
     String.raw"foo = /\P{ASCII}/u"
     String.raw"foo = /[\p{ASCII}]/u"
     String.raw"foo = /[\P{ASCII}]/u"
+
+    '''
+      foo = """
+        \\"\\"\\"a\\"\\"\\"
+      """
+    '''
+    """
+      foo = '''
+        \\'\\'\\'a\\'\\'\\'
+      '''
+    """
   ]
 
   invalid: [
@@ -340,7 +352,7 @@ ruleTester.run 'no-useless-escape', rule,
     code: 'foo = "\\\'#{foo}\\\'"'
     errors: [
       line: 1
-      column: 7
+      column: 8
       message: "Unnecessary escape character: \\'."
       type: 'TemplateElement'
     ,
@@ -369,7 +381,7 @@ ruleTester.run 'no-useless-escape', rule,
     code: 'foo = "\\${{#{foo}"'
     errors: [
       line: 1
-      column: 7
+      column: 8
       message: 'Unnecessary escape character: \\$.'
       type: 'TemplateElement'
     ]
@@ -377,7 +389,7 @@ ruleTester.run 'no-useless-escape', rule,
     code: 'foo = "\\#a#{foo}"'
     errors: [
       line: 1
-      column: 7
+      column: 8
       message: 'Unnecessary escape character: \\#.'
       type: 'TemplateElement'
     ]
@@ -385,7 +397,7 @@ ruleTester.run 'no-useless-escape', rule,
     code: 'foo = "a\\{{#{foo}"'
     errors: [
       line: 1
-      column: 8
+      column: 9
       message: 'Unnecessary escape character: \\{.'
       type: 'TemplateElement'
     ]
@@ -517,6 +529,7 @@ ruleTester.run 'no-useless-escape', rule,
       message: 'Unnecessary escape character: \\e.'
       type: 'Literal'
     ]
+  ,
     # ,
     #   code: '"\\a"""'
     #   errors: [
@@ -525,4 +538,39 @@ ruleTester.run 'no-useless-escape', rule,
     #     message: 'Unnecessary escape character: \\a.'
     #     type: 'TemplateElement'
     #   ]
+    code: """
+      foo = '''
+        \\"
+      '''
+    """
+    errors: [
+      line: 2
+      column: 3
+      message: 'Unnecessary escape character: \\".'
+      type: 'TemplateElement'
+    ]
+  ,
+    code: """
+      foo = '''
+        \\'
+      '''
+    """
+    errors: [
+      line: 2
+      column: 3
+      message: "Unnecessary escape character: \\'."
+      type: 'TemplateElement'
+    ]
+  ,
+    code: '''
+      foo = """
+        \\"
+      """
+    '''
+    errors: [
+      line: 2
+      column: 3
+      message: 'Unnecessary escape character: \\".'
+      type: 'TemplateElement'
+    ]
   ]

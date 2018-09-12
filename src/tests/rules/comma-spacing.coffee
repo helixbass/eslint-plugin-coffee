@@ -17,6 +17,7 @@ rule = require 'eslint/lib/rules/comma-spacing'
 
 ruleTester = new RuleTester parser: '../../..'
 
+### eslint-disable coffee/no-template-curly-in-string ###
 ruleTester.run 'comma-spacing', rule,
   valid: [
     "myfunc(404, true### bla bla bla ###, 'hello')"

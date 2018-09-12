@@ -17,6 +17,7 @@ rule = require '../../rules/valid-typeof'
 
 ruleTester = new RuleTester parser: '../../..'
 
+### eslint-disable coffee/no-template-curly-in-string ###
 ruleTester.run 'valid-typeof', rule,
   valid: [
     "typeof foo is 'string'"

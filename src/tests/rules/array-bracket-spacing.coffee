@@ -8,7 +8,7 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-path = require 'path'
+# path = require 'path'
 rule = require '../../rules/array-bracket-spacing'
 {RuleTester} = require 'eslint'
 
@@ -22,11 +22,11 @@ rule = require '../../rules/array-bracket-spacing'
 # @param {string} name - The parser name to get.
 # @returns {string} The path to the specified parser.
 ###
-parser = (name) ->
-  path.resolve(
-    __dirname
-    "../../fixtures/parsers/array-bracket-spacing/#{name}.js"
-  )
+# parser = (name) ->
+#   path.resolve(
+#     __dirname
+#     "../../fixtures/parsers/array-bracket-spacing/#{name}.js"
+#   )
 
 #------------------------------------------------------------------------------
 # Tests

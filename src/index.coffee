@@ -109,17 +109,17 @@ usable = [
   'import/max-dependencies'
   'import/newline-after-export'
   'import/group-exports'
+  'no-misleading-character-class'
+  'require-unicode-regexp'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
 yet = [
   'no-extra-parens'
-  'no-misleading-character-class'
   'require-atomic-updates'
   'no-else-return' # since we conflate else [nested if] with else if, can't currently just disallow the former
   'no-floating-decimal'
   'no-multi-spaces'
-  'require-unicode-regexp'
   'strict'
   'no-undef'
   'array-element-newline'
@@ -151,8 +151,6 @@ yet = [
   'unicode-bom'
   'wrap-regex'
   'rest-spread-spacing'
-  'template-curly-spacing'
-  'yield-star-spacing'
 ]
 
 dontApply = [
@@ -217,6 +215,7 @@ dontApply = [
   'arrow-parens'
   'generator-star-spacing'
   'no-confusing-arrow'
+  'yield-star-spacing'
 ]
 
 rules =
@@ -336,6 +335,7 @@ rules =
     'array-bracket-newline': {}
     'array-bracket-spacing': {}
     'prefer-object-spread': {}
+    'template-curly-spacing': {}
   )
 
 configureAsError = flow(

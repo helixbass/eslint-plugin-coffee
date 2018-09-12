@@ -26,6 +26,7 @@
     a = 2
 - should probably use explicit whitelist of compatible rules (so that new unknown ESLint rules don't blindly get run)
 - make sure prettier turns off any customized rules from this plugin that would conflict
+- require-unicode-regexp uses eslint-utils' getStringIfConstant(), would be cool if it could recognize "const" assignments
 
 rule ideas:
 - prefer-implicit-return

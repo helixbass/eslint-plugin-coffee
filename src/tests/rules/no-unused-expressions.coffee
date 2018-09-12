@@ -18,6 +18,7 @@ rule = require '../../rules/no-unused-expressions'
 
 ruleTester = new RuleTester parser: '../../..'
 
+### eslint-disable coffee/no-template-curly-in-string ###
 ruleTester.run 'no-unused-expressions', rule,
   valid: [
     'f = ->'
