@@ -30,7 +30,6 @@ getPrecedence = (node) ->
 
     # when 'ConditionalExpression'
     #   return 3
-
     when 'LogicalExpression'
       switch node.operator
         when '?'
@@ -43,7 +42,6 @@ getPrecedence = (node) ->
         # no default
 
     ### falls through ###
-
     when 'BinaryExpression'
       switch node.operator
         when '|'
@@ -189,10 +187,20 @@ isIife = (func) ->
   )
   no
 
+hasIndentedLastLine = ({node, sourceCode}) ->
+  return no unless node.loc.start.line < node.loc.end.line
+  lastLineText =
+    sourceCode.getText()[(node.range[1] - node.loc.end.column)...node.range[1]]
+  match = /^\s+/.exec lastLineText
+  return no unless match
+  lastLineIndent = match[0]
+  lastLineIndent.length + 1 > node.loc.start.column
+
 module.exports = {
   getPrecedence
   isInLoop
   getFunctionName
   getFunctionNameWithKind
   isIife
+  hasIndentedLastLine
 }

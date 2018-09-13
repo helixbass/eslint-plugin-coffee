@@ -33,6 +33,7 @@ rules:
   # coffee/no-overwrite: [error, sameScope: false]
   coffee/block-scoped-var: off
   coffee/array-bracket-newline: off
+  coffee/array-element-newline: off
   no-sparse-arrays: off
 env:
   node: true

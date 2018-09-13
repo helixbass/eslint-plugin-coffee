@@ -43,7 +43,8 @@ module.exports =
           expression.range[0]
         )
           currentSemiIndex++
-          return if currentSemiIndex is semisInRange.length - 1
+          return if currentSemiIndex >= semisInRange.length - 1
+        continue unless currentSemi.range[0] >= expression.range[1]
         if currentSemi.range[1] <= body[index + 1].range[0]
           context.report
             node: currentSemi

@@ -55,8 +55,8 @@ module.exports =
         return commentGroup.map (comment) ->
           comment.value
       commentGroup[0].value
-        .split astUtils.LINEBREAK_MATCHER
-        .map (line) -> line.replace /^\s*[*#]?/, ''
+      .split astUtils.LINEBREAK_MATCHER
+      .map (line) -> line.replace /^\s*[*#]?/, ''
 
     ###*
      * # Converts a comment into starred-block form
@@ -123,8 +123,8 @@ module.exports =
       commentGroup[0].type is 'Block' and
         /^\*\s*$/.test(lines[0]) and
         lines
-          .slice 1, -1
-          .every((line) -> /^\s*[ #]/.test line) and
+        .slice 1, -1
+        .every((line) -> /^\s*[ #]/.test line) and
         /^\s*$/.test lines[lines.length - 1]
 
     ###*
@@ -410,8 +410,8 @@ module.exports =
           if commentGroup[0].type is 'Block'
             block = commentGroup[0]
             lines = block.value
-              .split astUtils.LINEBREAK_MATCHER
-              .filter (line) -> line.trim()
+            .split astUtils.LINEBREAK_MATCHER
+            .filter (line) -> line.trim()
 
             if lines.length > 0 and lines.every (line) -> /^\s*[*#]/.test line
               context.report
@@ -435,37 +435,36 @@ module.exports =
 
     Program: ->
       sourceCode
-        .getAllComments()
-        .filter (comment) -> comment.type isnt 'Shebang'
-        .filter (comment) ->
-          not astUtils.COMMENTS_IGNORE_PATTERN.test comment.value
-        .filter (comment) ->
+      .getAllComments()
+      .filter (comment) -> comment.type isnt 'Shebang'
+      .filter (comment) ->
+        not astUtils.COMMENTS_IGNORE_PATTERN.test comment.value
+      .filter (comment) ->
+        tokenBefore = sourceCode.getTokenBefore comment, includeComments: yes
+
+        not tokenBefore or tokenBefore.loc.end.line < comment.loc.start.line
+      .reduce(
+        (commentGroups, comment, index, commentList) ->
           tokenBefore = sourceCode.getTokenBefore comment, includeComments: yes
 
-          not tokenBefore or tokenBefore.loc.end.line < comment.loc.start.line
-        .reduce(
-          (commentGroups, comment, index, commentList) ->
-            tokenBefore = sourceCode.getTokenBefore comment,
-              includeComments: yes
-
-            if (
-              comment.type is 'Line' and
-              index and
-              commentList[index - 1].type is 'Line' and
-              tokenBefore and
-              tokenBefore.loc.end.line is comment.loc.start.line - 1 and
-              tokenBefore is commentList[index - 1]
-            )
-              commentGroups[commentGroups.length - 1].push comment
-            else
-              commentGroups.push [comment]
-
-            commentGroups
-          []
-        )
-        .filter (commentGroup) ->
-          not (
-            commentGroup.length is 1 and
-            commentGroup[0].loc.start.line is commentGroup[0].loc.end.line
+          if (
+            comment.type is 'Line' and
+            index and
+            commentList[index - 1].type is 'Line' and
+            tokenBefore and
+            tokenBefore.loc.end.line is comment.loc.start.line - 1 and
+            tokenBefore is commentList[index - 1]
           )
-        .forEach commentGroupCheckers[option]
+            commentGroups[commentGroups.length - 1].push comment
+          else
+            commentGroups.push [comment]
+
+          commentGroups
+        []
+      )
+      .filter (commentGroup) ->
+        not (
+          commentGroup.length is 1 and
+          commentGroup[0].loc.start.line is commentGroup[0].loc.end.line
+        )
+      .forEach commentGroupCheckers[option]

@@ -82,7 +82,8 @@ module.exports = (ast, parserOptions) ->
   options =
     fallback: 'iteration'
     sourceType: ast.sourceType
-    ecmaVersion: parserOptions.ecmaVersion or 2018
+    ecmaVersion: parserOptions.ecmaVersion or 2018 # TODO: what should this be? breaks without
+    ignoreEval: yes
   scopeManager = new escope.ScopeManager options
   referencer = new Referencer options, scopeManager
   # dump {ast}

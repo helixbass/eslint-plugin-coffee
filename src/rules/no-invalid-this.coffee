@@ -46,8 +46,8 @@ hasJSDocThisTag = (node, sourceCode) ->
   return yes if jsdocComment and thisTagPattern.test jsdocComment.value
 
   sourceCode
-    .getCommentsBefore node
-    .some (comment) -> thisTagPattern.test comment.value
+  .getCommentsBefore node
+  .some (comment) -> thisTagPattern.test comment.value
 
 isNullOrUndefined = (node) ->
   isNullLiteral(node) or

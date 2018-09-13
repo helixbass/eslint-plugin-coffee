@@ -346,5 +346,5 @@ module.exports =
       comments = sourceCode.getAllComments()
 
       comments
-        .filter (token) -> token.type isnt 'Shebang'
-        .forEach checkCommentForSpace
+      .filter (token) -> token.type isnt 'Shebang'
+      .forEach checkCommentForSpace

@@ -46,12 +46,12 @@ module.exports =
         loc: node.parent.property.loc.start
         fix: (fixer) ->
           firstTokenToRemove = context
-            .getSourceCode()
-            .getFirstTokenBetween(
-              node.parent.object
-              node.parent.property
-              astUtils.isNotClosingParenToken
-            )
+          .getSourceCode()
+          .getFirstTokenBetween(
+            node.parent.object
+            node.parent.property
+            astUtils.isNotClosingParenToken
+          )
 
           fixer.removeRange [
             firstTokenToRemove.range[0]

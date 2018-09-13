@@ -39,9 +39,9 @@ module.exports =
     ###
     checkVariable = (variable) ->
       astUtils
-        .getModifyingReferences variable.references
-        .forEach (reference) ->
-          report reference.identifier
+      .getModifyingReferences variable.references
+      .forEach (reference) ->
+        report reference.identifier
 
     ###*
     # Finds and reports references that are non initializer and writable.

@@ -230,23 +230,23 @@ module.exports =
         token
       ) -> token.value is node.operator
       textBeforeOperator = sourceCode
-        .getText()
-        .slice(
-          sourceCode.getTokenBefore(operatorToken).range[1]
-          operatorToken.range[0]
-        )
+      .getText()
+      .slice(
+        sourceCode.getTokenBefore(operatorToken).range[1]
+        operatorToken.range[0]
+      )
       textAfterOperator = sourceCode
-        .getText()
-        .slice(
-          operatorToken.range[1]
-          sourceCode.getTokenAfter(operatorToken).range[0]
-        )
+      .getText()
+      .slice(
+        operatorToken.range[1]
+        sourceCode.getTokenAfter(operatorToken).range[0]
+      )
       leftText = sourceCode
-        .getText()
-        .slice node.range[0], sourceCode.getTokenBefore(operatorToken).range[1]
+      .getText()
+      .slice node.range[0], sourceCode.getTokenBefore(operatorToken).range[1]
       rightText = sourceCode
-        .getText()
-        .slice sourceCode.getTokenAfter(operatorToken).range[0], node.range[1]
+      .getText()
+      .slice sourceCode.getTokenAfter(operatorToken).range[0], node.range[1]
 
       rightText +
         textBeforeOperator +

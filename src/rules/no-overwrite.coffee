@@ -100,11 +100,11 @@ module.exports =
     identifierHasAllowingComment = (node) ->
       return unless node?.type is 'Identifier'
       return yes if sourceCode
-        .getCommentsBefore node
-        .some (comment) -> allowingCommentRegex.test comment.value
+      .getCommentsBefore node
+      .some (comment) -> allowingCommentRegex.test comment.value
       return yes if sourceCode
-        .getCommentsAfter node
-        .some (comment) -> allowingCommentRegex.test comment.value
+      .getCommentsAfter node
+      .some (comment) -> allowingCommentRegex.test comment.value
       no
 
     assignmentHasAllowingComment = (node) ->
@@ -112,8 +112,8 @@ module.exports =
       equalsSign = sourceCode.getTokenAfter node.left
       return unless equalsSign?.value is '='
       sourceCode
-        .getCommentsBefore equalsSign
-        .some (comment) -> allowingCommentRegex.test comment.value
+      .getCommentsBefore equalsSign
+      .some (comment) -> allowingCommentRegex.test comment.value
 
     checkIdentifier = (node) ->
       return if node.declaration

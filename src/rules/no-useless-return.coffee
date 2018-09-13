@@ -153,9 +153,9 @@ module.exports =
       unless segment.reachable
         usedUnreachableSegments.add segment
         segment.allPrevSegments
-          .filter isReturned
-          .filter (prevSegment) -> not usedUnreachableSegments.has prevSegment
-          .forEach markReturnStatementsOnSegmentAsUsed
+        .filter isReturned
+        .filter (prevSegment) -> not usedUnreachableSegments.has prevSegment
+        .forEach markReturnStatementsOnSegmentAsUsed
         return
 
       info = segmentInfoMap.get segment
@@ -211,8 +211,8 @@ module.exports =
           # https://github.com/eslint/eslint/issues/8026
           ###
           return new FixTracker(fixer, context.getSourceCode())
-            .retainEnclosingFunction(node)
-            .remove node if isRemovable node
+          .retainEnclosingFunction(node)
+          .remove node if isRemovable node
           null
       }
 

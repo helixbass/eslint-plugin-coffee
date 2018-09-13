@@ -6,6 +6,7 @@
 'use strict'
 
 astUtils = require 'eslint/lib/ast-utils'
+{hasIndentedLastLine} = require '../util/ast-utils'
 
 #------------------------------------------------------------------------------
 # Rule Definition
@@ -184,13 +185,7 @@ module.exports =
         lastElement = elements[elements.length - 1]
         return no unless lastElement.loc.start.line < lastElement.loc.end.line
         return yes if lastElement.loc.start.line is openBracket.loc.start.line
-        lastLineText =
-          sourceCode.getText()[(lastElement.range[1] -
-            lastElement.loc.end.column)...lastElement.range[1]]
-        match = /^\s+/.exec lastLineText
-        return no unless match
-        lastLineIndent = match[0]
-        lastLineIndent.length + 1 > lastElement.loc.start.column
+        hasIndentedLastLine {node: lastElement, sourceCode}
 
       needsLinebreaks =
         elements.length >= options.minItems or

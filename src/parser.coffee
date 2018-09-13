@@ -55,12 +55,15 @@ espreeTokenTypes =
   COMPOUND_ASSIGN: 'Punctuator'
   UNARY_MATH: 'Punctuator'
   RELATION: 'Keyword'
+  THEN: 'Keyword'
+  LEADING_WHEN: 'Keyword'
   DO: 'Keyword'
   DO_IIFE: 'Keyword'
   REGEX: 'RegularExpression'
   IDENTIFIER: 'Identifier'
   AWAIT: 'Identifier'
   STRING: 'String'
+  NUMBER: 'Numeric'
 getEspreeTokenType = (token) ->
   [type, value] = token
   {original} = value
@@ -111,20 +114,20 @@ tokensForESLint = ({tokens}) ->
   #   popped
   flatten [
     ...(for token in tokens when (
-      not token.generated and
-        token[0] not in [
-          # excluding INDENT/OUTDENT seems necessary to avoid eslint createIndexMap() potentially choking on comment/token with same start location
-          'INDENT'
-          'OUTDENT'
-          # espree doesn't seem to include tokens for \n
-        ] and
+      not (token.generated and not (token.fromThen or token.prevToken)) and
+        # excluding INDENT/OUTDENT seems necessary to avoid eslint createIndexMap() potentially choking on comment/token with same start location
+        not (token[0] is 'OUTDENT' and token.prevToken?[1] isnt ';') and
+        # espree doesn't seem to include tokens for \n
         not (token[0] is 'TERMINATOR' and token[1] isnt ';') and
+        not (token[0] is 'INDENT' and not token.fromThen) and
         not (
           token[0] is 'STRING' and
           token[1].length is 2 and
           token[2].range[1] - token[2].range[0] < 2
         )
     )
+      token = token.prevToken if token.prevToken?[1] is ';'
+      token = token.origin if token.fromThen
       [, , locationData] = token
       [
         # ...popExtraTokens(nextStart: locationData.range[0])
@@ -146,7 +149,7 @@ exports.getParser = getParser = (getAstAndTokens) -> (code, opts) ->
   code = code.replace /// ^ // ///, '#'
   {ast, tokens} = getAstAndTokens code, opts
   ast.tokens = tokensForESLint {tokens}
-  # dump transformedTokens: ast.tokens
+  # dump {tokens, transformedTokens: ast.tokens}
   extendVisitorKeys()
   commentLocs =
     for comment in ast.comments ? []

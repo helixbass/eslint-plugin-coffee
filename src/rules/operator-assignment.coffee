@@ -148,11 +148,11 @@ module.exports =
                 equalsToken = getOperatorToken node
                 operatorToken = getOperatorToken expr
                 leftText = sourceCode
-                  .getText()
-                  .slice node.range[0], equalsToken.range[0]
+                .getText()
+                .slice node.range[0], equalsToken.range[0]
                 rightText = sourceCode
-                  .getText()
-                  .slice operatorToken.range[1], node.right.range[1]
+                .getText()
+                .slice operatorToken.range[1], node.right.range[1]
 
                 return fixer.replaceText(
                   node
@@ -187,8 +187,8 @@ module.exports =
             if canBeFixed node.left
               operatorToken = getOperatorToken node
               leftText = sourceCode
-                .getText()
-                .slice node.range[0], operatorToken.range[0]
+              .getText()
+              .slice node.range[0], operatorToken.range[0]
               newOperator = node.operator.slice 0, -1
               # If this change would modify precedence (e.g. `foo *= bar + 1` => `foo = foo * (bar + 1)`), parenthesize the right side.
               if (

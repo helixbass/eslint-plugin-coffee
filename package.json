@@ -8,7 +8,8 @@
     "watch": "coffee -o lib/ -wc src/",
     "build": "coffee -o lib/ -c src/",
     "prepublish": "npm run build",
-    "lint": "eslint src/*.coffee src/*/*.coffee",
+    "lint": "eslint src/*.coffee src/*/*.coffee src/*/*/*.coffee",
+    "lint-fix": "eslint --fix src/*.coffee src/*/*.coffee src/*/*/*.coffee",
     "lint-js": "eslint src/*.coffee src/*/*.coffee -c .eslintrc-js.yml"
   },
   "files": [

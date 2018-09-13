@@ -46,6 +46,14 @@ ruleTester.run 'no-sequences', rule,
       for a in b
         ;
     '''
+    '''
+      switch a
+        when b, c
+          ;
+        when d
+          e
+      f
+    '''
   ]
   invalid: [
     code: '''

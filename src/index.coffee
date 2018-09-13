@@ -111,22 +111,24 @@ usable = [
   'import/group-exports'
   'no-misleading-character-class'
   'require-unicode-regexp'
+  'unicode-bom'
+  'no-tabs'
+  'no-trailing-spaces'
+  'quote-props'
+  'require-atomic-updates'
+  'no-floating-decimal'
+  'no-whitespace-before-property'
+  'computed-property-spacing'
+  'no-undef'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
 yet = [
   'no-extra-parens'
-  'require-atomic-updates'
   'no-else-return' # since we conflate else [nested if] with else if, can't currently just disallow the former
-  'no-floating-decimal'
-  'no-multi-spaces'
   'strict'
-  'no-undef'
-  'array-element-newline'
   'comma-dangle'
   'comma-style'
-  'computed-property-spacing'
-  'func-call-spacing'
   'function-paren-newline'
   'id-match'
   'implicit-arrow-linebreak'
@@ -135,22 +137,14 @@ yet = [
   'keyword-spacing'
   'lines-around-comment'
   'multiline-ternary' # maybe this should be multiline-control and check all "inline" (non-postfix) forms of control structures (which use then)?
-  'newline-per-chained-call'
   'no-mixed-operators'
-  'no-multiple-empty-lines'
-  'no-tabs'
-  'no-trailing-spaces'
-  'no-whitespace-before-property'
   'object-property-newline'
   'operator-linebreak' # mostly doesn't apply as leading operators aren't allowed (when leading logical lands, could support that). could support "none" (don't allow breaking operators)
   'padded-blocks' # I think only leading padding would apply (since trailing padding is considered outside the block)
   'padding-line-between-statements' # I think only leading padding would apply (since trailing padding is considered outside the block)
-  'quote-props'
   'quotes'
   'space-in-parens'
-  'unicode-bom'
   'wrap-regex'
-  'rest-spread-spacing'
 ]
 
 dontApply = [
@@ -216,6 +210,7 @@ dontApply = [
   'generator-star-spacing'
   'no-confusing-arrow'
   'yield-star-spacing'
+  'func-call-spacing'
 ]
 
 rules =
@@ -336,6 +331,11 @@ rules =
     'array-bracket-spacing': {}
     'prefer-object-spread': {}
     'template-curly-spacing': {}
+    'rest-spread-spacing': {}
+    'no-multiple-empty-lines': {}
+    'newline-per-chained-call': {}
+    'no-multi-spaces': {}
+    'array-element-newline': {}
   )
 
 configureAsError = flow(

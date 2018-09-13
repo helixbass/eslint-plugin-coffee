@@ -27,6 +27,9 @@
 - should probably use explicit whitelist of compatible rules (so that new unknown ESLint rules don't blindly get run)
 - make sure prettier turns off any customized rules from this plugin that would conflict
 - require-unicode-regexp uses eslint-utils' getStringIfConstant(), would be cool if it could recognize "const" assignments
+- add more keywords to quote-props (eg unless)?
+- eslint-env comments don't work because eslint is searching explicitly for /* eslint-env ... */
+- the // -> # at the beginning of the file (to counteract ESLint transforming #! -> //) would break code that actually starts with a heregex
 
 rule ideas:
 - prefer-implicit-return
@@ -36,3 +39,5 @@ rule ideas:
 - prefer-not-relation eg not (a in b) should be a not in b
 - normalized heredoc spacing (eg initial/final linebreaks, indentation level wrt whatever (ending quotes?))
 - prefer-at-param
+- no-top-level-indent
+- spread-direction

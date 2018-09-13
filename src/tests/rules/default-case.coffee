@@ -75,15 +75,15 @@ ruleTester.run 'default-case', rule,
       switch a
         when 1
           a = 4
-        
+
         # no default
     '''
     '''
       switch a
         when 1
           a = 4
-          
-          ### no default ###
+
+        ### no default ###
     '''
     '''
       switch a
@@ -91,44 +91,44 @@ ruleTester.run 'default-case', rule,
           a = 4
           break
           break
-          
+
         # no default
     '''
   ,
     code: '''
-      switch a
-        when 1
-          break
-        else
-          break
-    '''
+        switch a
+          when 1
+            break
+          else
+            break
+      '''
     options: [commentPattern: 'default case omitted']
   ,
     code: '''
-      switch a
-        when 1 then break
-        # skip default case
-    '''
+        switch a
+          when 1 then break
+          # skip default case
+      '''
     options: [commentPattern: '^skip default']
   ,
     code: '''
-      switch a
-        when 1
-          break
-          
-        ###
-        TODO:
-         throw error in default case
-        ###
-    '''
+        switch a
+          when 1
+            break
+
+          ###
+          TODO:
+           throw error in default case
+          ###
+      '''
     options: [commentPattern: 'default']
   ,
     code: '''
-      switch a
-        when 1
-          break
-        # 
-    '''
+        switch a
+          when 1
+            break
+          #
+      '''
     options: [commentPattern: '.?']
   ]
 
@@ -144,34 +144,34 @@ ruleTester.run 'default-case', rule,
     ]
   ,
     code: '''
-      switch a
-        # no default
-        when 1
-          break
-    '''
+        switch a
+          # no default
+          when 1
+            break
+      '''
     errors: [
       messageId: 'missingDefaultCase'
       type: 'SwitchStatement'
     ]
   ,
     code: '''
-      switch a
-        when 1
-          break
-        # no default
-        # nope
-    '''
+        switch a
+          when 1
+            break
+          # no default
+          # nope
+      '''
     errors: [
       messageId: 'missingDefaultCase'
       type: 'SwitchStatement'
     ]
   ,
     code: '''
-      switch a
-        when 1
-          break
-        # no default
-    '''
+        switch a
+          when 1
+            break
+          # no default
+      '''
     options: [commentPattern: 'skipped default case']
     errors: [
       messageId: 'missingDefaultCase'
@@ -179,12 +179,12 @@ ruleTester.run 'default-case', rule,
     ]
   ,
     code: '''
-      switch a
-        when 1
-          break
-        # default omitted intentionally
-        # TODO: add default case
-    '''
+        switch a
+          when 1
+            break
+          # default omitted intentionally
+          # TODO: add default case
+      '''
     options: [commentPattern: 'default omitted']
     errors: [
       messageId: 'missingDefaultCase'
@@ -192,10 +192,10 @@ ruleTester.run 'default-case', rule,
     ]
   ,
     code: '''
-      switch a
-        when 1
-          break
-    '''
+        switch a
+          when 1
+            break
+      '''
     options: [commentPattern: '.?']
     errors: [
       messageId: 'missingDefaultCase'

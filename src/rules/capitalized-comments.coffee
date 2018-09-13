@@ -266,5 +266,5 @@ module.exports =
       comments = sourceCode.getAllComments()
 
       comments
-        .filter (token) -> token.type isnt 'Shebang'
-        .forEach processComment
+      .filter (token) -> token.type isnt 'Shebang'
+      .forEach processComment

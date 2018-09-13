@@ -124,8 +124,8 @@ module.exports =
           write.parent.operator is '='
       unless getsAssignedToThis
         variable.defs
-          .map (def) -> def.node
-          .forEach (node) -> reportBadAssignment node, alias
+        .map (def) -> def.node
+        .forEach (node) -> reportBadAssignment node, alias
 
     ###*
     # Check each alias to ensure that is was assinged to the correct value.

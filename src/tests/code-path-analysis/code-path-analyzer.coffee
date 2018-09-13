@@ -442,38 +442,37 @@ describe 'CodePathAnalyzer', ->
     testDataFiles = fs.readdirSync testDataDir
 
     testDataFiles
-      .filter (file) -> /\.(coffee|js)$/.test file
-      .forEach (file) ->
-        isJS = /\.js$/.test file
-        it file, ->
-          source = fs.readFileSync path.join(testDataDir, file),
-            encoding: 'utf8'
-          expected = getExpectedDotArrows source, {isJS}
-          actual = []
+    .filter (file) -> /\.(coffee|js)$/.test file
+    .forEach (file) ->
+      isJS = /\.js$/.test file
+      it file, ->
+        source = fs.readFileSync path.join(testDataDir, file), encoding: 'utf8'
+        expected = getExpectedDotArrows source, {isJS}
+        actual = []
 
-          assert expected.length > 0, '/*expected */ comments not found.'
+        assert expected.length > 0, '/*expected */ comments not found.'
 
-          linter.defineRule 'test', ->
-            onCodePathEnd: (codePath) ->
-              actual.push debug.makeDotArrows codePath
-          messages = linter.verify source, {
-            rules: test: 2
-            ...(
-              if isJS
-                env: es6: yes
-              else
-                parser: '../../..'
-            )
-          }
-
-          assert.strictEqual messages.length, 0
-          assert.strictEqual(
-            actual.length
-            expected.length
-            'a count of code paths is wrong.'
+        linter.defineRule 'test', ->
+          onCodePathEnd: (codePath) ->
+            actual.push debug.makeDotArrows codePath
+        messages = linter.verify source, {
+          rules: test: 2
+          ...(
+            if isJS
+              env: es6: yes
+            else
+              parser: '../../..'
           )
+        }
 
-          i = 0
-          while i < actual.length
-            assert.strictEqual actual[i], expected[i]
-            ++i
+        assert.strictEqual messages.length, 0
+        assert.strictEqual(
+          actual.length
+          expected.length
+          'a count of code paths is wrong.'
+        )
+
+        i = 0
+        while i < actual.length
+          assert.strictEqual actual[i], expected[i]
+          ++i

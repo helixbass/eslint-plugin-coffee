@@ -64,8 +64,8 @@ module.exports =
       # exports.
       if node.object.name is 'exports'
         isInScope = context
-          .getScope()
-          .variables.some (variable) -> variable.name is 'exports'
+        .getScope()
+        .variables.some (variable) -> variable.name is 'exports'
         context.report {node, message: EXPORT_MESSAGE} unless isInScope
     CallExpression: (call) ->
       return unless context.getScope().type is 'module'

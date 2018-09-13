@@ -50,28 +50,28 @@ parseRegExp = (regExpText) ->
   charList = []
 
   regExpText
-    .split ''
-    .reduce(
-      (state, char, index) ->
-        unless state.escapeNextChar
-          return Object.assign state, escapeNextChar: yes if char is '\\'
-          if char is '[' and not state.inCharClass
-            return Object.assign state, inCharClass: yes, startingCharClass: yes
-          if char is ']' and state.inCharClass
-            if charList.length and charList[charList.length - 1].inCharClass
-              charList[charList.length - 1].endsCharClass = yes
-            return Object.assign state, inCharClass: no, startingCharClass: no
-        charList.push {
-          text: char
-          index
-          escaped: state.escapeNextChar
-          inCharClass: state.inCharClass
-          startsCharClass: state.startingCharClass
-          endsCharClass: no
-        }
-        Object.assign state, escapeNextChar: no, startingCharClass: no
-      escapeNextChar: no, inCharClass: no, startingCharClass: no
-    )
+  .split ''
+  .reduce(
+    (state, char, index) ->
+      unless state.escapeNextChar
+        return Object.assign state, escapeNextChar: yes if char is '\\'
+        if char is '[' and not state.inCharClass
+          return Object.assign state, inCharClass: yes, startingCharClass: yes
+        if char is ']' and state.inCharClass
+          if charList.length and charList[charList.length - 1].inCharClass
+            charList[charList.length - 1].endsCharClass = yes
+          return Object.assign state, inCharClass: no, startingCharClass: no
+      charList.push {
+        text: char
+        index
+        escaped: state.escapeNextChar
+        inCharClass: state.inCharClass
+        startsCharClass: state.startingCharClass
+        endsCharClass: no
+      }
+      Object.assign state, escapeNextChar: no, startingCharClass: no
+    escapeNextChar: no, inCharClass: no, startingCharClass: no
+  )
 
   charList
 
@@ -185,39 +185,39 @@ module.exports =
           validateString node, match, value
       else if node.regex
         parseRegExp node.regex.pattern
+        ###
+        # The '-' character is a special case, because it's only valid to escape it if it's in a character
+        # class, and is not at either edge of the character class. To account for this, don't consider '-'
+        # characters to be valid in general, and filter out '-' characters that appear in the middle of a
+        # character class.
+        ###
+        .filter (charInfo) ->
+          not (
+            charInfo.text is '-' and
+            charInfo.inCharClass and
+            not charInfo.startsCharClass and
+            not charInfo.endsCharClass
+          )
           ###
-          # The '-' character is a special case, because it's only valid to escape it if it's in a character
-          # class, and is not at either edge of the character class. To account for this, don't consider '-'
-          # characters to be valid in general, and filter out '-' characters that appear in the middle of a
-          # character class.
+          # The '^' character is also a special case; it must always be escaped outside of character classes, but
+          # it only needs to be escaped in character classes if it's at the beginning of the character class. To
+          # account for this, consider it to be a valid escape character outside of character classes, and filter
+          # out '^' characters that appear at the start of a character class.
           ###
-          .filter (charInfo) ->
-            not (
-              charInfo.text is '-' and
-              charInfo.inCharClass and
-              not charInfo.startsCharClass and
-              not charInfo.endsCharClass
-            )
-            ###
-            # The '^' character is also a special case; it must always be escaped outside of character classes, but
-            # it only needs to be escaped in character classes if it's at the beginning of the character class. To
-            # account for this, consider it to be a valid escape character outside of character classes, and filter
-            # out '^' characters that appear at the start of a character class.
-            ###
-          .filter (charInfo) ->
-            not (charInfo.text is '^' and charInfo.startsCharClass)
-            # Filter out characters that aren't escaped.
-          .filter (charInfo) -> charInfo.escaped
-          # Filter out characters that are valid to escape, based on their position in the regular expression.
-          .filter (charInfo) ->
-            not (
-              if charInfo.inCharClass
-                REGEX_GENERAL_ESCAPES
-              else
-                REGEX_NON_CHARCLASS_ESCAPES
-            ).has charInfo.text
-            # Report all the remaining characters.
-          .forEach (charInfo) -> report node, charInfo.index, charInfo.text
+        .filter (charInfo) ->
+          not (charInfo.text is '^' and charInfo.startsCharClass)
+          # Filter out characters that aren't escaped.
+        .filter (charInfo) -> charInfo.escaped
+        # Filter out characters that are valid to escape, based on their position in the regular expression.
+        .filter (charInfo) ->
+          not (
+            if charInfo.inCharClass
+              REGEX_GENERAL_ESCAPES
+            else
+              REGEX_NON_CHARCLASS_ESCAPES
+          ).has charInfo.text
+          # Report all the remaining characters.
+        .forEach (charInfo) -> report node, charInfo.index, charInfo.text
 
     Literal: check
     TemplateElement: check
