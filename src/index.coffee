@@ -134,17 +134,14 @@ yet = [
   'implicit-arrow-linebreak'
   'indent'
   'jsx-quotes'
-  'keyword-spacing'
   'lines-around-comment'
   'multiline-ternary' # maybe this should be multiline-control and check all "inline" (non-postfix) forms of control structures (which use then)?
   'no-mixed-operators'
-  'object-property-newline'
   'operator-linebreak' # mostly doesn't apply as leading operators aren't allowed (when leading logical lands, could support that). could support "none" (don't allow breaking operators)
   'padded-blocks' # I think only leading padding would apply (since trailing padding is considered outside the block)
   'padding-line-between-statements' # I think only leading padding would apply (since trailing padding is considered outside the block)
   'quotes'
   'space-in-parens'
-  'wrap-regex'
 ]
 
 dontApply = [
@@ -336,6 +333,9 @@ rules =
     'newline-per-chained-call': {}
     'no-multi-spaces': {}
     'array-element-newline': {}
+    'wrap-regex': {}
+    'keyword-spacing': {}
+    'object-property-newline': {}
   )
 
 configureAsError = flow(

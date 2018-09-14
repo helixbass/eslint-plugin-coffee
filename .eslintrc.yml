@@ -34,6 +34,7 @@ rules:
   coffee/block-scoped-var: off
   coffee/array-bracket-newline: off
   coffee/array-element-newline: off
+  coffee/keyword-spacing: off
   no-sparse-arrays: off
 env:
   node: true

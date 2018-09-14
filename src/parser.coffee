@@ -59,6 +59,18 @@ espreeTokenTypes =
   LEADING_WHEN: 'Keyword'
   DO: 'Keyword'
   DO_IIFE: 'Keyword'
+  WHILE: 'Keyword'
+  UNTIL: 'Keyword'
+  THROW: 'Keyword'
+  SWITCH: 'Keyword'
+  RETURN: 'Keyword'
+  FOR: 'Keyword'
+  FOROF: 'Keyword'
+  IF: 'Keyword'
+  ELSE: 'Keyword'
+  POST_IF: 'Keyword'
+  CLASS: 'Keyword'
+  EXTENDS: 'Keyword'
   REGEX: 'RegularExpression'
   IDENTIFIER: 'Identifier'
   AWAIT: 'Identifier'
@@ -146,8 +158,14 @@ tokensForESLint = ({tokens}) ->
 exports.getParser = getParser = (getAstAndTokens) -> (code, opts) ->
   patchCodePathAnalysis() unless opts.eslintCodePathAnalyzer
   # ESLint replace shebang #! with //
-  code = code.replace /// ^ // ///, '#'
-  {ast, tokens} = getAstAndTokens code, opts
+  if /// ^ // ///.test code
+    try
+      {ast, tokens} = getAstAndTokens code, opts
+    catch
+      code = code.replace /// ^ // ///, '#'
+      {ast, tokens} = getAstAndTokens code, opts
+  else
+    {ast, tokens} = getAstAndTokens code, opts
   ast.tokens = tokensForESLint {tokens}
   # dump {tokens, transformedTokens: ast.tokens}
   extendVisitorKeys()
