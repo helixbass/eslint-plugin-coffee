@@ -177,6 +177,11 @@ exports.getParser = getParser = (getAstAndTokens) -> (code, opts) ->
   # babylonToEspree seems to like to change the file-leading comment's start line
   for comment, commentIndex in ast.comments ? []
     comment.loc = commentLocs[commentIndex]
+  # ...and the Program's end range
+  if ast.type is 'Program'
+    ast.range[1] = ast.end
+  else
+    ast.program?.range[1] = ast.program.end
   # dump espreeAst: ast
   {
     ast

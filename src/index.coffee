@@ -3,6 +3,7 @@
   map: fmap
   flatten: fflatten
   fromPairs: ffromPairs
+  keys: fkeys
   mapValues: fmapValues
   pickBy: fpickBy
 } = require 'lodash/fp'
@@ -120,28 +121,24 @@ usable = [
   'no-whitespace-before-property'
   'computed-property-spacing'
   'no-undef'
+  'space-in-parens'
+  'jsx-quotes'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
 yet = [
-  'no-extra-parens'
+  'no-extra-parens' # prettier: yes
   'no-else-return' # since we conflate else [nested if] with else if, can't currently just disallow the former
   'strict'
-  'comma-dangle'
-  'comma-style'
-  'function-paren-newline'
+  'comma-dangle' # prettier: yes
+  'comma-style' # prettier: yes
   'id-match'
-  'implicit-arrow-linebreak'
-  'indent'
-  'jsx-quotes'
-  'lines-around-comment'
-  'multiline-ternary' # maybe this should be multiline-control and check all "inline" (non-postfix) forms of control structures (which use then)?
-  'no-mixed-operators'
-  'operator-linebreak' # mostly doesn't apply as leading operators aren't allowed (when leading logical lands, could support that). could support "none" (don't allow breaking operators)
-  'padded-blocks' # I think only leading padding would apply (since trailing padding is considered outside the block)
+  'indent' # prettier: yes
+  'multiline-ternary' # prettier: yes maybe this should be multiline-control and check all "inline" (non-postfix) forms of control structures (which use then)?
+  'operator-linebreak' # prettier: yes mostly doesn't apply as leading operators aren't allowed (when leading logical lands, could support that). could support "none" (don't allow breaking operators)
+  'padded-blocks' # prettier: yes I think only leading padding would apply (since trailing padding is considered outside the block)
   'padding-line-between-statements' # I think only leading padding would apply (since trailing padding is considered outside the block)
-  'quotes'
-  'space-in-parens'
+  'quotes' # prettier: yes
 ]
 
 dontApply = [
@@ -264,19 +261,24 @@ rules =
     'vars-on-top': {}
     'guard-for-in': {}
     'no-useless-return': {}
-    'arrow-spacing': {}
-    'object-curly-spacing': {}
+    'arrow-spacing':
+      prettier: yes
+    'object-curly-spacing':
+      prettier: yes
     'capitalized-class-names':
       plugin: no
     complexity: {}
-    'max-len': {}
+    'max-len':
+      prettier: yes
     'no-invalid-this': {}
     'lines-between-class-members': {}
     'max-lines-per-function': {}
     'no-backticks':
       plugin: no
-    'space-infix-ops': {}
-    'space-unary-ops': {}
+    'space-infix-ops':
+      prettier: yes
+    'space-unary-ops':
+      prettier: yes
     'english-operators':
       plugin: no
     'no-unnecessary-fat-arrow':
@@ -324,18 +326,37 @@ rules =
     'no-sequences': {}
     'no-empty-function': {}
     'no-async-promise-executor': {}
-    'array-bracket-newline': {}
-    'array-bracket-spacing': {}
+    'array-bracket-newline':
+      prettier: yes
+    'array-bracket-spacing':
+      prettier: yes
     'prefer-object-spread': {}
-    'template-curly-spacing': {}
-    'rest-spread-spacing': {}
-    'no-multiple-empty-lines': {}
-    'newline-per-chained-call': {}
-    'no-multi-spaces': {}
-    'array-element-newline': {}
-    'wrap-regex': {}
-    'keyword-spacing': {}
-    'object-property-newline': {}
+    'template-curly-spacing':
+      prettier: yes
+    'rest-spread-spacing':
+      prettier: yes
+    'no-multiple-empty-lines':
+      prettier: yes
+    'newline-per-chained-call':
+      prettier: yes
+    'no-multi-spaces':
+      prettier: yes
+    'array-element-newline':
+      prettier: yes
+    'wrap-regex':
+      prettier: yes
+    'keyword-spacing':
+      prettier: yes
+    'object-property-newline':
+      prettier: yes
+    'lines-around-comment':
+      prettier: yes
+    'function-paren-newline':
+      prettier: yes
+    'implicit-arrow-linebreak':
+      prettier: yes
+    'no-mixed-operators':
+      prettier: yes
   )
 
 configureAsError = flow(
@@ -380,6 +401,22 @@ module.exports = {
         ...configureAsError(fpickBy('eslint-recommended') rules)
         ...turnOff(dontApply)
         # ...turnOff(unusable)
+      }
+    prettier:
+      extends: ['prettier']
+      plugins: ['coffee', 'prettier']
+      parser: 'eslint-plugin-coffee'
+      rules: {
+        'prettier/prettier': [
+          'error'
+        ,
+          parser: 'coffeescript', pluginSearchDirs: ['.']
+        ]
+        ...turnOff(
+          flow(fpickBy('prettier'), fkeys, fmap (rule) -> "coffee/#{rule}")(
+            rules
+          )
+        )
       }
   parseForESLint
 }

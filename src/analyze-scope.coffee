@@ -78,6 +78,9 @@ class Referencer extends OriginalReferencer
       new Definition 'Variable', node, node, null, null, null
     )
 
+  ClassProperty: (node) ->
+    @visitProperty node
+
 module.exports = (ast, parserOptions) ->
   options =
     fallback: 'iteration'

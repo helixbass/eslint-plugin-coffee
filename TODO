@@ -25,11 +25,17 @@
   else
     a = 2
 - should probably use explicit whitelist of compatible rules (so that new unknown ESLint rules don't blindly get run)
-- make sure prettier turns off any customized rules from this plugin that would conflict
 - require-unicode-regexp uses eslint-utils' getStringIfConstant(), would be cool if it could recognize "const" assignments
 - add more keywords to quote-props (eg unless)?
 - eslint-env comments don't work because eslint is searching explicitly for /* eslint-env ... */
 - the // -> # at the beginning of the file (to counteract ESLint transforming #! -> //) would break code that actually starts with a heregex
+- code path chokes on empty try eg
+  try
+    # comment
+  b
+- seems like lines-around-comment would benefit from memoizing getParentNodeOfToken()
+- expose eg prettier-conflict config that just turns off rules that conflict with prettier (without turning on prettier/prettier)?
+- upstream: looks like the node.type is 'BlockStatement' check in implicit-arrow-linebreak should be node.body.type is 'BlockStatement'
 
 rule ideas:
 - prefer-implicit-return
@@ -41,3 +47,4 @@ rule ideas:
 - prefer-at-param
 - no-top-level-indent
 - spread-direction
+- no-unnecessary-function-wrapper eg (foo) -> f foo could just be f (though we ran into some weirdness around this)

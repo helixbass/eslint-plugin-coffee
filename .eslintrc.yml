@@ -1,26 +1,20 @@
 # parser: ./lib/index.js
-plugins:
-  - coffee
-  - prettier
 extends:
   - eslint:recommended
   - plugin:coffee/all
+  - plugin:coffee/prettier
 rules:
-  no-undef: error
   coffee/prefer-destructuring: [error, {object: true}]
-  prettier/prettier: [error, {parser: coffeescript, pluginSearchDirs: [.]}]
   require-jsdoc: error
   prefer-rest-params: error
   # no-else-return: error
   # id-length: error
   # no-multi-assign: error
   no-self-compare: error
-  no-console: error
   coffee/no-magic-numbers: off
   coffee/no-implicit-coercion: off
   coffee/vars-on-top: off
   coffee/max-depth: off
-  coffee/max-len: off
   coffee/complexity: off
   coffee/max-lines-per-function: off
   coffee/capitalized-comments: off
@@ -32,9 +26,7 @@ rules:
   coffee/no-return-assign: off
   # coffee/no-overwrite: [error, sameScope: false]
   coffee/block-scoped-var: off
-  coffee/array-bracket-newline: off
-  coffee/array-element-newline: off
-  coffee/keyword-spacing: off
+  coffee/wrap-regex: off
   no-sparse-arrays: off
 env:
   node: true
