@@ -422,7 +422,7 @@ componentRule = (rule, context) ->
         refId = ref.identifier
         if refId.parent and refId.parent.type is 'MemberExpression'
           refId = refId.parent
-        unless sourceCode.getText(refId) is componentName then continue
+        continue unless sourceCode.getText(refId) is componentName
         if refId.type is 'MemberExpression'
           componentNode = refId.parent.right
         else if refId.parent and refId.parent.type is 'VariableDeclarator'
@@ -441,8 +441,13 @@ componentRule = (rule, context) ->
         if def.type in ['ClassName', 'FunctionName', 'Variable']
           defInScope = def
           break
-      return null if not defInScope or not defInScope.node
-      componentNode = defInScope.node.init or defInScope.node
+      return null unless defInScope?.node
+      componentNode =
+        defInScope.node.init or
+        (defInScope.node.declaration and
+          defInScope.node.parent.type is 'AssignmentExpression' and
+          defInScope.node.parent.right) or
+        defInScope.node
 
       # Traverse the node properties to the component declaration
       for componentPathSegment in componentPath

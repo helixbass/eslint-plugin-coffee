@@ -362,6 +362,10 @@ rules =
       plugin: 'react'
     'default-props-match-prop-types':
       plugin: 'react'
+    'destructuring-assignment':
+      plugin: 'react'
+    'display-name':
+      plugin: 'react'
   )
 
 configureAsError = flow(

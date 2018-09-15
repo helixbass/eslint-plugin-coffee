@@ -196,6 +196,29 @@ hasIndentedLastLine = ({node, sourceCode}) ->
   lastLineIndent = match[0]
   lastLineIndent.length + 1 > node.loc.start.column
 
+containsDeclaration = (node) ->
+  switch node.type
+    when 'Identifier'
+      node.declaration
+    when 'ObjectPattern'
+      for prop in node.properties
+        return yes if containsDeclaration prop
+      no
+    when 'Property'
+      containsDeclaration node.value
+    when 'RestElement'
+      containsDeclaration node.argument
+    when 'ArrayPattern'
+      for element in node.elements
+        return yes if containsDeclaration element
+      no
+    when 'AssignmentPattern'
+      containsDeclaration node.left
+
+isDeclarationAssignment = (node) ->
+  return no unless node?.type is 'AssignmentExpression'
+  containsDeclaration node.left
+
 module.exports = {
   getPrecedence
   isInLoop
@@ -203,4 +226,5 @@ module.exports = {
   getFunctionNameWithKind
   isIife
   hasIndentedLastLine
+  isDeclarationAssignment
 }
