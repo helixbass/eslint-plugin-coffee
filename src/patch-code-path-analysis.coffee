@@ -1,12 +1,13 @@
 CodePathAnalyzer = require './code-path-analysis/code-path-analyzer'
 
 module.exports = ->
-  ESLintCodePathAnalyzer = require(
-    'eslint/lib/code-path-analysis/code-path-analyzer'
-  )
-  throw new ReferenceError "Couldn't resolve eslint CodePathAnalyzer" unless (
-    ESLintCodePathAnalyzer
-  )
+  try
+    ESLintCodePathAnalyzer = require(
+      'eslint/lib/code-path-analysis/code-path-analyzer'
+    )
+  catch
+    throw new ReferenceError "Couldn't resolve eslint CodePathAnalyzer"
+  return if ESLintCodePathAnalyzer.__monkeypatched
   # ESLintCodePathAnalyzer:: = CodePathAnalyzer::
   for key in ['enterNode', 'leaveNode', 'onLooped']
     ESLintCodePathAnalyzer::[key] = CodePathAnalyzer::[key]

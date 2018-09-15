@@ -36,6 +36,8 @@
 - seems like lines-around-comment would benefit from memoizing getParentNodeOfToken()
 - expose eg prettier-conflict config that just turns off rules that conflict with prettier (without turning on prettier/prettier)?
 - upstream: looks like the node.type is 'BlockStatement' check in implicit-arrow-linebreak should be node.body.type is 'BlockStatement'
+- should eslint-plugin-react be a dependency?
+- no-useless-escape is flagging ///^(#{pragma}\.)?#{createClass}$/// (I guess because it gets exposed as a new RegExp call? should it escape differently in the AST? or should the rule handle that case differently?)
 
 rule ideas:
 - prefer-implicit-return

@@ -8,7 +8,7 @@
 # Requirements
 # ------------------------------------------------------------------------------
 
-rule = require 'eslint-plugin-react/lib/rules/boolean-prop-naming'
+rule = require '../../rules/boolean-prop-naming'
 {RuleTester} = require 'eslint'
 
 # require 'babel-eslint'
@@ -548,7 +548,7 @@ ruleTester.run 'boolean-prop-naming', rule,
   ,
     code: """
     Card = (props) ->
-      return <div>{if props.showScore then 'yeh' else 'no'}</div>
+      <div>{if props.showScore then 'yeh' else 'no'}</div>
     Card.propTypes = forbidExtraProps({
         showScore: PropTypes.bool
     })"""

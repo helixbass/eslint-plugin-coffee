@@ -210,7 +210,7 @@ ruleTester.run 'no-unneeded-ternary', rule,
         'Unnecessary use of conditional expression for default assignment.'
       type: 'IfStatement'
       line: 1
-      column: 6
+      column: 8
     ]
   ,
     code: '-> if foo then foo else yield bar'
@@ -221,7 +221,7 @@ ruleTester.run 'no-unneeded-ternary', rule,
         'Unnecessary use of conditional expression for default assignment.'
       type: 'IfStatement'
       line: 1
-      column: 9
+      column: 11
     ]
   ,
     code: "a = if foo then foo else 'No'"
