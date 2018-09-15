@@ -257,12 +257,9 @@ componentRule = (rule, context) ->
         when 'ArrowFunctionExpression'
           property = 'body'
           if node[property] and node[property].type is 'BlockStatement'
-            node = utils.findReturnStatement node
-            property = 'argument'
+            {node, property} = utils.findReturnStatement node
         else
-          node = utils.findReturnStatement node
-          property = 'argument'
-          if node.type is 'ExpressionStatement' then property = 'expression'
+          {node, property} = utils.findReturnStatement node
       {node, property}
 
     ###*

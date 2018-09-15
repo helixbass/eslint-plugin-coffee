@@ -156,46 +156,45 @@ tokensForESLint = ({tokens}) ->
     {}
   ]
 
-exports.getParser =
-  getParser = (getAstAndTokens) -> (code, opts) ->
-    patchCodePathAnalysis() unless opts.eslintCodePathAnalyzer
-    # patchReact()
-    # ESLint replaces shebang #! with //, but leading // could be part of a heregex
-    if /// ^ // ///.test code
-      try
-        {ast, tokens} = getAstAndTokens code, opts
-      catch
-        code = code.replace /// ^ // ///, '#'
-        {ast, tokens} = getAstAndTokens code, opts
-    else
+exports.getParser = getParser = (getAstAndTokens) -> (code, opts) ->
+  patchCodePathAnalysis() unless opts.eslintCodePathAnalyzer
+  # patchReact()
+  # ESLint replaces shebang #! with //, but leading // could be part of a heregex
+  if /// ^ // ///.test code
+    try
       {ast, tokens} = getAstAndTokens code, opts
-    ast.tokens = tokensForESLint {tokens}
-    # dump {tokens, transformedTokens: ast.tokens}
-    extendVisitorKeys()
-    commentLocs =
-      for comment in ast.comments ? []
-        start: {...comment.loc.start}
-        end: {...comment.loc.end}
-    babylonToEspree ast, babelTraverse, babylonTokenTypes, code
-    # babylonToEspree seems to like to change the file-leading comment's start line
-    for comment, commentIndex in ast.comments ? []
-      comment.loc = commentLocs[commentIndex]
-    # ...and the Program's end range
-    if ast.type is 'Program'
-      ast.range[1] = ast.end
-    else
-      ast.program?.range[1] = ast.program.end
-    # dump espreeAst: ast
-    {
-      ast
-      scopeManager: analyzeScope ast, opts
-      visitorKeys: {
-        ...KEYS
-        For: ['index', 'name', 'guard', 'step', 'source', 'body']
-        # Identifier: [...KEYS.Identifier, 'declaration']
-      }
-      CodePathAnalyzer
+    catch
+      code = code.replace /// ^ // ///, '#'
+      {ast, tokens} = getAstAndTokens code, opts
+  else
+    {ast, tokens} = getAstAndTokens code, opts
+  ast.tokens = tokensForESLint {tokens}
+  # dump {tokens, transformedTokens: ast.tokens}
+  extendVisitorKeys()
+  commentLocs =
+    for comment in ast.comments ? []
+      start: {...comment.loc.start}
+      end: {...comment.loc.end}
+  babylonToEspree ast, babelTraverse, babylonTokenTypes, code
+  # babylonToEspree seems to like to change the file-leading comment's start line
+  for comment, commentIndex in ast.comments ? []
+    comment.loc = commentLocs[commentIndex]
+  # ...and the Program's end range
+  if ast.type is 'Program'
+    ast.range[1] = ast.end
+  else
+    ast.program?.range[1] = ast.program.end
+  # dump espreeAst: ast
+  {
+    ast
+    scopeManager: analyzeScope ast, opts
+    visitorKeys: {
+      ...KEYS
+      For: ['index', 'name', 'guard', 'step', 'source', 'body']
+      # Identifier: [...KEYS.Identifier, 'declaration']
     }
+    CodePathAnalyzer
+  }
 
 exports.parseForESLint = getParser (code, opts) ->
   CoffeeScript.ast code, {...opts, withTokens: yes}

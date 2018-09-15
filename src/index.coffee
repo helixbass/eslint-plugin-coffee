@@ -123,6 +123,7 @@ usable = [
   'no-undef'
   'space-in-parens'
   'jsx-quotes'
+  'react/button-has-type'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
@@ -357,6 +358,10 @@ rules =
       prettier: yes
     'no-mixed-operators':
       prettier: yes
+    'boolean-prop-naming':
+      plugin: 'react'
+    'default-props-match-prop-types':
+      plugin: 'react'
   )
 
 configureAsError = flow(

@@ -61,9 +61,6 @@ module.exports =
           )
 
       for i in [1...node.properties.length]
-        console.log {i, node, prev: node.properties[i - 1]} unless (
-          node.properties[i - 1]
-        )
         lastTokenOfPreviousProperty = sourceCode.getLastToken(
           node.properties[i - 1]
         )

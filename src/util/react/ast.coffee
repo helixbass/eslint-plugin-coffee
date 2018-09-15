@@ -9,17 +9,22 @@
 # @param {ASTNode} ASTnode The AST node being checked
 ###
 findReturnStatement = (node) ->
-  return no if not node.value?.body?.body and not node.body?.body
+  return {} if not node.value?.body?.body and not node.body?.body
 
   bodyNodes = if node.value then node.value.body.body else node.body.body
 
   for bodyNode in bodyNodes by -1
-    return bodyNode if (
-      bodyNode.type is 'ReturnStatement' or
-      # bodyNode.returns or
-      bodyNode.expression?.returns
-    )
-  no
+    return {
+      node: bodyNode
+      property: 'argument'
+      expression: bodyNode.argument
+    } if bodyNode.type is 'ReturnStatement'
+    return {
+      node: bodyNode
+      property: 'expression'
+      expression: bodyNode.expression
+    } if bodyNode.expression?.returns # or bodyNode.returns
+  {}
 
 ###*
 # Get node with property's name
