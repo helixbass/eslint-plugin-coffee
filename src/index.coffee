@@ -124,6 +124,18 @@ usable = [
   'space-in-parens'
   'jsx-quotes'
   'react/button-has-type'
+  'react/forbid-component-props'
+  'react/forbid-dom-props'
+  'react/forbid-elements'
+  'react/forbid-foreign-prop-types'
+  'react/no-array-index-key'
+  'react/no-children-prop'
+  'react/no-danger'
+  'react/no-did-mount-set-state'
+  'react/no-did-update-set-state'
+  'react/no-direct-mutation-state'
+  'react/no-find-dom-node'
+  'react/no-is-mounted'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
@@ -365,6 +377,19 @@ rules =
     'destructuring-assignment':
       plugin: 'react'
     'display-name':
+      plugin: 'react'
+      recommended: yes
+    'forbid-prop-types':
+      plugin: 'react'
+    'no-access-state-in-setstate':
+      plugin: 'react'
+    'no-danger-with-children':
+      plugin: 'react'
+    'no-deprecated':
+      plugin: 'react'
+    'no-multi-comp':
+      plugin: 'react'
+    'no-redundant-should-component-update':
       plugin: 'react'
   )
 
