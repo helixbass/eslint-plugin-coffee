@@ -197,7 +197,7 @@ hasIndentedLastLine = ({node, sourceCode}) ->
   lastLineIndent.length + 1 > node.loc.start.column
 
 containsDeclaration = (node) ->
-  switch node.type
+  switch node?.type
     when 'Identifier'
       node.declaration
     when 'ObjectPattern'

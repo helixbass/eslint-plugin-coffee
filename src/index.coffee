@@ -411,6 +411,8 @@ rules =
       plugin: 'react'
     'jsx-boolean-value':
       plugin: 'react'
+    'jsx-closing-bracket-location':
+      plugin: 'react'
   )
 
 configureAsError = flow(

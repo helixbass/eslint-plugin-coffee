@@ -55,6 +55,9 @@ espreeTokenTypes =
   'BIN?': 'Punctuator'
   COMPOUND_ASSIGN: 'Punctuator'
   UNARY_MATH: 'Punctuator'
+  '<': 'Punctuator'
+  '>': 'Punctuator'
+  '/': 'Punctuator'
   RELATION: 'Keyword'
   THEN: 'Keyword'
   LEADING_WHEN: 'Keyword'
@@ -127,7 +130,15 @@ tokensForESLint = ({tokens}) ->
   #   popped
   flatten [
     ...(for token in tokens when (
-      not (token.generated and not (token.fromThen or token.prevToken)) and
+      not (
+        token.generated and
+        not (
+          token.fromThen or
+          token.prevToken or
+          token.data?.closingBracketToken or
+          token.data?.closingTagClosingBracketToken
+        )
+      ) and
         # excluding INDENT/OUTDENT seems necessary to avoid eslint createIndexMap() potentially choking on comment/token with same start location
         not (token[0] is 'OUTDENT' and token.prevToken?[1] isnt ';') and
         # espree doesn't seem to include tokens for \n
@@ -141,16 +152,29 @@ tokensForESLint = ({tokens}) ->
     )
       token = token.prevToken if token.prevToken?[1] is ';'
       token = token.origin if token.fromThen
-      [, , locationData] = token
-      [
-        # ...popExtraTokens(nextStart: locationData.range[0])
-        # ,
+      spreadTokens =
+        if token.data?.openingBracketToken
+          [token.data.openingBracketToken, token.data.tagNameToken]
+        else if token.data?.selfClosingSlashToken
+          [token.data.selfClosingSlashToken, token.data.closingBracketToken]
+        else if token.data?.closingBracketToken
+          [token.data.closingBracketToken]
+        else if token.data?.closingTagClosingBracketToken
+          [
+            token.data.closingTagOpeningBracketToken
+            token.data.closingTagSlashToken
+            token.data.closingTagNameToken
+            token.data.closingTagClosingBracketToken
+          ]
+        else
+          [token]
+      for token in spreadTokens
+        [, , locationData] = token
         {
           type: getEspreeTokenType token
           value: getTokenValue token
           ...locationDataToAst(locationData)
-        }
-      ])
+        })
   ,
     # ...popExtraTokens(nextStart: 'END')
     {}
@@ -199,4 +223,4 @@ exports.getParser = getParser = (getAstAndTokens) -> (code, opts) ->
 exports.parseForESLint = getParser (code, opts) ->
   CoffeeScript.ast code, {...opts, withTokens: yes}
 
-# dump = (obj) -> console.log require('util').inspect obj, no, null
+dump = (obj) -> console.log require('util').inspect obj, no, null
