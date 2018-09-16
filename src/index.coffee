@@ -136,6 +136,14 @@ usable = [
   'react/no-direct-mutation-state'
   'react/no-find-dom-node'
   'react/no-is-mounted'
+  'react/no-set-state'
+  'react/no-string-refs'
+  'react/no-unknown-property'
+  'react/no-unsafe'
+  'react/no-will-update-set-state'
+  'react/prefer-es6-class'
+  'react/react-in-jsx-scope'
+  'react/jsx-child-element-spacing'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
@@ -390,6 +398,18 @@ rules =
     'no-multi-comp':
       plugin: 'react'
     'no-redundant-should-component-update':
+      plugin: 'react'
+    'no-render-return-value':
+      plugin: 'react'
+    'no-typos':
+      plugin: 'react'
+    'no-this-in-sfc':
+      plugin: 'react'
+    'no-unescaped-entities':
+      plugin: 'react'
+    'prefer-stateless-function':
+      plugin: 'react'
+    'jsx-boolean-value':
       plugin: 'react'
   )
 

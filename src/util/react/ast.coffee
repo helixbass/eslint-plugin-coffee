@@ -13,6 +13,7 @@ findReturnStatement = (node) ->
 
   bodyNodes = if node.value then node.value.body.body else node.body.body
 
+  ifStatements = []
   for bodyNode in bodyNodes by -1
     return {
       node: bodyNode
@@ -24,6 +25,13 @@ findReturnStatement = (node) ->
       property: 'expression'
       expression: bodyNode.expression
     } if bodyNode.expression?.returns # or bodyNode.returns
+    ifStatements.push bodyNode if bodyNode.type is 'IfStatement'
+  for ifStatement in ifStatements
+    found = findReturnStatement body: ifStatement.consequent
+    return found if found.node?
+    continue unless ifStatement.alternate
+    found = findReturnStatement body: ifStatement.alternate
+    return found if found.node?
   {}
 
 ###*
