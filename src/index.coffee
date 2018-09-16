@@ -144,6 +144,12 @@ usable = [
   'react/prefer-es6-class'
   'react/react-in-jsx-scope'
   'react/jsx-child-element-spacing'
+  'react/jsx-closing-tag-location'
+  'react/jsx-pascal-case'
+  'react/jsx-no-target-blank'
+  'react/jsx-curly-spacing'
+  'react/jsx-equals-spacing'
+  'react/jsx-filename-extension'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
@@ -412,6 +418,10 @@ rules =
     'jsx-boolean-value':
       plugin: 'react'
     'jsx-closing-bracket-location':
+      plugin: 'react'
+    'jsx-first-prop-new-line':
+      plugin: 'react'
+    'jsx-handler-names':
       plugin: 'react'
   )
 

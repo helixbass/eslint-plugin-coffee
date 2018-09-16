@@ -78,6 +78,7 @@ espreeTokenTypes =
   REGEX: 'RegularExpression'
   IDENTIFIER: 'Identifier'
   AWAIT: 'Identifier'
+  PROPERTY: 'Identifier'
   STRING: 'String'
   NUMBER: 'Numeric'
 getEspreeTokenType = (token) ->
@@ -85,18 +86,27 @@ getEspreeTokenType = (token) ->
   {original} = value
   value = original if original?
   return 'JSX_COMMA' if type is ',' and value is 'JSX_COMMA'
+  return 'JSXText' if type is 'STRING' and token.data?.csx
+  return 'JSXIdentifier' if (
+    token.jsxIdentifier or
+    (type is 'PROPERTY' and token.data?.csx)
+  )
   return 'Keyword' if (
     (type is 'UNARY' and value in ['typeof', 'new', 'delete', 'not']) or
     (type is 'COMPARE' and value in ['is', 'isnt'])
   )
   espreeTokenTypes[type] ? type
 
-getTokenValue = ([type, value, {range}]) ->
-  return '#{' if type is 'INTERPOLATION_START'
+getTokenValue = (token) ->
+  [type, value, {range}] = token
+  if type is 'INTERPOLATION_START'
+    return (if range[1] - range[0] is 1 then '{' else '#{')
   return '}' if type is 'INTERPOLATION_END'
   return repeat '"', range[1] - range[0] if (
     type in ['STRING_START', 'STRING_END']
   )
+  return value[1...-1] if type is 'STRING' and token.data?.csx
+  return '=' if token.csxColon
   value.original ? value.toString()
 
 # extraTokensForESLint = (ast) ->
@@ -154,12 +164,14 @@ tokensForESLint = ({tokens}) ->
       token = token.origin if token.fromThen
       spreadTokens =
         if token.data?.openingBracketToken
+          token.data.tagNameToken.jsxIdentifier = yes
           [token.data.openingBracketToken, token.data.tagNameToken]
         else if token.data?.selfClosingSlashToken
           [token.data.selfClosingSlashToken, token.data.closingBracketToken]
         else if token.data?.closingBracketToken
           [token.data.closingBracketToken]
         else if token.data?.closingTagClosingBracketToken
+          token.data.closingTagNameToken.jsxIdentifier = yes
           [
             token.data.closingTagOpeningBracketToken
             token.data.closingTagSlashToken
