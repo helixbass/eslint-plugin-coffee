@@ -51,3 +51,6 @@ rule ideas:
 - no-top-level-indent
 - spread-direction
 - no-unnecessary-function-wrapper eg (foo) -> f foo could just be f (though we ran into some weirdness around this)
+- implicit-call-parens
+- implicit-object-braces
+- prefer-do

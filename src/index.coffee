@@ -150,12 +150,13 @@ usable = [
   'react/jsx-curly-spacing'
   'react/jsx-equals-spacing'
   'react/jsx-filename-extension'
+  'react/jsx-indent-props'
+  'react/jsx-max-depth'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
 yet = [
   'no-extra-parens' # prettier: yes
-  'no-else-return' # since we conflate else [nested if] with else if, can't currently just disallow the former
   'strict'
   'comma-dangle' # prettier: yes
   'comma-style' # prettier: yes
@@ -423,6 +424,13 @@ rules =
       plugin: 'react'
     'jsx-handler-names':
       plugin: 'react'
+    'jsx-indent':
+      plugin: 'react'
+    'jsx-key':
+      plugin: 'react'
+    'jsx-max-props-per-line':
+      plugin: 'react'
+    'no-else-return': {}
   )
 
 configureAsError = flow(
