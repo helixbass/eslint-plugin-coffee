@@ -152,6 +152,9 @@ usable = [
   'react/jsx-filename-extension'
   'react/jsx-indent-props'
   'react/jsx-max-depth'
+  'react/jsx-no-duplicate-props'
+  'react/jsx-no-literals'
+  'react/jsx-no-undef'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
@@ -163,7 +166,6 @@ yet = [
   'id-match'
   'indent' # prettier: yes
   'multiline-ternary' # prettier: yes maybe this should be multiline-control and check all "inline" (non-postfix) forms of control structures (which use then)?
-  'operator-linebreak' # prettier: yes mostly doesn't apply as leading operators aren't allowed (when leading logical lands, could support that). could support "none" (don't allow breaking operators)
   'padded-blocks' # prettier: yes I think only leading padding would apply (since trailing padding is considered outside the block)
   'padding-line-between-statements' # I think only leading padding would apply (since trailing padding is considered outside the block)
   'quotes' # prettier: yes
@@ -431,6 +433,12 @@ rules =
     'jsx-max-props-per-line':
       plugin: 'react'
     'no-else-return': {}
+    'operator-linebreak':
+      prettier: yes
+    'jsx-no-bind':
+      plugin: 'react'
+    'jsx-no-comment-textnodes':
+      plugin: 'react'
   )
 
 configureAsError = flow(
