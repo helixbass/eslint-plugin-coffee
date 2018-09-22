@@ -9,7 +9,7 @@
 # Requirements
 # ------------------------------------------------------------------------------
 
-rule = require 'eslint-plugin-react/lib/rules/jsx-one-expression-per-line'
+rule = require '../../rules/jsx-one-expression-per-line'
 {RuleTester} = require 'eslint'
 
 # ------------------------------------------------------------------------------

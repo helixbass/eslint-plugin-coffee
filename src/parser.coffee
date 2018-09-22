@@ -164,20 +164,30 @@ tokensForESLint = ({tokens}) ->
       token = token.origin if token.fromThen
       spreadTokens =
         if token.data?.openingBracketToken
-          token.data.tagNameToken.jsxIdentifier = yes
-          [token.data.openingBracketToken, token.data.tagNameToken]
+          if token.data.tagNameToken[1].length
+            token.data.tagNameToken.jsxIdentifier = yes
+            [token.data.openingBracketToken, token.data.tagNameToken]
+          else
+            [token.data.openingBracketToken]
         else if token.data?.selfClosingSlashToken
           [token.data.selfClosingSlashToken, token.data.closingBracketToken]
         else if token.data?.closingBracketToken
           [token.data.closingBracketToken]
         else if token.data?.closingTagClosingBracketToken
-          token.data.closingTagNameToken.jsxIdentifier = yes
-          [
-            token.data.closingTagOpeningBracketToken
-            token.data.closingTagSlashToken
-            token.data.closingTagNameToken
-            token.data.closingTagClosingBracketToken
-          ]
+          if token.data.closingTagNameToken[1].length
+            token.data.closingTagNameToken.jsxIdentifier = yes
+            [
+              token.data.closingTagOpeningBracketToken
+              token.data.closingTagSlashToken
+              token.data.closingTagNameToken
+              token.data.closingTagClosingBracketToken
+            ]
+          else
+            [
+              token.data.closingTagOpeningBracketToken
+              token.data.closingTagSlashToken
+              token.data.closingTagClosingBracketToken
+            ]
         else
           [token]
       for token in spreadTokens
@@ -235,4 +245,4 @@ exports.getParser = getParser = (getAstAndTokens) -> (code, opts) ->
 exports.parseForESLint = getParser (code, opts) ->
   CoffeeScript.ast code, {...opts, withTokens: yes}
 
-dump = (obj) -> console.log require('util').inspect obj, no, null
+# dump = (obj) -> console.log require('util').inspect obj, no, null

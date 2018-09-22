@@ -155,6 +155,10 @@ usable = [
   'react/jsx-no-duplicate-props'
   'react/jsx-no-literals'
   'react/jsx-no-undef'
+  'react/jsx-curly-brace-presence'
+  'react/jsx-props-no-multi-spaces'
+  'react/jsx-uses-react'
+  'react/jsx-uses-vars'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
@@ -438,6 +442,14 @@ rules =
     'jsx-no-bind':
       plugin: 'react'
     'jsx-no-comment-textnodes':
+      plugin: 'react'
+    'jsx-one-expression-per-line':
+      plugin: 'react'
+    'jsx-sort-default-props':
+      plugin: 'react'
+    'jsx-tag-spacing':
+      plugin: 'react'
+    'jsx-wrap-multilines':
       plugin: 'react'
   )
 
