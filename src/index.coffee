@@ -451,6 +451,8 @@ rules =
       plugin: 'react'
     'jsx-wrap-multilines':
       plugin: 'react'
+    'no-unused-prop-types':
+      plugin: 'react'
   )
 
 configureAsError = flow(

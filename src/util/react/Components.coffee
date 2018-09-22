@@ -6,10 +6,10 @@
 
 util = require 'util'
 doctrine = require 'doctrine'
-variableUtil = require 'eslint-plugin-react/lib/util/variable'
+variableUtil = require './variable'
 pragmaUtil = require 'eslint-plugin-react/lib/util/pragma'
 astUtil = require './ast'
-propTypes = require 'eslint-plugin-react/lib/util/propTypes'
+propTypes = require './propTypes'
 
 getId = (node) -> node?.range.join ':'
 
@@ -17,12 +17,11 @@ usedPropTypesAreEquivalent = (propA, propB) ->
   if propA.name is propB.name
     if not propA.allNames and not propB.allNames
       return yes
-    else
-      return yes if (
-        Array.isArray(propA.allNames) and
-        Array.isArray(propB.allNames) and
-        propA.allNames.join('') is propB.allNames.join ''
-      )
+    return yes if (
+      Array.isArray(propA.allNames) and
+      Array.isArray(propB.allNames) and
+      propA.allNames.join('') is propB.allNames.join ''
+    )
     return no
   no
 
@@ -83,8 +82,7 @@ class Components
     if @_list[id]
       # usedPropTypes is an array. _extend replaces existing array with a new one which caused issue #1309.
       # preserving original array so it can be merged later on.
-      copyUsedPropTypes =
-        @_list[id].usedPropTypes and @_list[id].usedPropTypes.slice()
+      copyUsedPropTypes = @_list[id].usedPropTypes?.slice()
     @_list[id] = util._extend @_list[id], props
     if @_list[id] and props.usedPropTypes
       @_list[id].usedPropTypes = mergeUsedPropTypes(
@@ -103,31 +101,33 @@ class Components
     usedPropTypes = {}
 
     # Find props used in components for which we are not confident
-    for own i of @_list
-      continue if @_list[i].confidence >= 2
+    for own _, comp of @_list
+      continue if comp.confidence >= 2
       component = null
       node = null
-      {node} = @_list[i]
+      {node} = comp
       while not component and node.parent
         node = node.parent
         # Stop moving up if we reach a decorator
         break if node.type is 'Decorator'
         component = @get node
       if component
-        newUsedProps =
-          @_list[i].usedPropTypes or
-          [].filter (propType) ->
-            not propType.node or propType.node.kind isnt 'init'
+        newUsedProps = (comp.usedPropTypes or []).filter (propType) ->
+          not propType.node or propType.node.kind isnt 'init'
 
         componentId = getId component.node
-        usedPropTypes[componentId] or= [].concat newUsedProps
+        usedPropTypes[componentId] = (usedPropTypes[componentId] or []).concat(
+          newUsedProps
+        )
 
     # Assign used props in not confident components to the parent component
-    for own j of @_list when @_list[j].confidence >= 2
-      id = getId @_list[j].node
-      list[j] = @_list[j]
+    for own j, comp of @_list when comp.confidence >= 2
+      id = getId comp.node
+      list[j] = comp
       if usedPropTypes[id]
-        list[j].usedPropTypes or= [].concat usedPropTypes[id]
+        list[j].usedPropTypes = (list[j].usedPropTypes or []).concat(
+          usedPropTypes[id]
+        )
     list
 
   ###*
@@ -372,11 +372,13 @@ componentRule = (rule, context) ->
         node = scope.block
         isClass = node.type is 'ClassExpression'
         isFunction = /Function/.test node.type # Functions
-        isMethod = node.parent and node.parent.type is 'MethodDefinition' # Classes methods
-        isArgument = node.parent and node.parent.type is 'CallExpression' # Arguments (callback, etc.)
+        isMethod = node.parent?.type is 'MethodDefinition' # Classes methods
+        isArgument =
+          node.parent?.type is 'CallExpression' or
+          (node.parent?.type is 'UnaryExpression' and
+            node.parent.operator is 'do') # Arguments (callback, etc.)
         # Attribute Expressions inside JSX Elements (<button onClick={() => props.handleClick()}></button>)
-        isJSXExpressionContainer =
-          node.parent and node.parent.type is 'JSXExpressionContainer'
+        isJSXExpressionContainer = node.parent?.type is 'JSXExpressionContainer'
         # Stop moving up if we reach a class or an argument (like a callback)
         return null if isClass or isArgument
         # Return the node if it is a function that is not a class method and is not inside a JSX Element
