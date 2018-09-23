@@ -57,3 +57,4 @@ rule ideas:
 - implicit-call-parens
 - implicit-object-braces
 - prefer-do
+- warn when doing eg x = => inside class body (probably meant x: =>, could check for uses of x? so would no-unused-vars cover this?)

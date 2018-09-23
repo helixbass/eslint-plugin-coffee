@@ -159,6 +159,7 @@ usable = [
   'react/jsx-props-no-multi-spaces'
   'react/jsx-uses-react'
   'react/jsx-uses-vars'
+  'react/void-dom-elements-no-children'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
@@ -452,6 +453,14 @@ rules =
     'jsx-wrap-multilines':
       plugin: 'react'
     'no-unused-prop-types':
+      plugin: 'react'
+    'no-unused-state':
+      plugin: 'react'
+    'prop-types':
+      plugin: 'react'
+    'style-prop-object':
+      plugin: 'react'
+    'sort-prop-types':
       plugin: 'react'
   )
 
