@@ -467,6 +467,12 @@ rules =
       plugin: 'react'
     'require-default-props':
       plugin: 'react'
+    'implicit-object':
+      plugin: no
+    'implicit-call':
+      plugin: no
+    'empty-func-parens':
+      plugin: no
   )
 
 configureAsError = flow(
