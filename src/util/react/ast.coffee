@@ -63,7 +63,8 @@ getPropertyName = (node) ->
 getComponentProperties = (node) ->
   switch node.type
     when 'ClassDeclaration', 'ClassExpression'
-      return node.body.body
+      return node.body.body.filter ({type}) ->
+        type in ['ClassProperty', 'MethodDefinition']
     when 'ObjectExpression'
       return node.properties
     else

@@ -58,3 +58,5 @@ rule ideas:
 - implicit-object-braces
 - prefer-do
 - warn when doing eg x = => inside class body (probably meant x: =>, could check for uses of x? so would no-unused-vars cover this?)
+- for react plugin, would be nice to try and detect when function components default param values mismatch with declared prop types
+  same for forbidDefaultForRequired-like behavior where it warns if you have a default for a param whose prop type is required (if it doesn't already do this?)

@@ -240,6 +240,7 @@ dontApply = [
   'no-confusing-arrow'
   'yield-star-spacing'
   'func-call-spacing'
+  'react/require-render-return'
 ]
 
 rules =
@@ -461,6 +462,10 @@ rules =
     'style-prop-object':
       plugin: 'react'
     'sort-prop-types':
+      plugin: 'react'
+    'sort-comp':
+      plugin: 'react'
+    'require-default-props':
       plugin: 'react'
   )
 
