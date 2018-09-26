@@ -43,6 +43,7 @@
 - attributions in files originally from other projects?
 - yoda shouldn't yell at you if you're doing chained comparison eg 1 < x < 7
 - make empty-func-parens fixable
+- upstream: id-match claims to work on classes (when onlyDeclarations: true) but it doesn't
 
 rule ideas:
 - prefer-implicit-return

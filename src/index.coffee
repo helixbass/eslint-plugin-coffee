@@ -160,6 +160,7 @@ usable = [
   'react/jsx-uses-react'
   'react/jsx-uses-vars'
   'react/void-dom-elements-no-children'
+  'react-native/no-inline-styles'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
@@ -167,8 +168,6 @@ yet = [
   'no-extra-parens' # prettier: yes
   'strict'
   'comma-dangle' # prettier: yes
-  'comma-style' # prettier: yes
-  'id-match'
   'indent' # prettier: yes
   'multiline-ternary' # prettier: yes maybe this should be multiline-control and check all "inline" (non-postfix) forms of control structures (which use then)?
   'padded-blocks' # prettier: yes I think only leading padding would apply (since trailing padding is considered outside the block)
@@ -469,10 +468,21 @@ rules =
       plugin: 'react'
     'implicit-object':
       plugin: no
+      prettier: yes
     'implicit-call':
       plugin: no
+      prettier: yes
     'empty-func-parens':
       plugin: no
+    'id-match': {}
+    'comma-style':
+      prettier: yes
+    'no-unused-styles':
+      plugin: 'react-native'
+    'split-platform-components':
+      plugin: 'react-native'
+    'no-color-literals':
+      plugin: 'react-native'
   )
 
 configureAsError = flow(
