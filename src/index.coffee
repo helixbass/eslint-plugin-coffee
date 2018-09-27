@@ -483,6 +483,8 @@ rules =
       plugin: 'react-native'
     'no-color-literals':
       plugin: 'react-native'
+    'shorthand-this':
+      plugin: no
   )
 
 configureAsError = flow(
