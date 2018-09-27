@@ -1,64 +1,68 @@
-- code path analysis needs to actually understand for when, since it considers anything after a for when whose body returns to be unreachable? or is eslint-plugin-known-imports using outdated?
-
-- figure out how to not commit lib/ and publish to npm
 - restrict eslint peerDependency range or detect version - looks like eg ast-utils has moved to lib/util/ast-utils
 - should we always be parsing as module?
-- expose prettier/prettier w/ prettier-plugin-coffeescript config set up eg as plugin:coffee/prettier? and disable conflicting rules
-- add test like eslint-plugin-react (?) that checks that everything in src/rules/ is exposed and has tests
-  and that everything in usable has tests
-- comprehensively go through expected token types and include in espreeTokenTypes
-- include tests from coffeelint?
-- didn't include tests for first couple rules
-- add excludeLoop option to no-constant-condition?
-- documentation
 - code path analysis for optional call/member expressions?
-- push id-length fixes upstream to eslint?
-- add exceptNullInitializers option to no-multi-assign?
-- no-useless-escape should flag unnecessary escapes in heredocs/heregexes (delimiters)
-- get added to docs Configuring list of compatible parsers
-- no-unused-vars doesn't understand do (x) -> as a usage of outer x
-  - does no-loop-func understand do (x) -> ?
-- no-extra-bind doesn't check if bind expression it's removing could have side effects
-- should no-overwrite sameScope: no be able to allow "parallel" assignments eg
-  if yes
-    a = 1
-  else
-    a = 2
 - should probably use explicit whitelist of compatible rules (so that new unknown ESLint rules don't blindly get run)
-- require-unicode-regexp uses eslint-utils' getStringIfConstant(), would be cool if it could recognize "const" assignments
-- add more keywords to quote-props (eg unless)?
 - eslint-env comments don't work because eslint is searching explicitly for /* eslint-env ... */
+  I guess documented workaround could be to embed eg ### /* eslint-env ... ### # */?
 - the // -> # at the beginning of the file (to counteract ESLint transforming #! -> //) would break code that actually starts with a heregex
-- code path chokes on empty try eg
-  try
-    # comment
-  b
-- seems like lines-around-comment would benefit from memoizing getParentNodeOfToken()
-- expose eg prettier-conflict config that just turns off rules that conflict with prettier (without turning on prettier/prettier)?
-- upstream: looks like the node.type is 'BlockStatement' check in implicit-arrow-linebreak should be node.body.type is 'BlockStatement'
 - should eslint-plugin-react be a dependency?
-- no-useless-escape is flagging ///^(#{pragma}\.)?#{createClass}$/// (I guess because it gets exposed as a new RegExp call? should it escape differently in the AST? or should the rule handle that case differently?)
 - should no-unused-vars allow/have an option for eg key in for key, val of b ...?
-- looks like the version of babel-eslint doesn't understand fragments so doesn't eg transform children JSXText of fragments into Literal (worked around in jsx-no-comment-textnodes by also checking JSXText, which some other existing tests seem to do - is that for a similar reason (ie support older version of babel-eslint)?)
-- attributions in files originally from other projects?
-- yoda shouldn't yell at you if you're doing chained comparison eg 1 < x < 7
-- make empty-func-parens fixable
-- upstream: id-match claims to work on classes (when onlyDeclarations: true) but it doesn't
+
+todo:
+  - add test like eslint-plugin-react (?) that checks that everything in src/rules/ is exposed and has tests
+    and that everything in usable has tests
+    and that no rules are categorized more than once
+  - comprehensively go through expected token types and include in espreeTokenTypes
+  - include tests from coffeelint?
+  - documentation
+  - get added to docs Configuring list of compatible parsers
+  - expose eg prettier-conflict config that just turns off rules that conflict with prettier (without turning on prettier/prettier)?
+  - attributions in files originally from other projects?
+bugs:
+  - code path analysis needs to actually understand for when, since it considers anything after a for when whose body returns to be unreachable? or is eslint-plugin-known-imports using outdated?
+  - no-unused-vars doesn't understand do (x) -> as a usage of outer x
+    - does no-loop-func understand do (x) -> ?
+  - no-useless-escape should flag unnecessary escapes in heredocs/heregexes (delimiters)
+  - add more keywords to quote-props (eg unless)?
+  - code path chokes on empty try eg
+    try
+      # comment
+    b
+  - no-useless-escape is flagging ///^(#{pragma}\.)?#{createClass}$/// (I guess because it gets exposed as a new RegExp call? should it escape differently in the AST? or should the rule handle that case differently?)
+  - yoda shouldn't yell at you if you're doing chained comparison eg 1 < x < 7
+  - looks like the version of babel-eslint doesn't understand fragments so doesn't eg transform children JSXText of fragments into Literal (worked around in jsx-no-comment-textnodes by also checking JSXText, which some other existing tests seem to do - is that for a similar reason (ie support older version of babel-eslint)?)
+nice to have:
+  - add excludeLoop option to no-constant-condition?
+  - add exceptNullInitializers option to no-multi-assign?
+  - should no-overwrite sameScope: no be able to allow "parallel" assignments eg
+    if yes
+      a = 1
+    else
+      a = 2
+  - require-unicode-regexp uses eslint-utils' getStringIfConstant(), would be cool if it could recognize "const" assignments
+  - make empty-func-parens (and some other ones) fixable
+  - add individual usage-type options to spread-direction eg jsxSpreadProp, object, array, objectSpread, objectRest, arraySpread, arrayRest
+    should allow you to either override for some of these types (['postfix', jsxSpreadProp: 'prefix']) or *just* warn for some of these types ([jsxSpreadProp: 'prefix'])
+upstream:
+  - push id-length fixes upstream to eslint?
+  - no-extra-bind doesn't check if bind expression it's removing could have side effects
+  - seems like lines-around-comment would benefit from memoizing getParentNodeOfToken()
+  - looks like the node.type is 'BlockStatement' check in implicit-arrow-linebreak should be node.body.type is 'BlockStatement'
+  - id-match claims to work on classes (when onlyDeclarations: true) but it doesn't
 
 rule ideas:
-- prefer-implicit-return
+- prefer-implicit-return (could use code path analysis similar to no-useless-return - or should this just be a coffeescript-specific customization of no-useless-return?)
 - prefer-unless (how does this relate to no-negated-condition? Should no-negated-condition check even if there isn't an else?)
-- comprehension-parens (somewhat like coffeelint ensure_comprehensions, but maybe have options for assignment (eg a = b for b in c), inlineFunction (eg a = -> b for b in c))?
 - no-negated-not-relation eg not (a not in b) should just be a in b
 - prefer-not-relation eg not (a in b) should be a not in b
+  maybe all three of these belong as eg no-unnecessary-negation? Still not sure how that relates to no-negated-condition
+- comprehension-parens (somewhat like coffeelint ensure_comprehensions, but maybe have options for assignment (eg a = b for b in c), inlineFunction (eg a = -> b for b in c))?
 - normalized heredoc spacing (eg initial/final linebreaks, indentation level wrt whatever (ending quotes?))
 - prefer-at-param
 - no-top-level-indent
-- spread-direction
-- no-unnecessary-function-wrapper eg (foo) -> f foo could just be f (though we ran into some weirdness around this)
-- implicit-call-parens
-- implicit-object-braces
 - prefer-do
 - warn when doing eg x = => inside class body (probably meant x: =>, could check for uses of x? so would no-unused-vars cover this?)
+non-coffeescript-specific:
+- no-unnecessary-function-wrapper eg (foo) -> f foo could just be f (though we ran into some weirdness around this)
 - for react plugin, would be nice to try and detect when function components default param values mismatch with declared prop types
   same for forbidDefaultForRequired-like behavior where it warns if you have a default for a param whose prop type is required (if it doesn't already do this?)

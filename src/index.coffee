@@ -173,6 +173,9 @@ yet = [
   'padded-blocks' # prettier: yes I think only leading padding would apply (since trailing padding is considered outside the block)
   'padding-line-between-statements' # I think only leading padding would apply (since trailing padding is considered outside the block)
   'quotes' # prettier: yes
+  'no-nested-interpolation'
+  'ensure_comprehensions'
+  'no_private_function_fat_arrows' # maybe this should cover warning about non-fat arrow = -> assignments in class bodies as well (since they're often intended to be : ->)?
 ]
 
 dontApply = [
@@ -474,6 +477,7 @@ rules =
       prettier: yes
     'empty-func-parens':
       plugin: no
+      prettier: yes
     'id-match': {}
     'comma-style':
       prettier: yes
@@ -484,6 +488,8 @@ rules =
     'no-color-literals':
       plugin: 'react-native'
     'shorthand-this':
+      plugin: no
+    'spread-direction':
       plugin: no
   )
 
