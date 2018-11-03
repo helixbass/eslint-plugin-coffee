@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-coffee",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "ESLint plugin for Coffeescript",
   "main": "lib/index.js",
   "scripts": {
@@ -41,7 +41,7 @@
   "dependencies": {
     "babel-eslint": "^7.2.2",
     "babylon": "^7.0.0-beta.44",
-    "coffeescript": "github:helixbass/coffeescript#782079555",
+    "coffeescript": "github:helixbass/coffeescript#6374abc",
     "doctrine": "^2.1.0",
     "eslint-scope": "~3.7.3",
     "eslint-utils": "^1.3.1",
