@@ -31,6 +31,7 @@ rule = require 'eslint/lib/rules/comma-dangle'
 
 ruleTester = new RuleTester parser: '../../..'
 
+###
 ruleTester.run 'comma-dangle', rule,
   valid: [
     "foo = { bar: 'baz' }"
@@ -1032,3 +1033,4 @@ export {d,}
       messageId: 'unexpected', line: 5
     ]
   ]
+###

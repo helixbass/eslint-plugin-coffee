@@ -43,6 +43,7 @@ nice to have:
   - make empty-func-parens (and some other ones) fixable
   - add individual usage-type options to spread-direction eg jsxSpreadProp, object, array, objectSpread, objectRest, arraySpread, arrayRest
     should allow you to either override for some of these types (['postfix', jsxSpreadProp: 'prefix']) or *just* warn for some of these types ([jsxSpreadProp: 'prefix'])
+  - no-unused-expressions flags implicitly returned JSX (this is a CS AST bug) - this may not be broken?
 upstream:
   - push id-length fixes upstream to eslint?
   - no-extra-bind doesn't check if bind expression it's removing could have side effects
@@ -62,7 +63,10 @@ rule ideas:
 - no-top-level-indent
 - prefer-do
 - warn when doing eg x = => inside class body (probably meant x: =>, could check for uses of x? so would no-unused-vars cover this?)
+- shorthand-prototype
+- boolean-operators eg prefer yes/no, forbid on/off
 non-coffeescript-specific:
 - no-unnecessary-function-wrapper eg (foo) -> f foo could just be f (though we ran into some weirdness around this)
 - for react plugin, would be nice to try and detect when function components default param values mismatch with declared prop types
   same for forbidDefaultForRequired-like behavior where it warns if you have a default for a param whose prop type is required (if it doesn't already do this?)
+- sort class methods? There's an eslint-plugin-react rule that kind of does this? But non-react-specific?

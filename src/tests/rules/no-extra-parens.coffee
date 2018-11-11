@@ -3,14 +3,16 @@
 # @author Michael Ficarra
 ###
 
+###
 'use strict'
 
 #------------------------------------------------------------------------------
 # Requirements
 #------------------------------------------------------------------------------
 
-rule = require 'eslint-plugin-react/lib/rules/no-extra-parens'
+rule = require 'eslint/lib/rules/no-extra-parens'
 {RuleTester} = require 'eslint'
+###
 
 ###*
 # Create error message object for failure cases
@@ -21,6 +23,7 @@ rule = require 'eslint-plugin-react/lib/rules/no-extra-parens'
 # @param {Object} config rule configuration
 # @returns {Object} result object
 # @private
+###
 ###
 invalid = (code, output, type, line, config) ->
   result = {
@@ -1153,3 +1156,4 @@ ruleTester.run 'no-extra-parens', rule,
       null
     )
   ]
+###

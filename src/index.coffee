@@ -430,16 +430,20 @@ rules =
       plugin: 'react'
     'jsx-closing-bracket-location':
       plugin: 'react'
+      prettier: yes
     'jsx-first-prop-new-line':
       plugin: 'react'
+      prettier: yes
     'jsx-handler-names':
       plugin: 'react'
     'jsx-indent':
       plugin: 'react'
+      prettier: yes
     'jsx-key':
       plugin: 'react'
     'jsx-max-props-per-line':
       plugin: 'react'
+      prettier: yes
     'no-else-return': {}
     'operator-linebreak':
       prettier: yes
@@ -449,12 +453,14 @@ rules =
       plugin: 'react'
     'jsx-one-expression-per-line':
       plugin: 'react'
+      prettier: yes
     'jsx-sort-default-props':
       plugin: 'react'
     'jsx-tag-spacing':
       plugin: 'react'
     'jsx-wrap-multilines':
       plugin: 'react'
+      prettier: yes
     'no-unused-prop-types':
       plugin: 'react'
     'no-unused-state':
