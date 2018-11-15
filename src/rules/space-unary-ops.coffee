@@ -227,7 +227,9 @@ module.exports =
     # @returns {void}
     ###
     checkForSpaces = (node) ->
-      return if node.type is 'UpdateExpression' and not node.prefix
+      return if (
+        node.type in ['UpdateExpression', 'UnaryExpression'] and not node.prefix
+      )
       tokens = sourceCode.getFirstTokens node, 2
       firstToken = tokens[0]
       secondToken = tokens[1]
