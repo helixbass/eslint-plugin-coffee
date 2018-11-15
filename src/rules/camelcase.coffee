@@ -124,10 +124,13 @@ module.exports =
         # e.g.: const { no_camelcased = false } = bar;
         ###
       else if node.parent.type in ['Property', 'AssignmentPattern']
-        if node.parent.parent and node.parent.parent.type is 'ObjectPattern'
+        if node.parent.parent?.type is 'ObjectPattern'
           if (
             node.parent.shorthand and
             node.parent.value.left and
+            not (
+              ignoreDestructuring and node.parent.value.left.name is node.name
+            ) and
             isUnderscored name
           )
             report node
@@ -146,6 +149,13 @@ module.exports =
             not (assignmentKeyEqualsValue and ignoreDestructuring)
           )
             report node
+
+        return if (
+          node.parent.type is 'AssignmentPattern' and
+          node is node.parent.left and
+          node.parent.parent.parent?.type is 'ObjectPattern' and
+          node.parent.parent.shorthand
+        )
 
         # "never" check properties or always ignore destructuring
         return if (
