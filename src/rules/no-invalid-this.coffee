@@ -14,7 +14,7 @@
   isNullLiteral
   isArrayFromMethod
   isES5Constructor
-} = require 'eslint/lib/ast-utils'
+} = require '../eslint-ast-utils'
 # {getFunctionName} = require '../util/ast-utils'
 
 #------------------------------------------------------------------------------

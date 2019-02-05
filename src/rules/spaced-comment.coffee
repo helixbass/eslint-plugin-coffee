@@ -5,7 +5,7 @@
 'use strict'
 
 lodash = require 'lodash'
-astUtils = require 'eslint/lib/ast-utils'
+astUtils = require '../eslint-ast-utils'
 
 #------------------------------------------------------------------------------
 # Helpers

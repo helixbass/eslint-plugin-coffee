@@ -9,7 +9,7 @@
 #------------------------------------------------------------------------------
 
 LETTER_PATTERN = require 'eslint/lib/util/patterns/letters'
-astUtils = require 'eslint/lib/ast-utils'
+astUtils = require '../eslint-ast-utils'
 
 #------------------------------------------------------------------------------
 # Helpers

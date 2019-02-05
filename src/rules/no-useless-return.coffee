@@ -8,7 +8,7 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-astUtils = require 'eslint/lib/ast-utils'
+astUtils = require '../eslint-ast-utils'
 utils = require '../util/ast-utils'
 FixTracker = require 'eslint/lib/util/fix-tracker'
 

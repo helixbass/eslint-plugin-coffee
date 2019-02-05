@@ -4,7 +4,7 @@
 ###
 'use strict'
 
-{isNullOrUndefined} = require 'eslint/lib/ast-utils'
+{isNullOrUndefined} = require '../eslint-ast-utils'
 
 #------------------------------------------------------------------------------
 # Rule Definition

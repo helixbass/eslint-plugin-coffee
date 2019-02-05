@@ -9,7 +9,7 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-astUtils = require 'eslint/lib/ast-utils'
+astUtils = require '../eslint-ast-utils'
 keywords = require 'eslint/lib/util/keywords'
 
 #------------------------------------------------------------------------------

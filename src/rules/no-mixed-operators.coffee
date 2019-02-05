@@ -9,7 +9,7 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-astUtils = require 'eslint/lib/ast-utils.js'
+astUtils = require '../eslint-ast-utils'
 {getPrecedence} = require '../util/ast-utils'
 
 #------------------------------------------------------------------------------

@@ -14,7 +14,7 @@ CodePath = require './code-path'
 CodePathSegment = require './code-path-segment'
 IdGenerator = require 'eslint/lib/code-path-analysis/id-generator'
 debug = require 'eslint/lib/code-path-analysis/debug-helpers'
-astUtils = require 'eslint/lib/ast-utils'
+astUtils = require '../eslint-ast-utils'
 
 #------------------------------------------------------------------------------
 # Helpers

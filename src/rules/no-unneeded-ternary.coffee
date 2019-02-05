@@ -5,7 +5,7 @@
 
 'use strict'
 
-astUtils = require 'eslint/lib/ast-utils'
+astUtils = require '../eslint-ast-utils'
 
 # Operators that always result in a boolean value
 BOOLEAN_OPERATORS = new Set [

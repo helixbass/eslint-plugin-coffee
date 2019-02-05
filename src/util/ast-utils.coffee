@@ -5,7 +5,7 @@
 
 'use strict'
 
-astUtils = require 'eslint/lib/ast-utils'
+astUtils = require '../eslint-ast-utils'
 {getStaticPropertyName} = astUtils
 
 anyLoopPattern = /^WhileStatement|For$/

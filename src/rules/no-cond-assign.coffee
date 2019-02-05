@@ -4,7 +4,7 @@
 ###
 'use strict'
 
-astUtils = require 'eslint/lib/ast-utils'
+astUtils = require '../eslint-ast-utils'
 
 NODE_DESCRIPTIONS =
   DoWhileStatement: "a 'do...while' statement"

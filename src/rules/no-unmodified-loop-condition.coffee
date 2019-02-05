@@ -10,7 +10,7 @@
 #------------------------------------------------------------------------------
 
 Traverser = require 'eslint/lib/util/traverser'
-astUtils = require 'eslint/lib/ast-utils'
+astUtils = require '../eslint-ast-utils'
 
 #------------------------------------------------------------------------------
 # Helpers
