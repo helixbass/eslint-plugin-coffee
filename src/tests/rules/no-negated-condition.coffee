@@ -175,7 +175,7 @@ ruleTester.run 'no-negated-condition', rule,
     code: 'x if (a isnt b)'
     errors: [
       message: 'Unexpected negated condition.'
-      type: 'ConditionalExpression'
+      type: 'IfStatement'
     ]
   ,
     code: '(if (a isnt b) then c)'
@@ -271,7 +271,7 @@ ruleTester.run 'no-negated-condition', rule,
     code: 'x unless (a isnt b)'
     errors: [
       message: 'Unexpected negated condition.'
-      type: 'ConditionalExpression'
+      type: 'IfStatement'
     ]
   ,
     code: 'unless (a isnt b) then ;'
