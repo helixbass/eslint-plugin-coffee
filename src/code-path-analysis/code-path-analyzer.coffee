@@ -12,8 +12,8 @@
 assert = require 'assert'
 CodePath = require './code-path'
 CodePathSegment = require './code-path-segment'
-IdGenerator = require 'eslint/lib/code-path-analysis/id-generator'
-debug = require 'eslint/lib/code-path-analysis/debug-helpers'
+IdGenerator = require '../eslint-code-path-analysis-id-generator'
+debug = require '../eslint-code-path-analysis-debug-helpers'
 astUtils = require '../eslint-ast-utils'
 
 #------------------------------------------------------------------------------

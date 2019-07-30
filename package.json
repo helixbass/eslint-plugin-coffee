@@ -24,7 +24,7 @@
   "author": "Julian Rosse <@helixbass>",
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^5.5.0",
+    "eslint": "^6.1.0",
     "eslint-config-prettier": "^3.0.1",
     "eslint-plugin-coffee": "^0.0.4",
     "eslint-plugin-import": "^2.14.0",
