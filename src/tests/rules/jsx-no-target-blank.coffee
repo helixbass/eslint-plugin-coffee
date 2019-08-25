@@ -10,12 +10,13 @@
 
 rule = require 'eslint-plugin-react/lib/rules/jsx-no-target-blank'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # ------------------------------------------------------------------------------
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 defaultErrors = [
   message:
     'Using target="_blank" without rel="noopener noreferrer" is a security risk:' +

@@ -9,6 +9,7 @@
 
 rule = require '../../rules/no-typos'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # -----------------------------------------------------------------------------
 # Tests
@@ -18,7 +19,7 @@ ERROR_MESSAGE = 'Typo in static class property declaration'
 ERROR_MESSAGE_LIFECYCLE_METHOD =
   'Typo in component lifecycle method declaration'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'no-typos', rule,
   valid: [
     code: """

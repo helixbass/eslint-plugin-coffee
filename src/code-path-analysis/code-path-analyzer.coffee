@@ -258,6 +258,10 @@ preprocess = ({codePath}, node) ->
         state.forkBypassPath()
         state.forkPath()
 
+getLabel = (node) ->
+  return node.parent.label.name if node.parent.type is 'LabeledStatement'
+  null
+
 ###*
 # Updates the code path due to the type of a given node in entering.
 #
@@ -299,7 +303,7 @@ processCodePathToEnter = (analyzer, node) ->
     when 'SwitchStatement'
       state.pushSwitchContext(
         node.cases.some isCaseNode
-        astUtils.getLabel node
+        getLabel node
       )
 
     when 'TryStatement'
@@ -315,7 +319,7 @@ processCodePathToEnter = (analyzer, node) ->
         state.forkPath()
 
     when 'WhileStatement', 'DoWhileStatement', 'ForStatement', 'ForInStatement', 'ForOfStatement', 'For'
-      state.pushLoopContext node.type, astUtils.getLabel node
+      state.pushLoopContext node.type, getLabel node
 
     when 'LabeledStatement'
       unless astUtils.isBreakableStatement node.body

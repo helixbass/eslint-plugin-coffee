@@ -10,12 +10,13 @@
 
 rule = require 'eslint/lib/rules/prefer-promise-reject-errors'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'prefer-promise-reject-errors', rule,
   valid: [

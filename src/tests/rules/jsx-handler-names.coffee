@@ -10,12 +10,13 @@
 
 rule = require '../../rules/jsx-handler-names'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # ------------------------------------------------------------------------------
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'jsx-handler-names', rule,
   valid: [
     code: '<TestComponent onChange={this.handleChange} />'

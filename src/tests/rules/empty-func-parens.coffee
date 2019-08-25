@@ -10,8 +10,9 @@
 
 rule = require '../../rules/empty-func-parens'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 USE_PARENS = message: 'Use empty parentheses for function parameter list'
 DONT_USE_PARENS =

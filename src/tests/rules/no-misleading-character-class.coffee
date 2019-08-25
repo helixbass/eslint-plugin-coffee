@@ -10,12 +10,13 @@
 
 rule = require 'eslint/lib/rules/no-misleading-character-class'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Helpers
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ###
 # /[👍]/ // ERROR: a surrogate pair in a character class without u flag.

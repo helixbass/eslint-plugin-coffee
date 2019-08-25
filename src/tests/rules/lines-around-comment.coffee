@@ -10,6 +10,7 @@
 
 rule = require '../../rules/lines-around-comment'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 afterMessage = 'Expected line after comment.'
 beforeMessage = 'Expected line before comment.'
@@ -18,7 +19,7 @@ beforeMessage = 'Expected line before comment.'
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'lines-around-comment', rule,
   valid: [

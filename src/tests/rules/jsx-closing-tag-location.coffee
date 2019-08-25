@@ -10,6 +10,7 @@
 
 rule = require 'eslint-plugin-react/lib/rules/jsx-closing-tag-location'
 {RuleTester} = require 'eslint'
+path = require 'path'
 MESSAGE_MATCH_INDENTATION = [
   message: 'Expected closing tag to match indentation of opening.'
 ]
@@ -21,7 +22,7 @@ MESSAGE_OWN_LINE = [
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'jsx-closing-tag-location', rule,
   valid: [
     code: """

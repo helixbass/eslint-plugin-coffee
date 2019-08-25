@@ -9,6 +9,7 @@
 
 rule = require 'eslint-plugin-react/lib/rules/forbid-dom-props'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 parserOptions =
   ecmaVersion: 2018
@@ -24,7 +25,7 @@ require 'babel-eslint'
 
 ID_ERROR_MESSAGE = 'Prop `id` is forbidden on DOM Nodes'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'forbid-element-props', rule,
   valid: [
     code: '''

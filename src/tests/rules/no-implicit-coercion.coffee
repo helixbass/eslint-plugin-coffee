@@ -11,12 +11,13 @@
 
 rule = require '../../rules/no-implicit-coercion'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ### eslint-disable coffee/no-template-curly-in-string ###
 ruleTester.run 'no-implicit-coercion', rule,

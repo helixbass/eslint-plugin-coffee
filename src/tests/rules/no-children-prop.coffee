@@ -11,6 +11,7 @@
 
 rule = require 'eslint-plugin-react/lib/rules/no-children-prop'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 JSX_ERROR =
   'Do not pass children as props. Instead, nest children between the opening and closing tags.'
@@ -21,7 +22,7 @@ CREATE_ELEMENT_ERROR =
 # Tests
 # -----------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'no-children-prop', rule,
   valid: [
     code: '<div />'

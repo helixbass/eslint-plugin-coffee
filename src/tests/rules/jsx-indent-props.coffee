@@ -10,12 +10,13 @@
 
 rule = require 'eslint-plugin-react/lib/rules/jsx-indent-props'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # ------------------------------------------------------------------------------
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'jsx-indent-props', rule,
   valid: [
     code: ['<App foo', '/>'].join('\n')

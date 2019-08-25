@@ -10,12 +10,13 @@
 
 rule = require '../../rules/no-multiple-empty-lines'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ###*
 # Creates the expected error message object for the specified number of lines

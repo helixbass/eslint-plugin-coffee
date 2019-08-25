@@ -11,12 +11,13 @@
 
 rule = require '../../rules/operator-assignment'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 EXPECTED_OPERATOR_ASSIGNMENT = [
   message: 'Assignment can be replaced with operator assignment.'

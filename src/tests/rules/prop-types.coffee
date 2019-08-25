@@ -10,6 +10,7 @@
 
 rule = require '../../rules/prop-types'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 settings =
   react:
@@ -19,7 +20,7 @@ settings =
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'prop-types', rule,
   valid: [
     code: [

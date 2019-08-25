@@ -10,12 +10,13 @@
 
 rule = require '../../rules/no-render-return-value'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # ------------------------------------------------------------------------------
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'no-render-return-value', rule,
   valid: [
     code: 'ReactDOM.render(<div />, document.body)'

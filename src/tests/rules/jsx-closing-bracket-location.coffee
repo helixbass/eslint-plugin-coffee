@@ -10,6 +10,7 @@
 
 rule = require '../../rules/jsx-closing-bracket-location'
 {RuleTester} = require 'eslint'
+path = require 'path'
 MESSAGE_AFTER_PROPS = [
   message: 'The closing bracket must be placed after the last prop'
 ]
@@ -32,7 +33,7 @@ messageWithDetails = (message, expectedColumn, expectedNextLine) ->
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'jsx-closing-bracket-location', rule,
   valid: [
     code: ['<App />'].join('\n')

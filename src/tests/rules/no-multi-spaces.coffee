@@ -10,12 +10,13 @@
 
 rule = require '../../rules/no-multi-spaces'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-multi-spaces', rule,
   valid: [

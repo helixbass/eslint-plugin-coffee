@@ -12,12 +12,13 @@
 eslint = require 'eslint'
 rule = require 'eslint-plugin-react/lib/rules/jsx-no-undef'
 {RuleTester} = eslint
+path = require 'path'
 
 # -----------------------------------------------------------------------------
 # Tests
 # -----------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 linter = ruleTester.linter or eslint.linter
 linter.defineRule 'no-undef', require 'eslint/lib/rules/no-undef'
 ruleTester.run 'jsx-no-undef', rule,

@@ -10,12 +10,13 @@
 
 rule = require '../../rules/no-template-curly-in-string'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 message = 'Unexpected template string expression.'
 

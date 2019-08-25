@@ -10,6 +10,7 @@
 
 rule = require '../../rules/multiline-comment-style'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
@@ -26,7 +27,7 @@ ALIGNMENT_ERROR =
 EXPECTED_LINES_ERROR =
   'Expected multiple line comments instead of a block comment.'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'multiline-comment-style', rule,
   valid: [

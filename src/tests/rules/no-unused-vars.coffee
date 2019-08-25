@@ -11,12 +11,13 @@
 
 rule = require '../../rules/no-unused-vars'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.defineRule 'use-every-a', (context) ->
   ###*

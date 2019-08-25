@@ -11,12 +11,13 @@
 
 rule = require 'eslint/lib/rules/accessor-pairs'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Helpers
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 getterError = messageId: 'getter'
 # setterError = messageId: 'setter'

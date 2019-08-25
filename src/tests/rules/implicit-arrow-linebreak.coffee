@@ -10,6 +10,7 @@
 
 rule = require '../../rules/implicit-arrow-linebreak'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 EXPECTED_LINEBREAK = message: 'Expected a linebreak before this expression.'
 UNEXPECTED_LINEBREAK = message: 'Expected no linebreak before this expression.'
@@ -18,7 +19,7 @@ UNEXPECTED_LINEBREAK = message: 'Expected no linebreak before this expression.'
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'implicit-arrow-linebreak', rule,
   valid: [

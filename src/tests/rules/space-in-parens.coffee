@@ -10,6 +10,7 @@
 
 rule = require 'eslint/lib/rules/space-in-parens'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 MISSING_SPACE_ERROR = 'There must be a space inside this paren.'
 REJECTED_SPACE_ERROR = 'There should be no spaces inside this paren.'
@@ -18,7 +19,7 @@ REJECTED_SPACE_ERROR = 'There should be no spaces inside this paren.'
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ### eslint-disable coffee/no-template-curly-in-string ###
 ruleTester.run 'space-in-parens', rule,

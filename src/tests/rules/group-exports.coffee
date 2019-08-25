@@ -1,6 +1,7 @@
 # import {test} from '../utils'
 {RuleTester} = require 'eslint'
 rule = require 'eslint-plugin-import/lib/rules/group-exports'
+path = require 'path'
 
 ### eslint-disable max-len ###
 errors =
@@ -10,7 +11,7 @@ errors =
     'Multiple CommonJS exports; consolidate all exports into a single assignment to `module.exports`'
 test = (x) -> x
 ### eslint-enable max-len ###
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'group-exports', rule,
   valid: [

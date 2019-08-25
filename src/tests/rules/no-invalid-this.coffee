@@ -11,6 +11,7 @@
 
 rule = require '../../rules/no-invalid-this'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Helpers
@@ -26,7 +27,7 @@ errors = [
   message: "Unexpected 'this'.", type: 'ThisExpression'
 ]
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-invalid-this', rule,
   valid: [

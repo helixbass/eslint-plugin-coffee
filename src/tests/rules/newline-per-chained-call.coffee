@@ -11,8 +11,9 @@
 
 rule = require '../../rules/newline-per-chained-call'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'newline-per-chained-call', rule,
   valid: [

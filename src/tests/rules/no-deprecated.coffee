@@ -12,6 +12,7 @@
 
 rule = require '../../rules/no-deprecated'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 errorMessage = (oldMethod, version, newMethod, refs) ->
   newMethod = if newMethod then ", use #{newMethod} instead" else ''
@@ -22,7 +23,7 @@ errorMessage = (oldMethod, version, newMethod, refs) ->
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'no-deprecated', rule,
   valid: [
     # Not deprecated

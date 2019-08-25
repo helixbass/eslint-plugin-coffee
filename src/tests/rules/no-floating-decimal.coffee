@@ -11,12 +11,13 @@
 
 rule = require 'eslint/lib/rules/no-floating-decimal'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-floating-decimal', rule,
   valid: ['x = 2.5', 'x = "2.5"']

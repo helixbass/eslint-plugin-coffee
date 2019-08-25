@@ -11,12 +11,13 @@
 
 rule = require 'eslint/lib/rules/no-new-symbol'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..', env: es6: yes
+ruleTester = new RuleTester parser: path.join(__dirname, '../../..'), env: es6: yes
 
 ruleTester.run 'no-new-symbol', rule,
   valid: [

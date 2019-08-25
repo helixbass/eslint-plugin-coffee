@@ -9,6 +9,7 @@
 
 rule = require '../../rules/forbid-prop-types'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # -----------------------------------------------------------------------------
 # Tests
@@ -19,7 +20,7 @@ ARRAY_ERROR_MESSAGE = 'Prop type `array` is forbidden'
 NUMBER_ERROR_MESSAGE = 'Prop type `number` is forbidden'
 OBJECT_ERROR_MESSAGE = 'Prop type `object` is forbidden'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'forbid-prop-types', rule,
   valid: [
     code: '''

@@ -15,7 +15,7 @@ astUtils = require '../eslint-ast-utils'
 #------------------------------------------------------------------------------
 
 validIdentifier = /^[a-zA-Z_$][a-zA-Z0-9_$]*$/
-keywords = require 'eslint/lib/util/keywords'
+keywords = require '../eslint-keywords'
 
 module.exports =
   meta:

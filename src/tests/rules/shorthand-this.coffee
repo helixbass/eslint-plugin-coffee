@@ -11,6 +11,7 @@
 
 rule = require '../../rules/shorthand-this'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 NO_SHORTHAND = "Use 'this' instead of '@'"
 USE_SHORTHAND = "Use '@' instead of 'this'"
@@ -20,7 +21,7 @@ NO_STANDALONE = "Use 'this' instead of standalone '@'"
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'shorthand-this', rule,
   valid: [

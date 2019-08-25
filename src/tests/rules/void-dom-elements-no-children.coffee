@@ -11,6 +11,7 @@
 
 rule = require 'eslint-plugin-react/lib/rules/void-dom-elements-no-children'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 errorMessage = (elementName) ->
   "Void DOM element <#{elementName} /> cannot receive children."
@@ -19,7 +20,7 @@ errorMessage = (elementName) ->
 # Tests
 # -----------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'void-dom-elements-no-children', rule,
   valid: [
     code: '<div>Foo</div>'

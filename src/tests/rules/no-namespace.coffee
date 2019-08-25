@@ -1,8 +1,9 @@
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 ERROR_MESSAGE = 'Unexpected namespace import.'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 rule = require 'eslint-plugin-import/lib/rules/no-namespace'
 
 ruleTester.run 'no-namespace', rule,

@@ -11,6 +11,7 @@
 # path = require 'path'
 rule = require '../../rules/array-bracket-spacing'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Helpers
@@ -32,7 +33,7 @@ rule = require '../../rules/array-bracket-spacing'
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'array-bracket-spacing', rule,
   valid: [

@@ -10,6 +10,7 @@
 
 rule = require '../../rules/function-paren-newline'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
@@ -20,7 +21,7 @@ LEFT_UNEXPECTED_ERROR = messageId: 'unexpectedAfter', type: 'Punctuator'
 RIGHT_MISSING_ERROR = messageId: 'expectedBefore', type: 'Punctuator'
 RIGHT_UNEXPECTED_ERROR = messageId: 'unexpectedBefore', type: 'Punctuator'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'function-paren-newline', rule,
   valid: [

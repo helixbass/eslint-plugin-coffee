@@ -12,6 +12,7 @@
 
 rule = require 'eslint/lib/rules/no-extra-parens'
 {RuleTester} = require 'eslint'
+path = require 'path'
 ###
 
 ###*
@@ -42,7 +43,7 @@ invalid = (code, output, type, line, config) ->
   result.errors[0].line = line if line
   result
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-extra-parens', rule,
   valid: [

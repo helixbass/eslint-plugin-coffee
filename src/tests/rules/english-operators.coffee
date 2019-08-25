@@ -10,6 +10,7 @@
 
 rule = require '../../rules/english-operators'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 error = (op, {args} = {}) ->
   {
@@ -28,7 +29,7 @@ error = (op, {args} = {}) ->
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'english-operators', rule,
   valid: [

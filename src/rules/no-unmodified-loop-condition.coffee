@@ -9,7 +9,11 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-Traverser = require 'eslint/lib/util/traverser'
+Traverser =
+  try
+    require 'eslint/lib/util/traverser'
+  catch
+    require 'eslint/lib/shared/traverser'
 astUtils = require '../eslint-ast-utils'
 
 #------------------------------------------------------------------------------

@@ -10,12 +10,13 @@
 
 rule = require 'eslint-plugin-react/lib/rules/jsx-equals-spacing'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # ------------------------------------------------------------------------------
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'jsx-equals-spacing', rule,
   valid: [
     code: '<App />'

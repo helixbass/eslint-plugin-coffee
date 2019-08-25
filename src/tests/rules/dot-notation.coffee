@@ -11,12 +11,13 @@
 
 rule = require '../../rules/dot-notation'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Helpers
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ###*
 # Quote a string in "double quotes" because it’s painful

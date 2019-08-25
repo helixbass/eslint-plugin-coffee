@@ -9,12 +9,13 @@
 #------------------------------------------------------------------------------
 rule = require '../../rules/max-lines-per-function'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'max-lines-per-function', rule,
   valid: [

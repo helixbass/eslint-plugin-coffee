@@ -9,6 +9,7 @@
 
 rule = require '../../rules/sort-prop-types'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # -----------------------------------------------------------------------------
 # Tests
@@ -20,7 +21,7 @@ REQUIRED_ERROR_MESSAGE =
 CALLBACK_ERROR_MESSAGE =
   'Callback prop types must be listed after all other prop types'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'sort-prop-types', rule,
   valid: [
     code: [

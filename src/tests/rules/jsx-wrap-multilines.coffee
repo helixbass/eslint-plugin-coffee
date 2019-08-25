@@ -10,6 +10,7 @@
 
 rule = require '../../rules/jsx-wrap-multilines'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # ------------------------------------------------------------------------------
 # Constants/Code Snippets
@@ -271,7 +272,7 @@ ATTR_PAREN_NEW_LINE = """
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'jsx-wrap-multilines', rule,
   valid: [
     code: RETURN_SINGLE_LINE

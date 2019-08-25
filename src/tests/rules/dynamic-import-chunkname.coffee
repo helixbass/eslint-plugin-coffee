@@ -1,8 +1,9 @@
 # import {SYNTAX_CASES} from '../utils'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 rule = require '../../rules/dynamic-import-chunkname'
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 commentFormat = '[0-9a-zA-Z-_/.]+'
 pickyCommentFormat = '[a-zA-Z-_/.]+'

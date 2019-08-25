@@ -11,12 +11,13 @@
 
 rule = require 'eslint/lib/rules/sort-imports'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 expectedError =
   message: 'Imports should be sorted alphabetically.'
   type: 'ImportDeclaration'

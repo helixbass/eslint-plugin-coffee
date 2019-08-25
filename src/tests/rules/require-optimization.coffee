@@ -6,11 +6,12 @@
 
 rule = require 'eslint-plugin-react/lib/rules/require-optimization'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 MESSAGE =
   'Component is not optimized. Please add a shouldComponentUpdate method.'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'react-require-optimization', rule,
   valid: [
     code: """

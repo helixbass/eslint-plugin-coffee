@@ -10,12 +10,13 @@
 
 rule = require '../../rules/no-extra-bind'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 errors = [messageId: 'unexpected', type: 'CallExpression']
 
 ruleTester.run 'no-extra-bind', rule,

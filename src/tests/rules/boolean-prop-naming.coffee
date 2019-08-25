@@ -10,6 +10,7 @@
 
 rule = require '../../rules/boolean-prop-naming'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # require 'babel-eslint'
 
@@ -17,7 +18,7 @@ rule = require '../../rules/boolean-prop-naming'
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'boolean-prop-naming', rule,
   valid: [
     # Should support both `is` and `has` prefixes by default

@@ -2,8 +2,9 @@
 
 rule = require 'eslint-plugin-react/lib/rules/jsx-child-element-spacing'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'jsx-child-element-spacing', rule,
   valid: [
     code: """

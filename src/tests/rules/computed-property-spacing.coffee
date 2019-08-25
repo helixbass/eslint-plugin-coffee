@@ -10,12 +10,13 @@
 
 rule = require 'eslint/lib/rules/computed-property-spacing'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'computed-property-spacing', rule,
   valid: [

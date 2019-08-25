@@ -9,12 +9,13 @@
 
 rule = require 'eslint-plugin-react/lib/rules/forbid-elements'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # -----------------------------------------------------------------------------
 # Tests
 # -----------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'forbid-elements', rule,
   valid: [
     code: '<button />'

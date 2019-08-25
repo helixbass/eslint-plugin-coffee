@@ -11,12 +11,13 @@
 
 rule = require 'eslint/lib/rules/no-useless-constructor'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 error = message: 'Useless constructor.', type: 'MethodDefinition'
 
 ruleTester.run 'no-useless-constructor', rule,

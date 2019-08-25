@@ -10,12 +10,13 @@
 
 rule = require '../../rules/valid-typeof'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ### eslint-disable coffee/no-template-curly-in-string ###
 ruleTester.run 'valid-typeof', rule,

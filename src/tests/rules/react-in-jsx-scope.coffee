@@ -11,6 +11,7 @@
 
 rule = require 'eslint-plugin-react/lib/rules/react-in-jsx-scope'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 settings =
   react:
@@ -20,7 +21,7 @@ settings =
 # Tests
 # -----------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'react-in-jsx-scope', rule,
   valid: [
     code: '''

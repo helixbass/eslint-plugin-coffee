@@ -11,12 +11,13 @@
 
 rule = require 'eslint-plugin-react/lib/rules/jsx-no-literals'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # ------------------------------------------------------------------------------
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ### eslint-disable coffee/no-template-curly-in-string ###
 ruleTester.run 'jsx-no-literals', rule,
   valid: [

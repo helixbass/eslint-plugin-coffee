@@ -10,6 +10,7 @@
 
 rule = require 'eslint-plugin-react/lib/rules/no-unsafe'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 errorMessage = (method) ->
   "#{method} is unsafe for use in async rendering, see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html"
@@ -18,7 +19,7 @@ errorMessage = (method) ->
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'no-unsafe', rule,
   valid: [
     code: """

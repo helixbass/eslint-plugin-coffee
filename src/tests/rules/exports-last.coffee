@@ -1,7 +1,8 @@
 {RuleTester} = require 'eslint'
 rule = require 'eslint-plugin-import/lib/rules/exports-last'
+path = require 'path'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 test = (x) -> x
 error = (type) ->

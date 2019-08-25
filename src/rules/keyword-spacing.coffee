@@ -10,7 +10,7 @@
 #------------------------------------------------------------------------------
 
 astUtils = require '../eslint-ast-utils'
-keywords = require 'eslint/lib/util/keywords'
+keywords = require '../eslint-keywords'
 
 #------------------------------------------------------------------------------
 # Constants

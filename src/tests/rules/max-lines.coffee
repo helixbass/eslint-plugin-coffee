@@ -10,12 +10,13 @@
 
 rule = require 'eslint/lib/rules/max-lines'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ###*
 # Returns the error message with the specified max number of lines

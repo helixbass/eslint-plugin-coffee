@@ -11,12 +11,13 @@
 
 rule = require '../../rules/no-extra-boolean-cast'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Helpers
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-extra-boolean-cast', rule,
   valid: [

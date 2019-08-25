@@ -11,12 +11,13 @@
 
 rule = require 'eslint/lib/rules/no-implied-eval'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 expectedErrorMessage =
   'Implied eval. Consider passing a function instead of a string.'
 expectedError = message: expectedErrorMessage, type: 'CallExpression'

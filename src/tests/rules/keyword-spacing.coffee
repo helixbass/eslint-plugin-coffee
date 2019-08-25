@@ -12,6 +12,7 @@
 # parser = require '../../fixtures/fixture-parser'
 rule = require '../../rules/keyword-spacing'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Helpers
@@ -109,7 +110,7 @@ unexpectedBeforeAndAfter = (keyword) -> [
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ### eslint-disable coffee/no-template-curly-in-string ###
 ruleTester.run 'keyword-spacing', rule,

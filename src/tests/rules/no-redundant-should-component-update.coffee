@@ -10,6 +10,7 @@
 
 rule = require '../../rules/no-redundant-should-component-update'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 errorMessage = (node) ->
   "#{node} does not need shouldComponentUpdate when extending React.PureComponent."
@@ -18,7 +19,7 @@ errorMessage = (node) ->
 # Tests
 # -----------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'no-redundant-should-component-update', rule,
   valid: [
     code: """

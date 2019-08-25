@@ -11,12 +11,13 @@
 
 rule = require 'eslint-plugin-react/lib/rules/jsx-curly-spacing'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # ------------------------------------------------------------------------------
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'jsx-curly-spacing', rule,
   valid: [
     code: '<App foo={bar} />'

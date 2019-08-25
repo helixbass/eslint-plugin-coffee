@@ -10,12 +10,13 @@
 
 rule = require 'eslint-plugin-react/lib/rules/prefer-es6-class'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # ------------------------------------------------------------------------------
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'prefer-es6-class', rule,
   valid: [
     code: """

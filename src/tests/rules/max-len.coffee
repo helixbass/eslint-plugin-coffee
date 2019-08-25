@@ -10,12 +10,13 @@
 #------------------------------------------------------------------------------
 rule = require '../../rules/max-len'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'max-len', rule,
   valid: [

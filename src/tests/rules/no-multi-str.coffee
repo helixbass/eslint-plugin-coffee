@@ -11,12 +11,13 @@
 
 rule = require 'eslint/lib/rules/no-multi-str'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-multi-str', rule,
   valid: ["a = 'Line 1 Line 2'", 'a = <div>\n<h1>Wat</h1>\n</div>']

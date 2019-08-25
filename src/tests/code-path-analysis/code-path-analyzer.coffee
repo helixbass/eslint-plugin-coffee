@@ -12,7 +12,10 @@
 assert = require 'assert'
 fs = require 'fs'
 path = require 'path'
-Linter = require 'eslint/lib/linter'
+Linter = do ->
+  linterModule = require 'eslint/lib/linter'
+  linterModule.Linter ? linterModule
+
 EventGeneratorTester = require(
   '../../tools/internal-testers/event-generator-tester'
 )

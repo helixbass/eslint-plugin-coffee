@@ -6,8 +6,9 @@
 
 rule = require '../../rules/no-unused-state'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
-eslintTester = new RuleTester parser: '../../..'
+eslintTester = new RuleTester parser: path.join __dirname, '../../..'
 
 getErrorMessages = (unusedFields) ->
   unusedFields.map (field) ->

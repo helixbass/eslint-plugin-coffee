@@ -1,4 +1,5 @@
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 IMPORT_ERROR_MESSAGE =
   'Expected 1 empty line after import statement not followed by another import.'
@@ -7,7 +8,7 @@ IMPORT_ERROR_MESSAGE_MULTIPLE = (count) ->
 REQUIRE_ERROR_MESSAGE =
   'Expected 1 empty line after require statement not followed by another require.'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 rule = require 'eslint-plugin-import/lib/rules/newline-after-import'
 ruleTester.run 'newline-after-import', rule,
   valid: [

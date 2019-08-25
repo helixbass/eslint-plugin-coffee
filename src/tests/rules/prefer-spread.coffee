@@ -11,6 +11,7 @@
 
 rule = require 'eslint/lib/rules/prefer-spread'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
@@ -21,7 +22,7 @@ errors = [
   type: 'CallExpression'
 ]
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'prefer-spread', rule,
   valid: [

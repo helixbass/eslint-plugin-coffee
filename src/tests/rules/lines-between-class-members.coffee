@@ -11,6 +11,7 @@
 
 rule = require '../../rules/lines-between-class-members'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Helpers
@@ -23,7 +24,7 @@ NEVER_MESSAGE = 'Unexpected blank line between class members.'
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'lines-between-class-members', rule,
   valid: [

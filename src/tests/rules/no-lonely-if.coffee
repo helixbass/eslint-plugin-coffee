@@ -10,12 +10,13 @@
 
 rule = require '../../rules/no-lonely-if'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 errors = [
   message: 'Unexpected if as the only statement in an else block.'
   type: 'IfStatement'

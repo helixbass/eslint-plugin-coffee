@@ -10,6 +10,7 @@
 
 rule = require '../../rules/no-return-await'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
@@ -20,7 +21,7 @@ errors = [
   message: 'Redundant use of `await` on a return value.', type: 'Identifier'
 ]
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-return-await', rule,
   valid: [

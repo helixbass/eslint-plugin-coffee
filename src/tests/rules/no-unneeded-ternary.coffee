@@ -11,12 +11,13 @@
 
 rule = require '../../rules/no-unneeded-ternary'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-unneeded-ternary', rule,
   valid: [

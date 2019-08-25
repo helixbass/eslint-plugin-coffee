@@ -11,11 +11,12 @@
 
 rule = require 'eslint/lib/rules/global-require'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 valid = [
   "x = require('y')"

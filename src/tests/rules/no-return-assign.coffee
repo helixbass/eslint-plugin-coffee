@@ -11,6 +11,7 @@
 
 rule = require '../../rules/no-return-assign'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
@@ -23,7 +24,7 @@ implicitError =
   message: 'Implicit return statement should not contain assignment.'
   type: 'AssignmentExpression'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-return-assign', rule,
   valid: [

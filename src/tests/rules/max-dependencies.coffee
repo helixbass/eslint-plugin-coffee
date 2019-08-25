@@ -1,8 +1,9 @@
 # import {test} from '../utils'
 
 {RuleTester} = require 'eslint'
+path = require 'path'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 rule = require 'eslint-plugin-import/lib/rules/max-dependencies'
 
 test = (x) -> x

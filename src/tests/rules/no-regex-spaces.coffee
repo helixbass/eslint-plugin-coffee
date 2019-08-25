@@ -11,8 +11,9 @@
 
 rule = require '../../rules/no-regex-spaces'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-regex-spaces', rule,
   valid: [

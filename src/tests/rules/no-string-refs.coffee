@@ -10,12 +10,13 @@
 
 rule = require 'eslint-plugin-react/lib/rules/no-string-refs'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # ------------------------------------------------------------------------------
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'no-refs', rule,
   valid: [
     code: """

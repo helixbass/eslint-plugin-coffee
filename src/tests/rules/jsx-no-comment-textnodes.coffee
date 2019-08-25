@@ -10,12 +10,13 @@
 
 rule = require '../../rules/jsx-no-comment-textnodes'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # ------------------------------------------------------------------------------
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'jsx-no-comment-textnodes', rule,
   valid: [
     code: """

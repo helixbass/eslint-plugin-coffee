@@ -11,13 +11,14 @@
 
 eslint = require 'eslint'
 ruleNoUnusedVars = require '../../rules/no-unused-vars'
+path = require 'path'
 {RuleTester} = eslint
 
 # -----------------------------------------------------------------------------
 # Tests
 # -----------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 linter = ruleTester.linter ? eslint.linter
 linter.defineRule(
   'jsx-uses-vars'

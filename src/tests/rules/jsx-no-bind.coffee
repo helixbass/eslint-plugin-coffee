@@ -11,12 +11,13 @@
 
 rule = require '../../rules/jsx-no-bind'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # -----------------------------------------------------------------------------
 # Tests
 # -----------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'jsx-no-bind', rule,
   valid: [
     # Not covered by the rule

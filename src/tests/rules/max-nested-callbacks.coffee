@@ -11,6 +11,7 @@
 
 rule = require 'eslint/lib/rules/max-nested-callbacks'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 OPENING = 'foo(-> '
 CLOSING = ')'
@@ -35,7 +36,7 @@ nestFunctions = (times) ->
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'max-nested-callbacks', rule,
   valid: [

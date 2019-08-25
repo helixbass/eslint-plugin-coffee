@@ -11,6 +11,7 @@
 
 rule = require '../../rules/no-empty-function'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Helpers
@@ -63,7 +64,7 @@ toValidInvalid = (patterns, item) ->
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run(
   'no-empty-function'

@@ -10,12 +10,13 @@
 
 rule = require 'eslint/lib/rules/line-comment-position'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'line-comment-position', rule,
   valid: [

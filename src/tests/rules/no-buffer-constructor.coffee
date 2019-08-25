@@ -10,6 +10,7 @@
 
 rule = require 'eslint/lib/rules/no-buffer-constructor'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
@@ -26,7 +27,7 @@ CONSTRUCT_ERROR =
     expr: 'new Buffer()'
   type: 'NewExpression'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-buffer-constructor', rule,
   valid: [

@@ -11,6 +11,7 @@
 
 rule = require '../../rules/complexity'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Helpers
@@ -42,7 +43,7 @@ makeError = (name, complexity) ->
   messageId: 'complex'
   data: {name, complexity}
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'complexity', rule,
   valid: [

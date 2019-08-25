@@ -11,12 +11,13 @@
 
 rule = require 'eslint/lib/rules/no-script-url'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-script-url', rule,
   valid: ["a = 'Hello World!'", 'a = 10', "url = 'xjavascript:'"]

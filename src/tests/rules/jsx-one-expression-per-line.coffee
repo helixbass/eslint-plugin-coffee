@@ -11,12 +11,13 @@
 
 rule = require '../../rules/jsx-one-expression-per-line'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # ------------------------------------------------------------------------------
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'jsx-one-expression-per-line', rule,
   valid: [
     code: '<App />'

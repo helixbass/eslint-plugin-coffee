@@ -10,6 +10,7 @@
 
 rule = require '../../rules/no-unused-prop-types'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 settings =
   react:
@@ -19,7 +20,7 @@ settings =
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'no-unused-prop-types', rule,
   valid: [
     code: '''

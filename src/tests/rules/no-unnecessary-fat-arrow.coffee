@@ -10,6 +10,7 @@
 
 rule = require '../../rules/no-unnecessary-fat-arrow'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 error = type: 'FunctionExpression'
 
@@ -17,7 +18,7 @@ error = type: 'FunctionExpression'
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-unnecessary-fat-arrow', rule,
   valid: [

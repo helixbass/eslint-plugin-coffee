@@ -11,12 +11,13 @@
 
 rule = require '../../rules/no-div-regex'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-div-regex', rule,
   valid: ["f = -> /foo/ig.test('bar')", 'f = -> /\\=foo/', 'f = -> ///=foo///']

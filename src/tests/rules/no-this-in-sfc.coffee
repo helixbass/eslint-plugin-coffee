@@ -15,8 +15,9 @@ ERROR_MESSAGE = 'Stateless functional components should not use this'
 
 rule = require '../../rules/no-this-in-sfc'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'no-this-in-sfc', rule,
   valid: [
     code: """

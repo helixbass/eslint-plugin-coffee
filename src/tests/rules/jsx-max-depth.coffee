@@ -10,12 +10,13 @@
 
 rule = require 'eslint-plugin-react/lib/rules/jsx-max-depth'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # ------------------------------------------------------------------------------
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'jsx-max-depth', rule,
   valid: [
     code: ['<App />'].join('\n')

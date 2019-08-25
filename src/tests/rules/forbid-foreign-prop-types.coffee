@@ -9,6 +9,7 @@
 
 rule = require 'eslint-plugin-react/lib/rules/forbid-foreign-prop-types'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # -----------------------------------------------------------------------------
 # Tests
@@ -17,7 +18,7 @@ rule = require 'eslint-plugin-react/lib/rules/forbid-foreign-prop-types'
 ERROR_MESSAGE =
   'Using propTypes from another component is not safe because they may be removed in production builds'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'forbid-foreign-prop-types', rule,
   valid: [
     code: 'import { propTypes } from "SomeComponent"'

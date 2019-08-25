@@ -11,6 +11,7 @@
 
 rule = require 'eslint/lib/rules/no-multi-assign'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Fixtures
@@ -36,7 +37,7 @@ errorAt = (line, column, type) ->
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-multi-assign', rule,
   valid: [

@@ -11,6 +11,7 @@
 
 rule = require '../../rules/prefer-template'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
@@ -21,7 +22,7 @@ errors = [
   type: 'BinaryExpression'
 ]
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ### eslint-disable coffee/no-template-curly-in-string ###
 ruleTester.run 'prefer-template', rule,

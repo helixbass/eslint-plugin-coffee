@@ -11,6 +11,7 @@
 
 rule = require '../../rules/object-shorthand'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
@@ -25,7 +26,7 @@ MIXED_SHORTHAND_ERROR =
   message: 'Unexpected mix of shorthand and non-shorthand properties.'
   type: 'ObjectExpression'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'object-shorthand', rule,
   valid: [
