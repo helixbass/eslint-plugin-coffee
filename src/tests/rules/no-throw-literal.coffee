@@ -60,25 +60,25 @@ ruleTester.run 'no-throw-literal', rule,
   invalid: [
     code: "throw 'error'"
     errors: [
-      message: 'Expected an object to be thrown.'
+      message: 'Expected an error object to be thrown.'
       type: 'ThrowStatement'
     ]
   ,
     code: 'throw 0'
     errors: [
-      message: 'Expected an object to be thrown.'
+      message: 'Expected an error object to be thrown.'
       type: 'ThrowStatement'
     ]
   ,
     code: 'throw false'
     errors: [
-      message: 'Expected an object to be thrown.'
+      message: 'Expected an error object to be thrown.'
       type: 'ThrowStatement'
     ]
   ,
     code: 'throw null'
     errors: [
-      message: 'Expected an object to be thrown.'
+      message: 'Expected an error object to be thrown.'
       type: 'ThrowStatement'
     ]
   ,
@@ -91,7 +91,7 @@ ruleTester.run 'no-throw-literal', rule,
     # String concatenation
     code: "throw 'a' + 'b'"
     errors: [
-      message: 'Expected an object to be thrown.'
+      message: 'Expected an error object to be thrown.'
       type: 'ThrowStatement'
     ]
   ,
@@ -100,42 +100,42 @@ ruleTester.run 'no-throw-literal', rule,
       throw 'a' + b
     """
     errors: [
-      message: 'Expected an object to be thrown.'
+      message: 'Expected an error object to be thrown.'
       type: 'ThrowStatement'
     ]
   ,
     # AssignmentExpression
     code: "throw foo = 'error'"
     errors: [
-      message: 'Expected an object to be thrown.'
+      message: 'Expected an error object to be thrown.'
       type: 'ThrowStatement'
     ]
   ,
     # SequenceExpression
     code: 'throw (new Error(); 1; 2; 3)'
     errors: [
-      message: 'Expected an object to be thrown.'
+      message: 'Expected an error object to be thrown.'
       type: 'ThrowStatement'
     ]
   ,
     # LogicalExpression
     code: "throw 'literal' and 'not an Error'"
     errors: [
-      message: 'Expected an object to be thrown.'
+      message: 'Expected an error object to be thrown.'
       type: 'ThrowStatement'
     ]
   ,
     # ConditionalExpression
     code: "throw if foo then 'not an Error' else 'literal'"
     errors: [
-      message: 'Expected an object to be thrown.'
+      message: 'Expected an error object to be thrown.'
       type: 'ThrowStatement'
     ]
   ,
     # TemplateLiteral
     code: 'throw "#{err}"'
     errors: [
-      message: 'Expected an object to be thrown.'
+      message: 'Expected an error object to be thrown.'
       type: 'ThrowStatement'
     ]
   ]
