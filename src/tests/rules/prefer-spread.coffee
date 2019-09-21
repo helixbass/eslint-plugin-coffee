@@ -51,25 +51,21 @@ ruleTester.run 'prefer-spread', rule,
   invalid: [
     {
       code: 'foo.apply(undefined, args)'
-      output: 'foo(...args)'
       errors
     }
   ,
     {
       code: 'foo.apply(null, args)'
-      output: 'foo(...args)'
       errors
     }
   ,
     {
       code: 'obj.foo.apply(obj, args)'
-      output: 'obj.foo(...args)'
       errors
     }
   ,
     {
       code: 'obj.foo.apply obj, args'
-      output: 'obj.foo(...args)'
       errors
     }
   ,
