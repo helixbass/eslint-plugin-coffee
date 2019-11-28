@@ -99,10 +99,10 @@ ruleTester.run 'no-restricted-syntax', rule,
         x
         y
     '''
-    options: ['FunctionExpression > BlockStatement']
+    options: ['ArrowFunctionExpression > BlockStatement']
     errors: [
       message:
-        "Using 'FunctionExpression > BlockStatement' is not allowed."
+        "Using 'ArrowFunctionExpression > BlockStatement' is not allowed."
       type: 'BlockStatement'
     ]
   ,
