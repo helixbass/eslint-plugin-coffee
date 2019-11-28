@@ -235,5 +235,5 @@ ruleTester.run 'no-loop-func', rule,
           result[letter] = score
       result.__default = 6
     '''
-    errors: [message: expectedErrorMessage, type: 'FunctionExpression']
+    errors: [message: expectedErrorMessage, type: 'ArrowFunctionExpression']
   ]
