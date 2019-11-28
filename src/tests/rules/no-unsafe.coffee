@@ -12,8 +12,8 @@ rule = require 'eslint-plugin-react/lib/rules/no-unsafe'
 {RuleTester} = require 'eslint'
 path = require 'path'
 
-errorMessage = (method) ->
-  "#{method} is unsafe for use in async rendering, see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html"
+errorMessage = (method, useInstead = 'componentDidMount') ->
+  "#{method} is unsafe for use in async rendering. Update the component to use #{useInstead} instead. See https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html."
 
 # ------------------------------------------------------------------------------
 # Tests
@@ -86,12 +86,12 @@ ruleTester.run 'no-unsafe', rule,
       column: 1
       type: 'ClassDeclaration'
     ,
-      message: errorMessage 'UNSAFE_componentWillReceiveProps'
+      message: errorMessage 'UNSAFE_componentWillReceiveProps', 'getDerivedStateFromProps'
       line: 1
       column: 1
       type: 'ClassDeclaration'
     ,
-      message: errorMessage 'UNSAFE_componentWillUpdate'
+      message: errorMessage 'UNSAFE_componentWillUpdate', 'componentDidUpdate'
       line: 1
       column: 1
       type: 'ClassDeclaration'
@@ -110,12 +110,12 @@ ruleTester.run 'no-unsafe', rule,
       column: 3
       type: 'ObjectExpression'
     ,
-      message: errorMessage 'UNSAFE_componentWillReceiveProps'
+      message: errorMessage 'UNSAFE_componentWillReceiveProps', 'getDerivedStateFromProps'
       line: 2
       column: 3
       type: 'ObjectExpression'
     ,
-      message: errorMessage 'UNSAFE_componentWillUpdate'
+      message: errorMessage 'UNSAFE_componentWillUpdate', 'componentDidUpdate'
       line: 2
       column: 3
       type: 'ObjectExpression'
