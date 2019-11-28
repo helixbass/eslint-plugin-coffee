@@ -46,6 +46,9 @@ ruleTester.run 'no-template-curly-in-string', rule,
     "'{foo}'"
     '\'{foo: "bar"}\''
     'number = 3'
+    '''
+      """Hello, \#{name}"""
+    '''
   ]
   invalid: [
     code: '''
