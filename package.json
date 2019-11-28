@@ -32,8 +32,8 @@
     "eslint-plugin-react": "^7.11.1",
     "eslint-plugin-react-native": "^3.3.0",
     "mocha": "^5.2.0",
-    "prettier": "github:helixbass/prettier#f5366a5",
-    "prettier-plugin-coffeescript": "^0.0.4"
+    "prettier": "github:helixbass/prettier#9105f5f1",
+    "prettier-plugin-coffeescript": "^0.0.9"
   },
   "peerDependencies": {
     "eslint": ">=4.14.0"
@@ -41,7 +41,7 @@
   "dependencies": {
     "babel-eslint": "^7.2.2",
     "babylon": "^7.0.0-beta.44",
-    "coffeescript": "github:helixbass/coffeescript#7d82366b",
+    "coffeescript": "github:helixbass/coffeescript#ff2b38d4",
     "doctrine": "^2.1.0",
     "eslint-scope": "~3.7.3",
     "eslint-utils": "^1.3.1",
