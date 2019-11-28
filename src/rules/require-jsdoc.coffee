@@ -75,6 +75,9 @@ module.exports =
     ArrowFunctionExpression: (node) ->
       if (
         options.ArrowFunctionExpression and
-        node.parent.type is 'VariableDeclarator'
+        (node.parent.type is 'VariableDeclarator' or
+          (node.parent.type is 'AssignmentExpression' and
+            node.parent.left.declaration) or
+          (node.parent.type is 'Property' and node is node.parent.value))
       )
         checkJsDoc node

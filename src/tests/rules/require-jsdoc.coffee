@@ -406,21 +406,21 @@ ruleTester.run 'require-jsdoc', rule,
     code: 'myFunction = () => {}'
     options: [
       require:
-        FunctionExpression: yes
+        ArrowFunctionExpression: yes
     ]
     errors: [
       message: 'Missing JSDoc comment.'
-      type: 'FunctionExpression'
+      type: 'ArrowFunctionExpression'
     ]
   ,
     code: 'myFunction = () => () => {}'
     options: [
       require:
-        FunctionExpression: yes
+        ArrowFunctionExpression: yes
     ]
     errors: [
       message: 'Missing JSDoc comment.'
-      type: 'FunctionExpression'
+      type: 'ArrowFunctionExpression'
     ]
   ,
     code: 'foo = ->'
