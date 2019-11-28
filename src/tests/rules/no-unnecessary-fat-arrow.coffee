@@ -12,7 +12,7 @@ rule = require '../../rules/no-unnecessary-fat-arrow'
 {RuleTester} = require 'eslint'
 path = require 'path'
 
-error = type: 'FunctionExpression'
+error = type: 'ArrowFunctionExpression'
 
 #------------------------------------------------------------------------------
 # Tests
@@ -34,6 +34,10 @@ ruleTester.run 'no-unnecessary-fat-arrow', rule,
     '=> @b for c in d'
     '->'
     '-> @'
+    '''
+      class A
+        b: ({@c}) =>
+    '''
   ]
 
   invalid: [
@@ -48,4 +52,10 @@ ruleTester.run 'no-unnecessary-fat-arrow', rule,
   ,
     code: '=> -> @'
     errors: [error]
+  ,
+    code: '''
+      class A
+        b: () =>
+    '''
+    errors: [type: 'FunctionExpression']
   ]
