@@ -41,7 +41,7 @@
   "dependencies": {
     "babel-eslint": "^7.2.2",
     "babylon": "^7.0.0-beta.44",
-    "coffeescript": "github:helixbass/coffeescript#ff2b38d4",
+    "coffeescript": "github:helixbass/coffeescript#9a7c503b",
     "doctrine": "^2.1.0",
     "eslint-scope": "~3.7.3",
     "eslint-utils": "^1.3.1",

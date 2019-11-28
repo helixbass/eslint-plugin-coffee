@@ -29,6 +29,10 @@ ruleTester.run 'self-closing-comp', rule,
         </Hello>
       '''
   ,
+    code: 'HelloJohn = <Hello name="John"> </Hello>'
+  ,
+    code: 'HelloJohn = <Hello name="John">        </Hello>'
+  ,
     code: 'HelloJohn = <div>&nbsp;</div>'
   ,
     code: "HelloJohn = <div>{' '}</div>"
@@ -46,6 +50,12 @@ ruleTester.run 'self-closing-comp', rule,
           <Hello name="John" />
         </Hello>
       '''
+    options: []
+  ,
+    code: 'HelloJohn = <Hello name="John"> </Hello>'
+    options: []
+  ,
+    code: 'HelloJohn = <Hello name="John">        </Hello>'
     options: []
   ,
     code: 'HelloJohn = <div>&nbsp;</div>'
@@ -99,10 +109,6 @@ ruleTester.run 'self-closing-comp', rule,
     output: 'HelloJohn = <Hello name="John" />'
     errors: [message: 'Empty components are self-closing']
   ,
-    code: 'HelloJohn = <Hello name="John"> </Hello>'
-    output: 'HelloJohn = <Hello name="John" />'
-    errors: [message: 'Empty components are self-closing']
-  ,
     code: 'HelloJohn = <Hello name="John"></Hello>'
     output: 'HelloJohn = <Hello name="John" />'
     options: []
@@ -113,22 +119,12 @@ ruleTester.run 'self-closing-comp', rule,
     options: []
     errors: [message: 'Empty components are self-closing']
   ,
-    code: 'HelloJohn = <Hello name="John"> </Hello>'
-    output: 'HelloJohn = <Hello name="John" />'
-    options: []
-    errors: [message: 'Empty components are self-closing']
-  ,
     code: 'contentContainer = <div className="content"></div>'
     output: 'contentContainer = <div className="content" />'
     options: [html: yes]
     errors: [message: 'Empty components are self-closing']
   ,
     code: 'contentContainer = <div className="content">\n</div>'
-    output: 'contentContainer = <div className="content" />'
-    options: [html: yes]
-    errors: [message: 'Empty components are self-closing']
-  ,
-    code: 'contentContainer = <div className="content"> </div>'
     output: 'contentContainer = <div className="content" />'
     options: [html: yes]
     errors: [message: 'Empty components are self-closing']
