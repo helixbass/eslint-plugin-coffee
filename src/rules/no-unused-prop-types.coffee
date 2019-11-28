@@ -495,6 +495,6 @@ module.exports =
     'Program:exit': ->
       list = components.list()
       # Report undeclared proptypes for all classes
-      for own _, component of list when mustBeValidated(component)
+      for own _, component of list when mustBeValidated component
         handleCustomValidators component
         reportUnusedPropTypes component

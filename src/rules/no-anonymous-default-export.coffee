@@ -69,7 +69,7 @@ defaults =
 module.exports =
   meta:
     docs:
-      url: docsUrl('no-anonymous-default-export')
+      url: docsUrl 'no-anonymous-default-export'
 
     schema: [
       type: 'object'

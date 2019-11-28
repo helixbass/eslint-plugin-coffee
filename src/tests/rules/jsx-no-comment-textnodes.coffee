@@ -19,7 +19,7 @@ path = require 'path'
 ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'jsx-no-comment-textnodes', rule,
   valid: [
-    code: """
+    code: '''
       class Comp1 extends Component
         render: ->
           return (
@@ -27,10 +27,10 @@ ruleTester.run 'jsx-no-comment-textnodes', rule,
               {### valid ###}
             </div>
           )
-    """
+    '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       class Comp1 extends Component
         render: ->
           (
@@ -38,34 +38,34 @@ ruleTester.run 'jsx-no-comment-textnodes', rule,
               {### valid ###}
             </>
           )
-    """
+    '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       class Comp1 extends Component
         render: ->
           return (<div>{### valid ###}</div>)
-    """
+    '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       class Comp1 extends Component
         render: ->
           bar = (<div>{### valid ###}</div>)
           return bar
-    """
+    '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       Hello = createReactClass({
         foo: (<div>{### valid ###}</div>),
         render: ->
           return this.foo
       })
-    """
+    '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       class Comp1 extends Component
         render: ->
           return (
@@ -75,42 +75,42 @@ ruleTester.run 'jsx-no-comment-textnodes', rule,
               {### valid 3 ###}
             </div>
           )
-    """
+    '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       class Comp1 extends Component
         render: ->
           return (
             <div>
             </div>
           )
-    """
+    '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       foo = require('foo')
-    """
+    '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       <Foo bar='test'>
         {### valid ###}
       </Foo>
-    """
+    '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       <strong>
         &nbsp;https://www.example.com/attachment/download/1
       </strong>
-    """
+    '''
   ,
     # parser: 'babel-eslint'
     # inside element declarations
-    code: """
+    code: '''
       <Foo ### valid ### placeholder={'foo'}/>
-    """
+    '''
   ,
     # ,
     #   # parser: 'babel-eslint'
@@ -123,9 +123,9 @@ ruleTester.run 'jsx-no-comment-textnodes', rule,
     #     <><### valid ###/>
     #   """
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       <Foo title={'foo' ### valid ###}/>
-    """
+    '''
   ,
     # parser: 'babel-eslint'
     code: '<pre>&#x2F;&#x2F; TODO: Write perfect code</pre>'
@@ -138,54 +138,54 @@ ruleTester.run 'jsx-no-comment-textnodes', rule,
     code: '<pre>&#x2F;&#42; TODO: Write perfect code &#42;&#x2F;</pre>'
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       class Comp1 extends Component
         render: ->
           return (<div>// invalid</div>)
-    """
+    '''
   ,
-    code: """
+    code: '''
       class Comp1 extends Component
         render: ->
           return (<div>/* invalid */</div>)
-    """
+    '''
   ]
 
   invalid: [
-    code: """
+    code: '''
       class Comp1 extends Component
         render: ->
           return (<div># invalid</div>)
-    """
+    '''
     # parser: 'babel-eslint'
     errors: [
       message:
         'Comments inside children section of tag should be placed inside braces'
     ]
   ,
-    code: """
+    code: '''
       class Comp1 extends Component
         render: ->
           return (<># invalid</>)
-    """
+    '''
     # parser: 'babel-eslint'
     errors: [
       message:
         'Comments inside children section of tag should be placed inside braces'
     ]
   ,
-    code: """
+    code: '''
       class Comp1 extends Component
         render: ->
           return (<div>### invalid ###</div>)
-    """
+    '''
     # parser: 'babel-eslint'
     errors: [
       message:
         'Comments inside children section of tag should be placed inside braces'
     ]
   ,
-    code: """
+    code: '''
       class Comp1 extends Component
         render: ->
           return (
@@ -193,14 +193,14 @@ ruleTester.run 'jsx-no-comment-textnodes', rule,
               # invalid
             </div>
           )
-    """
+    '''
     # parser: 'babel-eslint'
     errors: [
       message:
         'Comments inside children section of tag should be placed inside braces'
     ]
   ,
-    code: """
+    code: '''
       class Comp1 extends Component
         render: ->
           return (
@@ -210,14 +210,14 @@ ruleTester.run 'jsx-no-comment-textnodes', rule,
               foo
             </div>
           )
-    """
+    '''
     # parser: 'babel-eslint'
     errors: [
       message:
         'Comments inside children section of tag should be placed inside braces'
     ]
   ,
-    code: """
+    code: '''
       class Comp1 extends Component
         render: ->
           return (
@@ -227,7 +227,7 @@ ruleTester.run 'jsx-no-comment-textnodes', rule,
               {'foo'}
             </div>
           )
-    """
+    '''
     # parser: 'babel-eslint'
     errors: [
       message:

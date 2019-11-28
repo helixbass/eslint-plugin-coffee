@@ -134,24 +134,24 @@ ruleTester.run 'valid-jsdoc', rule,
       * @returns {void} ###
       foo = (p, cb) ->
     '''
-    """
+    '''
       ###*
       * Description
       * @override ###
       foo = (arg1, arg2) -> ''
-    """
-    """
+    '''
+    '''
       ###*
       * Description
       * @inheritdoc ###
       foo = (arg1, arg2) -> ''
-    """
-    """
+    '''
+    '''
       ###*
       * Description
       * @inheritDoc ###
       foo = (arg1, arg2) -> ''
-    """
+    '''
     '''
       ###*
       * Description

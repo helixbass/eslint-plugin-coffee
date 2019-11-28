@@ -88,11 +88,11 @@ module.exports =
         node.parent.type is 'AssignmentExpression' and
         node.parent.right.type is 'FunctionExpression'
       return unless isFunctionDeclaration or context.options[0] is 'both'
-      return unless (assignmentExpression = getAssignmentExpression node)
+      return unless assignmentExpression = getAssignmentExpression node
       if (
-        (enclosingExpressionStatement = getEnclosingExpressionStatement(
+        enclosingExpressionStatement = getEnclosingExpressionStatement(
           assignmentExpression
-        ))
+        )
       )
         body = nearestBody enclosingExpressionStatement
         valid =

@@ -45,7 +45,6 @@ ruleTester.run 'no-extra-bind', rule,
       output: 'a = (-> 1)'
       errors
     }
-  ,
     # ,
     #   {
     #     code: 'a = (-> 1).bind(b++)'
@@ -57,25 +56,21 @@ ruleTester.run 'no-extra-bind', rule,
       output: 'a = (-> 1)'
       errors
     }
-  ,
     {
       code: 'a = (() => 1).bind(b)'
       output: 'a = (() => 1)'
       errors
     }
-  ,
     {
       code: 'a = (() => @).bind(b)'
       output: 'a = (() => @)'
       errors
     }
-  ,
     {
       code: 'a = (-> -> @c).bind(b)'
       output: 'a = (-> -> @c)'
       errors
     }
-  ,
     {
       code: 'a = (-> c = -> @d).bind(b)'
       output: 'a = (-> c = -> @d)'

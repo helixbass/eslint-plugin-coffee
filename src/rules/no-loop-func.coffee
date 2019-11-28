@@ -102,8 +102,9 @@ isSafe = (loopNode, reference) ->
   # can modify the variable.
   ###
   border =
-    getTopLoopNode(loopNode, if kind is 'let' then declaration else null)
-      .range[0]
+    getTopLoopNode(loopNode, if kind is 'let' then declaration else null).range[
+      0
+    ]
 
   ###*
   # Checks whether a given reference is safe or not.

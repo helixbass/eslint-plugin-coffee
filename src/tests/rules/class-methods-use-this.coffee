@@ -41,15 +41,15 @@ ruleTester.run 'class-methods-use-this', rule,
         foo: => @
     '''
   ,
-    code: """
+    code: '''
       class A
         foo: -> this.bar = 'bar'
-    """
+    '''
   ,
-    code: """
+    code: '''
       class A
         foo: -> @bar = 'bar'
-    """
+    '''
   ,
     code: '''
       class A
@@ -161,10 +161,10 @@ ruleTester.run 'class-methods-use-this', rule,
       data: name: 'foo'
     ]
   ,
-    code: """
+    code: '''
       class A
         foo: -> that.this = 'this'
-    """
+    '''
     errors: [
       type: 'FunctionExpression'
       line: 2

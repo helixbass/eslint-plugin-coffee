@@ -21,7 +21,7 @@ ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 tests =
   valid: [
-    code: """
+    code: '''
         styles = StyleSheet.create({
             style1: {
                 color: 'red',
@@ -36,9 +36,9 @@ tests =
             }
             render: ->
                 <View style={if this.props.isDanger then styles.style1 else styles.style2} />
-      """
+      '''
   ,
-    code: """
+    code: '''
         styles = StyleSheet.create({
             style1: {
                 color: 'red',
@@ -57,9 +57,9 @@ tests =
                      this.state.isDanger && styles.style1, 
                      {color: if someBoolean then trueColor else falseColor }]} 
                    />
-      """
+      '''
   ,
-    code: """
+    code: '''
         Hello = React.createClass({
           render: ->
             exampleVar = 10
@@ -67,62 +67,62 @@ tests =
               Hello {this.props.name}
              </Text>
         })
-      """
+      '''
   ]
   invalid: [
-    code: """
+    code: '''
         Hello = React.createClass({
           render: ->
             return <Text style={{backgroundColor: '#FFFFFF', opacity: 0.5}}>
               Hello {this.props.name}
              </Text>
         })
-      """
+      '''
     errors: [
       message: "Inline style: { backgroundColor: '#FFFFFF', opacity: 0.5 }"
     ]
   ,
-    code: """
+    code: '''
         Hello = React.createClass({
           render: ->
             return <Text style={{backgroundColor: '#FFFFFF', opacity: this.state.opacity}}>
               Hello {this.props.name}
              </Text>
         })
-      """
+      '''
     errors: [message: "Inline style: { backgroundColor: '#FFFFFF' }"]
   ,
-    code: """
+    code: '''
         Hello = React.createClass({
           render: ->
             return <Text style={{opacity: this.state.opacity, height: 12}}>
               Hello {this.props.name}
              </Text>
         })
-      """
+      '''
     errors: [message: 'Inline style: { height: 12 }']
   ,
-    code: """
+    code: '''
         Hello = React.createClass({
           render: ->
             return <Text style={{marginLeft: -7, height: +12}}>
               Hello {this.props.name}
              </Text>
         })
-      """
+      '''
     errors: [message: 'Inline style: { marginLeft: -7, height: 12 }']
   ,
-    code: """
+    code: '''
         Hello = React.createClass({
           render: ->
             return <Text style={[styles.text, {backgroundColor: '#FFFFFF'}]}>
               Hello {this.props.name}
              </Text>
         })
-      """
+      '''
     errors: [message: "Inline style: { backgroundColor: '#FFFFFF' }"]
   ,
-    code: """
+    code: '''
         Hello = React.createClass({
           render: ->
             someBoolean = false 
@@ -130,10 +130,10 @@ tests =
               Hello {this.props.name}
              </Text>
         })
-      """
+      '''
     errors: [message: "Inline style: { backgroundColor: '#FFFFFF' }"]
   ,
-    code: """
+    code: '''
         styles = StyleSheet.create({
             style1: {
                 color: 'red',
@@ -152,7 +152,7 @@ tests =
                       {backgroundColor: if someBoolean then '#fff' else '#000'}
                     ]} />
                 )
-      """
+      '''
     errors: [
       message:
         "Inline style: { backgroundColor: 'if someBoolean then \\'#fff\\' else \\'#000\\'' }" #eslint-disable-line

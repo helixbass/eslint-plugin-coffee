@@ -42,12 +42,12 @@ ruleTester.run 'no-dupe-class-members', rule,
         [foo]: ->
         foo: ->
     '''
-    """
+    '''
       class A
         'foo': ->
         'bar': ->
         baz: ->
-    """
+    '''
     '''
       class A
         1: ->
@@ -81,11 +81,11 @@ ruleTester.run 'no-dupe-class-members', rule,
       data: name: 'foo'
     ]
   ,
-    code: """
+    code: '''
       class A
         'foo': ->
         'foo': ->
-    """
+    '''
     errors: [
       type: 'MethodDefinition'
       line: 3

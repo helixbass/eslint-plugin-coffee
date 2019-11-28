@@ -310,18 +310,18 @@ ruleTester.run 'comma-spacing', rule,
       type: 'Punctuator'
     ]
   ,
-    code: """
+    code: '''
       obj = {
         'foo': 'bar',
         'baz': 'qur'
       }
-    """
-    output: """
+    '''
+    output: '''
       obj = {
         'foo': 'bar' ,
         'baz': 'qur'
       }
-    """
+    '''
     options: [before: yes, after: no]
     errors: [
       messageId: 'missing'

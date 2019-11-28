@@ -95,10 +95,10 @@ ruleTester.run 'no-throw-literal', rule,
       type: 'ThrowStatement'
     ]
   ,
-    code: """
+    code: '''
       b = new Error()
       throw 'a' + b
-    """
+    '''
     errors: [
       message: 'Expected an error object to be thrown.'
       type: 'ThrowStatement'

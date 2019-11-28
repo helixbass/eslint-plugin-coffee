@@ -143,9 +143,7 @@ ruleTester.run 'no-implicit-coercion', rule,
   ,
     code: '+foo.bar'
     output: 'Number(foo.bar)'
-    errors: [
-      message: 'use `Number(foo.bar)` instead.', type: 'UnaryExpression'
-    ]
+    errors: [message: 'use `Number(foo.bar)` instead.', type: 'UnaryExpression']
   ,
     code: '1*foo'
     output: 'Number(foo)'

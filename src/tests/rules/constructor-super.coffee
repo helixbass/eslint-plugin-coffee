@@ -226,10 +226,10 @@ ruleTester.run 'constructor-super', rule,
     '''
     errors: [messageId: 'badSuper', type: 'CallExpression']
   ,
-    code: """
+    code: '''
       class A extends 'test'
         constructor: -> super()
-    """
+    '''
     errors: [messageId: 'badSuper', type: 'CallExpression']
   ,
     # derived classes.
@@ -425,12 +425,12 @@ ruleTester.run 'constructor-super', rule,
     errors: [messageId: 'missingAll', type: 'MethodDefinition']
   ,
     # https://github.com/eslint/eslint/issues/8248
-    code: """
+    code: '''
       class Foo extends Bar
         constructor: ->
           for a of b
             for c of d
               ;
-    """
+    '''
     errors: [messageId: 'missingAll', type: 'MethodDefinition']
   ]

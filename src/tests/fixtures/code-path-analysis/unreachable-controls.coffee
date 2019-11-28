@@ -10,7 +10,7 @@ initial->s1_1->final;
   return
 
   return
-  throw new Error
+  throw new Error()
   while yes
     continue
     break

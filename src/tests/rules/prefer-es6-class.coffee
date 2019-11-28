@@ -19,63 +19,63 @@ path = require 'path'
 ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'prefer-es6-class', rule,
   valid: [
-    code: """
+    code: '''
       class Hello extends React.Component
         render: ->
           return <div>Hello {this.props.name}</div>
       Hello.displayName = 'Hello'
-    """
+    '''
   ,
-    code: """
+    code: '''
       export default class Hello extends React.Component
         render: ->
           return <div>Hello {this.props.name}</div>
       Hello.displayName = 'Hello'
-    """
+    '''
   ,
-    code: """
+    code: '''
       Hello = "foo"
       module.exports = {}
-    """
+    '''
   ,
-    code: """
+    code: '''
       Hello = createReactClass
         render: ->
           <div>Hello {@props.name}</div>
-    """
+    '''
     options: ['never']
   ,
-    code: """
+    code: '''
       class Hello extends React.Component
         render: ->
           return <div>Hello {this.props.name}</div>
-    """
+    '''
     options: ['always']
   ]
 
   invalid: [
-    code: """
+    code: '''
       Hello = createReactClass
         displayName: 'Hello'
         render: ->
           <div>Hello {this.props.name}</div>
-    """
+    '''
     errors: [message: 'Component should use es6 class instead of createClass']
   ,
-    code: """
+    code: '''
       Hello = createReactClass({
         render: ->
           return <div>Hello {this.props.name}</div>
       })
-    """
+    '''
     options: ['always']
     errors: [message: 'Component should use es6 class instead of createClass']
   ,
-    code: """
+    code: '''
       class Hello extends React.Component
         render: ->
           return <div>Hello {this.props.name}</div>
-    """
+    '''
     options: ['never']
     errors: [message: 'Component should use createClass instead of es6 class']
   ]

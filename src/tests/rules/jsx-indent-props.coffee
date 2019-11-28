@@ -19,7 +19,7 @@ path = require 'path'
 ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'jsx-indent-props', rule,
   valid: [
-    code: ['<App foo', '/>'].join('\n')
+    code: ['<App foo', '/>'].join '\n'
   ,
     code: ['<App', '  foo', '/>'].join '\n'
     options: [2]
@@ -89,16 +89,12 @@ ruleTester.run 'jsx-indent-props', rule,
   invalid: [
     code: ['<App', '  foo', '/>'].join '\n'
     output: ['<App', '    foo', '/>'].join '\n'
-    errors: [
-      message: 'Expected indentation of 4 space characters but found 2.'
-    ]
+    errors: [message: 'Expected indentation of 4 space characters but found 2.']
   ,
     code: ['<App', '    foo', '/>'].join '\n'
     output: ['<App', '  foo', '/>'].join '\n'
     options: [2]
-    errors: [
-      message: 'Expected indentation of 2 space characters but found 4.'
-    ]
+    errors: [message: 'Expected indentation of 2 space characters but found 4.']
   ,
     code: ['<App', '    foo', '/>'].join '\n'
     output: ['<App', '\tfoo', '/>'].join '\n'
@@ -113,23 +109,17 @@ ruleTester.run 'jsx-indent-props', rule,
     code: ['<App a', '  b', '/>'].join '\n'
     output: ['<App a', '     b', '/>'].join '\n'
     options: ['first']
-    errors: [
-      message: 'Expected indentation of 5 space characters but found 2.'
-    ]
+    errors: [message: 'Expected indentation of 5 space characters but found 2.']
   ,
     code: ['<App  a', '   b', '/>'].join '\n'
     output: ['<App  a', '      b', '/>'].join '\n'
     options: ['first']
-    errors: [
-      message: 'Expected indentation of 6 space characters but found 3.'
-    ]
+    errors: [message: 'Expected indentation of 6 space characters but found 3.']
   ,
     code: ['<App', '      a', '   b', '/>'].join '\n'
     output: ['<App', '      a', '      b', '/>'].join '\n'
     options: ['first']
-    errors: [
-      message: 'Expected indentation of 6 space characters but found 3.'
-    ]
+    errors: [message: 'Expected indentation of 6 space characters but found 3.']
   ,
     code: ['<App', '  a', ' b', '   c', '/>'].join '\n'
     output: ['<App', '  a', '  b', '  c', '/>'].join '\n'

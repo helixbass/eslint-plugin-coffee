@@ -19,18 +19,18 @@ path = require 'path'
 ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'no-is-mounted', rule,
   valid: [
-    code: """
+    code: '''
       Hello = ->
-    """
+    '''
   ,
-    code: """
+    code: '''
       Hello = createReactClass({
         render: ->
           return <div>Hello</div>
       })
-    """
+    '''
   ,
-    code: """
+    code: '''
       Hello = createReactClass({
         componentDidUpdate: ->
           someNonMemberFunction(arg)
@@ -38,11 +38,11 @@ ruleTester.run 'no-is-mounted', rule,
         render: ->
           return <div>Hello</div>
       })
-    """
+    '''
   ]
 
   invalid: [
-    code: """
+    code: '''
       Hello = createReactClass({
         componentDidUpdate: ->
           if (!this.isMounted())
@@ -50,10 +50,10 @@ ruleTester.run 'no-is-mounted', rule,
         render: ->
           return <div>Hello</div>
       })
-    """
+    '''
     errors: [message: 'Do not use isMounted']
   ,
-    code: """
+    code: '''
       Hello = createReactClass({
         someMethod: ->
           if (!this.isMounted())
@@ -61,15 +61,15 @@ ruleTester.run 'no-is-mounted', rule,
         render: ->
           return <div onClick={this.someMethod.bind(this)}>Hello</div>
       })
-    """
+    '''
     errors: [message: 'Do not use isMounted']
   ,
-    code: """
+    code: '''
       class Hello extends React.Component
         someMethod: ->
           return unless @isMounted()
         render: ->
           return <div onClick={this.someMethod.bind(this)}>Hello</div>
-    """
+    '''
     errors: [message: 'Do not use isMounted']
   ]

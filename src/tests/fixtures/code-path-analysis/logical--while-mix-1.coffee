@@ -3,7 +3,7 @@ initial->s1_1->s1_2->s1_3->s1_4->s1_5->s1_2->s1_4;
 s1_3->s1_5;
 s1_4->s1_6->final;
 ###
-while a and b or c
+while (a and b) or c
   foo()
 ###DOT
 digraph {

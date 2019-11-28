@@ -4,7 +4,7 @@ s1_1->s1_3;
 s1_2->s1_4;
 s1_3->s1_5->s1_6->final;
 ###
-if a and b ? c
+if (a and b) ? c
   foo()
 else
   bar()

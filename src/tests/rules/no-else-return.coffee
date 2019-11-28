@@ -341,17 +341,17 @@ ruleTester.run 'no-else-return', rule,
     options: [allowElseIf: no]
     errors: [messageId: 'unexpected', type: 'IfStatement']
   ,
-    code: """
+    code: '''
       ->
         while foo
           if bar
             return
           else
             baz
-    """
+    '''
     errors: [messageId: 'unexpected', type: 'BlockStatement']
   ,
-    code: """
+    code: '''
       ->
         if foo
           if bar
@@ -360,7 +360,7 @@ ruleTester.run 'no-else-return', rule,
             baz
         else
           qux
-    """
+    '''
     errors: [messageId: 'unexpected', type: 'BlockStatement']
   ,
     code: '''

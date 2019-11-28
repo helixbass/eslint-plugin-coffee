@@ -19,50 +19,50 @@ path = require 'path'
 MISSING_PARENS = 'Missing parentheses around multilines JSX'
 PARENS_NEW_LINES = 'Parentheses around JSX should be on separate lines'
 
-RETURN_SINGLE_LINE = """
+RETURN_SINGLE_LINE = '''
   Hello = createReactClass({
     render: ->
       return <p>Hello {this.props.name}</p>
   })
-"""
+'''
 
-RETURN_PAREN = """
+RETURN_PAREN = '''
   Hello = createReactClass({
     render: ->
       return (<div>
         <p>Hello {this.props.name}</p>
       </div>)
   })
-"""
+'''
 
-RETURN_PAREN_FRAGMENT = """
+RETURN_PAREN_FRAGMENT = '''
   Hello = createReactClass({
     render: ->
       return (<>
         <p>Hello {this.props.name}</p>
       </>)
   })
-"""
+'''
 
-RETURN_NO_PAREN = """
+RETURN_NO_PAREN = '''
   Hello = createReactClass({
     render: ->
       return <div>
         <p>Hello {this.props.name}</p>
       </div>
   })
-"""
+'''
 
-RETURN_NO_PAREN_FRAGMENT = """
+RETURN_NO_PAREN_FRAGMENT = '''
   Hello = createReactClass({
     render: ->
       return <>
         <p>Hello {this.props.name}</p>
       </>
   })
-"""
+'''
 
-RETURN_PAREN_NEW_LINE = """
+RETURN_PAREN_NEW_LINE = '''
   Hello = createReactClass({
     render: ->
       return (
@@ -71,9 +71,9 @@ RETURN_PAREN_NEW_LINE = """
         </div>
       )
   })
-"""
+'''
 
-RETURN_PAREN_NEW_LINE_FRAGMENT = """
+RETURN_PAREN_NEW_LINE_FRAGMENT = '''
   Hello = createReactClass({
     render: ->
       return (
@@ -82,91 +82,91 @@ RETURN_PAREN_NEW_LINE_FRAGMENT = """
         </>
       )
   })
-"""
+'''
 
-RETURN_SINGLE_LINE_FRAGMENT = """
+RETURN_SINGLE_LINE_FRAGMENT = '''
   Hello = createReactClass({
     render: ->
       return <>Hello {this.props.name}</>
   })
-"""
+'''
 
 ASSIGNMENT_SINGLE_LINE = 'hello hello = <p>Hello</p>'
 
-ASSIGNMENT_PAREN = """
+ASSIGNMENT_PAREN = '''
   hello
   hello = (<div>
     <p>Hello</p>
   </div>)
-"""
+'''
 
-ASSIGNMENT_PAREN_FRAGMENT = """
+ASSIGNMENT_PAREN_FRAGMENT = '''
   hello
   hello = (<>
     <p>Hello</p>
   </>)
-"""
+'''
 
-ASSIGNMENT_NO_PAREN = """
+ASSIGNMENT_NO_PAREN = '''
   hello
   hello = <div>
     <p>Hello</p>
   </div>
-"""
+'''
 
-ASSIGNMENT_NO_PAREN_FRAGMENT = """
+ASSIGNMENT_NO_PAREN_FRAGMENT = '''
   hello
   hello = <>
     <p>Hello</p>
   </>
-"""
+'''
 
-ASSIGNMENT_PAREN_NEW_LINE = """
+ASSIGNMENT_PAREN_NEW_LINE = '''
   hello
   hello = (
     <div>
       <p>Hello</p>
     </div>
   )
-"""
+'''
 
 ARROW_SINGLE_LINE = 'hello = () => <p>Hello</p>'
 
-ARROW_PAREN = """
+ARROW_PAREN = '''
   hello = () => (<div>
     <p>Hello</p>
   </div>)
-"""
+'''
 
-ARROW_PAREN_FRAGMENT = """
+ARROW_PAREN_FRAGMENT = '''
   hello = () => (<>
     <p>Hello</p>
   </>)
-"""
+'''
 
-ARROW_NO_PAREN = """
+ARROW_NO_PAREN = '''
   hello = () => <div>
     <p>Hello</p>
   </div>
-"""
+'''
 
-ARROW_NO_PAREN_FRAGMENT = """
+ARROW_NO_PAREN_FRAGMENT = '''
   hello = () => <>
     <p>Hello</p>
   </>
-"""
+'''
 
-ARROW_PAREN_NEW_LINE = """
+ARROW_PAREN_NEW_LINE = '''
   hello = () => (
     <div>
       <p>Hello</p>
     </div>
   )
-"""
+'''
 
 LOGICAL_SINGLE_LINE = 'foo and <p>Hello</p>'
 
-LOGICAL_PAREN = """
+LOGICAL_PAREN = '''
   <div>
     {foo and
       (<div>
@@ -174,9 +174,9 @@ LOGICAL_PAREN = """
       </div>)
     }
   </div>
-"""
+'''
 
-LOGICAL_PAREN_FRAGMENT = """
+LOGICAL_PAREN_FRAGMENT = '''
   <div>
     {foo and
       (<>
@@ -184,9 +184,9 @@ LOGICAL_PAREN_FRAGMENT = """
       </>)
     }
   </div>
-"""
+'''
 
-LOGICAL_NO_PAREN = """
+LOGICAL_NO_PAREN = '''
   <div>
     {foo and
       <div>
@@ -194,9 +194,9 @@ LOGICAL_NO_PAREN = """
       </div>
     }
   </div>
-"""
+'''
 
-LOGICAL_NO_PAREN_FRAGMENT = """
+LOGICAL_NO_PAREN_FRAGMENT = '''
   <div>
     {foo and
       <>
@@ -204,9 +204,9 @@ LOGICAL_NO_PAREN_FRAGMENT = """
       </>
     }
   </div>
-"""
+'''
 
-LOGICAL_PAREN_NEW_LINE = """
+LOGICAL_PAREN_NEW_LINE = '''
   <div>
     {foo && (
       <div>
@@ -214,11 +214,11 @@ LOGICAL_PAREN_NEW_LINE = """
       </div>
     )}
   </div>
-"""
+'''
 
 ATTR_SINGLE_LINE = '<div prop={<p>Hello</p>}></div>'
 
-ATTR_PAREN = """
+ATTR_PAREN = '''
   <div prop={
     (<div>
       <p>Hello</p>
@@ -226,9 +226,9 @@ ATTR_PAREN = """
   }>
     <p>Hello</p>
   </div>
-"""
+'''
 
-ATTR_PAREN_FRAGMENT = """
+ATTR_PAREN_FRAGMENT = '''
   <div prop={
     (<>
       <p>Hello</p>
@@ -236,9 +236,9 @@ ATTR_PAREN_FRAGMENT = """
   }>
     <p>Hello</p>
   </div>
-"""
+'''
 
-ATTR_NO_PAREN = """
+ATTR_NO_PAREN = '''
   <div prop={
     <div>
       <p>Hello</p>
@@ -246,9 +246,9 @@ ATTR_NO_PAREN = """
   }>
     <p>Hello</p>
   </div>
-"""
+'''
 
-ATTR_NO_PAREN_FRAGMENT = """
+ATTR_NO_PAREN_FRAGMENT = '''
   <div prop={
     <>
       <p>Hello</p>
@@ -256,9 +256,9 @@ ATTR_NO_PAREN_FRAGMENT = """
   }>
     <p>Hello</p>
   </div>
-"""
+'''
 
-ATTR_PAREN_NEW_LINE = """
+ATTR_PAREN_NEW_LINE = '''
   <div prop={(
     <div>
       <p>Hello</p>
@@ -266,7 +266,7 @@ ATTR_PAREN_NEW_LINE = """
   )}>
     <p>Hello</p>
   </div>
-"""
+'''
 
 # ------------------------------------------------------------------------------
 # Tests

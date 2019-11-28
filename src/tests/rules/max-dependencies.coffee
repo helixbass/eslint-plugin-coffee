@@ -32,29 +32,29 @@ ruleTester.run 'max-dependencies', rule,
   ]
   invalid: [
     test
-      code: """
+      code: '''
         import { x } from './foo'
         import { y } from './foo'
         import {z} from './bar'
-      """
+      '''
       options: [max: 1]
       errors: ['Maximum number of dependencies (1) exceeded.']
 
     test
-      code: """
+      code: '''
         import { x } from './foo'
         import { y } from './bar'
         import { z } from './baz'
-      """
+      '''
       options: [max: 2]
       errors: ['Maximum number of dependencies (2) exceeded.']
 
     test
-      code: """
+      code: '''
         import { x } from './foo'
         require("./bar")
         import { z } from './baz'
-      """
+      '''
       options: [max: 2]
       errors: ['Maximum number of dependencies (2) exceeded.']
 

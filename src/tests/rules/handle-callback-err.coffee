@@ -69,11 +69,11 @@ ruleTester.run 'handle-callback-err', rule,
             err
             process.nextTick -> err
     '''
-    """
+    '''
       help = (done) ->
         err = new Error 'error'
         done()
-    """
+    '''
     'test = (err) -> err'
     'test = (err) => !err'
     'test = (err) -> err.message'

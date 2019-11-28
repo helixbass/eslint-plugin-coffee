@@ -154,30 +154,30 @@ ruleTester.run 'lines-around-comment', rule,
       allowBlockStart: yes
     ]
   ,
-    code: """
+    code: '''
       switch 'foo'
         when 'foo'
           # line at switch case start
           break
-    """
+    '''
     options: [
       beforeLineComment: yes
       allowBlockStart: yes
     ]
   ,
-    code: """
+    code: '''
       switch 'foo'
         when 'foo'
         
           # line at switch case start
           break
-    """
+    '''
     options: [
       beforeLineComment: yes
       allowBlockStart: yes
     ]
   ,
-    code: """
+    code: '''
       switch 'foo'
         when 'foo'
           break
@@ -185,13 +185,13 @@ ruleTester.run 'lines-around-comment', rule,
         else
           # line at switch case start
           break
-    """
+    '''
     options: [
       beforeLineComment: yes
       allowBlockStart: yes
     ]
   ,
-    code: """
+    code: '''
       switch 'foo'
         when 'foo'
           break
@@ -200,7 +200,7 @@ ruleTester.run 'lines-around-comment', rule,
         
           # line at switch case start
           break
-    """
+    '''
     options: [
       beforeLineComment: yes
       allowBlockStart: yes
@@ -281,24 +281,24 @@ ruleTester.run 'lines-around-comment', rule,
       allowClassStart: yes
     ]
   ,
-    code: """
+    code: '''
       switch 'foo'
         when 'foo'
           ### block comment at switch case start ###
           break
-    """
+    '''
     options: [allowBlockStart: yes]
   ,
-    code: """
+    code: '''
       switch 'foo'
         when 'foo'
         
           ### block comment at switch case start ###
           break
-    """
+    '''
     options: [allowBlockStart: yes]
   ,
-    code: """
+    code: '''
       switch 'foo'
         when 'foo'
           break
@@ -306,10 +306,10 @@ ruleTester.run 'lines-around-comment', rule,
         else
           ### block comment at switch case start ###
           break
-    """
+    '''
     options: [allowBlockStart: yes]
   ,
-    code: """
+    code: '''
       switch ('foo')
         when 'foo'
           break
@@ -318,7 +318,7 @@ ruleTester.run 'lines-around-comment', rule,
         
           ### block comment at switch case start ###
           break
-    """
+    '''
     options: [allowBlockStart: yes]
   ,
     code: '''
@@ -376,32 +376,32 @@ ruleTester.run 'lines-around-comment', rule,
       allowBlockEnd: yes
     ]
   ,
-    code: """
+    code: '''
       switch ('foo')
         when 'foo'
           g = 1
           
           # line at switch case end
-    """
+    '''
     options: [
       afterLineComment: yes
       allowBlockEnd: yes
     ]
   ,
-    code: """
+    code: '''
       switch ('foo')
         when 'foo'
           g = 1
           
           # line at switch case end
           
-    """
+    '''
     options: [
       afterLineComment: yes
       allowBlockEnd: yes
     ]
   ,
-    code: """
+    code: '''
       switch ('foo')
         when 'foo'
           break
@@ -410,13 +410,13 @@ ruleTester.run 'lines-around-comment', rule,
           g = 1
           
           # line at switch case end
-    """
+    '''
     options: [
       afterLineComment: yes
       allowBlockEnd: yes
     ]
   ,
-    code: """
+    code: '''
       switch ('foo')
         when 'foo'
           break
@@ -426,7 +426,7 @@ ruleTester.run 'lines-around-comment', rule,
           
           # line at switch case end
 
-    """
+    '''
     options: [
       afterLineComment: yes
       allowBlockEnd: yes
@@ -584,31 +584,31 @@ ruleTester.run 'lines-around-comment', rule,
       allowClassEnd: yes
     ]
   ,
-    code: """
+    code: '''
       switch ('foo')
         when 'foo'
           g = 1
           
           ### block comment at switch case end ###
-    """
+    '''
     options: [
       afterBlockComment: yes
       allowBlockEnd: yes
     ]
   ,
-    code: """
+    code: '''
       switch ('foo')
         when 'foo'
           g = 1
           
           ### block comment at switch case end ###
-    """
+    '''
     options: [
       afterBlockComment: yes
       allowBlockEnd: yes
     ]
   ,
-    code: """
+    code: '''
       switch ('foo')
         when 'foo'
           break
@@ -617,13 +617,13 @@ ruleTester.run 'lines-around-comment', rule,
           g = 1
           
           ### block comment at switch case end ###
-    """
+    '''
     options: [
       afterBlockComment: yes
       allowBlockEnd: yes
     ]
   ,
-    code: """
+    code: '''
       switch ('foo')
         when 'foo'
           break
@@ -633,7 +633,7 @@ ruleTester.run 'lines-around-comment', rule,
           
           ### block comment at switch case end ###
 
-    """
+    '''
     options: [
       afterBlockComment: yes
       allowBlockEnd: yes
@@ -1077,23 +1077,23 @@ ruleTester.run 'lines-around-comment', rule,
     ]
     errors: [message: afterMessage, type: 'Line', line: 4]
   ,
-    code: """
+    code: '''
       switch ('foo')
         when 'foo'
           # line at switch case start
           break
-    """
-    output: """
+    '''
+    output: '''
       switch ('foo')
         when 'foo'
 
           # line at switch case start
           break
-    """
+    '''
     options: [beforeLineComment: yes]
     errors: [message: beforeMessage, type: 'Line', line: 3]
   ,
-    code: """
+    code: '''
       switch ('foo')
         when 'foo'
           break
@@ -1101,8 +1101,8 @@ ruleTester.run 'lines-around-comment', rule,
         else
           # line at switch case start
           break
-    """
-    output: """
+    '''
+    output: '''
       switch ('foo')
         when 'foo'
           break
@@ -1111,7 +1111,7 @@ ruleTester.run 'lines-around-comment', rule,
 
           # line at switch case start
           break
-    """
+    '''
     options: [beforeLineComment: yes]
     errors: [message: beforeMessage, type: 'Line', line: 6]
   ,
@@ -1221,15 +1221,15 @@ ruleTester.run 'lines-around-comment', rule,
     ]
     errors: [message: afterMessage, type: 'Line', line: 4]
   ,
-    code: """
+    code: '''
       switch ('foo')
         when 'foo'
           g = 1
 
           # line at switch case end
       d
-    """
-    output: """
+    '''
+    output: '''
       switch ('foo')
         when 'foo'
           g = 1
@@ -1237,11 +1237,11 @@ ruleTester.run 'lines-around-comment', rule,
           # line at switch case end
 
       d
-    """
+    '''
     options: [afterLineComment: yes]
     errors: [message: afterMessage, type: 'Line', line: 5]
   ,
-    code: """
+    code: '''
       switch ('foo')
         when 'foo'
           break
@@ -1251,8 +1251,8 @@ ruleTester.run 'lines-around-comment', rule,
 
           # line at switch case end
       d
-    """
-    output: """
+    '''
+    output: '''
       switch ('foo')
         when 'foo'
           break
@@ -1263,7 +1263,7 @@ ruleTester.run 'lines-around-comment', rule,
           # line at switch case end
 
       d
-    """
+    '''
     options: [afterLineComment: yes]
     errors: [message: afterMessage, type: 'Line', line: 8]
   ,

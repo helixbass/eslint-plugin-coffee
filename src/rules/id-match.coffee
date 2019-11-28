@@ -80,7 +80,10 @@ module.exports =
     Identifier: (node) ->
       {name, parent} = node
       effectiveParent =
-        if parent.type is 'MemberExpression' then parent.parent else parent
+        if parent.type is 'MemberExpression'
+          parent.parent
+        else
+          parent
 
       switch parent.type
         when 'MemberExpression'

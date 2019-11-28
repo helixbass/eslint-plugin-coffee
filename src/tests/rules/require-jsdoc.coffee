@@ -140,10 +140,10 @@ ruleTester.run 'require-jsdoc', rule,
     '''
       Object.keys(@options.rules ? {}).forEach ((name) ->).bind @
     '''
-    """
+    '''
       object = { name: 'key'}
       Object.keys(object).forEach ->
-    """
+    '''
   ,
     code: '''
       myFunction = ->

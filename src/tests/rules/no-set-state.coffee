@@ -19,19 +19,19 @@ path = require 'path'
 ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'no-set-state', rule,
   valid: [
-    code: """
+    code: '''
       Hello = ->
         this.setState({})
-    """
+    '''
   ,
-    code: """
+    code: '''
       Hello = createReactClass({
         render: ->
           return <div>Hello {this.props.name}</div>
       })
-    """
+    '''
   ,
-    code: """
+    code: '''
       Hello = createReactClass({
         componentDidUpdate: ->
           someNonMemberFunction(arg)
@@ -39,11 +39,11 @@ ruleTester.run 'no-set-state', rule,
         render: ->
           return <div>Hello {this.props.name}</div>
       })
-    """
+    '''
   ]
 
   invalid: [
-    code: """
+    code: '''
       Hello = createReactClass({
         componentDidUpdate: ->
           this.setState({
@@ -52,10 +52,10 @@ ruleTester.run 'no-set-state', rule,
         render: ->
           return <div>Hello {this.state.name}</div>
       })
-    """
+    '''
     errors: [message: 'Do not use setState']
   ,
-    code: """
+    code: '''
       Hello = createReactClass({
         someMethod: ->
           this.setState({
@@ -64,10 +64,10 @@ ruleTester.run 'no-set-state', rule,
         render: ->
           return <div onClick={this.someMethod.bind(this)}>Hello {this.state.name}</div>
       })
-    """
+    '''
     errors: [message: 'Do not use setState']
   ,
-    code: """
+    code: '''
       class Hello extends React.Component
         someMethod: ->
           this.setState({
@@ -75,10 +75,10 @@ ruleTester.run 'no-set-state', rule,
           })
         render: ->
           return <div onClick={this.someMethod.bind(this)}>Hello {this.state.name}</div>
-    """
+    '''
     errors: [message: 'Do not use setState']
   ,
-    code: """
+    code: '''
       class Hello extends React.Component
         someMethod: () =>
           this.setState({
@@ -86,15 +86,15 @@ ruleTester.run 'no-set-state', rule,
           })
         render: ->
           return <div onClick={this.someMethod.bind(this)}>Hello {this.state.name}</div>
-    """
+    '''
     # parser: 'babel-eslint'
     errors: [message: 'Do not use setState']
   ,
-    code: """
+    code: '''
       class Hello extends React.Component
         render: ->
           return <div onMouseEnter={() => this.setState({dropdownIndex: index})} />
-    """
+    '''
     # parser: 'babel-eslint'
     errors: [message: 'Do not use setState']
   ]

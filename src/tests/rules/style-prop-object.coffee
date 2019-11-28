@@ -77,13 +77,13 @@ ruleTester.run 'style-prop-object', rule,
       "}, 'My custom Elem')"
     ].join '\n'
   ,
-    code: ['style = null', '<div style={style}></div>'].join('\n')
+    code: ['style = null', '<div style={style}></div>'].join '\n'
   ,
-    code: ['style = undefined', '<div style={style}></div>'].join('\n')
+    code: ['style = undefined', '<div style={style}></div>'].join '\n'
   ,
     code: '<div style={undefined}></div>'
   ,
-    code: ['props = { style: undefined }', '<div {...props} />'].join('\n')
+    code: ['props = { style: undefined }', '<div {...props} />'].join '\n'
   ,
     code: [
       'otherProps = { style: undefined }'
@@ -91,9 +91,7 @@ ruleTester.run 'style-prop-object', rule,
       '<div {...props} />'
     ].join '\n'
   ,
-    code: ['React.createElement("div", {', '  style: undefined', '})'].join(
-      '\n'
-    )
+    code: ['React.createElement("div", {', '  style: undefined', '})'].join '\n'
   ,
     code: [
       'style = null'
@@ -104,7 +102,7 @@ ruleTester.run 'style-prop-object', rule,
   ,
     code: '<div style={null}></div>'
   ,
-    code: ['props = { style: null }', '<div {...props} />'].join('\n')
+    code: ['props = { style: null }', '<div {...props} />'].join '\n'
   ,
     code: [
       'otherProps = { style: null }'
@@ -112,7 +110,7 @@ ruleTester.run 'style-prop-object', rule,
       '<div {...props} />'
     ].join '\n'
   ,
-    code: ['React.createElement("div", {', '  style: null', '})'].join('\n')
+    code: ['React.createElement("div", {', '  style: null', '})'].join '\n'
   ,
     code: [
       'MyComponent = (props) =>'

@@ -29,31 +29,31 @@ ruleTester.run 'no-danger-with-children', rule,
   ,
     code: '<div children="Children" />'
   ,
-    code: """
+    code: '''
       props = { dangerouslySetInnerHTML: { __html: "HTML" } }
       <div {...props} />
-    """
+    '''
   ,
-    code: """
+    code: '''
       moreProps = { className: "eslint" }
       props = { children: "Children", ...moreProps }
       <div {...props} />
-    """
+    '''
   ,
-    code: """
+    code: '''
       otherProps = { children: "Children" }
       { a, b, ...props } = otherProps
       <div {...props} />
-    """
+    '''
   ,
     code: '<Hello>Children</Hello>'
   ,
     code: '<Hello dangerouslySetInnerHTML={{ __html: "HTML" }} />'
   ,
-    code: """
+    code: '''
       <Hello dangerouslySetInnerHTML={{ __html: "HTML" }}>
       </Hello>
-    """
+    '''
   ,
     code:
       'React.createElement("div", { dangerouslySetInnerHTML: { __html: "HTML" } })'
@@ -69,17 +69,17 @@ ruleTester.run 'no-danger-with-children', rule,
     #   code: '<Hello {...undefined}>Children</Hello>'
     code: 'React.createElement("Hello", undefined, "Children")'
   ,
-    code: """
+    code: '''
       props = {...props, scratch: {mode: 'edit'}}
       component = shallow(<TaskEditableTitle {...props} />)
-    """
+    '''
   ]
   invalid: [
-    code: """
+    code: '''
       <div dangerouslySetInnerHTML={{ __html: "HTML" }}>
         Children
       </div>
-    """
+    '''
     errors: [
       message: 'Only set one of `children` or `props.dangerouslySetInnerHTML`'
     ]
@@ -90,27 +90,27 @@ ruleTester.run 'no-danger-with-children', rule,
       message: 'Only set one of `children` or `props.dangerouslySetInnerHTML`'
     ]
   ,
-    code: """
+    code: '''
       props = { dangerouslySetInnerHTML: { __html: "HTML" } }
       <div {...props}>Children</div>
-    """
+    '''
     errors: [
       message: 'Only set one of `children` or `props.dangerouslySetInnerHTML`'
     ]
   ,
-    code: """
+    code: '''
       props = { children: "Children", dangerouslySetInnerHTML: { __html: "HTML" } }
       <div {...props} />
-    """
+    '''
     errors: [
       message: 'Only set one of `children` or `props.dangerouslySetInnerHTML`'
     ]
   ,
-    code: """
+    code: '''
       <Hello dangerouslySetInnerHTML={{ __html: "HTML" }}>
         Children
       </Hello>
-    """
+    '''
     errors: [
       message: 'Only set one of `children` or `props.dangerouslySetInnerHTML`'
     ]
@@ -126,18 +126,18 @@ ruleTester.run 'no-danger-with-children', rule,
       message: 'Only set one of `children` or `props.dangerouslySetInnerHTML`'
     ]
   ,
-    code: """
+    code: '''
       React.createElement(
         "div",
         { dangerouslySetInnerHTML: { __html: "HTML" } },
         "Children"
       )
-    """
+    '''
     errors: [
       message: 'Only set one of `children` or `props.dangerouslySetInnerHTML`'
     ]
   ,
-    code: """
+    code: '''
       React.createElement(
         "div",
         {
@@ -145,23 +145,23 @@ ruleTester.run 'no-danger-with-children', rule,
           children: "Children",
         }
       )
-    """
+    '''
     errors: [
       message: 'Only set one of `children` or `props.dangerouslySetInnerHTML`'
     ]
   ,
-    code: """
+    code: '''
       React.createElement(
         "Hello",
         { dangerouslySetInnerHTML: { __html: "HTML" } },
         "Children"
       )
-    """
+    '''
     errors: [
       message: 'Only set one of `children` or `props.dangerouslySetInnerHTML`'
     ]
   ,
-    code: """
+    code: '''
       React.createElement(
         "Hello",
         {
@@ -169,33 +169,33 @@ ruleTester.run 'no-danger-with-children', rule,
           children: "Children",
         }
       )
-    """
+    '''
     errors: [
       message: 'Only set one of `children` or `props.dangerouslySetInnerHTML`'
     ]
   ,
-    code: """
+    code: '''
       props = { dangerouslySetInnerHTML: { __html: "HTML" } }
       React.createElement("div", props, "Children")
-    """
+    '''
     errors: [
       message: 'Only set one of `children` or `props.dangerouslySetInnerHTML`'
     ]
   ,
-    code: """
+    code: '''
       props = { children: "Children", dangerouslySetInnerHTML: { __html: "HTML" } }
       React.createElement("div", props)
-    """
+    '''
     errors: [
       message: 'Only set one of `children` or `props.dangerouslySetInnerHTML`'
     ]
   ,
-    code: """
+    code: '''
       moreProps = { children: "Children" }
       otherProps = { ...moreProps }
       props = { ...otherProps, dangerouslySetInnerHTML: { __html: "HTML" } }
       React.createElement("div", props)
-    """
+    '''
     errors: [
       message: 'Only set one of `children` or `props.dangerouslySetInnerHTML`'
     ]

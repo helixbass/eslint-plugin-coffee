@@ -21,7 +21,7 @@ path = require 'path'
 ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 tests =
   valid: [
-    code: """
+    code: '''
       React = require('react-native')
       {
         ActivityIndicatiorIOS,
@@ -30,10 +30,10 @@ tests =
         render: ->
           return <ActivityIndicatiorIOS />
       })
-    """
+    '''
     filename: 'Hello.ios.js'
   ,
-    code: """
+    code: '''
       React = require('react-native')
       {
         ProgressBarAndroid,
@@ -42,10 +42,10 @@ tests =
         render: ->
           return <ProgressBarAndroid />
       })
-    """
+    '''
     filename: 'Hello.android.js'
   ,
-    code: """
+    code: '''
       React = require('react-native')
       {
         View,
@@ -54,31 +54,31 @@ tests =
         render: ->
           <View />
       })
-    """
+    '''
     filename: 'Hello.js'
   ,
-    code: """
+    code: '''
       import {
         ActivityIndicatiorIOS,
       } from 'react-native'
-    """
+    '''
     filename: 'Hello.ios.js'
   ,
-    code: """
+    code: '''
       import {
         ProgressBarAndroid,
       } from 'react-native'
-    """
+    '''
     filename: 'Hello.android.js'
   ,
-    code: """
+    code: '''
       import {
         View,
       } from 'react-native'
-    """
+    '''
     filename: 'Hello.js'
   ,
-    code: """
+    code: '''
       React = require('react-native')
       {
         ActivityIndicatiorIOS,
@@ -87,11 +87,11 @@ tests =
         render: ->
           return <ActivityIndicatiorIOS />
       })
-    """
+    '''
     options: [iosPathRegex: '\\.ios(\\.test)?\\.js$']
     filename: 'Hello.ios.test.js'
   ,
-    code: """
+    code: '''
       React = require('react-native')
       {
         ProgressBarAndroid,
@@ -100,13 +100,13 @@ tests =
         render: ->
           return <ProgressBarAndroid />
       })
-    """
+    '''
     options: [androidPathRegex: '\\.android(\\.test)?\\.js$']
     filename: 'Hello.android.test.js'
   ]
 
   invalid: [
-    code: """
+    code: '''
       React = require('react-native')
       {
         ProgressBarAndroid,
@@ -115,11 +115,11 @@ tests =
         render: ->
           return <ProgressBarAndroid />
       })
-    """
+    '''
     filename: 'Hello.js'
     errors: [message: 'Android components should be placed in android files']
   ,
-    code: """
+    code: '''
       React = require('react-native')
       {
         ActivityIndicatiorIOS,
@@ -128,11 +128,11 @@ tests =
         render: ->
           return <ActivityIndicatiorIOS />
       })
-    """
+    '''
     filename: 'Hello.js'
     errors: [message: 'IOS components should be placed in ios files']
   ,
-    code: """
+    code: '''
       React = require('react-native')
       {
         ActivityIndicatiorIOS,
@@ -142,7 +142,7 @@ tests =
         render: ->
           return <ActivityIndicatiorIOS />
       })
-    """
+    '''
     filename: 'Hello.js'
     errors: [
       message: "IOS and Android components can't be mixed"
@@ -150,28 +150,28 @@ tests =
       message: "IOS and Android components can't be mixed"
     ]
   ,
-    code: """
+    code: '''
       import {
         ProgressBarAndroid,
       } from 'react-native'
-    """
+    '''
     filename: 'Hello.js'
     errors: [message: 'Android components should be placed in android files']
   ,
-    code: """
+    code: '''
       import {
         ActivityIndicatiorIOS,
       } from 'react-native'
-    """
+    '''
     filename: 'Hello.js'
     errors: [message: 'IOS components should be placed in ios files']
   ,
-    code: """
+    code: '''
       import {
         ActivityIndicatiorIOS,
         ProgressBarAndroid,
       } from 'react-native'
-    """
+    '''
     filename: 'Hello.js'
     errors: [
       message: "IOS and Android components can't be mixed"

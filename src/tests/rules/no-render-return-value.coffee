@@ -21,10 +21,10 @@ ruleTester.run 'no-render-return-value', rule,
   valid: [
     code: 'ReactDOM.render(<div />, document.body)'
   ,
-    code: """
+    code: '''
       node = null
       ReactDOM.render(<div ref={(ref) => node = ref}/>, document.body)
-    """
+    '''
   ,
     code:
       'ReactDOM.render(<div ref={(ref) => this.node = ref}/>, document.body)'
@@ -47,25 +47,25 @@ ruleTester.run 'no-render-return-value', rule,
     code: 'Hello = ReactDOM.render(<div />, document.body)'
     errors: [message: 'Do not depend on the return value from ReactDOM.render']
   ,
-    code: """
+    code: '''
       o = {
         inst: ReactDOM.render(<div />, document.body)
       }
-    """
+    '''
     errors: [message: 'Do not depend on the return value from ReactDOM.render']
   ,
-    code: """
+    code: '''
       render = ->
         return ReactDOM.render(<div />, document.body)
-    """
+    '''
     errors: [message: 'Do not depend on the return value from ReactDOM.render']
   ,
 
   ,
-    code: """
+    code: '''
         render = ->
           ReactDOM.render(<div />, document.body)
-      """
+      '''
     errors: [message: 'Do not depend on the return value from ReactDOM.render']
   ,
     code: 'render = (a, b) => ReactDOM.render(a, b)'

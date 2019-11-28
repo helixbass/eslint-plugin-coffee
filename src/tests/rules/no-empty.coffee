@@ -35,11 +35,11 @@ ruleTester.run 'no-empty', rule,
       catch ex
         foo()
     '''
-    """
+    '''
       switch foo
         when 'foo'
           break
-    """
+    '''
     'do ->'
     'foo = ->'
     '''

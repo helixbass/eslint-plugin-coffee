@@ -34,7 +34,8 @@ module.exports =
     options = []
 
     options[0] = context.options[0] or 'always'
-    options[1] = context.options[1] or exceptAfterSingleLine: no
+    options[1] = context.options[1] or
+      exceptAfterSingleLine: no
 
     ALWAYS_MESSAGE = 'Expected blank line between class members.'
     NEVER_MESSAGE = 'Unexpected blank line between class members.'

@@ -11,30 +11,30 @@ test = (x) -> x
 ruleTester.run 'no-default-export', rule,
   valid: [
     test
-      code: """
+      code: '''
         export foo = 'foo'
         export bar = 'bar'
-      """
+      '''
     test
-      code: """
+      code: '''
         export foo = 'foo'
         export bar = ->
-      """
+      '''
     test code: "export foo = 'foo'"
     test
-      code: """
+      code: '''
         foo = 'foo'
         export { foo }
-      """
+      '''
     test code: 'export { foo, bar }'
     # test code: 'export { foo, bar } = item'
     # test code: 'export { foo, bar: baz } = item'
     # test code: 'export { foo: { bar, baz } } = item'
     test
-      code: """
+      code: '''
         export foo = item
         export { item }
-      """
+      '''
     test code: "export * from './foo'"
     # test code: 'export { foo } = { foo: "bar" }'
     # test code: 'export { foo: { bar } } = { foo: { bar: "baz" } }'
@@ -65,10 +65,10 @@ ruleTester.run 'no-default-export', rule,
         message: 'Prefer named exports.'
       ]
     test
-      code: """
+      code: '''
         export foo = 'foo'
         export default bar
-      """
+      '''
       errors: [
         ruleId: 'ExportDefaultDeclaration'
         message: 'Prefer named exports.'

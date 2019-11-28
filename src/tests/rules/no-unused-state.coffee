@@ -16,78 +16,78 @@ getErrorMessages = (unusedFields) ->
 
 eslintTester.run 'no-unused-state', rule,
   valid: [
-    """
+    '''
       StatelessFnUnaffectedTest = (props) ->
         return <SomeComponent foo={props.foo} />
-    """
-    """
+    '''
+    '''
       NoStateTest = createReactClass({
         render: ->
           <SomeComponent />
       })
-    """
-    """ 
+    '''
+    ''' 
       NoStateMethodTest = createReactClass({
         render: ->
           return <SomeComponent />
       })
-    """
-    """
+    '''
+    '''
       GetInitialStateTest = createReactClass({
         getInitialState: ->
           return { foo: 0 }
         render: ->
           return <SomeComponent foo={this.state.foo} />
       })
-    """
-    """
+    '''
+    '''
       ComputedKeyFromVariableTest = createReactClass({
         getInitialState: ->
           return { [foo]: 0 }
         render: ->
           return <SomeComponent />
       })
-    """
-    """
+    '''
+    '''
       ComputedKeyFromBooleanLiteralTest = createReactClass({
         getInitialState: ->
           return { [true]: 0 }
         render: ->
           return <SomeComponent foo={this.state[true]} />
       })
-    """
-    """
+    '''
+    '''
       ComputedKeyFromNumberLiteralTest = createReactClass({
         getInitialState: ->
           return { [123]: 0 }
         render: ->
           return <SomeComponent foo={this.state[123]} />
       })
-    """
-    """
+    '''
+    '''
       ComputedKeyFromExpressionTest = createReactClass({
         getInitialState: ->
           return { [foo + bar]: 0 }
         render: ->
           return <SomeComponent />
       })
-    """
-    """
+    '''
+    '''
       ComputedKeyFromBinaryExpressionTest = createReactClass({
         getInitialState: ->
           return { ['foo' + 'bar' * 8]: 0 }
         render: ->
           return <SomeComponent />
       })
-    """
-    """
+    '''
+    '''
       ComputedKeyFromStringLiteralTest = createReactClass({
         getInitialState: ->
           return { ['foo']: 0 }
         render: ->
           return <SomeComponent foo={this.state.foo} />
       })
-    """
+    '''
     '''
       ComputedKeyFromTemplateLiteralTest = createReactClass({
         getInitialState: ->
@@ -96,31 +96,31 @@ eslintTester.run 'no-unused-state', rule,
           return <SomeComponent />
       })
     '''
-    """
+    '''
       ComputedKeyFromTemplateLiteralTest = createReactClass({
         getInitialState: ->
           return { ["foo"]: 0 }
         render: ->
           return <SomeComponent foo={this.state['foo']} />
       })
-    """
-    """
+    '''
+    '''
       GetInitialStateMethodTest = createReactClass({
         getInitialState: ->
           return { foo: 0 }
         render: ->
           return <SomeComponent foo={this.state.foo} />
       })
-    """
-    """
+    '''
+    '''
       SetStateTest = createReactClass({
         onFooChange: (newFoo) ->
           this.setState({ foo: newFoo })
         render: ->
           return <SomeComponent foo={this.state.foo} />
       })
-    """
-    """
+    '''
+    '''
       MultipleSetState = createReactClass({
         getInitialState: ->
           return { foo: 0 }
@@ -129,61 +129,61 @@ eslintTester.run 'no-unused-state', rule,
         render: ->
           return <SomeComponent onClick={this.update} foo={this.state.foo} />
       })
-    """
-    """
+    '''
+    '''
       class NoStateTest extends React.Component
         render: ->
           return <SomeComponent />
-    """
-    """
+    '''
+    '''
       class CtorStateTest extends React.Component
         constructor: ->
           this.state = { foo: 0 }
         render: ->
           return <SomeComponent foo={this.state.foo} />
-    """
-    """
+    '''
+    '''
       class ComputedKeyFromVariableTest extends React.Component
         constructor: ->
           this.state = { [foo]: 0 }
         render: ->
           return <SomeComponent />
-    """
-    """
+    '''
+    '''
       class ComputedKeyFromBooleanLiteralTest extends React.Component
         constructor: ->
           this.state = { [false]: 0 }
         render: ->
           return <SomeComponent foo={this.state['false']} />
-    """
-    """
+    '''
+    '''
       class ComputedKeyFromNumberLiteralTest extends React.Component
         constructor: ->
           this.state = { [345]: 0 }
         render: ->
           return <SomeComponent foo={this.state[345]} />
-    """
-    """
+    '''
+    '''
       class ComputedKeyFromExpressionTest extends React.Component
         constructor: ->
           this.state = { [foo + bar]: 0 }
         render: ->
           return <SomeComponent />
-    """
-    """
+    '''
+    '''
       class ComputedKeyFromBinaryExpressionTest extends React.Component
         constructor: ->
           this.state = { [1 + 2 * 8]: 0 }
         render: ->
           return <SomeComponent />
-    """
-    """
+    '''
+    '''
       class ComputedKeyFromStringLiteralTest extends React.Component
         constructor: ->
           this.state = { ['foo']: 0 }
         render: ->
           return <SomeComponent foo={this.state.foo} />
-    """
+    '''
     '''
       class ComputedKeyFromTemplateLiteralTest extends React.Component
         constructor: ->
@@ -191,20 +191,20 @@ eslintTester.run 'no-unused-state', rule,
         render: ->
           return <SomeComponent />
     '''
-    """
+    '''
       class ComputedKeyFromTemplateLiteralTest extends React.Component
         constructor: ->
           this.state = { ["foo"]: 0 }
         render: ->
           return <SomeComponent foo={this.state.foo} />
-    """
-    """
+    '''
+    '''
       class SetStateTest extends React.Component
         onFooChange: (newFoo) ->
           this.setState({ foo: newFoo })
         render: ->
           return <SomeComponent foo={this.state.foo} />
-    """
+    '''
     # ,
     #   code: """
     #     class ClassPropertyStateTest extends React.Component
@@ -213,39 +213,39 @@ eslintTester.run 'no-unused-state', rule,
     #         return <SomeComponent foo={this.state.foo} />
     #   """
     #   # parser: 'babel-eslint'
-    """
+    '''
       class VariableDeclarationTest extends React.Component
           constructor: ->
             @state = { foo: 0 }
           render: ->
             foo = @state.foo
             return <SomeComponent foo={foo} />
-    """
-    """
+    '''
+    '''
       class DestructuringTest extends React.Component
           constructor: ->
             this.state = { foo: 0 }
           render: ->
             {foo: myFoo} = this.state
             return <SomeComponent foo={myFoo} />
-    """
-    """
+    '''
+    '''
       class ShorthandDestructuringTest extends React.Component
           constructor: ->
             this.state = { foo: 0 }
           render: ->
             {foo} = this.state
             return <SomeComponent foo={foo} />
-    """
-    """
+    '''
+    '''
       class AliasDeclarationTest extends React.Component
           constructor: ->
             this.state = { foo: 0 }
           render: ->
             state = this.state
             return <SomeComponent foo={state.foo} />
-    """
-    """
+    '''
+    '''
       class AliasAssignmentTest extends React.Component
           constructor: ->
             this.state = { foo: 0 }
@@ -253,24 +253,24 @@ eslintTester.run 'no-unused-state', rule,
             state
             state = this.state
             return <SomeComponent foo={state.foo} />
-    """
-    """
+    '''
+    '''
       class DestructuringAliasTest extends React.Component
           constructor: ->
             this.state = { foo: 0 }
           render: ->
             {state: myState} = this
             return <SomeComponent foo={myState.foo} />
-    """
-    """
+    '''
+    '''
       class ShorthandDestructuringAliasTest extends React.Component
           constructor: ->
             this.state = { foo: 0 }
           render: ->
             {state} = this
             return <SomeComponent foo={state.foo} />
-    """
-    """
+    '''
+    '''
       class RestPropertyTest extends React.Component
           constructor: ->
             this.state = {
@@ -280,7 +280,7 @@ eslintTester.run 'no-unused-state', rule,
           render: ->
             {foo, ...others} = this.state
             return <SomeComponent foo={foo} bar={others.bar} />
-    """
+    '''
     # ,
     #   code: """
     #     class DeepDestructuringTest extends React.Component
@@ -292,7 +292,7 @@ eslintTester.run 'no-unused-state', rule,
     #   # parser: 'babel-eslint'
     # A cleverer analysis might recognize that the following should be errors,
     # but they're out of scope for this lint rule.
-    """
+    '''
       class MethodArgFalseNegativeTest extends React.Component
           constructor: ->
             this.state = { foo: 0 }
@@ -300,47 +300,47 @@ eslintTester.run 'no-unused-state', rule,
           render: ->
             this.consumeFoo(this.state.foo)
             return <SomeComponent />
-    """
-    """
+    '''
+    '''
       class AssignedToObjectFalseNegativeTest extends React.Component
           constructor: ->
             this.state = { foo: 0 }
           render: ->
             obj = { foo: this.state.foo, bar: 0 }
             return <SomeComponent bar={obj.bar} />
-    """
-    """
+    '''
+    '''
       class ComputedAccessFalseNegativeTest extends React.Component
           constructor: ->
             this.state = { foo: 0, bar: 1 }
           render: ->
             bar = 'bar'
             return <SomeComponent bar={this.state[bar]} />
-    """
-    """
+    '''
+    '''
       class JsxSpreadFalseNegativeTest extends React.Component
           constructor: ->
             this.state = { foo: 0 }
           render: ->
             return <SomeComponent {...this.state} />
-    """
-    """
+    '''
+    '''
       class AliasedJsxSpreadFalseNegativeTest extends React.Component
           constructor: ->
             this.state = { foo: 0 }
           render: ->
             state = this.state
             return <SomeComponent {...state} />
-    """
-    """
+    '''
+    '''
       class ObjectSpreadFalseNegativeTest extends React.Component
           constructor: ->
             this.state = { foo: 0 }
           render: ->
             attrs = { ...this.state, foo: 1 }
             return <SomeComponent foo={attrs.foo} />
-    """
-    """
+    '''
+    '''
       class ShadowingFalseNegativeTest extends React.Component
           constructor: ->
             this.state = { foo: 0 }
@@ -351,8 +351,8 @@ eslintTester.run 'no-unused-state', rule,
               state = { foo: 5 }
               foo = state.foo
             return <SomeComponent foo={foo} />
-    """
-    """
+    '''
+    '''
       class NonRenderClassMethodFalseNegativeTest extends React.Component
           constructor: ->
             this.state = { foo: 0, bar: 0 }
@@ -364,7 +364,7 @@ eslintTester.run 'no-unused-state', rule,
             return bar
           render: ->
             return <SomeComponent />
-    """
+    '''
   ,
     # ,
     #   code: """
@@ -375,7 +375,7 @@ eslintTester.run 'no-unused-state', rule,
     #         return <SomeComponent {...(this.state: any)} />
     #   """
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       class ArrowFunctionClassMethodDestructuringFalseNegativeTest extends React.Component
           constructor: ->
             this.state = { foo: 0 }
@@ -387,7 +387,7 @@ eslintTester.run 'no-unused-state', rule,
 
           render: ->
             return <SomeComponent />
-    """
+    '''
   ,
     # parser: 'babel-eslint'
     # ,
@@ -444,7 +444,7 @@ eslintTester.run 'no-unused-state', rule,
     #         }
     #       }"""
     #   # parser: 'babel-eslint'
-    code: """
+    code: '''
       class ESLintExample extends Component
           constructor: (props) ->
             super(props)
@@ -461,10 +461,10 @@ eslintTester.run 'no-unused-state', rule,
             return (
               <h1>{if this.state.selected then 'Selected' else 'Not selected'}</h1>
             )
-    """
+    '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       class ESLintExample extends Component
           constructor: (props) ->
             super(props)
@@ -477,96 +477,96 @@ eslintTester.run 'no-unused-state', rule,
             return (
               <h1>{if this.state.selected then 'Selected' else 'Not selected'}</h1>
             )
-    """
+    '''
     # parser: 'babel-eslint'
   ]
 
   invalid: [
-    code: """
+    code: '''
       UnusedGetInitialStateTest = createReactClass
             getInitialState: ->
               { foo: 0 }
             render: ->
               <SomeComponent />
-    """
+    '''
     errors: getErrorMessages ['foo']
   ,
-    code: """
+    code: '''
       UnusedComputedStringLiteralKeyStateTest = createReactClass({
             getInitialState: ->
               return { ['foo']: 0 }
             render: ->
               return <SomeComponent />
       })
-    """
+    '''
     errors: getErrorMessages ['foo']
   ,
-    code: """
+    code: '''
       UnusedComputedTemplateLiteralKeyStateTest = createReactClass({
             getInitialState: ->
               return { ["foo"]: 0 }
             render: ->
               return <SomeComponent />
       })
-    """
+    '''
     errors: getErrorMessages ['foo']
   ,
-    code: """
+    code: '''
       UnusedComputedNumberLiteralKeyStateTest = createReactClass({
             getInitialState: ->
               return { [123]: 0 }
             render: ->
               return <SomeComponent />
       })
-    """
+    '''
     errors: getErrorMessages ['123']
   ,
-    code: """
+    code: '''
       UnusedComputedBooleanLiteralKeyStateTest = createReactClass({
             getInitialState: ->
               return { [true]: 0 }
             render: ->
               return <SomeComponent />
       })
-    """
+    '''
     errors: getErrorMessages ['true']
   ,
-    code: """
+    code: '''
       UnusedGetInitialStateMethodTest = createReactClass({
             getInitialState: ->
               return { foo: 0 }
             render: ->
               return <SomeComponent />
       })
-    """
+    '''
     errors: getErrorMessages ['foo']
   ,
-    code: """
+    code: '''
       UnusedSetStateTest = createReactClass({
             onFooChange: (newFoo) ->
               this.setState({ foo: newFoo })
             render: ->
               return <SomeComponent />
       })
-    """
+    '''
     errors: getErrorMessages ['foo']
   ,
-    code: """
+    code: '''
       class UnusedCtorStateTest extends React.Component
         constructor: ->
           this.state = { foo: 0 }
         render: ->
           return <SomeComponent />
-    """
+    '''
     errors: getErrorMessages ['foo']
   ,
-    code: """
+    code: '''
       class UnusedSetStateTest extends React.Component
             onFooChange: (newFoo) ->
               this.setState({ foo: newFoo })
             render: ->
               return <SomeComponent />
-    """
+    '''
     errors: getErrorMessages ['foo']
   ,
     # ,
@@ -632,16 +632,16 @@ eslintTester.run 'no-unused-state', rule,
     #       }"""
     #   errors: getErrorMessages ['123.12']
     #   # parser: 'babel-eslint'
-    code: """
+    code: '''
       class UnusedStateWhenPropsAreSpreadTest extends React.Component
             constructor: ->
               this.state = { foo: 0 }
             render: ->
               return <SomeComponent {...this.props} />
-    """
+    '''
     errors: getErrorMessages ['foo']
   ,
-    code: """
+    code: '''
       class AliasOutOfScopeTest extends React.Component
             constructor: ->
               this.state = { foo: 0 }
@@ -650,10 +650,10 @@ eslintTester.run 'no-unused-state', rule,
               return <SomeComponent />
             someMethod: ->
               outOfScope = state.foo
-    """
+    '''
     errors: getErrorMessages ['foo']
   ,
-    code: """
+    code: '''
       class MultipleErrorsTest extends React.Component
             constructor: ->
               this.state = {
@@ -665,10 +665,10 @@ eslintTester.run 'no-unused-state', rule,
             render: ->
               {state} = this
               return <SomeComponent baz={state.baz} qux={state.qux} />
-    """
+    '''
     errors: getErrorMessages ['foo', 'bar']
   ,
-    code: """
+    code: '''
       class MultipleErrorsForSameKeyTest extends React.Component
             constructor: ->
               this.state = { foo: 0 }
@@ -676,10 +676,10 @@ eslintTester.run 'no-unused-state', rule,
               this.setState({ foo: newFoo })
             render: ->
               return <SomeComponent />
-    """
+    '''
     errors: getErrorMessages ['foo', 'foo']
   ,
-    code: """
+    code: '''
       class UnusedRestPropertyFieldTest extends React.Component
             constructor: ->
               this.state = {
@@ -689,10 +689,10 @@ eslintTester.run 'no-unused-state', rule,
             render: ->
               {bar, ...others} = this.state
               return <SomeComponent bar={bar} />
-    """
+    '''
     errors: getErrorMessages ['foo']
   ,
-    code: """
+    code: '''
       class UnusedStateArrowFunctionMethodTest extends React.Component
             constructor: ->
               this.state = { foo: 0 }
@@ -700,7 +700,7 @@ eslintTester.run 'no-unused-state', rule,
               return null
             render: ->
               return <SomeComponent />
-    """
+    '''
     errors: getErrorMessages ['foo']
   ,
     # parser: 'babel-eslint'
@@ -724,14 +724,14 @@ eslintTester.run 'no-unused-state', rule,
     #         }"""
     #   errors: getErrorMessages ['qux']
     #   # parser: 'babel-eslint'
-    code: """
+    code: '''
       class UnusedDeepDestructuringTest extends React.Component
             constructor: ->
               @state = { foo: 0, bar: 0 }
             render: ->
               {state: {foo}} = this
               return <SomeComponent foo={foo} />
-    """
+    '''
     errors: getErrorMessages ['bar']
     # parser: 'babel-eslint'
     # ,

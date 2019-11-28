@@ -27,13 +27,13 @@ ruleTester.run 'accessor-pairs', rule,
     'o = { a: 1 }'
     # 'o = {\n get a() {\n return val \n} \n}'
     # 'o = {\n set a(value) {\n val = value \n},\n get a() {\n return val \n} \n}'
-    """
+    '''
       o = {a: 1}
       Object.defineProperty(o, 'b', {
         set: (value) -> val = value
         get: -> val
       })
-    """
+    '''
     # ,
     #   code: "expr = 'foo'  o = { set [expr](value) { val = value }, get [expr]() { return val } }"
     # ,
@@ -50,10 +50,10 @@ ruleTester.run 'accessor-pairs', rule,
   ,
     code: 'o = {[set]: ->}'
   ,
-    code: """
+    code: '''
       set = 'value'
       Object.defineProperty(obj, 'foo', {[set]: (value) ->})
-    """
+    '''
   ]
   invalid: [
     # code: 'o = {\n set a(value) {\n val = value \n} \n}'
@@ -65,17 +65,17 @@ ruleTester.run 'accessor-pairs', rule,
     # ]
     # errors: [setterError]
     # ,
-    code: """
+    code: '''
       o = {d: 1}
       Object.defineProperty o, 'c',
         set: (value) -> val = value
-    """
+    '''
     errors: [getterError]
   ,
-    code: """
+    code: '''
       Reflect.defineProperty obj, 'foo',
         set: (value) ->
-    """
+    '''
     errors: [getterError]
   ,
     code: '''

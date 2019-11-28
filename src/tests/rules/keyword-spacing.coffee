@@ -1244,7 +1244,7 @@ ruleTester.run 'keyword-spacing', rule,
     code: 'while (a) then ;'
     output: 'while(a)then ;'
     options: [NEITHER]
-    errors: [unexpectedAfter('while'), unexpectedBefore('then')]
+    errors: [unexpectedAfter('while'), unexpectedBefore 'then']
   ,
     code: 'while(a)then ;'
     output: 'while (a)then ;'

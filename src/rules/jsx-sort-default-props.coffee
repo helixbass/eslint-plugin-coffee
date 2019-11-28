@@ -76,7 +76,7 @@ module.exports =
       .variablesInScope context
       .find (item) -> item.name is name
 
-      return null unless (defNode = variable?.defs[0]?.node)
+      return null unless defNode = variable?.defs[0]?.node
 
       return defNode.right if defNode.type is 'TypeAlias'
       return defNode.parent.right if (

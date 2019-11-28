@@ -152,7 +152,7 @@ ruleTester.run 'max-lines-per-function', rule,
     options: [max: 4, skipComments: yes, skipBlankLines: no, IIFEs: yes]
   ,
     # Nested function validity test
-    code: """
+    code: '''
       ->
         x = 0
         nested = ->
@@ -160,39 +160,39 @@ ruleTester.run 'max-lines-per-function', rule,
           x = 2
           if x is y
             x++
-    """
+    '''
     options: [max: 7, skipComments: yes, skipBlankLines: no]
   ,
     # Class method validity test
-    code: """
+    code: '''
       class foo
         method: ->
           y = 10
           x = 20
           y + x
-    """
+    '''
     options: [max: 4, skipComments: yes, skipBlankLines: no]
   ,
     # IIFEs should be recognised if IIFEs: true
-    code: """
+    code: '''
       do ->
         x = 0
         y = 0
         z = x + y
         foo = {}
         bar
-    """
+    '''
     options: [max: 6, skipComments: yes, skipBlankLines: no, IIFEs: yes]
   ,
     # IIFEs should not be recognised if IIFEs: false
-    code: """
+    code: '''
       do ->
         x = 0
         y = 0
         z = x + y
         foo = {}
         bar
-    """
+    '''
     options: [max: 2, skipComments: yes, skipBlankLines: no, IIFEs: no]
   ]
 
@@ -298,40 +298,40 @@ ruleTester.run 'max-lines-per-function', rule,
     errors: ["function 'name' has too many lines (4). Maximum allowed is 1."]
   ,
     # Test simple standalone function with params on separate lines
-    code: """
+    code: '''
       foo = (
         aaa = 1,
         bbb = 2,
         ccc = 3
       ) ->
         return aaa + bbb + ccc
-    """
+    '''
     options: [max: 2, skipComments: yes, skipBlankLines: no]
     errors: ["function 'foo' has too many lines (6). Maximum allowed is 2."]
   ,
     # Test IIFE "function" keyword is included in the count
-    code: """
+    code: '''
       (
         ->
           a
 
           b
       )()
-    """
+    '''
     options: [max: 2, skipComments: yes, skipBlankLines: no, IIFEs: yes]
     errors: ['function has too many lines (4). Maximum allowed is 2.']
   ,
-    code: """
+    code: '''
       do ->
         a
 
         b
-    """
+    '''
     options: [max: 2, skipComments: yes, skipBlankLines: no, IIFEs: yes]
     errors: ['function has too many lines (4). Maximum allowed is 2.']
   ,
     # Test nested functions are included in it's parent's function count.
-    code: """
+    code: '''
       parent = ->
         x = 0
 
@@ -342,14 +342,12 @@ ruleTester.run 'max-lines-per-function', rule,
 
         if x is y
           x++
-    """
+    '''
     options: [max: 9, skipComments: yes, skipBlankLines: no]
-    errors: [
-      "function 'parent' has too many lines (10). Maximum allowed is 9."
-    ]
+    errors: ["function 'parent' has too many lines (10). Maximum allowed is 9."]
   ,
     # Test nested functions are included in it's parent's function count.
-    code: """
+    code: '''
       parent = ->
         x = 0
         nested = ->
@@ -357,7 +355,7 @@ ruleTester.run 'max-lines-per-function', rule,
           x = 2
         if x is y
           x++
-    """
+    '''
     options: [max: 2, skipComments: yes, skipBlankLines: no]
     errors: [
       "function 'parent' has too many lines (7). Maximum allowed is 2."
@@ -365,48 +363,48 @@ ruleTester.run 'max-lines-per-function', rule,
     ]
   ,
     # Test regular methods are recognised
-    code: """
+    code: '''
       class foo
         method: ->
           y = 10
           x = 20
           y + x
-    """
+    '''
     options: [max: 2, skipComments: yes, skipBlankLines: no]
     errors: ["method 'method' has too many lines (4). Maximum allowed is 2."]
   ,
     # Test static methods are recognised
-    code: """
+    code: '''
       class A
         @foo: (a) ->
 
           a
-    """
+    '''
     options: [max: 2, skipComments: yes, skipBlankLines: no]
     errors: [
       "static method 'foo' has too many lines (3). Maximum allowed is 2."
     ]
   ,
     # Test computed property names
-    code: """
+    code: '''
       class A
         [foo +
                 bar
         ]: (a) ->
           a
-    """
+    '''
     options: [max: 2, skipComments: yes, skipBlankLines: no]
     errors: ['method has too many lines (4). Maximum allowed is 2.']
   ,
     # Test the IIFEs option includes IIFEs
-    code: """
+    code: '''
       do (x) ->
         x = 0
         y = 0
         z = x + y
         foo = {}
         bar
-    """
+    '''
     options: [max: 2, skipComments: yes, skipBlankLines: no, IIFEs: yes]
     errors: ['function has too many lines (6). Maximum allowed is 2.']
   ]

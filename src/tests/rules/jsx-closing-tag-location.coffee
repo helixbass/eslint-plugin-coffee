@@ -25,51 +25,51 @@ MESSAGE_OWN_LINE = [
 ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'jsx-closing-tag-location', rule,
   valid: [
-    code: """
+    code: '''
       <App>
         foo
       </App>
-    """
+    '''
   ,
-    code: """
+    code: '''
       <App>foo</App>
-    """
+    '''
   ,
-    code: """
+    code: '''
       <>
         foo
       </>
-    """
+    '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       <>foo</>
-    """
+    '''
     # parser: 'babel-eslint'
   ]
 
   invalid: [
-    code: """
+    code: '''
       <App>
         foo
         </App>
-    """
-    output: """
+    '''
+    output: '''
       <App>
         foo
       </App>
-    """
+    '''
     errors: MESSAGE_MATCH_INDENTATION
   ,
-    code: """
+    code: '''
       <App>
         foo</App>
-    """
-    output: """
+    '''
+    output: '''
       <App>
         foo
       </App>
-    """
+    '''
     errors: MESSAGE_OWN_LINE
     # ,
     #   code: """

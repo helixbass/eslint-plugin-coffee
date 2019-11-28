@@ -42,10 +42,10 @@ ruleTester.run 'no-console', rule,
     code: 'console.log(foo)', options: [allow: ['info', 'log', 'warn']]
   ,
     # https://github.com/eslint/eslint/issues/7010
-    """
+    '''
       console = require('myconsole')
       console.log(foo)
-    """
+    '''
   ]
   invalid: [
     # no options

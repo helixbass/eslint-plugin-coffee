@@ -22,32 +22,32 @@ valid = [
   "x = require('y')"
   "if (x) then x.require('y')"
   "x; x = require('y')"
-  """
+  '''
     x = 1
     y = require('y')
-  """
-  """
+  '''
+  '''
     x = require('y')
     y = require('y')
     z = require('z')
-  """
+  '''
   "x = require('y').foo"
   "require('y').foo()"
   "require('y')"
-  """
+  '''
     x = ->
     x()
     if x > y
       doSomething()
     x = require('y').foo
-  """
+  '''
   "logger = require(if DEBUG then 'dev-logger' else 'logger')"
   "logger = if DEBUG then require('dev-logger') else require('logger')"
   "localScopedRequire = (require) -> require('y')"
-  """
+  '''
     someFunc = require './someFunc'
     someFunc (require) -> 'bananas'
-  """
+  '''
 ]
 
 message = 'Unexpected require().'
@@ -55,10 +55,10 @@ type = 'CallExpression'
 
 invalid = [
   # block statements
-  code: """
+  code: '''
     if process.env.NODE_ENV is 'DEVELOPMENT'
       require('debug')
-  """
+  '''
   errors: [
     {
       line: 2
@@ -68,11 +68,11 @@ invalid = [
     }
   ]
 ,
-  code: """
+  code: '''
     x = null
     if (y)
       x = require('debug')
-  """
+  '''
   errors: [
     {
       line: 3
@@ -82,11 +82,11 @@ invalid = [
     }
   ]
 ,
-  code: """
+  code: '''
     x = null
     if y
       x = require('debug').baz
-  """
+  '''
   errors: [
     {
       line: 3
@@ -106,12 +106,12 @@ invalid = [
     }
   ]
 ,
-  code: """
+  code: '''
     try
       require('x')
     catch e
       console.log e
-  """
+  '''
   errors: [
     {
       line: 2
@@ -142,11 +142,11 @@ invalid = [
     }
   ]
 ,
-  code: """
+  code: '''
     switch x
       when '1'
         require('1')
-  """
+  '''
   errors: [
     {
       line: 3

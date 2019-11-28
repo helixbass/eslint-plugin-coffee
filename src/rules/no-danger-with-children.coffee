@@ -38,10 +38,10 @@ module.exports =
         else if prop.type in ['ExperimentalSpreadProperty', 'SpreadElement']
           variable = findSpreadVariable prop.argument.name
           if (
-            (val =
+            val =
               variable.defs[0]?.node.init ?
               (isDeclarationAssignment(variable?.defs[0]?.node.parent) and
-                variable.defs[0].node.parent.right))
+                variable.defs[0].node.parent.right)
           )
             return no if seenProps.indexOf(prop.argument.name) > -1
             newSeenProps = seenProps.concat prop.argument.name or []

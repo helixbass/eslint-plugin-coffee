@@ -249,7 +249,6 @@ rules =
   flow(
     fmapWithKey (config, rule) -> [
       rule
-    ,
       {
         ...config
         module: require "./rules/#{rule}"
@@ -521,7 +520,10 @@ configureAsError = flow(
   ffromPairs
 )
 
-turnOff = flow fmap((rule) -> [rule, 'off']), ffromPairs
+turnOff = flow(
+  fmap (rule) -> [rule, 'off']
+  ffromPairs
+)
 
 module.exports = {
   rules: fmapValues('module') rules
@@ -553,9 +555,11 @@ module.exports = {
           parser: 'coffeescript', pluginSearchDirs: ['.']
         ]
         ...turnOff(
-          flow(fpickBy('prettier'), fkeys, fmap (rule) -> "coffee/#{rule}")(
-            rules
-          )
+          flow(
+            fpickBy 'prettier'
+            fkeys
+            fmap (rule) -> "coffee/#{rule}"
+          ) rules
         )
       }
   parseForESLint

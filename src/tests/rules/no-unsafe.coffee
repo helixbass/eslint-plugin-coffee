@@ -22,63 +22,63 @@ errorMessage = (method) ->
 ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'no-unsafe', rule,
   valid: [
-    code: """
+    code: '''
         class Foo extends React.Component
           componentDidUpdate: ->
           render: ->
-    """
+    '''
     settings: react: version: '16.4.0'
   ,
-    code: """
+    code: '''
         Foo = createReactClass
           componentDidUpdate: ->
           render: ->
-      """
+      '''
     settings: react: version: '16.4.0'
   ,
-    code: """
+    code: '''
         class Foo extends Bar {
           UNSAFE_componentWillMount: ->
           UNSAFE_componentWillReceiveProps: ->
           UNSAFE_componentWillUpdate: ->
         }
-      """
+      '''
     settings: react: version: '16.4.0'
   ,
-    code: """
+    code: '''
         Foo = bar({
           UNSAFE_componentWillMount: ->
           UNSAFE_componentWillReceiveProps: ->
           UNSAFE_componentWillUpdate: ->
         })
-      """
+      '''
     settings: react: version: '16.4.0'
   ,
-    code: """
+    code: '''
         class Foo extends React.Component
           UNSAFE_componentWillMount: ->
           UNSAFE_componentWillReceiveProps: ->
           UNSAFE_componentWillUpdate: ->
-      """
+      '''
     settings: react: version: '16.2.0'
   ,
-    code: """
+    code: '''
           Foo = createReactClass({
             UNSAFE_componentWillMount: ->
             UNSAFE_componentWillReceiveProps: ->
             UNSAFE_componentWillUpdate: ->
           })
-        """
+        '''
     settings: react: version: '16.2.0'
   ]
 
   invalid: [
-    code: """
+    code: '''
       class Foo extends React.Component
         UNSAFE_componentWillMount: ->
         UNSAFE_componentWillReceiveProps: ->
         UNSAFE_componentWillUpdate: ->
-    """
+    '''
     settings: react: version: '16.3.0'
     errors: [
       message: errorMessage 'UNSAFE_componentWillMount'
@@ -97,12 +97,12 @@ ruleTester.run 'no-unsafe', rule,
       type: 'ClassDeclaration'
     ]
   ,
-    code: """
+    code: '''
         Foo = createReactClass
           UNSAFE_componentWillMount: ->
           UNSAFE_componentWillReceiveProps: ->
           UNSAFE_componentWillUpdate: ->
-      """
+      '''
     settings: react: version: '16.3.0'
     errors: [
       message: errorMessage 'UNSAFE_componentWillMount'

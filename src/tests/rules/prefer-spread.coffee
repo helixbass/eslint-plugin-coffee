@@ -53,43 +53,36 @@ ruleTester.run 'prefer-spread', rule,
       code: 'foo.apply(undefined, args)'
       errors
     }
-  ,
     {
       code: 'foo.apply(null, args)'
       errors
     }
-  ,
     {
       code: 'obj.foo.apply(obj, args)'
       errors
     }
-  ,
     {
       code: 'obj.foo.apply obj, args'
       errors
     }
-  ,
     {
       # Not fixed: a.b.c might activate getters
       code: 'a.b.c.foo.apply(a.b.c, args)'
       output: null
       errors
     }
-  ,
     {
       # Not fixed: a.b(x, y).c might activate getters
       code: 'a.b(x, y).c.foo.apply(a.b(x, y).c, args)'
       output: null
       errors
     }
-  ,
     {
       # Not fixed (not an identifier)
       code: '[].concat.apply([ ], args)'
       output: null
       errors
     }
-  ,
     {
       # Not fixed (not an identifier)
       code: '''

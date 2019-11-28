@@ -79,11 +79,11 @@ ruleTester.run 'max-statements', rule,
     '''
     options: [1, {ignoreTopLevelFunctions: yes}]
   ,
-    code: """
+    code: '''
       define ['foo', 'qux'], (foo, qux) ->
         bar = 1
         baz = 2
-    """
+    '''
     options: [1, {ignoreTopLevelFunctions: yes}]
   ,
     # object property options
@@ -216,14 +216,14 @@ ruleTester.run 'max-statements', rule,
       message: 'Function has too many statements (2). Maximum allowed is 1.'
     ]
   ,
-    code: """
+    code: '''
       define ['foo', 'qux'], (foo, qux) ->
         bar = 1
         baz = 2
         ->
           z = null
           return 42
-    """
+    '''
     options: [1, {ignoreTopLevelFunctions: yes}]
     errors: [
       message: 'Function has too many statements (2). Maximum allowed is 1.'

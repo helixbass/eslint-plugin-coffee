@@ -95,7 +95,6 @@ ruleTester.run 'no-unused-vars', rule,
       errors: [message: "'React' is assigned a value but never used."]
       settings
     }
-  ,
     {
       code: '''
         ###eslint jsx-uses-react:1###

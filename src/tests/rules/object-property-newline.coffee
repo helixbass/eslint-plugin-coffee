@@ -22,85 +22,85 @@ ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'object-property-newline', rule,
   valid: [
     # default-case
-    """
+    '''
       obj = {
         k1: 'val1',
         k2: 'val2',
         k3: 'val3',
         k4: 'val4'
       }
-    """
-    """
+    '''
+    '''
       obj =
         k1: 'val1'
         k2: 'val2'
         k3: 'val3'
         k4: 'val4'
-    """
-    """
+    '''
+    '''
       obj = {
         k1: 'val1'
         , k2: 'val2'
         , k3: 'val3'
         , k4: 'val4'
       }
-    """
-    """
+    '''
+    '''
       obj = {
         k1: 'val1',
         k2: 'val2',
         k3: 'val3',
         k4: 'val4' }
-    """
-    """
+    '''
+    '''
       obj = { k1: 'val1'
         , k2: 'val2'
         , k3: 'val3'
         , k4: 'val4' }
-    """
+    '''
     "obj = { k1: 'val1' }"
-    """
+    '''
       obj = {
         k1: 'val1'
       }
-    """
+    '''
     'obj = {}'
   ,
-    code: """
+    code: '''
       obj = {
         [bar]: 'baz'
         baz
       }
-    """
+    '''
   ,
-    code: """
+    code: '''
       obj = {
         k1: 'val1',
         k2: 'val2',
         ...{}
       }
-    """
+    '''
   ,
-    code: """
+    code: '''
       obj = {
         k1: 'val1'
         k2: 'val2'
         ...{}
       }
-    """
+    '''
   ,
     code: 'obj = { ...{} }'
   ,
-    """
+    '''
       foo({ k1: 'val1',
       k2: 'val2' })
-    """
-    """
+    '''
+    '''
       foo({
         k1: 'val1',
         k2: 'val2'
       })
-    """
+    '''
   ,
     code: '''
       foo({
@@ -123,26 +123,26 @@ ruleTester.run 'object-property-newline', rule,
       })
     '''
   ,
-    code: """
+    code: '''
       foo({
         [bar]: 'baz',
         baz
       })
-    """
+    '''
   ,
-    code: """
+    code: '''
       foo({
         k1: 'val1',
         k2: 'val2',
         ...{}
       })
-    """
+    '''
   ,
-    code: """
+    code: '''
       foo({ k1: 'val1',
       k2: 'val2',
       ...{} })
-    """
+    '''
   ,
     code: 'foo({ ...{} })'
   ,
@@ -150,20 +150,20 @@ ruleTester.run 'object-property-newline', rule,
     code: "obj = { k1: 'val1', k2: 'val2', k3: 'val3' }"
     options: [allowAllPropertiesOnSameLine: yes]
   ,
-    code: """
+    code: '''
       obj =
         k1: 'val1', k2: 'val2', k3: 'val3'
-    """
+    '''
     options: [allowAllPropertiesOnSameLine: yes]
   ,
     code: "obj = { k1: 'val1' }"
     options: [allowAllPropertiesOnSameLine: yes]
   ,
-    code: """
+    code: '''
       obj = {
         k1: 'val1'
       }
-    """
+    '''
     options: [allowAllPropertiesOnSameLine: yes]
   ,
     code: 'obj = {}', options: [allowAllPropertiesOnSameLine: yes]
@@ -171,20 +171,20 @@ ruleTester.run 'object-property-newline', rule,
     code: "obj = { 'k1': 'val1', k2: 'val2', ...{} }"
     options: [allowAllPropertiesOnSameLine: yes]
   ,
-    code: """
+    code: '''
       obj = {
         'k1': 'val1', k2: 'val2', ...{}
       }
-    """
+    '''
     options: [allowAllPropertiesOnSameLine: yes]
   ,
     code: "foo({ k1: 'val1', k2: 'val2' })"
     options: [allowAllPropertiesOnSameLine: yes]
   ,
-    code: """
+    code: '''
       foo
         k1: 'val1', k2: 'val2'
-    """
+    '''
     options: [allowAllPropertiesOnSameLine: yes]
   ,
     code: 'foo({ a, b })'
@@ -199,28 +199,28 @@ ruleTester.run 'object-property-newline', rule,
     code: "foo({ 'k1': 'val1', k2: 'val2', ...{} })"
     options: [allowAllPropertiesOnSameLine: yes]
   ,
-    code: """
+    code: '''
       foo({
         'k1': 'val1', k2: 'val2', ...{}
       })
-    """
+    '''
     options: [allowAllPropertiesOnSameLine: yes]
   ,
     code: "obj = {k1: ['foo', 'bar'], k2: 'val1', k3: 'val2'}"
     options: [allowAllPropertiesOnSameLine: yes]
   ,
-    code: """
+    code: '''
       obj = {
         k1: ['foo', 'bar'], k2: 'val1', k3: 'val2'
       }
-    """
+    '''
     options: [allowAllPropertiesOnSameLine: yes]
   ,
-    code: """
+    code: '''
       obj = {
         k1: 'val1', k2: {e1: 'foo', e2: 'bar'}, k3: 'val2'
       }
-    """
+    '''
     options: [allowAllPropertiesOnSameLine: yes]
   ,
     # allowMultiplePropertiesPerLine: true (deprecated)
@@ -244,11 +244,11 @@ ruleTester.run 'object-property-newline', rule,
       column: 33
     ]
   ,
-    code: """
+    code: '''
       obj = {
         k1: 'val1', k2: 'val2'
       }
-    """
+    '''
     # output: "obj = {\nk1: 'val1',\nk2: 'val2'\n}"
     errors: [
       message: 'Object properties must go on a new line.'
@@ -257,12 +257,12 @@ ruleTester.run 'object-property-newline', rule,
       column: 15
     ]
   ,
-    code: """
+    code: '''
       obj = {
         k1: 'val1', k2: 'val2',
         k3: 'val3', k4: 'val4'
       }
-    """
+    '''
     # output: "obj = {\nk1: 'val1',\nk2: 'val2',\nk3: 'val3',\nk4: 'val4'\n}"
     errors: [
       message: 'Object properties must go on a new line.'
@@ -285,11 +285,11 @@ ruleTester.run 'object-property-newline', rule,
       column: 28
     ]
   ,
-    code: """
+    code: '''
       obj = {k1: [
         'foo', 'bar'
       ], k2: 'val1'}
-    """
+    '''
     # output: "obj = {k1: [\n'foo', 'bar'\n],\nk2: 'val1'}"
     errors: [
       message: 'Object properties must go on a new line.'
@@ -298,11 +298,11 @@ ruleTester.run 'object-property-newline', rule,
       column: 4
     ]
   ,
-    code: """
+    code: '''
       obj = {
         k1: 'val1', k2: {e1: 'foo', e2: 'bar'}, k3: 'val2'
       }
-    """
+    '''
     # output:
     #   "obj = {\nk1: 'val1',\nk2: {e1: 'foo',\ne2: 'bar'},\nk3: 'val2'\n}"
     errors: [
@@ -322,13 +322,13 @@ ruleTester.run 'object-property-newline', rule,
       column: 43
     ]
   ,
-    code: """
+    code: '''
       obj = {
         k1: 'val1',
         k2: {e1: 'foo', e2: 'bar'},
         k3: 'val2'
       }
-    """
+    '''
     # output:
     #   "obj = {\nk1: 'val1',\nk2: {e1: 'foo',\ne2: 'bar'},\nk3: 'val2'\n}"
     errors: [
@@ -338,13 +338,13 @@ ruleTester.run 'object-property-newline', rule,
       column: 19
     ]
   ,
-    code: """
+    code: '''
       obj = {
         k1: 'val1',
         k2: [
           'val2a', 'val2b', 'val2c'
         ], k3: 'val3' }
-    """
+    '''
     # output:
     #   "obj = { k1: 'val1',\nk2: [\n'val2a', 'val2b', 'val2c'\n],\nk3: 'val3' }"
     errors: [
@@ -363,11 +363,11 @@ ruleTester.run 'object-property-newline', rule,
       column: 21
     ]
   ,
-    code: """
+    code: '''
       obj = {
         k1: 'val1', ...{}
       }
-    """
+    '''
     # output: "obj = {\nk1: 'val1',\n...{}\n}"
     errors: [
       message: 'Object properties must go on a new line.'
@@ -385,10 +385,10 @@ ruleTester.run 'object-property-newline', rule,
       column: 19
     ]
   ,
-    code: """
+    code: '''
       foo
         k1: 'val1', k2: 'val2'
-    """
+    '''
     # output: "foo({\nk1: 'val1',\nk2: 'val2'\n})"
     errors: [
       message: 'Object properties must go on a new line.'
@@ -432,11 +432,11 @@ ruleTester.run 'object-property-newline', rule,
       column: 12
     ]
   ,
-    code: """
+    code: '''
       foo({
         [bar]: 'baz', baz
       })
-    """
+    '''
     # output: "foo({\n[bar]: 'baz',\nbaz\n})"
     errors: [
       message: 'Object properties must go on a new line.'
@@ -454,11 +454,11 @@ ruleTester.run 'object-property-newline', rule,
       column: 19
     ]
   ,
-    code: """
+    code: '''
       foo {
         k1: 'val1', ...{}
       }
-    """
+    '''
     # output: "foo({\nk1: 'val1',\n...{}\n})"
     errors: [
       message: 'Object properties must go on a new line.'
@@ -502,12 +502,12 @@ ruleTester.run 'object-property-newline', rule,
     ]
   ,
     # allowAllPropertiesOnSameLine: true
-    code: """
+    code: '''
       obj = {
         k1: 'val1',
         k2: 'val2', k3: 'val3'
       }
-    """
+    '''
     # output: "obj = {\nk1: 'val1',\nk2: 'val2',\nk3: 'val3'\n}"
     options: [allowAllPropertiesOnSameLine: yes]
     errors: [
@@ -518,14 +518,14 @@ ruleTester.run 'object-property-newline', rule,
       column: 15
     ]
   ,
-    code: """
+    code: '''
       obj = {
         k1:
           'val1'
         k2: 'val2', k3:
             'val3'
       }
-    """
+    '''
     # output: "obj = {\nk1:\n'val1',\nk2: 'val2',\nk3:\n'val3'\n}"
     options: [allowAllPropertiesOnSameLine: yes]
     errors: [
@@ -536,12 +536,12 @@ ruleTester.run 'object-property-newline', rule,
       column: 15
     ]
   ,
-    code: """
+    code: '''
       obj = {k1: [
         'foo'
         'bar'
       ], k2: 'val1'}
-    """
+    '''
     # output: "obj = {k1: [\n'foo',\n'bar'\n],\nk2: 'val1'}"
     options: [allowAllPropertiesOnSameLine: yes]
     errors: [
@@ -552,11 +552,11 @@ ruleTester.run 'object-property-newline', rule,
       column: 4
     ]
   ,
-    code: """
+    code: '''
       obj = {k1: [
         'foo', 'bar'
       ], k2: 'val1'}
-    """
+    '''
     # output: "obj = {k1: [\n'foo', 'bar'\n],\nk2: 'val1'}"
     options: [allowAllPropertiesOnSameLine: yes]
     errors: [
@@ -567,13 +567,13 @@ ruleTester.run 'object-property-newline', rule,
       column: 4
     ]
   ,
-    code: """
+    code: '''
       obj = {
         k1: 'val1', k2: {
           e1: 'foo', e2: 'bar'
         }, k3: 'val2'
       }
-    """
+    '''
     # output:
     #   "obj = {\nk1: 'val1',\nk2: {\ne1: 'foo', e2: 'bar'\n},\nk3: 'val2'\n}"
     options: [allowAllPropertiesOnSameLine: yes]
@@ -591,13 +591,13 @@ ruleTester.run 'object-property-newline', rule,
       column: 6
     ]
   ,
-    code: """
+    code: '''
       obj = {
         k1: 'val1',
         k2: [
           'val2a', 'val2b', 'val2c'
         ], k3: 'val3' }
-    """
+    '''
     # output:
     #   "obj = { k1: 'val1',\nk2: [\n'val2a', 'val2b', 'val2c'\n],\nk3: 'val3' }"
     options: [allowAllPropertiesOnSameLine: yes]
@@ -609,12 +609,12 @@ ruleTester.run 'object-property-newline', rule,
       column: 6
     ]
   ,
-    code: """
+    code: '''
       obj = {
         k1: 'val1',
         k2: 'val2', ...{}
       }
-    """
+    '''
     # output: "obj = {\nk1: 'val1',\nk2: 'val2',\n...{}\n}"
     options: [allowAllPropertiesOnSameLine: yes]
     errors: [
@@ -625,12 +625,12 @@ ruleTester.run 'object-property-newline', rule,
       column: 15
     ]
   ,
-    code: """
+    code: '''
       obj = {
         ...{},
         k1: 'val1', k2: 'val2'
       }
-    """
+    '''
     # output: "obj = {\n...{},\nk1: 'val1',\nk2: 'val2'\n}"
     options: [allowAllPropertiesOnSameLine: yes]
     errors: [
@@ -641,12 +641,12 @@ ruleTester.run 'object-property-newline', rule,
       column: 15
     ]
   ,
-    code: """
+    code: '''
       foo({
         k1: 'val1',
         k2: 'val2', ...{}
       })
-    """
+    '''
     # output: "foo({\nk1: 'val1',\nk2: 'val2',\n...{}\n})"
     options: [allowAllPropertiesOnSameLine: yes]
     errors: [
@@ -657,12 +657,12 @@ ruleTester.run 'object-property-newline', rule,
       column: 15
     ]
   ,
-    code: """
+    code: '''
       foo({
         ...{},
         k1: 'val1', k2: 'val2'
       })
-    """
+    '''
     # output: "foo({\n...{},\nk1: 'val1',\nk2: 'val2'\n})"
     options: [allowAllPropertiesOnSameLine: yes]
     errors: [
@@ -674,12 +674,12 @@ ruleTester.run 'object-property-newline', rule,
     ]
   ,
     # allowMultiplePropertiesPerLine: true (deprecated)
-    code: """
+    code: '''
       obj = {
         k1: 'val1',
         k2: 'val2', k3: 'val3'
       }
-    """
+    '''
     # output: "obj = {\nk1: 'val1',\nk2: 'val2',\nk3: 'val3'\n}"
     options: [allowMultiplePropertiesPerLine: yes]
     errors: [

@@ -28,20 +28,20 @@ ruleTester.run 'no-useless-constructor', rule,
         constructor: ->
           doSomething()
     '''
-    """
+    '''
       class A
         constructor: ->
           super 'foo'
-    """
+    '''
     '''
       class A extends B
         constructor: ->
     '''
-    """
+    '''
       class A extends B
         constructor: ->
           super('foo')
-    """
+    '''
     '''
       class A extends B
         constructor: (foo, bar) -> super(foo, bar, 1)
@@ -111,10 +111,10 @@ ruleTester.run 'no-useless-constructor', rule,
     '''
     errors: [error]
   ,
-    code: """
+    code: '''
       class A
         'constructor': ->
-    """
+    '''
     errors: [error]
   ,
     code: '''

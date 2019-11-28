@@ -18,43 +18,43 @@ ruleTester.run 'exports-last', rule,
     test code: '# comment'
     test
       # No exports
-      code: """
+      code: '''
         foo = 'bar'
         bar = 'baz'
-      """
+      '''
     test
-      code: """
+      code: '''
         foo = 'bar'
         export {foo}
-      """
+      '''
     test
-      code: """
+      code: '''
         foo = 'bar'
         export default foo
-      """
+      '''
     # Only exports
     test
-      code: """
+      code: '''
         export default foo
         export bar = true
-      """
+      '''
     test
-      code: """
+      code: '''
         foo = 'bar'
         export default foo
         export bar = true
-      """
+      '''
     # Multiline export
     test
-      code: """
+      code: '''
         foo = 'bar'
         export default bar = ->
           very = 'multiline'
         export baz = true
-      """
+      '''
     # Many exports
     test
-      code: """
+      code: '''
         foo = 'bar'
         export default foo
         export so = 'many'
@@ -62,38 +62,38 @@ ruleTester.run 'exports-last', rule,
         export i = 'cant'
         export even = 'count'
         export how = 'many'
-      """
+      '''
     # Export all
     test
-      code: """
+      code: '''
         export * from './foo'
-      """
+      '''
   ]
   invalid: [
     # Default export before variable declaration
     test
-      code: """
+      code: '''
         export default 'bar'
         bar = true
-      """
+      '''
       errors: [error 'ExportDefaultDeclaration']
     # Named export before variable declaration
     test
-      code: """
+      code: '''
         export foo = 'bar'
         bar = true
-      """
+      '''
       errors: [error 'ExportNamedDeclaration']
     # Export all before variable declaration
     test
-      code: """
+      code: '''
         export * from './foo'
         bar = true
-      """
+      '''
       errors: [error 'ExportAllDeclaration']
     # Many exports arround variable declaration
     test
-      code: """
+      code: '''
         export default 'such foo many bar'
         export so = 'many'
         foo = 'bar'
@@ -101,7 +101,7 @@ ruleTester.run 'exports-last', rule,
         export i = 'cant'
         export even = 'count'
         export how = 'many'
-      """
+      '''
       errors: [
         error 'ExportDefaultDeclaration'
         error 'ExportNamedDeclaration'

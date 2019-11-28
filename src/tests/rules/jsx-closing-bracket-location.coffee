@@ -36,11 +36,11 @@ messageWithDetails = (message, expectedColumn, expectedNextLine) ->
 ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'jsx-closing-bracket-location', rule,
   valid: [
-    code: ['<App />'].join('\n')
+    code: ['<App />'].join '\n'
   ,
-    code: ['<App foo />'].join('\n')
+    code: ['<App foo />'].join '\n'
   ,
-    code: ['<App ', '  foo', '/>'].join('\n')
+    code: ['<App ', '  foo', '/>'].join '\n'
   ,
     code: ['<App foo />'].join '\n'
     options: [location: 'after-props']
@@ -69,7 +69,7 @@ ruleTester.run 'jsx-closing-bracket-location', rule,
     code: ['<App ', '  foo', '  />'].join '\n'
     options: [location: 'props-aligned']
   ,
-    code: ['<App foo></App>'].join('\n')
+    code: ['<App foo></App>'].join '\n'
   ,
     # ,
     #   code: ['<App', '  foo', '></App>'].join '\n'
@@ -93,9 +93,7 @@ ruleTester.run 'jsx-closing-bracket-location', rule,
     #     '\n'
     #   )
     #   options: [location: 'tag-aligned']
-    code: ['<App', '  foo={->', "    console.log('bar')", '  }', '/>'].join(
-      '\n'
-    )
+    code: ['<App', '  foo={->', "    console.log('bar')", '  }', '/>'].join '\n'
     options: [location: 'line-aligned']
   ,
     code: ['<App foo={->', "  console.log('bar')", '}/>'].join '\n'
@@ -252,7 +250,7 @@ ruleTester.run 'jsx-closing-bracket-location', rule,
     ].join '\n'
     options: [location: 'line-aligned']
   ,
-    code: ['<App ', '\tfoo', '/>'].join('\n')
+    code: ['<App ', '\tfoo', '/>'].join '\n'
   ,
     code: ['<App ', '\tfoo />'].join '\n'
     options: ['after-props']
@@ -294,9 +292,7 @@ ruleTester.run 'jsx-closing-bracket-location', rule,
     #     '\n'
     #   )
     #   options: [location: 'tag-aligned']
-    code: ['<App', '\tfoo={->', "\t\tconsole.log('bar')", '\t}', '/>'].join(
-      '\n'
-    )
+    code: ['<App', '\tfoo={->', "\t\tconsole.log('bar')", '\t}', '/>'].join '\n'
     options: [location: 'line-aligned']
   ,
     code: ['<App foo={->', "\tconsole.log('bar')", '}/>'].join '\n'

@@ -78,13 +78,13 @@ ruleTester.run 'react-in-jsx-scope', rule,
       <App />
     '''
   ,
-    code: """
+    code: '''
       import React from 'react/addons'
       Button = createReactClass
         render: ->
           <button {@props...}>{@props.children}</button>
       export default Button
-    """
+    '''
   ,
     {
       code: '''

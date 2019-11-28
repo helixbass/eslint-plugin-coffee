@@ -241,7 +241,10 @@ module.exports =
 
           retv[key] =
             before:
-              if thisBefore then expectSpaceBefore else unexpectSpaceBefore
+              if thisBefore
+                expectSpaceBefore
+              else
+                unexpectSpaceBefore
             after: if thisAfter then expectSpaceAfter else unexpectSpaceAfter
         else
           retv[key] = defaultValue

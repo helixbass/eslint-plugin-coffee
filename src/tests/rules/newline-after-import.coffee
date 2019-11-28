@@ -12,27 +12,27 @@ ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 rule = require 'eslint-plugin-import/lib/rules/newline-after-import'
 ruleTester.run 'newline-after-import', rule,
   valid: [
-    """
+    '''
       path = require('path')
       foo = require('foo')
-    """
+    '''
     "require('foo')"
-    """
+    '''
       switch 'foo'
         when 'bar'
           require('baz')
-    """
+    '''
   ,
-    code: """
+    code: '''
       x = () => require('baz')
       y = () => require('bar')
-    """
+    '''
   ,
     code: "x = () => require('baz') && require('bar')"
   ,
     "x = -> require('baz')"
     "a(require('b'), require('c'), require('d'))"
-    """
+    '''
       foo = ->
         switch renderData.modalViewKey
           when 'value'
@@ -40,9 +40,9 @@ ruleTester.run 'newline-after-import', rule,
             return bar(renderData, options)
           else
             return renderData.mainModalContent.clone()
-    """
+    '''
   ,
-    code: """
+    code: '''
       #issue 441
       bar = ->
         switch foo
@@ -72,118 +72,118 @@ ruleTester.run 'newline-after-import', rule,
             return something()
           else
             return somethingElse()
-    """
+    '''
   ,
-    code: """
+    code: '''
       import path from 'path'
       import foo from 'foo'
-    """
+    '''
   ,
-    code: """
+    code: '''
       import path from 'path'
       import foo from 'foo'
-    """
+    '''
   ,
-    code: """
+    code: '''
       import path from 'path'
       import foo from 'foo'
 
       bar = 42
-    """
+    '''
   ,
-    code: """
+    code: '''
       import foo from 'foo'
       
       bar = 'bar'
-    """
+    '''
   ,
-    code: """
+    code: '''
       import foo from 'foo'
       
       
       bar = 'bar'
-    """
+    '''
     options: [count: 2]
   ,
-    code: """
+    code: '''
       import foo from 'foo'
       
       
       
       
       bar = 'bar'
-    """
+    '''
     options: [count: 4]
   ,
-    code: """
+    code: '''
       foo = require('foo-module')
       
       foo = 'bar'
-    """
+    '''
   ,
-    code: """
+    code: '''
       foo = require('foo-module')
       
       
       foo = 'bar'
-    """
+    '''
     options: [count: 2]
   ,
-    code: """
+    code: '''
       foo = require('foo-module')
       
       
       
       
       foo = 'bar'
-    """
+    '''
     options: [count: 4]
   ,
-    code: """
+    code: '''
       require('foo-module')
       
       foo = 'bar'
-    """
+    '''
   ,
-    code: """
+    code: '''
       import foo from 'foo'
       import { bar } from './bar-lib'
-    """
+    '''
   ,
-    code: """
+    code: '''
       import foo from 'foo'
       
       a = 123
       
       import { bar } from './bar-lib'
-    """
+    '''
   ,
-    code: """
+    code: '''
       foo = require('foo-module')
       
       a = 123
       
       bar = require('bar-lib')
-    """
+    '''
   ,
-    code: """
+    code: '''
       foo = ->
         foo = require('foo')
         foo()
-    """
+    '''
   ,
-    code: """
+    code: '''
       if true
         foo = require('foo')
         foo()
-    """
+    '''
   ,
-    code: """
+    code: '''
       a = ->
         assign = Object.assign or require('object-assign')
         foo = require('foo')
         bar = 42
-    """
+    '''
     # ,
     #   code: """
     #     #issue 592
@@ -199,32 +199,32 @@ ruleTester.run 'newline-after-import', rule,
   ]
 
   invalid: [
-    code: """
+    code: '''
       import foo from 'foo'
       export default ->
-    """
-    output: """
+    '''
+    output: '''
       import foo from 'foo'
       
       export default ->
-    """
+    '''
     errors: [
       line: 1
       column: 1
       message: IMPORT_ERROR_MESSAGE
     ]
   ,
-    code: """
+    code: '''
       import foo from 'foo'
       
       export default ->
-    """
-    output: """
+    '''
+    output: '''
       import foo from 'foo'
       
       
       export default ->
-    """
+    '''
     options: [count: 2]
     errors: [
       line: 1
@@ -232,30 +232,30 @@ ruleTester.run 'newline-after-import', rule,
       message: IMPORT_ERROR_MESSAGE_MULTIPLE 2
     ]
   ,
-    code: """
+    code: '''
       foo = require('foo-module')
       something = 123
-    """
-    output: """
+    '''
+    output: '''
       foo = require('foo-module')
       
       something = 123
-    """
+    '''
     errors: [
       line: 1
       column: 1
       message: REQUIRE_ERROR_MESSAGE
     ]
   ,
-    code: """
+    code: '''
       import foo from 'foo'
       export default ->
-    """
-    output: """
+    '''
+    output: '''
       import foo from 'foo'
       
       export default ->
-    """
+    '''
     options: [count: 1]
     errors: [
       line: 1
@@ -263,29 +263,29 @@ ruleTester.run 'newline-after-import', rule,
       message: IMPORT_ERROR_MESSAGE
     ]
   ,
-    code: """
+    code: '''
       foo = require('foo-module')
       something = 123
-    """
-    output: """
+    '''
+    output: '''
       foo = require('foo-module')
       
       something = 123
-    """
+    '''
     errors: [
       line: 1
       column: 1
       message: REQUIRE_ERROR_MESSAGE
     ]
   ,
-    code: """
+    code: '''
       import foo from 'foo'
       a = 123
       
       import { bar } from './bar-lib'
       b=456
-    """
-    output: """
+    '''
+    output: '''
       import foo from 'foo'
       
       a = 123
@@ -293,7 +293,7 @@ ruleTester.run 'newline-after-import', rule,
       import { bar } from './bar-lib'
       
       b=456
-    """
+    '''
     errors: [
       line: 1
       column: 1
@@ -304,14 +304,14 @@ ruleTester.run 'newline-after-import', rule,
       message: IMPORT_ERROR_MESSAGE
     ]
   ,
-    code: """
+    code: '''
       foo = require('foo-module')
       a = 123
       
       bar = require('bar-lib')
       b=456
-    """
-    output: """
+    '''
+    output: '''
       foo = require('foo-module')
       
       a = 123
@@ -319,7 +319,7 @@ ruleTester.run 'newline-after-import', rule,
       bar = require('bar-lib')
       
       b=456
-    """
+    '''
     errors: [
       line: 1
       column: 1
@@ -330,14 +330,14 @@ ruleTester.run 'newline-after-import', rule,
       message: REQUIRE_ERROR_MESSAGE
     ]
   ,
-    code: """
+    code: '''
       foo = require('foo-module')
       a = 123
       
       require('bar-lib')
       b=456
-    """
-    output: """
+    '''
+    output: '''
       foo = require('foo-module')
       
       a = 123
@@ -345,7 +345,7 @@ ruleTester.run 'newline-after-import', rule,
       require('bar-lib')
       
       b=456
-    """
+    '''
     errors: [
       line: 1
       column: 1
@@ -357,60 +357,60 @@ ruleTester.run 'newline-after-import', rule,
     ]
     parserOptions: sourceType: 'module'
   ,
-    code: """
+    code: '''
       path = require('path')
       foo = require('foo')
       bar = 42
-    """
-    output: """
+    '''
+    output: '''
       path = require('path')
       foo = require('foo')
       
       bar = 42
-    """
+    '''
     errors: [
       line: 2
       column: 1
       message: REQUIRE_ERROR_MESSAGE
     ]
   ,
-    code: """
+    code: '''
       assign = Object.assign or require('object-assign')
       foo = require('foo')
       bar = 42
-    """
-    output: """
+    '''
+    output: '''
       assign = Object.assign or require('object-assign')
       foo = require('foo')
       
       bar = 42
-    """
+    '''
     errors: [
       line: 2
       column: 1
       message: REQUIRE_ERROR_MESSAGE
     ]
   ,
-    code: """
+    code: '''
       require('a')
       foo(require('b'), require('c'), require('d'))
       require('d')
       foo = 'bar'
-    """
-    output: """
+    '''
+    output: '''
       require('a')
       foo(require('b'), require('c'), require('d'))
       require('d')
       
       foo = 'bar'
-    """
+    '''
     errors: [
       line: 3
       column: 1
       message: REQUIRE_ERROR_MESSAGE
     ]
   ,
-    code: """
+    code: '''
       require('a')
       foo(
         require('b'),
@@ -418,8 +418,8 @@ ruleTester.run 'newline-after-import', rule,
         require('d')
       )
       foo = 'bar'
-    """
-    output: """
+    '''
+    output: '''
       require('a')
       foo(
         require('b'),
@@ -428,24 +428,24 @@ ruleTester.run 'newline-after-import', rule,
       )
       
       foo = 'bar'
-    """
+    '''
     errors: [
       line: 6
       column: 1
       message: REQUIRE_ERROR_MESSAGE
     ]
   ,
-    code: """
+    code: '''
       import path from 'path'
       import foo from 'foo'
       bar = 42
-    """
-    output: """
+    '''
+    output: '''
       import path from 'path'
       import foo from 'foo'
       
       bar = 42
-    """
+    '''
     errors: [
       line: 2
       column: 1

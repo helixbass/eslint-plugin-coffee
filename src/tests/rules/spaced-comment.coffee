@@ -215,11 +215,7 @@ ruleTester.run 'spaced-comment', rule,
     options: ['always', {markers: ['/'], exceptions: ['-']}]
   ,
     code: '#/--------\r\n#/ test\r\n#/--------\r\n### blah ###'
-    options: [
-      'always'
-    ,
-      markers: ['/'], exceptions: ['-'], block: markers: []
-    ]
+    options: ['always', {markers: ['/'], exceptions: ['-'], block: markers: []}]
   ,
     code: '###**\u2028###'
     options: ['always', {exceptions: ['*']}]

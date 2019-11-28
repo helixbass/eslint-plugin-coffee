@@ -53,11 +53,11 @@ ruleTester.run 'newline-per-chained-call', rule,
         .href
         .match(/(^[^#]*)/)[0]
     '''
-    """
+    '''
       a = window['location']
       .href
       .match(/(^[^#]*)/)[0]
-    """
+    '''
     "a = window['location'].href.match(/(^[^#]*)/)[0]"
   ,
     code: 'a = m1().m2.m3()'

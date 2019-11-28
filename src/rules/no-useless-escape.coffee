@@ -173,15 +173,20 @@ module.exports =
         # JSXAttribute doesn't have any escape sequence: https://facebook.github.io/jsx/.
         # In addition, backticks are not supported by JSX yet: https://github.com/facebook/jsx/issues/25.
         ###
-        return if (
-          node.parent.type in ['JSXAttribute', 'JSXElement', 'JSXFragment']
-        )
+        return if node.parent.type in [
+          'JSXAttribute'
+          'JSXElement'
+          'JSXFragment'
+        ]
 
         value =
-          if isTemplateElement then node.value.raw else node.raw.slice 1, -1
+          if isTemplateElement
+            node.value.raw
+          else
+            node.raw.slice 1, -1
         pattern = /\\[^\d]/g
 
-        while (match = pattern.exec value)
+        while match = pattern.exec value
           validateString node, match, value
       else if node.regex
         parseRegExp node.regex.pattern

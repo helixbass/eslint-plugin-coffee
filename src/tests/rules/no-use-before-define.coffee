@@ -108,25 +108,19 @@ ruleTester.run 'no-use-before-define', rule,
       a++
       a = 19
     '''
-    errors: [
-      message: "'a' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'a' was used before it was defined.", type: 'Identifier']
   ,
     code: '''
       a()
       a = ->
     '''
-    errors: [
-      message: "'a' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'a' was used before it was defined.", type: 'Identifier']
   ,
     code: '''
       alert a[1]
       a = [1, 3]
     '''
-    errors: [
-      message: "'a' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'a' was used before it was defined.", type: 'Identifier']
   ,
     code: '''
       a()
@@ -146,43 +140,33 @@ ruleTester.run 'no-use-before-define', rule,
       a = ->
     '''
     options: ['nofunc']
-    errors: [
-      message: "'a' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'a' was used before it was defined.", type: 'Identifier']
   ,
     code: '''
       a()
       a = -> alert(arguments)
     '''
     options: [functions: no]
-    errors: [
-      message: "'a' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'a' was used before it was defined.", type: 'Identifier']
   ,
     code: '''
       do ->
         alert a
         a = 42
     '''
-    errors: [
-      message: "'a' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'a' was used before it was defined.", type: 'Identifier']
   ,
     code: '''
       do => a()
       a = ->
     '''
-    errors: [
-      message: "'a' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'a' was used before it was defined.", type: 'Identifier']
   ,
     code: '''
       (-> a())()
       a = ->
     '''
-    errors: [
-      message: "'a' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'a' was used before it was defined.", type: 'Identifier']
   ,
     code: '''
       a()
@@ -191,49 +175,37 @@ ruleTester.run 'no-use-before-define', rule,
       catch foo
         a = null
     '''
-    errors: [
-      message: "'a' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'a' was used before it was defined.", type: 'Identifier']
   ,
     code: '''
       f = -> a
       a = null
     '''
-    errors: [
-      message: "'a' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'a' was used before it was defined.", type: 'Identifier']
   ,
     code: '''
       new A()
       class A
     '''
-    errors: [
-      message: "'A' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'A' was used before it was defined.", type: 'Identifier']
   ,
     code: '''
       foo = -> new A
       class A
     '''
-    errors: [
-      message: "'A' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'A' was used before it was defined.", type: 'Identifier']
   ,
     code: '''
       new A()
       A = class
     '''
-    errors: [
-      message: "'A' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'A' was used before it was defined.", type: 'Identifier']
   ,
     code: '''
       foo = -> new A()
       A = class
     '''
-    errors: [
-      message: "'A' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'A' was used before it was defined.", type: 'Identifier']
   ,
     code: '''
       switch foo
@@ -242,18 +214,14 @@ ruleTester.run 'no-use-before-define', rule,
         else
           a = null
     '''
-    errors: [
-      message: "'a' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'a' was used before it was defined.", type: 'Identifier']
   ,
     code: '''
       if true
         foo = -> a
         a = null
     '''
-    errors: [
-      message: "'a' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'a' was used before it was defined.", type: 'Identifier']
   ,
     # object style options
     code: '''
@@ -261,18 +229,14 @@ ruleTester.run 'no-use-before-define', rule,
       a = ->
     '''
     options: [functions: no, classes: no]
-    errors: [
-      message: "'a' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'a' was used before it was defined.", type: 'Identifier']
   ,
     code: '''
       new A()
       class A
     '''
     options: [functions: no, classes: no]
-    errors: [
-      message: "'A' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'A' was used before it was defined.", type: 'Identifier']
   ,
     code: '''
       new A()
@@ -280,69 +244,45 @@ ruleTester.run 'no-use-before-define', rule,
     '''
     options: [classes: no]
     parserOptions: ecmaVersion: 6
-    errors: [
-      message: "'A' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'A' was used before it was defined.", type: 'Identifier']
   ,
     code: '''
       foo = -> new A()
       A = class
     '''
     options: [classes: no]
-    errors: [
-      message: "'A' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'A' was used before it was defined.", type: 'Identifier']
   ,
     # invalid initializers
     code: 'a = a'
-    errors: [
-      message: "'a' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'a' was used before it was defined.", type: 'Identifier']
   ,
     code: 'a = a + b'
-    errors: [
-      message: "'a' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'a' was used before it was defined.", type: 'Identifier']
   ,
     code: 'a = foo a'
-    errors: [
-      message: "'a' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'a' was used before it was defined.", type: 'Identifier']
   ,
     code: 'foo = (a = a) ->'
-    errors: [
-      message: "'a' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'a' was used before it was defined.", type: 'Identifier']
   ,
     code: '{a = a} = []'
-    errors: [
-      message: "'a' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'a' was used before it was defined.", type: 'Identifier']
   ,
     code: '[a = a] = []'
-    errors: [
-      message: "'a' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'a' was used before it was defined.", type: 'Identifier']
   ,
     code: '{b = a, a} = {}'
-    errors: [
-      message: "'a' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'a' was used before it was defined.", type: 'Identifier']
   ,
     code: '[b = a, a] = {}'
-    errors: [
-      message: "'a' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'a' was used before it was defined.", type: 'Identifier']
   ,
     code: '{a = 0} = a'
-    errors: [
-      message: "'a' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'a' was used before it was defined.", type: 'Identifier']
   ,
     code: '[a = 0] = a'
-    errors: [
-      message: "'a' was used before it was defined.", type: 'Identifier'
-    ]
+    errors: [message: "'a' was used before it was defined.", type: 'Identifier']
   ,
     # "variables" option
     code: '''
@@ -379,11 +319,11 @@ ruleTester.run 'no-use-before-define', rule,
     '''
     errors: ["'xs' was used before it was defined."]
   ,
-    code: """
+    code: '''
       try
       catch {message = x}
         ;
       x = ''
-    """
+    '''
     errors: ["'x' was used before it was defined."]
   ]

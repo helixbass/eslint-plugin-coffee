@@ -27,18 +27,18 @@ ruleTester.run 'require-unicode-regexp', rule,
     "new RegExp('', 'u')"
     "RegExp '', 'gimuy'"
     "new RegExp('', 'gimuy')"
-    """
+    '''
       flags = 'u'
       new RegExp('', flags)
-    """
-    """
+    '''
+    '''
       flags = 'g'
       new RegExp('', flags + 'u')
-    """
-    """
+    '''
+    '''
       flags = 'gimu'
       new RegExp('foo', flags.slice(1))
-    """
+    '''
     "new RegExp('', flags)"
     "f = (flags) -> new RegExp('', flags)"
     "f = (RegExp) -> return new RegExp('foo')"

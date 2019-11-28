@@ -194,4 +194,7 @@ module.exports =
     #--------------------------------------------------------------------------
 
     'IfStatement:exit':
-      if allowElseIf then checkIfWithoutElse else checkIfWithElse
+      if allowElseIf
+        checkIfWithoutElse
+      else
+        checkIfWithElse

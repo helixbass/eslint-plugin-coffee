@@ -347,7 +347,9 @@ module.exports = (context, components, utils) ->
           return
             type: 'object'
             children:
-              __ANY_KEY__: child
+
+                __ANY_KEY__: child
+
 
 
         when 'oneOfType'
@@ -516,11 +518,17 @@ module.exports = (context, components, utils) ->
       # Flow <=0.52 had 3 required TypedParameters of which the second one is the Props.
       # Flow >=0.53 has 2 optional TypedParameters of which the first one is the Props.
       propsParameterPosition =
-        if versionUtil.testFlowVersion context, '0.53.0' then 0 else 1
+        if versionUtil.testFlowVersion context, '0.53.0'
+          0
+        else
+          1
     catch e
       # In case there is no flow version defined, we can safely assume that when there are 3 Props we are dealing with version <= 0.52
       propsParameterPosition =
-        if node.superTypeParameters.params.length <= 2 then 0 else 1
+        if node.superTypeParameters.params.length <= 2
+          0
+        else
+          1
 
     annotation = node.superTypeParameters.params[propsParameterPosition]
 

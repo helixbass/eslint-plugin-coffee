@@ -17,177 +17,177 @@ ruleTester.run 'group-exports', rule,
   valid: [
     test code: 'export test = true'
     test
-      code: """
+      code: '''
         export default {}
         export test = true
-      """
+      '''
     test
-      code: """
+      code: '''
         first = true
         second = true
         export {
           first,
           second
         }
-      """
+      '''
     test
-      code: """
+      code: '''
         export default {}
         ### test ###
         export test = true
-      """
+      '''
     test
-      code: """
+      code: '''
         export default {}
         # test
         export test = true
-      """
+      '''
     test
-      code: """
+      code: '''
         export test = true
         ### test ###
         export default {}
-      """
+      '''
     test
-      code: """
+      code: '''
         export test = true
         # test
         export default {}
-      """
+      '''
     test code: 'module.exports = {} '
     test
-      code: """
+      code: '''
         module.exports = { test: true, another: false }
-      """
+      '''
     test code: 'exports.test = true'
 
     test
-      code: """
+      code: '''
         module.exports = {}
         test = module.exports
-      """
+      '''
     test
-      code: """
+      code: '''
         exports.test = true
         test = exports.test
-      """
+      '''
     test
-      code: """
+      code: '''
         module.exports = {}
         module.exports.too.deep = true
-      """
+      '''
     test
-      code: """
+      code: '''
         module.exports.deep.first = true
         module.exports.deep.second = true
-      """
+      '''
     test
-      code: """
+      code: '''
         module.exports = {}
         exports.too.deep = true
-      """
+      '''
     test
-      code: """
+      code: '''
         export default {}
         test = true
         export { test }
-      """
+      '''
     test
-      code: """
+      code: '''
         test = true
         export { test }
         another = true
         export default {}
-      """
+      '''
     test
-      code: """
+      code: '''
         module.something.else = true
         module.something.different = true
-      """
+      '''
     test
-      code: """
+      code: '''
         module.exports.test = true
         module.something.different = true
-      """
+      '''
     test
-      code: """
+      code: '''
         exports.test = true
         module.something.different = true
-      """
+      '''
     test
-      code: """
+      code: '''
         unrelated = 'assignment'
         module.exports.test = true
-      """
+      '''
   ]
   invalid: [
     test
-      code: """
+      code: '''
         export test = true
         export another = true
-      """
+      '''
       errors: [errors.named, errors.named]
     test
-      code: """
+      code: '''
         module.exports = {}
         module.exports.test = true
         module.exports.another = true
-      """
+      '''
       errors: [errors.commonjs, errors.commonjs, errors.commonjs]
     test
-      code: """
+      code: '''
         module.exports = {}
         module.exports.test = true
-      """
+      '''
       errors: [errors.commonjs, errors.commonjs]
     test
-      code: """
+      code: '''
         module.exports = { test: true }
         module.exports.another = true
-      """
+      '''
       errors: [errors.commonjs, errors.commonjs]
     test
-      code: """
+      code: '''
         module.exports.test = true
         module.exports.another = true
-      """
+      '''
       errors: [errors.commonjs, errors.commonjs]
     test
-      code: """
+      code: '''
         exports.test = true
         module.exports.another = true
-      """
+      '''
       errors: [errors.commonjs, errors.commonjs]
     test
-      code: """
+      code: '''
         module.exports = () => {}
         module.exports.attached = true
-      """
+      '''
       errors: [errors.commonjs, errors.commonjs]
     test
-      code: """
+      code: '''
         module.exports = test = ->
         module.exports.attached = true
-      """
+      '''
       errors: [errors.commonjs, errors.commonjs]
     test
-      code: """
+      code: '''
         module.exports = () => {}
         exports.test = true
         exports.another = true
-      """
+      '''
       errors: [errors.commonjs, errors.commonjs, errors.commonjs]
     test
-      code: """
+      code: '''
         module.exports = "non-object"
         module.exports.attached = true
-      """
+      '''
       errors: [errors.commonjs, errors.commonjs]
     test
-      code: """
+      code: '''
         module.exports = "non-object"
         module.exports.attached = true
         module.exports.another = true
-      """
+      '''
       errors: [errors.commonjs, errors.commonjs, errors.commonjs]
   ]

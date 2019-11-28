@@ -23,11 +23,11 @@ ruleTester.run 'self-closing-comp', rule,
   ,
     code: 'Profile = <Hello name="John"><img src="picture.png" /></Hello>'
   ,
-    code: """
+    code: '''
         <Hello>
           <Hello name="John" />
         </Hello>
-      """
+      '''
   ,
     code: 'HelloJohn = <div>&nbsp;</div>'
   ,
@@ -41,11 +41,11 @@ ruleTester.run 'self-closing-comp', rule,
     code: 'Profile = <Hello name="John"><img src="picture.png" /></Hello>'
     options: []
   ,
-    code: """
+    code: '''
         <Hello>
           <Hello name="John" />
         </Hello>
-      """
+      '''
     options: []
   ,
     code: 'HelloJohn = <div>&nbsp;</div>'
@@ -73,11 +73,11 @@ ruleTester.run 'self-closing-comp', rule,
       'contentContainer = <div className="content"><img src="picture.png" /></div>'
     options: [html: yes]
   ,
-    code: """
+    code: '''
         <div>
           <div className="content" />
         </div>
-      """
+      '''
     options: [html: yes]
   ]
 

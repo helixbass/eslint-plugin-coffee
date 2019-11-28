@@ -23,38 +23,38 @@ ruleTester.run 'prefer-object-spread', rule,
     'Object.assign(foo, { bar: baz })'
     'Object.assign({}, ...objects)'
     "foo({ foo: 'bar' })"
-    """
+    '''
       Object = {}
       Object.assign({}, foo)
-    """
-    """
+    '''
+    '''
       Object = {}
       Object.assign({}, foo)
-    """
-    """
+    '''
+    '''
       Object = {}
       Object.assign foo: 'bar'
-    """
-    """
+    '''
+    '''
       Object = {}
       Object.assign { foo: 'bar' }
-    """
-    """
+    '''
+    '''
       Object = require 'foo'
       Object.assign({ foo: 'bar' })
-    """
-    """
+    '''
+    '''
       import Object from 'foo'
       Object.assign({ foo: 'bar' })
-    """
-    """
+    '''
+    '''
       import { Something as Object } from 'foo'
       Object.assign({ foo: 'bar' })
-    """
-    """
+    '''
+    '''
       import { Object, Array } from 'globals'
       Object.assign({ foo: 'bar' })
-    """
+    '''
   ]
 
   invalid: [
@@ -185,13 +185,13 @@ ruleTester.run 'prefer-object-spread', rule,
     ]
   ,
     # Multiline objects
-    code: """
+    code: '''
       Object.assign({ ...bar }, {
         # this is a bar
         foo: 'bar'
         baz: "cats"
       })
-    """
+    '''
     errors: [
       messageId: 'useSpreadMessage'
       type: 'CallExpression'
@@ -220,10 +220,10 @@ ruleTester.run 'prefer-object-spread', rule,
       column: 1
     ]
   ,
-    code: """
+    code: '''
       foo = 'bar'
       Object.assign({ foo: bar })
-    """
+    '''
     errors: [
       messageId: 'useLiteralMessage'
       type: 'CallExpression'
@@ -231,10 +231,10 @@ ruleTester.run 'prefer-object-spread', rule,
       column: 1
     ]
   ,
-    code: """
+    code: '''
       foo = 'bar'
       Object.assign({ foo: bar })
-    """
+    '''
     errors: [
       messageId: 'useLiteralMessage'
       type: 'CallExpression'

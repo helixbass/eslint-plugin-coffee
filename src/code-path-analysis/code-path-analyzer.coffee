@@ -301,10 +301,7 @@ processCodePathToEnter = (analyzer, node) ->
       state.pushChoiceContext 'test', no
 
     when 'SwitchStatement'
-      state.pushSwitchContext(
-        node.cases.some isCaseNode
-        getLabel node
-      )
+      state.pushSwitchContext node.cases.some(isCaseNode), getLabel node
 
     when 'TryStatement'
       state.pushTryContext Boolean node.finalizer

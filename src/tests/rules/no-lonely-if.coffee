@@ -61,7 +61,6 @@ ruleTester.run 'no-lonely-if', rule,
       # '''
       errors
     }
-  ,
     {
       code: '''
         if a
@@ -78,7 +77,6 @@ ruleTester.run 'no-lonely-if', rule,
       # '''
       errors
     }
-  ,
     {
       code: '''
         if a
@@ -95,7 +93,6 @@ ruleTester.run 'no-lonely-if', rule,
       # '''
       errors
     }
-  ,
     {
       code: '''
         if a
@@ -107,7 +104,6 @@ ruleTester.run 'no-lonely-if', rule,
       # output: null
       errors
     }
-  ,
     {
       code: '''
         if a
@@ -124,7 +120,6 @@ ruleTester.run 'no-lonely-if', rule,
       # '''
       errors
     }
-  ,
     {
       code: '''
         if a
@@ -137,7 +132,6 @@ ruleTester.run 'no-lonely-if', rule,
       # output: null
       errors
     }
-  ,
     {
       code: '''
         if foo
@@ -152,7 +146,6 @@ ruleTester.run 'no-lonely-if', rule,
       # '''
       errors
     }
-  ,
     {
       # Not fixed; removing the braces would cause a SyntaxError.
       code: '''
@@ -166,7 +159,6 @@ ruleTester.run 'no-lonely-if', rule,
       # output: null
       errors
     }
-  ,
     {
       code: '''
         if a

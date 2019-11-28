@@ -63,13 +63,13 @@ ruleTester.run 'jsx-no-undef', rule,
       React.render(<app.foo.Bar />)
     '''
   ,
-    code: """
+    code: '''
       ###eslint no-undef:1###
       React = null
       class Hello extends React.Component
         render: ->
           return <this.props.tag />
-    """
+    '''
   ,
     # ,
     #   code: '''
@@ -86,13 +86,13 @@ ruleTester.run 'jsx-no-undef', rule,
       Text: yes
     options: [allowGlobals: yes]
   ,
-    code: """
+    code: '''
       import Text from "cool-module"
       TextWrapper = (props) ->
         (
           <Text />
         )
-    """
+    '''
     # parserOptions: Object.assign {sourceType: 'module'}, parserOptions
     options: [allowGlobals: no]
     # parser: 'babel-eslint'
@@ -133,13 +133,13 @@ ruleTester.run 'jsx-no-undef', rule,
     '''
     errors: [message: "'appp' is not defined."]
   ,
-    code: """
+    code: '''
       TextWrapper = (props) ->
         return (
           <Text />
         )
       export default TextWrapper
-    """
+    '''
     # parserOptions: Object.assign {sourceType: 'module'}, parserOptions
     errors: [message: "'Text' is not defined."]
     options: [allowGlobals: no]

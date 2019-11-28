@@ -19,14 +19,14 @@ path = require 'path'
 ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'jsx-indent', rule,
   valid: [
-    code: ['<App></App>'].join('\n')
+    code: ['<App></App>'].join '\n'
   ,
-    code: ['<></>'].join('\n')
+    code: ['<></>'].join '\n'
   ,
     # parser: 'babel-eslint'
-    code: ['<App>', '</App>'].join('\n')
+    code: ['<App>', '</App>'].join '\n'
   ,
-    code: ['<>', '</>'].join('\n')
+    code: ['<>', '</>'].join '\n'
   ,
     # parser: 'babel-eslint'
     code: ['<App>', '  <Foo />', '</App>'].join '\n'
@@ -164,12 +164,10 @@ ruleTester.run 'jsx-indent', rule,
       '</div>'
     ].join '\n'
   ,
-    code: ['<>', 'bar <>', '   bar', '   bar {foo}', 'bar </>', '</>'].join(
-      '\n'
-    )
+    code: ['<>', 'bar <>', '   bar', '   bar {foo}', 'bar </>', '</>'].join '\n'
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       class Test extends React.Component
         render: ->
           return (
@@ -178,10 +176,10 @@ ruleTester.run 'jsx-indent', rule,
               <div />
             </div>
           )
-    """
+    '''
     options: [2]
   ,
-    code: """
+    code: '''
       class Test extends React.Component
         render: ->
           return (
@@ -190,7 +188,7 @@ ruleTester.run 'jsx-indent', rule,
               <></>
             </>
           )
-    """
+    '''
     # parser: 'babel-eslint'
     options: [2]
   ]
@@ -198,9 +196,7 @@ ruleTester.run 'jsx-indent', rule,
   invalid: [
     code: ['<App>', '  <Foo />', '</App>'].join '\n'
     output: ['<App>', '    <Foo />', '</App>'].join '\n'
-    errors: [
-      message: 'Expected indentation of 4 space characters but found 2.'
-    ]
+    errors: [message: 'Expected indentation of 4 space characters but found 2.']
   ,
     # ,
     #   code: ['<App>', '  <></>', '</App>'].join '\n'
@@ -212,16 +208,12 @@ ruleTester.run 'jsx-indent', rule,
     code: ['<>', '  <Foo />', '</>'].join '\n'
     # parser: 'babel-eslint'
     output: ['<>', '    <Foo />', '</>'].join '\n'
-    errors: [
-      message: 'Expected indentation of 4 space characters but found 2.'
-    ]
+    errors: [message: 'Expected indentation of 4 space characters but found 2.']
   ,
     code: ['<App>', '    <Foo />', '</App>'].join '\n'
     output: ['<App>', '  <Foo />', '</App>'].join '\n'
     options: [2]
-    errors: [
-      message: 'Expected indentation of 2 space characters but found 4.'
-    ]
+    errors: [message: 'Expected indentation of 2 space characters but found 4.']
   ,
     code: ['<App>', '    <Foo />', '</App>'].join '\n'
     output: ['<App>', '\t<Foo />', '</App>'].join '\n'
@@ -233,9 +225,7 @@ ruleTester.run 'jsx-indent', rule,
     )
     output: ['App = ->', '  return <App>', '    <Foo />', '  </App>'].join '\n'
     options: [2]
-    errors: [
-      message: 'Expected indentation of 2 space characters but found 9.'
-    ]
+    errors: [message: 'Expected indentation of 2 space characters but found 9.']
   ,
     code: ['App = ->', '  return (<App>', '    <Foo />', '    </App>)'].join(
       '\n'
@@ -244,15 +234,11 @@ ruleTester.run 'jsx-indent', rule,
       '\n'
     )
     options: [2]
-    errors: [
-      message: 'Expected indentation of 2 space characters but found 4.'
-    ]
+    errors: [message: 'Expected indentation of 2 space characters but found 4.']
   ,
     code: ['<App>', '   {test}', '</App>'].join '\n'
     output: ['<App>', '    {test}', '</App>'].join '\n'
-    errors: [
-      message: 'Expected indentation of 4 space characters but found 3.'
-    ]
+    errors: [message: 'Expected indentation of 4 space characters but found 3.']
   ,
     code: [
       '<App>'
@@ -315,9 +301,7 @@ ruleTester.run 'jsx-indent', rule,
     code: ['<App>\n', '\t<Foo />\n', '</App>'].join '\n'
     output: ['<App>\n', '  <Foo />\n', '</App>'].join '\n'
     options: [2]
-    errors: [
-      message: 'Expected indentation of 2 space characters but found 0.'
-    ]
+    errors: [message: 'Expected indentation of 2 space characters but found 0.']
   ,
     code: [
       '<p>'
@@ -326,7 +310,5 @@ ruleTester.run 'jsx-indent', rule,
       '  </div>'
       '</p>'
     ].join '\n'
-    errors: [
-      message: 'Expected indentation of 4 space characters but found 2.'
-    ]
+    errors: [message: 'Expected indentation of 4 space characters but found 2.']
   ]

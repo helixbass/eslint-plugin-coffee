@@ -44,29 +44,29 @@ ruleTester.run 'void-dom-elements-no-children', rule,
   ,
     code: 'document.createElement()'
   ,
-    code: """
+    code: '''
         props = {}
         React.createElement("img", props)
-      """
+      '''
   ,
-    code: """
+    code: '''
         import React, {createElement} from "react"
         createElement("div")
-      """
+      '''
   ,
-    code: """
+    code: '''
         import React, {createElement} from "react"
         createElement("img")
-      """
+      '''
   ,
-    code: """
+    code: '''
         import React, {createElement, PureComponent} from "react"
         class Button extends PureComponent
           handleClick: (ev) ->
             ev.preventDefault()
           render: ->
             return <div onClick={this.handleClick}>Hello</div>
-      """
+      '''
   ]
   invalid: [
     code: '<br>Foo</br>'
@@ -91,24 +91,24 @@ ruleTester.run 'void-dom-elements-no-children', rule,
       'React.createElement("br", { dangerouslySetInnerHTML: { __html: "Foo" } })'
     errors: [message: errorMessage 'br']
   ,
-    code: """
+    code: '''
         import React, {createElement} from "react"
         createElement("img", {}, "Foo")
-      """
+      '''
     errors: [message: errorMessage 'img']
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
         import React, {createElement} from "react"
         createElement("img", { children: "Foo" })
-      """
+      '''
     errors: [message: errorMessage 'img']
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
         import React, {createElement} from "react"
         createElement("img", { dangerouslySetInnerHTML: { __html: "Foo" } })
-      """
+      '''
     errors: [message: errorMessage 'img']
     # parser: 'babel-eslint'
   ]

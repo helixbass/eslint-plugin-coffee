@@ -94,12 +94,12 @@ ruleTester.run 'no-implied-eval', rule,
     code: "setTimeout(1 + '' + 1)", errors: [expectedError]
   ,
     # gives the correct node when dealing with nesting
-    code: """
+    code: '''
       setTimeout 'foo' + do ->
         setTimeout(helper)
         execScript('str')
         return 'bar'
-    """
+    '''
     errors: [
       message: expectedErrorMessage
       type: 'CallExpression'

@@ -309,7 +309,7 @@ module.exports =
 
       groupMap = new Map()
 
-      while (scope = queue.pop())
+      while scope = queue.pop()
         queue.push ...scope.childScopes
         scope.variables.forEach checkReferences
 

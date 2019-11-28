@@ -26,17 +26,17 @@ ruleTester.run 'jsx-one-expression-per-line', rule,
   ,
     code: '<App foo="bar" />'
   ,
-    code: ['<App>', '  <Foo />', '</App>'].join('\n')
+    code: ['<App>', '  <Foo />', '</App>'].join '\n'
   ,
-    code: ['<App>', '  <Foo />', '  <Bar />', '</App>'].join('\n')
+    code: ['<App>', '  <Foo />', '  <Bar />', '</App>'].join '\n'
   ,
-    code: ['<App>', '  <Foo></Foo>', '</App>'].join('\n')
+    code: ['<App>', '  <Foo></Foo>', '</App>'].join '\n'
   ,
-    code: ['<App>', '  foo bar baz  whatever  ', '</App>'].join('\n')
+    code: ['<App>', '  foo bar baz  whatever  ', '</App>'].join '\n'
   ,
-    code: ['<App>', '  <Foo>', '  </Foo>', '</App>'].join('\n')
+    code: ['<App>', '  <Foo>', '  </Foo>', '</App>'].join '\n'
   ,
-    code: ['<App', '  foo="bar"', '>', '<Foo />', '</App>'].join('\n')
+    code: ['<App', '  foo="bar"', '>', '<Foo />', '</App>'].join '\n'
   ,
     # ,
     #   code: ['<', 'App', '>', '  <', '    Foo', '  />', '</', 'App', '>'].join(
@@ -63,10 +63,10 @@ ruleTester.run 'jsx-one-expression-per-line', rule,
     code: '<></>'
   ,
     # parser: 'babel-eslint'
-    code: ['<>', '  <Foo />', '</>'].join('\n')
+    code: ['<>', '  <Foo />', '</>'].join '\n'
   ,
     # parser: 'babel-eslint'
-    code: ['<>', '  <Foo />', '  <Bar />', '</>'].join('\n')
+    code: ['<>', '  <Foo />', '  <Bar />', '</>'].join '\n'
     # parser: 'babel-eslint'
   ]
 
@@ -364,15 +364,11 @@ ruleTester.run 'jsx-one-expression-per-line', rule,
     errors: [message: '`{  foo}` must be placed on a new line']
   ,
     code: ['<App> {', '  foo', '} </App>'].join '\n'
-    output: ['<App> ', "{' '}", '{', '  foo', '}', "{' '}", ' </App>'].join(
-      '\n'
-    )
+    output: ['<App> ', "{' '}", '{', '  foo', '}', "{' '}", ' </App>'].join '\n'
     errors: [message: '`{  foo}` must be placed on a new line']
   ,
     code: ['<App> ', "{' '}", '{', '  foo', '} </App>'].join '\n'
-    output: ['<App> ', "{' '}", '{', '  foo', '}', "{' '}", ' </App>'].join(
-      '\n'
-    )
+    output: ['<App> ', "{' '}", '{', '  foo', '}', "{' '}", ' </App>'].join '\n'
     errors: [message: '`{  foo}` must be placed on a new line']
   ,
     code: '<App><Foo /></App>'

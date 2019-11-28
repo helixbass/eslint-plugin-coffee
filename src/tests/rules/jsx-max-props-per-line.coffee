@@ -38,7 +38,7 @@ ruleTester.run 'jsx-max-props-per-line', rule,
     code: '<App {...this.props} bar />'
     options: [maximum: 2]
   ,
-    code: ['<App', '  foo', '  bar', '/>'].join('\n')
+    code: ['<App', '  foo', '  bar', '/>'].join '\n'
   ,
     code: ['<App', '  foo bar', '  baz', '/>'].join '\n'
     options: [maximum: 2]

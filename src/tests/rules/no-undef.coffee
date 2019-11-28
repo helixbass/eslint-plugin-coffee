@@ -108,15 +108,15 @@ ruleTester.run 'no-undef', rule,
           super()
     '''
   ,
-    code: """
+    code: '''
       import Warning from '../lib/warning'
       warn = new Warning 'text'
-    """
+    '''
   ,
-    code: """
+    code: '''
       import * as Warning from '../lib/warning'
       warn = new Warning('text')
-    """
+    '''
   ,
     code: '''
       a = null

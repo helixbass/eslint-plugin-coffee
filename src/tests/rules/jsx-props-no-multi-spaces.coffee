@@ -19,19 +19,19 @@ path = require 'path'
 ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'jsx-props-no-multi-spaces', rule,
   valid: [
-    code: ['<App />'].join('\n')
+    code: ['<App />'].join '\n'
   ,
-    code: ['<App foo />'].join('\n')
+    code: ['<App foo />'].join '\n'
   ,
-    code: ['<App foo bar />'].join('\n')
+    code: ['<App foo bar />'].join '\n'
   ,
-    code: ['<App foo="with  spaces   " bar />'].join('\n')
+    code: ['<App foo="with  spaces   " bar />'].join '\n'
   ,
-    code: ['<App', '  foo bar />'].join('\n')
+    code: ['<App', '  foo bar />'].join '\n'
   ,
-    code: ['<App', '  foo', '  bar />'].join('\n')
+    code: ['<App', '  foo', '  bar />'].join '\n'
   ,
-    code: ['<App', '  foo {...test}', '  bar />'].join('\n')
+    code: ['<App', '  foo {...test}', '  bar />'].join '\n'
   ,
     code: '<Foo.Bar baz="quux" />'
   ,

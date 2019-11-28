@@ -181,7 +181,7 @@ ruleTester.run 'jsx-sort-props', rule,
     output: '<App b="b" d="d" {...this.props} a="c" c="a" />'
     errors: 2
   ,
-    code: """
+    code: '''
       <App
         a={true}
         z
@@ -194,8 +194,8 @@ ruleTester.run 'jsx-sort-props', rule,
       >
         {test}
       </App>
-    """
-    output: """
+    '''
+    output: '''
       <App
         _onClick={->}
         a={true}
@@ -208,7 +208,7 @@ ruleTester.run 'jsx-sort-props', rule,
       >
         {test}
       </App>
-    """
+    '''
     errors: 3
   ,
     code: '<App key="key" b c="c" />'

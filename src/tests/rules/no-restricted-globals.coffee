@@ -157,7 +157,5 @@ ruleTester.run 'no-restricted-globals', rule,
   ,
     code: "foo = (obj) => hasOwnProperty(obj, 'name')"
     options: ['hasOwnProperty']
-    errors: [
-      message: "Unexpected use of 'hasOwnProperty'.", type: 'Identifier'
-    ]
+    errors: [message: "Unexpected use of 'hasOwnProperty'.", type: 'Identifier']
   ]

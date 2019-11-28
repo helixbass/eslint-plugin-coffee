@@ -192,11 +192,11 @@ ruleTester.run 'no-unreachable', rule,
     '''
     errors: [message: 'Unreachable code.', type: 'ExpressionStatement']
   ,
-    code: """
+    code: '''
       x = 1
       throw 'uh oh'
       y = 2
-    """
+    '''
     errors: [message: 'Unreachable code.', type: 'ExpressionStatement']
   ,
     code: '''
@@ -300,7 +300,7 @@ ruleTester.run 'no-unreachable', rule,
     errors: [message: 'Unreachable code.', type: 'ExpressionStatement']
   ,
     # Merge the warnings of continuous unreachable nodes.
-    code: """
+    code: '''
       ->
         return
 
@@ -309,7 +309,7 @@ ruleTester.run 'no-unreachable', rule,
         b()  # ↑ ';' token is included in the unreachable code, so this statement will be merged.
         # comment
         c()  # ↑ ')' token is included in the unreachable code, so this statement will be merged.
-    """
+    '''
     errors: [
       message: 'Unreachable code.'
       type: 'ExpressionStatement'
@@ -319,7 +319,7 @@ ruleTester.run 'no-unreachable', rule,
       endColumn: 6
     ]
   ,
-    code: """
+    code: '''
       ->
         return
 
@@ -329,7 +329,7 @@ ruleTester.run 'no-unreachable', rule,
           c()
         else
           d()
-    """
+    '''
     errors: [
       message: 'Unreachable code.'
       type: 'ExpressionStatement'
@@ -339,7 +339,7 @@ ruleTester.run 'no-unreachable', rule,
       endColumn: 8
     ]
   ,
-    code: """
+    code: '''
       ->
         if a
           return
@@ -348,7 +348,7 @@ ruleTester.run 'no-unreachable', rule,
         else
           throw err
           d()
-    """
+    '''
     errors: [
       message: 'Unreachable code.'
       type: 'ExpressionStatement'
@@ -365,7 +365,7 @@ ruleTester.run 'no-unreachable', rule,
       endColumn: 8
     ]
   ,
-    code: """
+    code: '''
       ->
         if a
           return
@@ -375,7 +375,7 @@ ruleTester.run 'no-unreachable', rule,
           throw err
           d()
         e()
-    """
+    '''
     errors: [
       message: 'Unreachable code.'
       type: 'ExpressionStatement'

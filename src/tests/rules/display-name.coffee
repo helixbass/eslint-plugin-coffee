@@ -19,47 +19,47 @@ path = require 'path'
 ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'display-name', rule,
   valid: [
-    code: """
+    code: '''
       Hello = createReactClass({
         displayName: 'Hello',
         render: ->
           return <div>Hello {this.props.name}</div>
       })
-    """
+    '''
     options: [ignoreTranspilerName: yes]
   ,
-    code: """
+    code: '''
       Hello = React.createClass({
         displayName: 'Hello',
         render: ->
           return <div>Hello {this.props.name}</div>
       })
-    """
+    '''
     options: [ignoreTranspilerName: yes]
     settings:
       react:
         createClass: 'createClass'
   ,
-    code: """
+    code: '''
       class Hello extends React.Component
         render: ->
           return <div>Hello {this.props.name}</div>
       Hello.displayName = 'Hello'
-    """
+    '''
     options: [ignoreTranspilerName: yes]
   ,
-    code: """
+    code: '''
       class Hello
         render: ->
           return 'Hello World'
-    """
+    '''
   ,
-    code: """
+    code: '''
       class Hello extends Greetings
         @text = 'Hello World'
         render: ->
           return Hello.text
-    """
+    '''
   ,
     # ,
     #   # parser: 'babel-eslint'
@@ -74,53 +74,53 @@ ruleTester.run 'display-name', rule,
     #     }
     #   """
     #   options: [ignoreTranspilerName: yes]
-    code: """
+    code: '''
       class Hello extends React.Component
         @displayName: 'Widget'
         render: ->
           return <div>Hello {this.props.name}</div>
-    """
+    '''
     options: [ignoreTranspilerName: yes]
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       Hello = createReactClass({
         render: ->
           return <div>Hello {this.props.name}</div>
       })
-    """
+    '''
   ,
-    code: """
+    code: '''
       class Hello extends React.Component
         render: ->
           return <div>Hello {this.props.name}</div>
-    """
+    '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       export default class Hello
         render: ->
           return <div>Hello {this.props.name}</div>
-    """
+    '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       Hello = null
       Hello = createReactClass({
         render: ->
           return <div>Hello {this.props.name}</div>
       })
-    """
+    '''
   ,
-    code: """
+    code: '''
       module.exports = createReactClass({
         "displayName": "Hello",
         "render": ->
           return <div>Hello {this.props.name}</div>
       })
-    """
+    '''
   ,
-    code: """
+    code: '''
       Hello = createReactClass({
         displayName: 'Hello',
         render: ->
@@ -128,65 +128,65 @@ ruleTester.run 'display-name', rule,
           c = { ...d }
           return <div />
       })
-    """
+    '''
     options: [ignoreTranspilerName: yes]
   ,
-    code: """
+    code: '''
       export default class
         render: ->
           return <div>Hello {this.props.name}</div>
-    """
+    '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       Hello = ->
         return <div>Hello {this.props.name}</div>
-    """
+    '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       Hello = ->
         <div>Hello {@props.name}</div>
-    """
+    '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       Hello = () =>
         return <div>Hello {this.props.name}</div>
-    """
+    '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       module.exports = Hello = ->
         return <div>Hello {this.props.name}</div>
-    """
+    '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       Hello = ->
         return <div>Hello {this.props.name}</div>
       Hello.displayName = 'Hello'
-    """
+    '''
     options: [ignoreTranspilerName: yes]
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       Hello = () =>
         return <div>Hello {this.props.name}</div>
       Hello.displayName = 'Hello'
-    """
+    '''
     options: [ignoreTranspilerName: yes]
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       Hello = ->
         return <div>Hello {this.props.name}</div>
       Hello.displayName = 'Hello'
-    """
+    '''
     options: [ignoreTranspilerName: yes]
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       Mixins = {
         Greetings: {
           Hello: ->
@@ -194,21 +194,21 @@ ruleTester.run 'display-name', rule,
         }
       }
       Mixins.Greetings.Hello.displayName = 'Hello'
-    """
+    '''
     options: [ignoreTranspilerName: yes]
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       Hello = createReactClass({
         render: ->
           return <div>{this._renderHello()}</div>
         _renderHello: ->
           return <span>Hello {this.props.name}</span>
       })
-    """
+    '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       Hello = createReactClass({
         displayName: 'Hello',
         render: ->
@@ -216,196 +216,196 @@ ruleTester.run 'display-name', rule,
         _renderHello: ->
           return <span>Hello {this.props.name}</span>
       })
-    """
+    '''
     options: [ignoreTranspilerName: yes]
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       Mixin = {
         Button: ->
           return (
             <button />
           )
       }
-    """
+    '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       obj = {
         pouf: ->
           return any
       }
-    """
+    '''
     options: [ignoreTranspilerName: yes]
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       obj = {
         pouf: ->
           return any
       }
-    """
+    '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       export default {
         renderHello: ->
           {name} = this.props
           return <div>{name}</div>
       }
-    """
+    '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       import React, { createClass } from 'react'
       export default createClass({
         displayName: 'Foo',
         render: ->
           return <h1>foo</h1>
       })
-    """
+    '''
     options: [ignoreTranspilerName: yes]
     settings:
       react:
         createClass: 'createClass'
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       import React, {Component} from "react"
       someDecorator = (ComposedComponent) ->
         return class MyDecorator extends Component
           render: -> <ComposedComponent {...@props} />
       module.exports = someDecorator
-    """
+    '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       element = (
         <Media query={query} render={() =>
           renderWasCalled = true
           return <div/>
         }/>
       )
-    """
+    '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       element = (
         <Media query={query} render={->
           renderWasCalled = true
           return <div/>
         }/>
       )
-    """
+    '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       module.exports = {
         createElement: (tagName) => document.createElement(tagName)
       }
-    """
+    '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       { createElement } = document
       createElement("a")
-    """
+    '''
     # parser: 'babel-eslint'
   ]
 
   invalid: [
-    code: """
+    code: '''
       Hello = createReactClass({
         render: ->
           return React.createElement("div", {}, "text content")
       })
-    """
+    '''
     options: [ignoreTranspilerName: yes]
     errors: [message: 'Component definition is missing display name']
   ,
-    code: """
+    code: '''
       Hello = React.createClass({
         render: ->
           return React.createElement("div", {}, "text content")
       })
-    """
+    '''
     options: [ignoreTranspilerName: yes]
     settings:
       react:
         createClass: 'createClass'
     errors: [message: 'Component definition is missing display name']
   ,
-    code: """
+    code: '''
       Hello = createReactClass({
         render: ->
           return <div>Hello {this.props.name}</div>
       })
-    """
+    '''
     options: [ignoreTranspilerName: yes]
     errors: [message: 'Component definition is missing display name']
   ,
-    code: """
+    code: '''
       class Hello extends React.Component
         render: ->
           return <div>Hello {this.props.name}</div>
-    """
+    '''
     options: [ignoreTranspilerName: yes]
     errors: [message: 'Component definition is missing display name']
   ,
-    code: """
+    code: '''
       HelloComponent = ->
         return createReactClass({
           render: ->
             return <div>Hello {this.props.name}</div>
         })
       module.exports = HelloComponent()
-    """
+    '''
     options: [ignoreTranspilerName: yes]
     errors: [message: 'Component definition is missing display name']
   ,
-    code: """
+    code: '''
       module.exports = () =>
         return <div>Hello {props.name}</div>
-    """
+    '''
     # parser: 'babel-eslint'
     errors: [message: 'Component definition is missing display name']
   ,
-    code: """
+    code: '''
       module.exports = ->
         <div>Hello {props.name}</div>
-    """
+    '''
     # parser: 'babel-eslint'
     errors: [message: 'Component definition is missing display name']
   ,
-    code: """
+    code: '''
       module.exports = createReactClass({
         render: ->
           return <div>Hello {this.props.name}</div>
       })
-    """
+    '''
     # parser: 'babel-eslint'
     errors: [message: 'Component definition is missing display name']
   ,
-    code: """
+    code: '''
       Hello = createReactClass({
         _renderHello: ->
           return <span>Hello {this.props.name}</span>
         render: ->
           return <div>{this._renderHello()}</div>
       })
-    """
+    '''
     options: [ignoreTranspilerName: yes]
     # parser: 'babel-eslint'
     errors: [message: 'Component definition is missing display name']
   ,
-    code: """
+    code: '''
       Hello = Foo.createClass({
         _renderHello: ->
           return <span>Hello {this.props.name}</span>
         render: ->
           return <div>{this._renderHello()}</div>
       })
-    """
+    '''
     options: [ignoreTranspilerName: yes]
     # parser: 'babel-eslint'
     settings:
@@ -414,7 +414,7 @@ ruleTester.run 'display-name', rule,
         createClass: 'createClass'
     errors: [message: 'Component definition is missing display name']
   ,
-    code: """
+    code: '''
       ###* @jsx Foo ###
       Hello = Foo.createClass({
         _renderHello: ->
@@ -422,7 +422,7 @@ ruleTester.run 'display-name', rule,
         render: ->
           return <div>{this._renderHello()}</div>
       })
-    """
+    '''
     options: [ignoreTranspilerName: yes]
     settings:
       react:
@@ -430,41 +430,41 @@ ruleTester.run 'display-name', rule,
     # parser: 'babel-eslint'
     errors: [message: 'Component definition is missing display name']
   ,
-    code: """
+    code: '''
       Mixin = {
         Button: ->
           return (
             <button />
           )
       }
-    """
+    '''
     options: [ignoreTranspilerName: yes]
     # parser: 'babel-eslint'
     errors: [message: 'Component definition is missing display name']
   ,
-    code: """
+    code: '''
       import React, { createElement } from "react"
       export default (props) =>
         return createElement("div", {}, "hello")
-    """
+    '''
     # parser: 'babel-eslint'
     errors: [message: 'Component definition is missing display name']
   ,
-    code: """
+    code: '''
       import React from "react"
       { createElement } = React
       export default (props) =>
         return createElement("div", {}, "hello")
-    """
+    '''
     # parser: 'babel-eslint'
     errors: [message: 'Component definition is missing display name']
   ,
-    code: """
+    code: '''
       import React from "react"
       createElement = React.createElement
       export default (props) =>
         return createElement("div", {}, "hello")
-    """
+    '''
     # parser: 'babel-eslint'
     errors: [message: 'Component definition is missing display name']
   ]

@@ -45,7 +45,7 @@ ruleTester.run 'forbid-foreign-prop-types', rule,
       Foo[propTypes]
     '''
   ,
-    code: """
+    code: '''
       Message = (props) => (<div>{props.message}</div>)
       Message.propTypes = {
         message: PropTypes.string
@@ -54,88 +54,88 @@ ruleTester.run 'forbid-foreign-prop-types', rule,
       Hello.propTypes = {
         name: Message.propTypes.message
       }
-    """
+    '''
     options: [allowInPropTypes: yes]
   ]
 
   invalid: [
-    code: """
+    code: '''
       Foo = createReactClass({
         propTypes: Bar.propTypes,
         render: ->
           return <Foo className="bar" />
       })
-    """
+    '''
     errors: [
       message: ERROR_MESSAGE
       type: 'Identifier'
     ]
   ,
-    code: """
+    code: '''
       Foo = createReactClass({
         propTypes: Bar["propTypes"],
         render: ->
           return <Foo className="bar" />
       })
-    """
+    '''
     errors: [
       message: ERROR_MESSAGE
       type: 'Literal'
     ]
   ,
-    code: """
+    code: '''
       { propTypes } = SomeComponent
       Foo = createReactClass({
         propTypes,
         render: ->
           return <Foo className="bar" />
       })
-    """
+    '''
     errors: [
       message: ERROR_MESSAGE
       type: 'Property'
     ]
   ,
-    code: """
+    code: '''
       { propTypes: things, ...foo } = SomeComponent
       Foo = createReactClass({
         propTypes,
         render: ->
           return <Foo className="bar" />
       })
-    """
+    '''
     # parser: 'babel-eslint'
     errors: [
       message: ERROR_MESSAGE
       type: 'Property'
     ]
   ,
-    code: """
+    code: '''
       class MyComponent extends React.Component
         @fooBar = {
           baz: Qux.propTypes.baz
         }
-    """
+    '''
     # parser: 'babel-eslint'
     errors: [
       message: ERROR_MESSAGE
       type: 'Identifier'
     ]
   ,
-    code: """
+    code: '''
       { propTypes: typesOfProps } = SomeComponent
       Foo = createReactClass({
         propTypes: typesOfProps,
         render: ->
           return <Foo className="bar" />
       })
-    """
+    '''
     errors: [
       message: ERROR_MESSAGE
       type: 'Property'
     ]
   ,
-    code: """
+    code: '''
       Message = (props) => (<div>{props.message}</div>)
       Message.propTypes = {
         message: PropTypes.string
@@ -144,7 +144,7 @@ ruleTester.run 'forbid-foreign-prop-types', rule,
       Hello.propTypes = {
         name: Message.propTypes.message
       }
-    """
+    '''
     options: [allowInPropTypes: no]
     errors: [
       message: ERROR_MESSAGE

@@ -100,7 +100,10 @@ module.exports =
         pattern = config.varsIgnorePattern.toString()
 
       additional =
-        if type then " Allowed unused #{type} must match #{pattern}." else ''
+        if type
+          " Allowed unused #{type} must match #{pattern}."
+        else
+          ''
 
       "'{{name}}' is defined but never used.#{additional}"
 
@@ -486,10 +489,9 @@ module.exports =
           )
             unusedVars.push variable
 
-      collectUnusedVariables(
-        childScope
-        unusedVars
-      ) for childScope in childScopes
+      collectUnusedVariables childScope, unusedVars for childScope in (
+        childScopes
+      )
 
       unusedVars
 
@@ -505,7 +507,7 @@ module.exports =
           context.report
             node: unusedVar.identifiers[0]
             message:
-              if unusedVar.references.some (ref) -> ref.isWrite()
+              if unusedVar.references.some((ref) -> ref.isWrite())
                 getAssignedMessage()
               else
                 getDefinedMessage unusedVar

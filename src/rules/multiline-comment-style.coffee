@@ -155,7 +155,7 @@ module.exports =
                 commentLines
               )}###"
 
-              if commentLines.some (value) -> value.startsWith '#'
+              if commentLines.some((value) -> value.startsWith '#')
                 null
               else
                 fixer.replaceTextRange range, hashedBlock
@@ -206,12 +206,10 @@ module.exports =
             lineText = sourceCode.lines[lineNumber - 1]
 
             unless (
-              (
-                if lineNumber is block.loc.end.line
-                  lineText.startsWith "#{lineIndent}#"
-                else
-                  lineText.startsWith expectedLinePrefix
-              )
+              if lineNumber is block.loc.end.line
+                lineText.startsWith "#{lineIndent}#"
+              else
+                lineText.startsWith expectedLinePrefix
             )
               context.report
                 loc:
@@ -267,7 +265,7 @@ module.exports =
                 commentLines
               )}###"
 
-              if commentLines.some (value) -> value.startsWith '#'
+              if commentLines.some((value) -> value.startsWith '#')
                 null
               else
                 fixer.replaceTextRange range, starredBlock
@@ -318,13 +316,11 @@ module.exports =
             lineText = sourceCode.lines[lineNumber - 1]
 
             unless (
-              (
-                if lineNumber is block.loc.end.line
-                  lineText.startsWith("#{lineIndent}#") or
-                    lineText.startsWith "#{lineIndent} *"
-                else
-                  lineText.startsWith expectedLinePrefix
-              )
+              if lineNumber is block.loc.end.line
+                lineText.startsWith("#{lineIndent}#") or
+                  lineText.startsWith "#{lineIndent} *"
+              else
+                lineText.startsWith expectedLinePrefix
             )
               context.report
                 loc:
@@ -387,7 +383,7 @@ module.exports =
           if (
             commentGroup[0].type is 'Line' and
             commentLines.length > 1 and
-            not commentLines.some (value) -> value.includes '###'
+            not commentLines.some((value) -> value.includes '###')
           )
             context.report
               loc:
@@ -413,7 +409,7 @@ module.exports =
             .split astUtils.LINEBREAK_MATCHER
             .filter (line) -> line.trim()
 
-            if lines.length > 0 and lines.every (line) -> /^\s*[*#]/.test line
+            if lines.length > 0 and lines.every((line) -> /^\s*[*#]/.test line)
               context.report
                 loc:
                   start: block.loc.start

@@ -36,11 +36,11 @@ ALLOW_OPTIONS = Object.freeze [
 toValidInvalid = (patterns, item) ->
   # Valid Patterns
   patterns.valid.push
-    code: item.code.replace('->', '-> bar()')
+    code: item.code.replace '->', '-> bar()'
   ,
-    code: item.code.replace('->', '-> ### empty ###')
+    code: item.code.replace '->', '-> ### empty ###'
   ,
-    code: item.code.replace('->', '->\n      # empty\n')
+    code: item.code.replace '->', '->\n      # empty\n'
   ,
     code: "#{item.code}\n# allow: #{item.allow}"
     options: [allow: [item.allow]]

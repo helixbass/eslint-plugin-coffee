@@ -126,12 +126,12 @@ ruleTester.run 'dot-notation', rule,
       '''
     errors: [
       messageId: 'useDot'
-      data: key: q('catch')
+      data: key: q 'catch'
       line: 2
       column: 15
     ,
       messageId: 'useDot'
-      data: key: q('catch')
+      data: key: q 'catch'
       line: 3
       column: 15
     ]

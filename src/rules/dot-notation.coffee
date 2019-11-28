@@ -93,7 +93,10 @@ module.exports =
               not astUtils.canTokensBeAdjacent String(value), tokenAfterProperty
 
             textBeforeDot =
-              if astUtils.isDecimalInteger node.object then ' ' else ''
+              if astUtils.isDecimalInteger node.object
+                ' '
+              else
+                ''
             textAfterProperty = if needsSpaceAfterProperty then ' ' else ''
 
             fixer.replaceTextRange(

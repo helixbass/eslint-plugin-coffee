@@ -13,7 +13,9 @@ rule = require 'eslint/lib/rules/symbol-description'
 {RuleTester} = require 'eslint'
 path = require 'path'
 
-ruleTester = new RuleTester parser: path.join(__dirname, '../../..'), env: es6: yes
+ruleTester = new RuleTester(
+  parser: path.join(__dirname, '../../..'), env: es6: yes
+)
 
 ruleTester.run 'symbol-description', rule,
   valid: [

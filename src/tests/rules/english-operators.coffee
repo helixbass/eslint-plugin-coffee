@@ -67,7 +67,7 @@ ruleTester.run 'english-operators', rule,
     errors: [error '&&', message: "Prefer the usage of 'and' over '&&'"]
   ,
     code: 'a && b || c'
-    errors: [error('&&'), error('||')]
+    errors: [error('&&'), error '||']
   ,
     code: 'a == b'
     errors: [error '==']

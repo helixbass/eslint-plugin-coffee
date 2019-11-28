@@ -145,9 +145,10 @@ module.exports =
 
       declarations.reduce(
         (prev, curr, idx, decls) ->
-          return decls[idx + 1] if (
-            curr.type in ['ExperimentalSpreadProperty', 'SpreadElement']
-          )
+          return decls[idx + 1] if curr.type in [
+            'ExperimentalSpreadProperty'
+            'SpreadElement'
+          ]
 
           prevPropName = getKey prev
           currentPropName = getKey curr

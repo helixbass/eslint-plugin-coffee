@@ -17,7 +17,9 @@ path = require 'path'
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: path.join(__dirname, '../../..'), env: es6: yes
+ruleTester = new RuleTester(
+  parser: path.join(__dirname, '../../..'), env: es6: yes
+)
 
 ruleTester.run 'no-new-symbol', rule,
   valid: [
@@ -32,10 +34,10 @@ ruleTester.run 'no-new-symbol', rule,
     code: "foo = new Symbol('foo')"
     errors: [message: '`Symbol` cannot be called as a constructor.']
   ,
-    code: """
+    code: '''
       ->
         Symbol = ->
       baz = new Symbol('baz')
-    """
+    '''
     errors: [message: '`Symbol` cannot be called as a constructor.']
   ]

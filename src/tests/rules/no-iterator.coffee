@@ -23,22 +23,14 @@ ruleTester.run 'no-iterator', rule,
   valid: ['a = test[__iterator__]', '__iterator__ = null']
   invalid: [
     code: 'a = test.__iterator__'
-    errors: [
-      message: "Reserved name '__iterator__'.", type: 'MemberExpression'
-    ]
+    errors: [message: "Reserved name '__iterator__'.", type: 'MemberExpression']
   ,
     code: 'Foo.prototype.__iterator__ = ->'
-    errors: [
-      message: "Reserved name '__iterator__'.", type: 'MemberExpression'
-    ]
+    errors: [message: "Reserved name '__iterator__'.", type: 'MemberExpression']
   ,
     code: 'Foo::__iterator__ = ->'
-    errors: [
-      message: "Reserved name '__iterator__'.", type: 'MemberExpression'
-    ]
+    errors: [message: "Reserved name '__iterator__'.", type: 'MemberExpression']
   ,
     code: "a = test['__iterator__']"
-    errors: [
-      message: "Reserved name '__iterator__'.", type: 'MemberExpression'
-    ]
+    errors: [message: "Reserved name '__iterator__'.", type: 'MemberExpression']
   ]

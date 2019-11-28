@@ -188,7 +188,7 @@ module.exports =
       opening = sourceCode.getFirstToken(node).loc.start
       closing =
         sourceCode.getLastTokens(node, if node.selfClosing then 2 else 1)[0].loc
-          .start
+        .start
       tag = sourceCode.getFirstToken(node.name).loc.start
       if node.attributes.length
         lastProp = node.attributes[node.attributes.length - 1]
@@ -220,15 +220,18 @@ module.exports =
     lastAttributeNode = {}
 
     JSXAttribute: (node) ->
-      lastAttributeNode[getOpeningElementId(node.parent)] = node
+      lastAttributeNode[getOpeningElementId node.parent] = node
 
     JSXSpreadAttribute: (node) ->
-      lastAttributeNode[getOpeningElementId(node.parent)] = node
+      lastAttributeNode[getOpeningElementId node.parent] = node
 
     'JSXOpeningElement:exit': (node) ->
-      attributeNode = lastAttributeNode[getOpeningElementId(node)]
+      attributeNode = lastAttributeNode[getOpeningElementId node]
       cachedLastAttributeEndPos =
-        if attributeNode then attributeNode.range[1] else null
+        if attributeNode
+          attributeNode.range[1]
+        else
+          null
       tokens = getTokensLocations node
       expectedLocation = getExpectedLocation tokens
 

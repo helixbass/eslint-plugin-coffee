@@ -25,59 +25,59 @@ ignoreCaseArgs = [ignoreCase: yes]
 
 ruleTester.run 'sort-imports', rule,
   valid: [
-    """
+    '''
       import a from 'foo.js'
       import b from 'bar.js'
       import c from 'baz.js'
-    """
-    """
+    '''
+    '''
       import * as B from 'foo.js'
       import A from 'bar.js'
-    """
-    """
+    '''
+    '''
       import * as B from 'foo.js'
       import {a, b} from 'bar.js'
-    """
-    """
+    '''
+    '''
       import {b, c} from 'bar.js'
       import A from 'foo.js'
-    """
+    '''
   ,
-    code: """
+    code: '''
       import A from 'bar.js'
       import {b, c} from 'foo.js'
-    """
+    '''
     options: [memberSyntaxSortOrder: ['single', 'multiple', 'none', 'all']]
   ,
-    """
+    '''
       import {a, b} from 'bar.js'
       import {c, d} from 'foo.js'
-    """
-    """
+    '''
+    '''
       import A from 'foo.js'
       import B from 'bar.js'
-    """
-    """
+    '''
+    '''
       import A from 'foo.js'
       import a from 'bar.js'
-    """
-    """
+    '''
+    '''
       import a, * as b from 'foo.js'
       import c from 'bar.js'
-    """
-    """
+    '''
+    '''
       import 'foo.js'
       import a from 'bar.js'
-    """
-    """
+    '''
+    '''
       import B from 'foo.js'
       import a from 'bar.js'
-    """
+    '''
   ,
-    code: """
+    code: '''
       import a from 'foo.js'
       import B from 'bar.js'
-    """
+    '''
     options: ignoreCaseArgs
   ,
     "import {a, b, c, d} from 'foo.js'"
@@ -92,89 +92,89 @@ ruleTester.run 'sort-imports', rule,
     options: ignoreCaseArgs
   ,
     "import a, * as b from 'foo.js'"
-    """
+    '''
       import * as a from 'foo.js'
       
       import b from 'bar.js'
-    """
-    """
+    '''
+    '''
       import * as bar from 'bar.js'
       import * as foo from 'foo.js'
-    """
+    '''
   ,
     # https://github.com/eslint/eslint/issues/5130
-    code: """
+    code: '''
       import 'foo'
       import bar from 'bar'
-    """
+    '''
     options: ignoreCaseArgs
   ,
     # https://github.com/eslint/eslint/issues/5305
     "import React, {Component} from 'react'"
   ]
   invalid: [
-    code: """
+    code: '''
       import a from 'foo.js'
       import A from 'bar.js'
-    """
+    '''
     output: null
     errors: [expectedError]
   ,
-    code: """
+    code: '''
       import b from 'foo.js'
       import a from 'bar.js'
-    """
+    '''
     output: null
     errors: [expectedError]
   ,
-    code: """
+    code: '''
       import {b, c} from 'foo.js'
       import {a, d} from 'bar.js'
-    """
+    '''
     output: null
     errors: [expectedError]
   ,
-    code: """
+    code: '''
       import * as foo from 'foo.js'
       import * as bar from 'bar.js'
-    """
+    '''
     output: null
     errors: [expectedError]
   ,
-    code: """
+    code: '''
       import a from 'foo.js'
       import {b, c} from 'bar.js'
-    """
+    '''
     output: null
     errors: [
       message: "Expected 'multiple' syntax before 'single' syntax."
       type: 'ImportDeclaration'
     ]
   ,
-    code: """
+    code: '''
       import a from 'foo.js'
       import * as b from 'bar.js'
-    """
+    '''
     output: null
     errors: [
       message: "Expected 'all' syntax before 'single' syntax."
       type: 'ImportDeclaration'
     ]
   ,
-    code: """
+    code: '''
       import a from 'foo.js'
       import 'bar.js'
-    """
+    '''
     output: null
     errors: [
       message: "Expected 'none' syntax before 'single' syntax."
       type: 'ImportDeclaration'
     ]
   ,
-    code: """
+    code: '''
       import b from 'bar.js'
       import * as a from 'foo.js'
-    """
+    '''
     output: null
     options: [memberSyntaxSortOrder: ['all', 'single', 'multiple', 'none']]
     errors: [
@@ -230,7 +230,7 @@ ruleTester.run 'sort-imports', rule,
       type: 'ImportSpecifier'
     ]
   ,
-    code: """
+    code: '''
               import {
                 boop,
                 foo,
@@ -239,8 +239,8 @@ ruleTester.run 'sort-imports', rule,
                 bar,
                 beep
               } from 'foo.js'
-            """
-    output: """
+            '''
+    output: '''
               import {
                 bar,
                 beep,
@@ -249,7 +249,7 @@ ruleTester.run 'sort-imports', rule,
                 baz as qux,
                 zoo
               } from 'foo.js'
-            """
+            '''
     errors: [
       message:
         "Member 'qux' of the import declaration should be sorted alphabetically."

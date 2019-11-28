@@ -139,7 +139,7 @@ ruleTester.run 'complexity', rule,
     '''
     options: [3]
   ,
-    code: """
+    code: '''
       (x) ->
         switch x
           when 1
@@ -148,14 +148,14 @@ ruleTester.run 'complexity', rule,
             2
           else
             5 if x == 'foo'
-    """
+    '''
     options: [4]
   ,
-    code: """
+    code: '''
       (x) ->
         loop
           'foo'
-    """
+    '''
     options: [2]
   ,
     code: 'bar() if foo', options: [3]
@@ -283,7 +283,7 @@ ruleTester.run 'complexity', rule,
     options: [2]
     errors: 1
   ,
-    code: """
+    code: '''
       (x) ->
         switch x
           when 1
@@ -292,34 +292,34 @@ ruleTester.run 'complexity', rule,
             2
           else
             if x == 'foo' then 5
-    """
+    '''
     options: [3]
     errors: 1
   ,
-    code: """
+    code: '''
       (x) ->
         loop
           'foo'
-    """
+    '''
     options: [1]
     errors: 1
   ,
-    code: """
+    code: '''
       (x) ->
         do ->
           'foo' while yes
         do ->
           'bar' until no
-    """
+    '''
     options: [1]
     errors: 2
   ,
-    code: """
+    code: '''
       (x) ->
         do ->
           while true then 'foo'
         (-> 'bar')()
-    """
+    '''
     options: [1]
     errors: 1
   ,

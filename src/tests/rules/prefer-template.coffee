@@ -45,41 +45,36 @@ ruleTester.run 'prefer-template', rule,
       output: 'foo = "hello, #{  name  }!"'
       errors
     }
-  ,
     {
       code: "foo = bar + 'baz'"
       output: 'foo = "#{bar  }baz"'
       errors
     }
-  ,
     {
       code: 'foo = bar + "baz"'
       output: 'foo = "#{bar  }baz"'
       errors
     }
-  ,
     {
       code: "foo = +100 + 'yen'"
       output: 'foo = "#{+100  }yen"'
       errors
     }
-  ,
     {
       code: "foo = 'bar' + baz"
       output: 'foo = "bar#{  baz}"'
       errors
     }
-  ,
     {
       code: "foo = '￥' + (n * 1000) + '-'"
       output: 'foo = "￥#{  n * 1000  }-"'
       errors
     }
   ,
-    code: """
+    code: '''
       foo = 'aaa' + aaa
       bar = 'bbb' + bbb
-    """
+    '''
     output: '''
       foo = "aaa#{  aaa}"
       bar = "bbb#{  bbb}"
@@ -91,88 +86,76 @@ ruleTester.run 'prefer-template', rule,
       output: 'string = "#{number + 1  }px"'
       errors
     }
-  ,
     {
       code: "foo = 'bar' + baz + 'qux'"
       output: 'foo = "bar#{  baz  }qux"'
       errors
     }
-  ,
     {
       code: 'foo = \'0 backslashes: #{bar}\' + baz'
       output: 'foo = "0 backslashes: \\#{bar}#{  baz}"'
       errors
     }
-  ,
     {
       code: 'foo = \'1 backslash: \\#{bar}\' + baz'
       output: 'foo = "1 backslash: \\#{bar}#{  baz}"'
       errors
     }
-  ,
     {
       code: 'foo = \'2 backslashes: \\\\#{bar}\' + baz'
       output: 'foo = "2 backslashes: \\\\\\#{bar}#{  baz}"'
       errors
     }
-  ,
     {
       code: 'foo = \'3 backslashes: \\\\\\#{bar}\' + baz'
       output: 'foo = "3 backslashes: \\\\\\#{bar}#{  baz}"'
       errors
     }
-  ,
     {
       code: "foo = bar + 'this is a backtick: \"' + baz"
       output: 'foo = "#{bar  }this is a backtick: \\"#{  baz}"'
       errors
     }
-  ,
     {
-      code: """
+      code: '''
         foo = bar + 'this is a backtick preceded by a backslash: \\"' + baz
-      """
+      '''
       output: '''
         foo = "#{bar  }this is a backtick preceded by a backslash: \\"#{  baz}"
       '''
       errors
     }
-  ,
     {
-      code: """
+      code: '''
         foo = bar + 'this is a backtick preceded by two backslashes: \\\\"' + baz
-      """
+      '''
       output: '''
         foo = "#{bar  }this is a backtick preceded by two backslashes: \\\\\\"#{  baz}"
       '''
       errors
     }
-  ,
     {
       code: 'foo = bar + "#{baz}foo"'
       output: 'foo = "#{bar  }#{baz}foo"'
       errors
     }
-  ,
     {
-      code: """
+      code: '''
         foo = 'favorites: ' + (favorites.map (f) ->
           f.name
         ) + ''
-      """
+      '''
       output: '''
         foo = "favorites: #{  favorites.map (f) ->
           f.name  }"
       '''
       errors
     }
-  ,
     {
       code: "foo = bar + baz + 'qux'"
       output: 'foo = "#{bar + baz  }qux"'
       errors
     }
-  ,
     {
       code: '''
         foo = 'favorites: ' +
@@ -190,7 +173,6 @@ ruleTester.run 'prefer-template', rule,
       '''
       errors
     }
-  ,
     {
       code:
         "foo = ### a ### 'bar' ### b ### + ### c ### baz ### d ### + 'qux' ### e ### "
@@ -198,13 +180,11 @@ ruleTester.run 'prefer-template', rule,
         'foo = ### a ### "bar#{ ### b ###  ### c ### baz ### d ###  }qux" ### e ### '
       errors
     }
-  ,
     {
       code: "foo = bar + ('baz') + 'qux' + (boop)"
       output: 'foo = "#{bar  }baz" + "qux#{  boop}"'
       errors
     }
-  ,
     {
       code:
         "foo + 'unescapes an escaped single quote in a single-quoted string: \\''"
@@ -212,7 +192,6 @@ ruleTester.run 'prefer-template', rule,
         '"#{foo  }unescapes an escaped single quote in a single-quoted string: \'"'
       errors
     }
-  ,
     {
       code:
         'foo + "unescapes an escaped double quote in a double-quoted string: \\""'
@@ -220,7 +199,6 @@ ruleTester.run 'prefer-template', rule,
         '"#{foo  }unescapes an escaped double quote in a double-quoted string: \\""'
       errors
     }
-  ,
     {
       code:
         "foo + 'does not unescape an escaped double quote in a single-quoted string: \\\"'"
@@ -228,7 +206,6 @@ ruleTester.run 'prefer-template', rule,
         '"#{foo  }does not unescape an escaped double quote in a single-quoted string: \\""'
       errors
     }
-  ,
     {
       code:
         'foo + "does not unescape an escaped single quote in a double-quoted string: \\\'"'
@@ -236,19 +213,16 @@ ruleTester.run 'prefer-template', rule,
         '"#{foo  }does not unescape an escaped single quote in a double-quoted string: \\\'"'
       errors
     }
-  ,
     {
       code: "foo + 'handles unicode escapes correctly: \\x27'" # "\x27" === "'"
       output: '"#{foo  }handles unicode escapes correctly: \\x27"'
       errors
     }
-  ,
     {
       code: "foo + '\\\\033'"
       output: '"#{foo  }\\\\033"'
       errors
     }
-  ,
     {
       code: "foo + '\\0'"
       output: '"#{foo  }\\0"'

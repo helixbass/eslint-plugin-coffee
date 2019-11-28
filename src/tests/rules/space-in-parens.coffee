@@ -153,12 +153,12 @@ ruleTester.run 'space-in-parens', rule,
   ,
     code: "foo({ bar: 'baz' }, 1 )", options: ['always', {exceptions: ['{}']}]
   ,
-    code: """
+    code: '''
       foo({
         bar: 'baz',
         baz: 'bar'
       })
-    """
+    '''
     options: ['always', {exceptions: ['{}']}]
   ,
     code: "foo({ bar: 'baz' })"
@@ -170,12 +170,12 @@ ruleTester.run 'space-in-parens', rule,
   ,
     code: "foo( { bar: 'baz' }, 1)", options: ['never', {exceptions: ['{}']}]
   ,
-    code: """
+    code: '''
       foo( {
         bar: 'baz',
         baz: 'bar'
       } )
-    """
+    '''
     options: ['never', {exceptions: ['{}']}]
   ,
     code: 'foo([ 1, 2 ])', options: ['always', {exceptions: ['[]']}]
@@ -265,41 +265,41 @@ ruleTester.run 'space-in-parens', rule,
     code: "foo({ bar: 'baz' }, [ 1, 2 ])"
     options: ['always', {exceptions: ['{}', '[]']}]
   ,
-    code: """
+    code: '''
       foo({
         bar: 'baz'
       }, [
         1,
         2
       ])
-    """
+    '''
     options: ['always', {exceptions: ['{}', '[]']}]
   ,
-    code: """
+    code: '''
       foo()
       bar({bar:'baz'})
       baz([1,2])
-    """
+    '''
     options: ['always', {exceptions: ['{}', '[]', '()']}]
   ,
     code: "foo( { bar: 'baz' }, [ 1, 2 ] )"
     options: ['never', {exceptions: ['{}', '[]']}]
   ,
-    code: """
+    code: '''
       foo( {
         bar: 'baz'
       }, [
         1,
         2
       ] )
-    """
+    '''
     options: ['never', {exceptions: ['{}', '[]']}]
   ,
-    code: """
+    code: '''
       foo( )
       bar( {bar:'baz'} )
       baz( [1,2] )
-    """
+    '''
     options: ['never', {exceptions: ['{}', '[]', 'empty']}]
   ,
     # faulty exceptions option
@@ -313,8 +313,9 @@ ruleTester.run 'space-in-parens', rule,
     output: 'foo()'
     options: ['never']
     errors: [
-      {message: REJECTED_OPENING_SPACE_ERROR, line: 1, column: 5},
-      {message: REJECTED_CLOSING_SPACE_ERROR, line: 1, column: 5},
+      message: REJECTED_OPENING_SPACE_ERROR, line: 1, column: 5
+    ,
+      message: REJECTED_CLOSING_SPACE_ERROR, line: 1, column: 5
     ]
   ,
     code: 'foo( bar)'
@@ -558,16 +559,18 @@ ruleTester.run 'space-in-parens', rule,
     output: 'foo()'
     options: ['always', {exceptions: ['empty']}]
     errors: [
-      {message: REJECTED_OPENING_SPACE_ERROR, line: 1, column: 5},
-      {message: REJECTED_CLOSING_SPACE_ERROR, line: 1, column: 5},
+      message: REJECTED_OPENING_SPACE_ERROR, line: 1, column: 5
+    ,
+      message: REJECTED_CLOSING_SPACE_ERROR, line: 1, column: 5
     ]
   ,
     code: 'foo()'
     output: 'foo( )'
     options: ['never', {exceptions: ['empty']}]
     errors: [
-      {message: MISSING_OPENING_SPACE_ERROR, line: 1, column: 4},
-      {message: MISSING_CLOSING_SPACE_ERROR, line: 1, column: 5},
+      message: MISSING_OPENING_SPACE_ERROR, line: 1, column: 4
+    ,
+      message: MISSING_CLOSING_SPACE_ERROR, line: 1, column: 5
     ]
   ,
     code: '''

@@ -35,36 +35,36 @@ ruleTester.run 'no-deprecated', rule,
     'ReactDOMServer.renderToString(element)'
     'ReactDOMServer.renderToStaticMarkup(element)'
   ,
-    code: """
+    code: '''
       Foo = createReactClass({
         render: ->
       })
-    """
+    '''
   ,
     # Non-React
-    code: """
+    code: '''
         Foo = createReactClassNonReact({
           componentWillMount: ->,
           componentWillReceiveProps: ->,
           componentWillUpdate: ->
         })
-      """
+      '''
   ,
-    code: """
+    code: '''
         Foo = {
           componentWillMount: ->,
           componentWillReceiveProps: ->,
           componentWillUpdate: ->
         }
-      """
+      '''
   ,
-    code: """
+    code: '''
         class Foo
           constructor: ->
           componentWillMount: ->
           componentWillReceiveProps: ->
           componentWillUpdate: ->
-      """
+      '''
   ,
     # Deprecated in a later version
     code: 'React.renderComponent()', settings: react: version: '0.11.0'
@@ -73,12 +73,12 @@ ruleTester.run 'no-deprecated', rule,
   ,
     code: 'PropTypes', settings: react: version: '15.4.0'
   ,
-    code: """
+    code: '''
         class Foo extends React.Component
           componentWillMount: ->
           componentWillReceiveProps: ->
           componentWillUpdate: ->
-      """
+      '''
     settings: react: version: '16.2.0'
   ]
 
@@ -245,10 +245,10 @@ ruleTester.run 'no-deprecated', rule,
       )
     ]
   ,
-    code: """
+    code: '''
       import React from 'react'
       {createClass, PropTypes} = React
-    """
+    '''
     # parser: 'babel-eslint'
     errors: [
       message: errorMessage(
@@ -274,10 +274,10 @@ ruleTester.run 'no-deprecated', rule,
       )
     ]
   ,
-    code: """
+    code: '''
         import ReactPerf from 'react-addons-perf'
         {printDOM} = ReactPerf
-      """
+      '''
     # parser: 'babel-eslint'
     errors: [
       message: errorMessage(
@@ -296,12 +296,12 @@ ruleTester.run 'no-deprecated', rule,
       )
     ]
   ,
-    code: """
+    code: '''
         class Bar extends React.PureComponent
           componentWillMount: ->
           componentWillReceiveProps: ->
           componentWillUpdate: ->
-      """
+      '''
     errors: [
       message: errorMessage(
         'componentWillMount'
@@ -334,13 +334,13 @@ ruleTester.run 'no-deprecated', rule,
       column: 3
     ]
   ,
-    code: """
+    code: '''
         Foo = ->
           class Bar extends React.PureComponent
             componentWillMount: ->
             componentWillReceiveProps: ->
             componentWillUpdate: ->
-      """
+      '''
     errors: [
       message: errorMessage(
         'componentWillMount'
@@ -373,12 +373,12 @@ ruleTester.run 'no-deprecated', rule,
       column: 5
     ]
   ,
-    code: """
+    code: '''
         class Bar extends PureComponent
           componentWillMount: ->
           componentWillReceiveProps: ->
           componentWillUpdate: ->
-      """
+      '''
     errors: [
       message: errorMessage(
         'componentWillMount'
@@ -411,12 +411,12 @@ ruleTester.run 'no-deprecated', rule,
       column: 3
     ]
   ,
-    code: """
+    code: '''
         class Foo extends React.Component
           componentWillMount: ->
           componentWillReceiveProps: ->
           componentWillUpdate: ->
-      """
+      '''
     errors: [
       message: errorMessage(
         'componentWillMount'
@@ -449,12 +449,12 @@ ruleTester.run 'no-deprecated', rule,
       column: 3
     ]
   ,
-    code: """
+    code: '''
         class Foo extends Component
           componentWillMount: ->
           componentWillReceiveProps: ->
           componentWillUpdate: ->
-      """
+      '''
     errors: [
       message: errorMessage(
         'componentWillMount'
@@ -487,13 +487,13 @@ ruleTester.run 'no-deprecated', rule,
       column: 3
     ]
   ,
-    code: """
+    code: '''
         Foo = createReactClass({
           componentWillMount: ->,
           componentWillReceiveProps: ->,
           componentWillUpdate: ->
         })
-      """
+      '''
     errors: [
       message: errorMessage(
         'componentWillMount'
@@ -526,13 +526,13 @@ ruleTester.run 'no-deprecated', rule,
       column: 3
     ]
   ,
-    code: """
+    code: '''
         class Foo extends React.Component
           constructor: ->
           componentWillMount: ->
           componentWillReceiveProps: ->
           componentWillUpdate: ->
-      """
+      '''
     errors: [
       message: errorMessage(
         'componentWillMount'
