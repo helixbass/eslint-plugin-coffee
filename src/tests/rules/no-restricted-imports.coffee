@@ -278,7 +278,7 @@ ruleTester.run 'no-restricted-imports', rule,
     ]
     errors: [
       message:
-        "* import is invalid because 'DisallowedObject' from 'foo' is restricted."
+        "* import is invalid because 'DisallowedObject' from 'foo' is restricted. Please import 'DisallowedObject' from /bar/ instead."
       type: 'ImportDeclaration'
     ]
   ,
@@ -411,7 +411,7 @@ ruleTester.run 'no-restricted-imports', rule,
     ]
     errors: [
       message:
-        "* import is invalid because 'DisallowedObject' from 'foo' is restricted."
+        "* import is invalid because 'DisallowedObject' from 'foo' is restricted. Please import 'DisallowedObject' from /bar/ instead."
       type: 'ImportDeclaration'
     ]
   ,
@@ -426,7 +426,7 @@ ruleTester.run 'no-restricted-imports', rule,
     ]
     errors: [
       message:
-        "* import is invalid because 'DisallowedObject,DisallowedObjectTwo' from 'foo' is restricted."
+        "* import is invalid because 'DisallowedObject,DisallowedObjectTwo' from 'foo' is restricted. Please import 'DisallowedObject' and 'DisallowedObjectTwo' from /bar/ instead."
       type: 'ImportDeclaration'
     ]
   ]
