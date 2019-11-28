@@ -75,7 +75,11 @@ class Referencer extends OriginalReferencer
   _createScopeVariable: (node) ->
     @currentScope().variableScope.__define(
       node
-      new Definition 'Variable', node, node, null, null, null
+      new Definition 'Variable', node, node,
+        # TODO: shouldBeStatically() in eslint-scope/lib/scope.js is breaking
+        # if a Variable Definition doesn't have a parent
+        # so for now passing `node` but don't know what the implications are
+        node, null, null
     )
 
   ClassProperty: (node) ->

@@ -156,8 +156,8 @@ ruleTester.run 'yoda', rule,
       type: 'BinaryExpression'
     ]
   ,
-    code: 'foo = (5 < value) ? true : false'
-    # output: 'foo = (value > 5) ? true : false'
+    code: 'foo = if (5 < value) then true else false'
+    # output: 'foo = if (value > 5) then true else false'
     options: ['never']
     errors: [
       message: 'Expected literal to be on the right side of <.'

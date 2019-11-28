@@ -230,6 +230,8 @@ exports.getParser = getParser = (getAstAndTokens) -> (code, opts) ->
     ast.range[1] = ast.end
   else
     ast.program?.range[1] = ast.program.end
+  # eslint-scope will fail eg on ImportDeclaration's unless treated as module
+  ast.sourceType = 'module'
   # dump espreeAst: ast
   {
     ast
