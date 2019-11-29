@@ -59,6 +59,9 @@ justContentRegex = ///
   $
 ///
 
+withoutCommentLines = (regexChunk) ->
+  regexChunk.replace /^\s*#.*$/m, ''
+
 #------------------------------------------------------------------------------
 # Rule Definition
 #------------------------------------------------------------------------------
@@ -82,13 +85,13 @@ module.exports =
       token = sourceCode.getFirstToken node
 
       return unless token.type is 'RegularExpression'
-      unless regex.test node.raw
+      unless regex.test withoutCommentLines node.raw
         context.report {node, messageId: 'unexpected'}
 
     TemplateElement: (node) ->
       return unless (
-        node.pattern? and
+        node.value?.raw? and
         node.parent?.parent?.type is 'InterpolatedRegExpLiteral'
       )
-      unless justContentRegex.test node.pattern
+      unless justContentRegex.test withoutCommentLines node.value.raw
         context.report node: node.parent.parent, messageId: 'unexpected'

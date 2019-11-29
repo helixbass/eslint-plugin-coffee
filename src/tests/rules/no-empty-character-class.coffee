@@ -40,6 +40,7 @@ ruleTester.run 'no-empty-character-class', rule,
         # []
       ///
     '''
+    # eslint-disable-next-line coffee/no-template-curly-in-string
     '''
       foo = ///
         x
@@ -81,6 +82,7 @@ ruleTester.run 'no-empty-character-class', rule,
       '''
     errors: [messageId: 'unexpected', type: 'Literal']
   ,
+    # eslint-disable-next-line coffee/no-template-curly-in-string
     code: '''
         foo = ///
           x
