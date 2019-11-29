@@ -45,3 +45,4 @@ module.exports =
     #--------------------------------------------------------------------------
 
     FunctionExpression: check
+    ArrowFunctionExpression: check
