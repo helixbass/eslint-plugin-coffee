@@ -171,7 +171,9 @@ ruleTester.run 'jsx-no-literals', rule,
             return (<div>test</div>)
       '''
     # parser: 'babel-eslint'
-    errors: [message: 'Missing JSX expression container around literal string']
+    errors: [
+      message: 'Missing JSX expression container around literal string: “test”'
+    ]
   ,
     code: '''
         class Comp1 extends Component
@@ -179,7 +181,9 @@ ruleTester.run 'jsx-no-literals', rule,
             return (<>test</>)
       '''
     # parser: 'babel-eslint'
-    errors: [message: 'Missing JSX expression container around literal string']
+    errors: [
+      message: 'Missing JSX expression container around literal string: “test”'
+    ]
   ,
     code: '''
         class Comp1 extends Component
@@ -188,7 +192,9 @@ ruleTester.run 'jsx-no-literals', rule,
             return foo
       '''
     # parser: 'babel-eslint'
-    errors: [message: 'Missing JSX expression container around literal string']
+    errors: [
+      message: 'Missing JSX expression container around literal string: “test”'
+    ]
   ,
     code: '''
         class Comp1 extends Component
@@ -197,7 +203,9 @@ ruleTester.run 'jsx-no-literals', rule,
             return varObjectTest.testKey
       '''
     # parser: 'babel-eslint'
-    errors: [message: 'Missing JSX expression container around literal string']
+    errors: [
+      message: 'Missing JSX expression container around literal string: “test”'
+    ]
   ,
     code: '''
         Hello = createReactClass({
@@ -207,7 +215,9 @@ ruleTester.run 'jsx-no-literals', rule,
         })
       '''
     # parser: 'babel-eslint'
-    errors: [message: 'Missing JSX expression container around literal string']
+    errors: [
+      message: 'Missing JSX expression container around literal string: “hello”'
+    ]
   ,
     code: '''
         class Comp1 extends Component
@@ -219,7 +229,10 @@ ruleTester.run 'jsx-no-literals', rule,
             )
       '''
     # parser: 'babel-eslint'
-    errors: [message: 'Missing JSX expression container around literal string']
+    errors: [
+      message:
+        'Missing JSX expression container around literal string: “asdjfl”'
+    ]
   ,
     code: '''
         class Comp1 extends Component
@@ -233,7 +246,10 @@ ruleTester.run 'jsx-no-literals', rule,
             )
       '''
     # parser: 'babel-eslint'
-    errors: [message: 'Missing JSX expression container around literal string']
+    errors: [
+      message:
+        'Missing JSX expression container around literal string: “asdjfl\n        test\n        foo”'
+    ]
   ,
     code: '''
         class Comp1 extends Component
@@ -247,7 +263,9 @@ ruleTester.run 'jsx-no-literals', rule,
             )
       '''
     # parser: 'babel-eslint'
-    errors: [message: 'Missing JSX expression container around literal string']
+    errors: [
+      message: 'Missing JSX expression container around literal string: “test”'
+    ]
   ,
     code: '''
         <Foo bar="test">
@@ -256,7 +274,7 @@ ruleTester.run 'jsx-no-literals', rule,
       '''
     # parser: 'babel-eslint'
     options: [noStrings: yes]
-    errors: [message: 'Strings not allowed in JSX files']
+    errors: [message: "Strings not allowed in JSX files: “'Test'”"]
   ,
     code: '''
         <Foo bar="test">
@@ -264,7 +282,7 @@ ruleTester.run 'jsx-no-literals', rule,
         </Foo>
       '''
     options: [noStrings: yes]
-    errors: [message: 'Strings not allowed in JSX files']
+    errors: [message: "Strings not allowed in JSX files: “'Test'”"]
   ,
     code: '''
         <Foo bar="test">
@@ -272,7 +290,7 @@ ruleTester.run 'jsx-no-literals', rule,
         </Foo>
       '''
     options: [noStrings: yes]
-    errors: [message: 'Strings not allowed in JSX files']
+    errors: [message: "Strings not allowed in JSX files: “'Test'”"]
   ,
     code: '''
         <Foo bar="test">
@@ -281,7 +299,7 @@ ruleTester.run 'jsx-no-literals', rule,
       '''
     # parser: 'babel-eslint'
     options: [noStrings: yes]
-    errors: [message: 'Strings not allowed in JSX files']
+    errors: [message: 'Strings not allowed in JSX files: “Test”']
   ,
     code: '''
         <Foo bar="test">
@@ -289,7 +307,7 @@ ruleTester.run 'jsx-no-literals', rule,
         </Foo>
       '''
     options: [noStrings: yes]
-    errors: [message: 'Strings not allowed in JSX files']
+    errors: [message: 'Strings not allowed in JSX files: “Test”']
   ,
     code: '''
         <Foo>
@@ -297,41 +315,41 @@ ruleTester.run 'jsx-no-literals', rule,
         </Foo>
       '''
     options: [noStrings: yes]
-    errors: [message: 'Strings not allowed in JSX files']
+    errors: [message: 'Strings not allowed in JSX files: “"Test"”']
   ,
     code: '<Foo bar={"Test"} />'
     options: [noStrings: yes]
-    errors: [message: 'Strings not allowed in JSX files']
+    errors: [message: 'Strings not allowed in JSX files: “"Test"”']
   ,
     code: '<Foo bar={"#{baz}"} />'
     options: [noStrings: yes]
-    errors: [message: 'Strings not allowed in JSX files']
+    errors: [message: 'Strings not allowed in JSX files: “"#{baz}"”']
   ,
     code: '<Foo bar={"Test #{baz}"} />'
     options: [noStrings: yes]
-    errors: [message: 'Strings not allowed in JSX files']
+    errors: [message: 'Strings not allowed in JSX files: “"Test #{baz}"”']
   ,
     code: '<Foo bar={"foo" + \'bar\'} />'
     options: [noStrings: yes]
     errors: [
-      message: 'Strings not allowed in JSX files'
+      message: 'Strings not allowed in JSX files: “"foo"”'
     ,
-      message: 'Strings not allowed in JSX files'
+      message: "Strings not allowed in JSX files: “'bar'”"
     ]
   ,
     code: '<Foo bar={"foo" + "bar"} />'
     options: [noStrings: yes]
     errors: [
-      message: 'Strings not allowed in JSX files'
+      message: 'Strings not allowed in JSX files: “"foo"”'
     ,
-      message: 'Strings not allowed in JSX files'
+      message: 'Strings not allowed in JSX files: “"bar"”'
     ]
   ,
     code: '<Foo bar={\'foo\' + "bar"} />'
     options: [noStrings: yes]
     errors: [
-      message: 'Strings not allowed in JSX files'
+      message: "Strings not allowed in JSX files: “'foo'”"
     ,
-      message: 'Strings not allowed in JSX files'
+      message: 'Strings not allowed in JSX files: “"bar"”'
     ]
   ]
