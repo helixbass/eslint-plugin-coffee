@@ -33,7 +33,7 @@ module.exports =
       category: 'Stylistic Issues'
       recommended: no
       url: docsUrl 'jsx-wrap-multilines'
-    fixable: 'code'
+    # fixable: 'code'
 
     schema: [
       type: 'object'
@@ -85,11 +85,15 @@ module.exports =
 
     isMultilines = (node) -> node.loc.start.line isnt node.loc.end.line
 
-    report = (node, message, fix) ->
+    report = (
+      node
+      message
+      #fix
+    ) ->
       context.report {
         node
         message
-        fix
+        # fix
       }
 
     trimTokenBeforeNewline = (node, tokenBefore) ->
@@ -132,6 +136,19 @@ module.exports =
           report node, PARENS_NEW_LINES, (fixer) ->
             fixer.replaceText node, "\n#{sourceCode.getText node}\n"
 
+    checkFunction = (node) ->
+      arrowBody = node.body
+      type = 'arrow'
+
+      if isEnabled type
+        unless arrowBody.type is 'BlockStatement'
+          check arrowBody, type
+        else if (
+          arrowBody.body.length is 1 and
+          arrowBody.body[0].type is 'ExpressionStatement'
+        )
+          check arrowBody.body[0].expression, type
+
     # --------------------------------------------------------------------------
     # Public
     # --------------------------------------------------------------------------
@@ -145,18 +162,8 @@ module.exports =
       type = 'return'
       if isEnabled type then check node.argument, type
 
-    'FunctionExpression:exit': (node) ->
-      arrowBody = node.body
-      type = 'arrow'
-
-      if isEnabled type
-        unless arrowBody.type is 'BlockStatement'
-          check arrowBody, type
-        else if (
-          arrowBody.body.length is 1 and
-          arrowBody.body[0].type is 'ExpressionStatement'
-        )
-          check arrowBody.body[0].expression, type
+    'ArrowFunctionExpression:exit': checkFunction
+    'FunctionExpression:exit': checkFunction
 
     LogicalExpression: (node) ->
       type = 'logical'
