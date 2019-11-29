@@ -83,3 +83,4 @@ module.exports =
     # Public
     #----------------------------------------------------------------------
     FunctionExpression: validateExpression
+    ArrowFunctionExpression: validateExpression
