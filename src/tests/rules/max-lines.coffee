@@ -25,7 +25,7 @@ ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 # @returns {string} error message
 ###
 errorMessage = (limitLines, actualLines) ->
-  "File must be at most #{limitLines} lines long. It's #{actualLines} lines long."
+  "File has too many lines (#{actualLines}). Maximum allowed is #{limitLines}."
 
 ruleTester.run 'max-lines', rule,
   valid: [
