@@ -142,3 +142,4 @@ module.exports =
               fixer.removeRange [tokens.arrow.range[1], tokens.after.range[0]]
 
     FunctionExpression: spaces
+    ArrowFunctionExpression: spaces
