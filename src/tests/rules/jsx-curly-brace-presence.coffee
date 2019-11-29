@@ -71,6 +71,7 @@ ruleTester.run 'jsx-curly-brace-presence', rule,
     options: [props: 'never']
   ,
     code: '<App>{<myApp></myApp>}</App>'
+    options: [children: 'always']
   ,
     code: '<App>{[]}</App>'
   ,
@@ -187,6 +188,15 @@ ruleTester.run 'jsx-curly-brace-presence', rule,
     code: '<App prop={"foo"} />'
     output: '<App prop="foo" />'
     options: [props: 'never']
+    errors: [message: unnecessaryCurlyMessage]
+  ,
+    code: '<App>{<myApp></myApp>}</App>'
+    output: '<App><myApp></myApp></App>'
+    options: [children: 'never']
+    errors: [message: unnecessaryCurlyMessage]
+  ,
+    code: '<App>{<myApp></myApp>}</App>'
+    output: '<App><myApp></myApp></App>'
     errors: [message: unnecessaryCurlyMessage]
   ,
     code: "<App prop={'foo'}>foo</App>"
