@@ -293,7 +293,7 @@ ruleTester.run 'comma-style', rule,
       'last'
     ,
       exceptions:
-        FunctionExpression: no
+        ArrowFunctionExpression: no
     ]
     errors: [
       messageId: 'expectedCommaLast'
