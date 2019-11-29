@@ -8,12 +8,11 @@
 # Requirements
 #------------------------------------------------------------------------------
 
+{isFatArrowFunction} = require '../util/ast-utils'
+
 #------------------------------------------------------------------------------
 # Rule Definition
 #------------------------------------------------------------------------------
-
-isFatArrowFunction = ({bound, type, parent}) ->
-  type is 'ArrowFunctionExpression' or bound or parent?.type is 'MethodDefinition' and parent.bound
 
 module.exports =
   meta:

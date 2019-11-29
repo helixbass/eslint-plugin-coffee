@@ -15,7 +15,10 @@
   isArrayFromMethod
   isES5Constructor
 } = require '../eslint-ast-utils'
-# {getFunctionName} = require '../util/ast-utils'
+{
+  # getFunctionName
+  isFatArrowFunction
+} = require '../util/ast-utils'
 
 #------------------------------------------------------------------------------
 # Helpers
@@ -264,7 +267,7 @@ module.exports =
       unless current.init
         current.init = yes
         current.valid =
-          if fatArrowsOk and current.node.bound
+          if fatArrowsOk and isFatArrowFunction current.node
             yes
           else
             not isDefaultThisBinding current.node, sourceCode
@@ -281,7 +284,7 @@ module.exports =
     # @returns {void}
     ###
     enterFunction = (node) ->
-      return if node.bound and not fatArrowsOk
+      return if isFatArrowFunction(node) and not fatArrowsOk
       # `this` can be invalid only under strict mode.
       stack.push {
         init: not context.getScope().isStrict
@@ -294,7 +297,7 @@ module.exports =
     # @returns {void}
     ###
     exitFunction = (node) ->
-      return if node.bound
+      return if isFatArrowFunction node
       stack.pop()
 
     ###
@@ -321,6 +324,8 @@ module.exports =
     'FunctionDeclaration:exit': exitFunction
     FunctionExpression: enterFunction
     'FunctionExpression:exit': exitFunction
+    ArrowFunctionExpression: enterFunction
+    'ArrowFunctionExpression:exit': exitFunction
 
     # Reports if `this` of the current context is invalid.
     ThisExpression: (node) ->

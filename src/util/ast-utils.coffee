@@ -219,6 +219,13 @@ isDeclarationAssignment = (node) ->
   return no unless node?.type is 'AssignmentExpression'
   containsDeclaration node.left
 
+isFatArrowFunction = (node) ->
+  return unless node?
+  {bound, type, parent} = node
+  type is 'ArrowFunctionExpression' or
+    bound or
+    (parent?.type is 'MethodDefinition' and parent.bound)
+
 module.exports = {
   getPrecedence
   isInLoop
@@ -227,4 +234,5 @@ module.exports = {
   isIife
   hasIndentedLastLine
   isDeclarationAssignment
+  isFatArrowFunction
 }
