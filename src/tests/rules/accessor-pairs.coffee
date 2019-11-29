@@ -19,7 +19,8 @@ path = require 'path'
 
 ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
-getterError = messageId: 'getter'
+missingGetterInPropertyDescriptorError =
+  messageId: 'missingGetterInPropertyDescriptor'
 # setterError = messageId: 'setter'
 
 ruleTester.run 'accessor-pairs', rule,
@@ -70,26 +71,26 @@ ruleTester.run 'accessor-pairs', rule,
       Object.defineProperty o, 'c',
         set: (value) -> val = value
     '''
-    errors: [getterError]
+    errors: [missingGetterInPropertyDescriptorError]
   ,
     code: '''
       Reflect.defineProperty obj, 'foo',
         set: (value) ->
     '''
-    errors: [getterError]
+    errors: [missingGetterInPropertyDescriptorError]
   ,
     code: '''
       Object.defineProperties obj,
         foo:
           set: (value) ->
     '''
-    errors: [getterError]
+    errors: [missingGetterInPropertyDescriptorError]
   ,
     code: '''
       Object.create null,
         foo: set: (value) ->
     '''
-    errors: [getterError]
+    errors: [missingGetterInPropertyDescriptorError]
     # ,
     #   code: "expr = 'foo'  o = { set [expr](value) { val = value } }"
     #   parserOptions: ecmaVersion: 6
