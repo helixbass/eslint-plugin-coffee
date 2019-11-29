@@ -154,8 +154,7 @@ tests =
                 )
       '''
     errors: [
-      message:
-        "Inline style: { backgroundColor: 'if someBoolean then \\'#fff\\' else \\'#000\\'' }" #eslint-disable-line
+      message: '''Inline style: { backgroundColor: "if someBoolean then '#fff' else '#000'" }''' #eslint-disable-line
     ]
   ]
 
