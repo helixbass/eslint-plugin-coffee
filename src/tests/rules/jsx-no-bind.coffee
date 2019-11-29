@@ -283,7 +283,7 @@ ruleTester.run 'jsx-no-bind', rule,
     errors: [
       message: 'JSX props should not use .bind()'
     ,
-      message: 'JSX props should not use functions'
+      message: 'JSX props should not use arrow functions'
     ]
   ,
     # parser: 'babel-eslint'
@@ -325,16 +325,16 @@ ruleTester.run 'jsx-no-bind', rule,
   ,
     # Arrow functions
     code: '<div onClick={() => alert("1337")}></div>'
-    errors: [message: 'JSX props should not use functions']
+    errors: [message: 'JSX props should not use arrow functions']
   ,
     code: '<div onClick={-> 42}></div>'
     errors: [message: 'JSX props should not use functions']
   ,
     code: '<div onClick={(param) => first()}></div>'
-    errors: [message: 'JSX props should not use functions']
+    errors: [message: 'JSX props should not use arrow functions']
   ,
     code: '<div ref={(c) => this._input = c}></div>'
-    errors: [message: 'JSX props should not use functions']
+    errors: [message: 'JSX props should not use arrow functions']
   ,
     code: [
       'class Hello23 extends React.Component'
@@ -342,7 +342,7 @@ ruleTester.run 'jsx-no-bind', rule,
       '    click = () => true'
       '    return <div onClick={click}>Hello</div>'
     ].join '\n'
-    errors: [message: 'JSX props should not use functions']
+    errors: [message: 'JSX props should not use arrow functions']
   ,
     # parser: 'babel-eslint'
     code: [
@@ -351,7 +351,7 @@ ruleTester.run 'jsx-no-bind', rule,
       '   return <div onClick={() => true} />'
       '})'
     ].join '\n'
-    errors: [message: 'JSX props should not use functions']
+    errors: [message: 'JSX props should not use arrow functions']
   ,
     code: [
       'Hello = React.createClass({'
@@ -359,7 +359,7 @@ ruleTester.run 'jsx-no-bind', rule,
       '   return <div onClick={=> await true} />'
       '})'
     ].join '\n'
-    errors: [message: 'JSX props should not use functions']
+    errors: [message: 'JSX props should not use arrow functions']
   ,
     code: [
       'Hello = React.createClass({'
@@ -368,7 +368,7 @@ ruleTester.run 'jsx-no-bind', rule,
       '    return <div onClick={doThing} />'
       '})'
     ].join '\n'
-    errors: [message: 'JSX props should not use functions']
+    errors: [message: 'JSX props should not use arrow functions']
   ,
     # ,
     #   code: [
