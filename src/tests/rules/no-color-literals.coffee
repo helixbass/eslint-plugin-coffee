@@ -141,8 +141,7 @@ tests =
     ,
       message: "Color literal: { borderBottomColor: 'blue' }"
     ,
-      message:
-        "Color literal: { backgroundColor: 'if someBoolean then \\'#fff\\' else \\'#000\\'' }" #eslint-disable-line
+      message: '''Color literal: { backgroundColor: "if someBoolean then '#fff' else '#000'" }''' #eslint-disable-line
     ]
   ]
 
