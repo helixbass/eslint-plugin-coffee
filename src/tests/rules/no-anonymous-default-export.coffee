@@ -20,7 +20,7 @@ ruleTester.run 'no-anonymous-default-export', rule,
     # Allow each forbidden type with appropriate option
     code: 'export default []', options: [allowArray: yes]
   ,
-    code: 'export default () => {}', options: [allowAnonymousFunction: yes]
+    code: 'export default () => {}', options: [allowArrowFunction: yes]
   ,
     code: 'export default class', options: [allowAnonymousClass: yes]
   ,
@@ -71,7 +71,7 @@ ruleTester.run 'no-anonymous-default-export', rule,
       code: 'export default () => {}'
       errors: [
         message:
-          'Unexpected default export of anonymous function'
+          'Assign arrow function to a variable before exporting as module default'
       ]
     test
       code: 'export default class'
