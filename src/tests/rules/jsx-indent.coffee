@@ -124,7 +124,8 @@ ruleTester.run 'jsx-indent', rule,
     code: ['head.title &&', '  <h1>', '    {head.title}', '  </h1>'].join '\n'
     options: [2]
   ,
-    code: ['  head.title &&', '  <>', '    {head.title}', '  </>'].join '\n'
+    # code: ['  head.title &&', '  <>', '    {head.title}', '  </>'].join '\n'
+    code: ['head.title &&', '  <>', '    {head.title}', '  </>'].join '\n'
     # parser: 'babel-eslint'
     options: [2]
   ,

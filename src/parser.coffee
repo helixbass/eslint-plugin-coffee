@@ -86,10 +86,10 @@ getEspreeTokenType = (token) ->
   {original} = value
   value = original if original?
   return 'JSX_COMMA' if type is ',' and value is 'JSX_COMMA'
-  return 'JSXText' if type is 'STRING' and token.data?.csx
+  return 'JSXText' if type is 'STRING' and token.data?.jsx
   return 'JSXIdentifier' if (
     token.jsxIdentifier or
-    (type is 'PROPERTY' and token.data?.csx)
+    (type is 'PROPERTY' and token.data?.jsx)
   )
   return 'Keyword' if (
     (type is 'UNARY' and value in ['typeof', 'new', 'delete', 'not']) or
@@ -106,8 +106,8 @@ getTokenValue = (token) ->
     'STRING_START'
     'STRING_END'
   ]
-  return value[1...-1] if type is 'STRING' and token.data?.csx
-  return '=' if token.csxColon
+  return value[1...-1] if type is 'STRING' and token.data?.jsx
+  return '=' if token.jsxColon
   value.original ? value.toString()
 
 # extraTokensForESLint = (ast) ->
