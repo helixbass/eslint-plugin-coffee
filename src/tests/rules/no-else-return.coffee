@@ -371,5 +371,5 @@ ruleTester.run 'no-else-return', rule,
           if bar
             no
     '''
-    errors: [messageId: 'unexpected', type: 'IfStatement']
+    errors: [messageId: 'unexpected', type: 'BlockStatement']
   ]
