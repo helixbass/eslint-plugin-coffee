@@ -112,7 +112,9 @@ module.exports =
         node.property.type is 'TemplateLiteral' and
         node.property.expressions.length is 0
       )
-        checkComputedProperty node, node.property.quasis[0].value.cooked
+        # TODO: use cooked once exposed on AST?
+        # checkComputedProperty node, node.property.quasis[0].value.cooked
+        checkComputedProperty node, node.property.quasis[0].value.raw
       if (
         not allowKeywords and
         not node.computed and
