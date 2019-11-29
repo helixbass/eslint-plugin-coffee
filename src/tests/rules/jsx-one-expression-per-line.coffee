@@ -72,55 +72,55 @@ ruleTester.run 'jsx-one-expression-per-line', rule,
 
   invalid: [
     code: '<App>{"foo"}</App>'
-    output: ['<App>', '{"foo"}', '</App>'].join '\n'
+    # output: ['<App>', '{"foo"}', '</App>'].join '\n'
     errors: [message: '`{"foo"}` must be placed on a new line']
   ,
     code: '<App>foo</App>'
-    output: ['<App>', 'foo', '</App>'].join '\n'
+    # output: ['<App>', 'foo', '</App>'].join '\n'
     errors: [message: '`foo` must be placed on a new line']
   ,
     code: ['<div>', '  foo {"bar"}', '</div>'].join '\n'
-    output: ['<div>', '  foo ', "{' '}", '{"bar"}', '</div>'].join '\n'
+    # output: ['<div>', '  foo ', "{' '}", '{"bar"}', '</div>'].join '\n'
     errors: [message: '`{"bar"}` must be placed on a new line']
   ,
     code: ['<div>', '  {"foo"} bar', '</div>'].join '\n'
-    output: ['<div>', '  {"foo"}', "{' '}", 'bar', '</div>'].join '\n'
+    # output: ['<div>', '  {"foo"}', "{' '}", 'bar', '</div>'].join '\n'
     errors: [message: '` bar` must be placed on a new line']
   ,
     code: ['<App>', '  <Foo /><Bar />', '</App>'].join '\n'
-    output: ['<App>', '  <Foo />', '<Bar />', '</App>'].join '\n'
+    # output: ['<App>', '  <Foo />', '<Bar />', '</App>'].join '\n'
     errors: [message: '`Bar` must be placed on a new line']
   ,
     code: ['<div>', '  <span />foo', '</div>'].join '\n'
-    output: ['<div>', '  <span />', 'foo', '</div>'].join '\n'
+    # output: ['<div>', '  <span />', 'foo', '</div>'].join '\n'
     errors: [message: '`foo` must be placed on a new line']
   ,
     code: ['<div>', '  <span />{"foo"}', '</div>'].join '\n'
-    output: ['<div>', '  <span />', '{"foo"}', '</div>'].join '\n'
+    # output: ['<div>', '  <span />', '{"foo"}', '</div>'].join '\n'
     errors: [message: '`{"foo"}` must be placed on a new line']
   ,
     code: ['<div>', '  {"foo"} { I18n.t(\'baz\') }', '</div>'].join '\n'
-    output: [
-      '<div>'
-      '  {"foo"} '
-      "{' '}"
-      "{ I18n.t('baz') }"
-      '</div>'
-    ].join '\n'
+    # output: [
+    #   '<div>'
+    #   '  {"foo"} '
+    #   "{' '}"
+    #   "{ I18n.t('baz') }"
+    #   '</div>'
+    # ].join '\n'
     errors: [message: "`{ I18n.t('baz') }` must be placed on a new line"]
   ,
     code: [
       "<Text style={styles.foo}>{ bar } <Text/> { I18n.t('baz') }</Text>"
     ].join '\n'
-    output: [
-      '<Text style={styles.foo}>'
-      '{ bar } '
-      "{' '}"
-      '<Text/> '
-      "{' '}"
-      "{ I18n.t('baz') }"
-      '</Text>'
-    ].join '\n'
+    # output: [
+    #   '<Text style={styles.foo}>'
+    #   '{ bar } '
+    #   "{' '}"
+    #   '<Text/> '
+    #   "{' '}"
+    #   "{ I18n.t('baz') }"
+    #   '</Text>'
+    # ].join '\n'
     errors: [
       message: '`{ bar }` must be placed on a new line'
     ,
@@ -130,14 +130,14 @@ ruleTester.run 'jsx-one-expression-per-line', rule,
     ]
   ,
     code: ['<Text style={styles.foo}> <Bar/> <Baz/></Text>'].join '\n'
-    output: [
-      '<Text style={styles.foo}> '
-      "{' '}"
-      '<Bar/> '
-      "{' '}"
-      '<Baz/>'
-      '</Text>'
-    ].join '\n'
+    # output: [
+    #   '<Text style={styles.foo}> '
+    #   "{' '}"
+    #   '<Bar/> '
+    #   "{' '}"
+    #   '<Baz/>'
+    #   '</Text>'
+    # ].join '\n'
     errors: [
       message: '`Bar` must be placed on a new line'
     ,
@@ -147,19 +147,19 @@ ruleTester.run 'jsx-one-expression-per-line', rule,
     code: [
       '<Text style={styles.foo}> <Bar/> <Baz/> <Bunk/> <Bruno/> </Text>'
     ].join '\n'
-    output: [
-      '<Text style={styles.foo}> '
-      "{' '}"
-      '<Bar/> '
-      "{' '}"
-      '<Baz/> '
-      "{' '}"
-      '<Bunk/> '
-      "{' '}"
-      '<Bruno/>'
-      "{' '}"
-      ' </Text>'
-    ].join '\n'
+    # output: [
+    #   '<Text style={styles.foo}> '
+    #   "{' '}"
+    #   '<Bar/> '
+    #   "{' '}"
+    #   '<Baz/> '
+    #   "{' '}"
+    #   '<Bunk/> '
+    #   "{' '}"
+    #   '<Bruno/>'
+    #   "{' '}"
+    #   ' </Text>'
+    # ].join '\n'
     errors: [
       message: '`Bar` must be placed on a new line'
     ,
@@ -171,27 +171,27 @@ ruleTester.run 'jsx-one-expression-per-line', rule,
     ]
   ,
     code: ['<Text style={styles.foo}> <Bar /></Text>'].join '\n'
-    output: ['<Text style={styles.foo}> ', "{' '}", '<Bar />', '</Text>'].join(
-      '\n'
-    )
+    # output: ['<Text style={styles.foo}> ', "{' '}", '<Bar />', '</Text>'].join(
+    #   '\n'
+    # )
     errors: [message: '`Bar` must be placed on a new line']
   ,
     code: ['<Text style={styles.foo}> <Bar />', '</Text>'].join '\n'
-    output: ['<Text style={styles.foo}> ', "{' '}", '<Bar />', '</Text>'].join(
-      '\n'
-    )
+    # output: ['<Text style={styles.foo}> ', "{' '}", '<Bar />', '</Text>'].join(
+    #   '\n'
+    # )
     errors: [message: '`Bar` must be placed on a new line']
   ,
     code: ['<Text style={styles.foo}>', '  <Bar /> <Baz />', '</Text>'].join(
       '\n'
     )
-    output: [
-      '<Text style={styles.foo}>'
-      '  <Bar /> '
-      "{' '}"
-      '<Baz />'
-      '</Text>'
-    ].join '\n'
+    # output: [
+    #   '<Text style={styles.foo}>'
+    #   '  <Bar /> '
+    #   "{' '}"
+    #   '<Baz />'
+    #   '</Text>'
+    # ].join '\n'
     errors: [message: '`Baz` must be placed on a new line']
   ,
     code: [
@@ -199,89 +199,89 @@ ruleTester.run 'jsx-one-expression-per-line', rule,
       "  { bar } { I18n.t('baz') }"
       '</Text>'
     ].join '\n'
-    output: [
-      '<Text style={styles.foo}>'
-      '  { bar } '
-      "{' '}"
-      "{ I18n.t('baz') }"
-      '</Text>'
-    ].join '\n'
+    # output: [
+    #   '<Text style={styles.foo}>'
+    #   '  { bar } '
+    #   "{' '}"
+    #   "{ I18n.t('baz') }"
+    #   '</Text>'
+    # ].join '\n'
     errors: [message: "`{ I18n.t('baz') }` must be placed on a new line"]
   ,
     code: ['<div>', '  foo<input />', '</div>'].join '\n'
-    output: ['<div>', '  foo', '<input />', '</div>'].join '\n'
+    # output: ['<div>', '  foo', '<input />', '</div>'].join '\n'
     errors: [message: '`input` must be placed on a new line']
   ,
     code: ['<div>', '  {"foo"}<span />', '</div>'].join '\n'
-    output: ['<div>', '  {"foo"}', '<span />', '</div>'].join '\n'
+    # output: ['<div>', '  {"foo"}', '<span />', '</div>'].join '\n'
     errors: [message: '`span` must be placed on a new line']
   ,
     code: ['<div>', '  foo <input />', '</div>'].join '\n'
-    output: ['<div>', '  foo ', "{' '}", '<input />', '</div>'].join '\n'
+    # output: ['<div>', '  foo ', "{' '}", '<input />', '</div>'].join '\n'
     errors: [message: '`input` must be placed on a new line']
   ,
     code: ['<div>', '  <input /> foo', '</div>'].join '\n'
-    output: ['<div>', '  <input />', "{' '}", 'foo', '</div>'].join '\n'
+    # output: ['<div>', '  <input />', "{' '}", 'foo', '</div>'].join '\n'
     errors: [message: '` foo` must be placed on a new line']
   ,
     code: ['<div>', '  <span /> <input />', '</div>'].join '\n'
-    output: ['<div>', '  <span /> ', "{' '}", '<input />', '</div>'].join '\n'
+    # output: ['<div>', '  <span /> ', "{' '}", '<input />', '</div>'].join '\n'
     errors: [message: '`input` must be placed on a new line']
   ,
     code: ['<div>', '  <span />', "{' '}<input />", '</div>'].join '\n'
-    output: ['<div>', '  <span />', "{' '}", '<input />', '</div>'].join '\n'
+    # output: ['<div>', '  <span />', "{' '}", '<input />', '</div>'].join '\n'
     errors: [message: '`input` must be placed on a new line']
   ,
     code: ['<div>', '  {"foo"} <input />', '</div>'].join '\n'
-    output: ['<div>', '  {"foo"} ', "{' '}", '<input />', '</div>'].join '\n'
+    # output: ['<div>', '  {"foo"} ', "{' '}", '<input />', '</div>'].join '\n'
     errors: [message: '`input` must be placed on a new line']
   ,
     code: ['<div>', '  {"foo"} bar', '</div>'].join '\n'
-    output: ['<div>', '  {"foo"}', "{' '}", 'bar', '</div>'].join '\n'
+    # output: ['<div>', '  {"foo"}', "{' '}", 'bar', '</div>'].join '\n'
     errors: [message: '` bar` must be placed on a new line']
   ,
     code: ['<div>', '  foo {"bar"}', '</div>'].join '\n'
-    output: ['<div>', '  foo ', "{' '}", '{"bar"}', '</div>'].join '\n'
+    # output: ['<div>', '  foo ', "{' '}", '{"bar"}', '</div>'].join '\n'
     errors: [message: '`{"bar"}` must be placed on a new line']
   ,
     code: ['<div>', '  <input /> {"foo"}', '</div>'].join '\n'
-    output: ['<div>', '  <input /> ', "{' '}", '{"foo"}', '</div>'].join '\n'
+    # output: ['<div>', '  <input /> ', "{' '}", '{"foo"}', '</div>'].join '\n'
     errors: [message: '`{"foo"}` must be placed on a new line']
   ,
     code: ['<App>', '  <Foo></Foo><Bar></Bar>', '</App>'].join '\n'
-    output: ['<App>', '  <Foo></Foo>', '<Bar></Bar>', '</App>'].join '\n'
+    # output: ['<App>', '  <Foo></Foo>', '<Bar></Bar>', '</App>'].join '\n'
     errors: [message: '`Bar` must be placed on a new line']
   ,
     code: ['<App>', '<Foo></Foo></App>'].join '\n'
-    output: ['<App>', '<Foo></Foo>', '</App>'].join '\n'
+    # output: ['<App>', '<Foo></Foo>', '</App>'].join '\n'
     errors: [message: '`Foo` must be placed on a new line']
   ,
     code: ['<App><Foo />', '</App>'].join '\n'
-    output: ['<App>', '<Foo />', '</App>'].join '\n'
+    # output: ['<App>', '<Foo />', '</App>'].join '\n'
     errors: [message: '`Foo` must be placed on a new line']
   ,
     code: ['<App>', '<Foo/></App>'].join '\n'
-    output: ['<App>', '<Foo/>', '</App>'].join '\n'
+    # output: ['<App>', '<Foo/>', '</App>'].join '\n'
     errors: [message: '`Foo` must be placed on a new line']
   ,
     code: ['<App><Foo', '/>', '</App>'].join '\n'
-    output: ['<App>', '<Foo', '/>', '</App>'].join '\n'
+    # output: ['<App>', '<Foo', '/>', '</App>'].join '\n'
     errors: [message: '`Foo` must be placed on a new line']
   ,
     code: ['<App', '>', '<Foo /></App>'].join '\n'
-    output: ['<App', '>', '<Foo />', '</App>'].join '\n'
+    # output: ['<App', '>', '<Foo />', '</App>'].join '\n'
     errors: [message: '`Foo` must be placed on a new line']
   ,
     code: ['<App', '>', '<Foo', '/></App>'].join '\n'
-    output: ['<App', '>', '<Foo', '/>', '</App>'].join '\n'
+    # output: ['<App', '>', '<Foo', '/>', '</App>'].join '\n'
     errors: [message: '`Foo` must be placed on a new line']
   ,
     code: ['<App', '><Foo />', '</App>'].join '\n'
-    output: ['<App', '>', '<Foo />', '</App>'].join '\n'
+    # output: ['<App', '>', '<Foo />', '</App>'].join '\n'
     errors: [message: '`Foo` must be placed on a new line']
   ,
     code: ['<App>', '  <Foo>', '    <Bar /></Foo>', '</App>'].join '\n'
-    output: ['<App>', '  <Foo>', '    <Bar />', '</Foo>', '</App>'].join '\n'
+    # output: ['<App>', '  <Foo>', '    <Bar />', '</Foo>', '</App>'].join '\n'
     errors: [message: '`Bar` must be placed on a new line']
   ,
     code: [
@@ -291,22 +291,22 @@ ruleTester.run 'jsx-one-expression-per-line', rule,
       '  </Foo>'
       '</App>'
     ].join '\n'
-    output: [
-      '<App>'
-      '  <Foo>'
-      '    <Bar>'
-      "{' '}"
-      'baz'
-      "{' '}"
-      '</Bar>'
-      '  </Foo>'
-      '</App>'
-    ].join '\n'
+    # output: [
+    #   '<App>'
+    #   '  <Foo>'
+    #   '    <Bar>'
+    #   "{' '}"
+    #   'baz'
+    #   "{' '}"
+    #   '</Bar>'
+    #   '  </Foo>'
+    #   '</App>'
+    # ].join '\n'
     errors: [message: '` baz ` must be placed on a new line']
   ,
     # Would be nice to handle in one pass, but multipass works fine.
     code: ['<App>', '  foo {"bar"} baz', '</App>'].join '\n'
-    output: ['<App>', '  foo ', "{' '}", '{"bar"} baz', '</App>'].join '\n'
+    # output: ['<App>', '  foo ', "{' '}", '{"bar"} baz', '</App>'].join '\n'
     errors: [
       message: '`{"bar"}` must be placed on a new line'
     ,
@@ -315,27 +315,27 @@ ruleTester.run 'jsx-one-expression-per-line', rule,
   ,
     # Would be nice to handle in one pass, but multipass works fine.
     code: ['<App>', '  foo {"bar"}', '</App>'].join '\n'
-    output: ['<App>', '  foo ', "{' '}", '{"bar"}', '</App>'].join '\n'
+    # output: ['<App>', '  foo ', "{' '}", '{"bar"}', '</App>'].join '\n'
     errors: [message: '`{"bar"}` must be placed on a new line']
   ,
     # Would be nice to handle in one pass, but multipass works fine.
     code: ['<App>', '  foo ', "{' '}", '{"bar"} baz', '</App>'].join '\n'
-    output: [
-      '<App>'
-      '  foo '
-      "{' '}"
-      '{"bar"}'
-      "{' '}"
-      'baz'
-      '</App>'
-    ].join '\n'
+    # output: [
+    #   '<App>'
+    #   '  foo '
+    #   "{' '}"
+    #   '{"bar"}'
+    #   "{' '}"
+    #   'baz'
+    #   '</App>'
+    # ].join '\n'
     errors: [message: '` baz` must be placed on a new line']
   ,
     # Would be nice to handle in one pass, but multipass works fine.
     code: ['<App>', '', '  foo {"bar"} baz', '', '</App>'].join '\n'
-    output: ['<App>', '', '  foo ', "{' '}", '{"bar"} baz', '', '</App>'].join(
-      '\n'
-    )
+    # output: ['<App>', '', '  foo ', "{' '}", '{"bar"} baz', '', '</App>'].join(
+    #   '\n'
+    # )
     errors: [
       message: '`{"bar"}` must be placed on a new line'
     ,
@@ -346,64 +346,64 @@ ruleTester.run 'jsx-one-expression-per-line', rule,
     code: ['<App>', '', '  foo ', "{' '}", '{"bar"} baz', '', '</App>'].join(
       '\n'
     )
-    output: [
-      '<App>'
-      ''
-      '  foo '
-      "{' '}"
-      '{"bar"}'
-      "{' '}"
-      'baz'
-      ''
-      '</App>'
-    ].join '\n'
+    # output: [
+    #   '<App>'
+    #   ''
+    #   '  foo '
+    #   "{' '}"
+    #   '{"bar"}'
+    #   "{' '}"
+    #   'baz'
+    #   ''
+    #   '</App>'
+    # ].join '\n'
     errors: [message: '` baz` must be placed on a new line']
   ,
     code: ['<App>{', '  foo', '}</App>'].join '\n'
-    output: ['<App>', '{', '  foo', '}', '</App>'].join '\n'
+    # output: ['<App>', '{', '  foo', '}', '</App>'].join '\n'
     errors: [message: '`{  foo}` must be placed on a new line']
   ,
     code: ['<App> {', '  foo', '} </App>'].join '\n'
-    output: ['<App> ', "{' '}", '{', '  foo', '}', "{' '}", ' </App>'].join '\n'
+    # output: ['<App> ', "{' '}", '{', '  foo', '}', "{' '}", ' </App>'].join '\n'
     errors: [message: '`{  foo}` must be placed on a new line']
   ,
     code: ['<App> ', "{' '}", '{', '  foo', '} </App>'].join '\n'
-    output: ['<App> ', "{' '}", '{', '  foo', '}', "{' '}", ' </App>'].join '\n'
+    # output: ['<App> ', "{' '}", '{', '  foo', '}', "{' '}", ' </App>'].join '\n'
     errors: [message: '`{  foo}` must be placed on a new line']
   ,
     code: '<App><Foo /></App>'
     options: [allow: 'none']
-    output: ['<App>', '<Foo />', '</App>'].join '\n'
+    # output: ['<App>', '<Foo />', '</App>'].join '\n'
     errors: [message: '`Foo` must be placed on a new line']
   ,
     code: '<App>foo</App>'
     options: [allow: 'none']
-    output: ['<App>', 'foo', '</App>'].join '\n'
+    # output: ['<App>', 'foo', '</App>'].join '\n'
     errors: [message: '`foo` must be placed on a new line']
   ,
     code: '<App>{"foo"}</App>'
     options: [allow: 'none']
-    output: ['<App>', '{"foo"}', '</App>'].join '\n'
+    # output: ['<App>', '{"foo"}', '</App>'].join '\n'
     errors: [message: '`{"foo"}` must be placed on a new line']
   ,
     code: ['<App>foo', '</App>'].join '\n'
     options: [allow: 'literal']
-    output: ['<App>', 'foo', '</App>'].join '\n'
+    # output: ['<App>', 'foo', '</App>'].join '\n'
     errors: [message: '`foo` must be placed on a new line']
   ,
     code: '<App><Foo /></App>'
     options: [allow: 'literal']
-    output: ['<App>', '<Foo />', '</App>'].join '\n'
+    # output: ['<App>', '<Foo />', '</App>'].join '\n'
     errors: [message: '`Foo` must be placed on a new line']
   ,
     code: ['<App', '  foo="1"', '  bar="2"', '>baz</App>'].join '\n'
     options: [allow: 'literal']
-    output: ['<App', '  foo="1"', '  bar="2"', '>', 'baz', '</App>'].join '\n'
+    # output: ['<App', '  foo="1"', '  bar="2"', '>', 'baz', '</App>'].join '\n'
     errors: [message: '`baz` must be placed on a new line']
   ,
     code: ['<App>foo', 'bar', '</App>'].join '\n'
     options: [allow: 'literal']
-    output: ['<App>', 'foo', 'bar', '</App>'].join '\n'
+    # output: ['<App>', 'foo', 'bar', '</App>'].join '\n'
     errors: [message: '`foobar` must be placed on a new line']
   ,
     # ,
@@ -412,6 +412,6 @@ ruleTester.run 'jsx-one-expression-per-line', rule,
     #   errors: [message: '`{"foo"}` must be placed on a new line']
     # parser: 'babel-eslint'
     code: ['<App>', '  <Foo /><></>', '</App>'].join '\n'
-    output: ['<App>', '  <Foo />', '<></>', '</App>'].join '\n'
+    # output: ['<App>', '  <Foo />', '<></>', '</App>'].join '\n'
     errors: [message: '`<></>` must be placed on a new line']
   ]
