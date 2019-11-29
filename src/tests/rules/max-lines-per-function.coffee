@@ -220,7 +220,7 @@ ruleTester.run 'max-lines-per-function', rule,
         return x
     '''
     options: [2]
-    errors: ["function 'bar' has too many lines (3). Maximum allowed is 2."]
+    errors: ['arrow function has too many lines (3). Maximum allowed is 2.']
   ,
     # Test skipBlankLines: false
     code: '''
