@@ -9,7 +9,7 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-astUtils = require '../eslint-ast-utils'
+# astUtils = require '../eslint-ast-utils'
 
 #------------------------------------------------------------------------------
 # Rule Definition

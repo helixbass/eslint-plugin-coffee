@@ -159,6 +159,12 @@ ruleTester.run 'no-invalid-this', rule,
           console.log(this)
           z (x) => console.log(x, this)
     '''
+    '''
+      class A
+        foo: =>
+          console.log(this)
+          z (x) => console.log(x, this)
+    '''
     # Bind/Call/Apply
     '''
       foo = (->

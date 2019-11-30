@@ -18,6 +18,7 @@
 {
   # getFunctionName
   isFatArrowFunction
+  isBoundMethod
 } = require '../util/ast-utils'
 
 #------------------------------------------------------------------------------
@@ -284,7 +285,11 @@ module.exports =
     # @returns {void}
     ###
     enterFunction = (node) ->
-      return if isFatArrowFunction(node) and not fatArrowsOk
+      return if (
+        isFatArrowFunction(node) and
+        not isBoundMethod(node) and
+        not fatArrowsOk
+      )
       # `this` can be invalid only under strict mode.
       stack.push {
         init: not context.getScope().isStrict

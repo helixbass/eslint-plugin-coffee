@@ -226,6 +226,11 @@ isFatArrowFunction = (node) ->
     bound or
     (parent?.type is 'MethodDefinition' and parent.bound)
 
+isBoundMethod = (node) ->
+  return unless node?
+  {parent} = node
+  parent?.type is 'MethodDefinition' and parent.bound
+
 module.exports = {
   getPrecedence
   isInLoop
@@ -235,4 +240,5 @@ module.exports = {
   hasIndentedLastLine
   isDeclarationAssignment
   isFatArrowFunction
+  isBoundMethod
 }
