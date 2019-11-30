@@ -502,6 +502,10 @@ co@^4.6.0:
     eslint-plugin-standard "^3.0.1"
     prettier "github:helixbass/prettier#just-format-ast"
 
+"coffeescript@github:jashkenas/coffeescript#95d6ec74":
+  version "2.4.1"
+  resolved "https://codeload.github.com/jashkenas/coffeescript/tar.gz/95d6ec749249c01a3f72c0c39720c90df1380208"
+
 collapse-white-space@^1.0.2:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/collapse-white-space/-/collapse-white-space-1.0.5.tgz#c2495b699ab1ed380d29a1091e01063e75dbbe3a"

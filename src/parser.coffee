@@ -1,8 +1,8 @@
 CoffeeScript = require 'coffeescript'
 {
-  locationDataToAst
+  jisonLocationDataToAstLocationData: locationDataToAst
   # traverseBabylonAst
-} = require 'coffeescript/lib/coffeescript/helpers'
+} = require 'coffeescript/lib/coffeescript/nodes'
 # babylonToEspree = require '../node_modules/babel-eslint/babylon-to-espree'
 babylonToEspree = require 'babel-eslint/babylon-to-espree'
 babelTraverse = require('babel-traverse').default
@@ -247,6 +247,6 @@ exports.getParser = getParser = (getAstAndTokens) -> (code, opts) ->
   }
 
 exports.parseForESLint = getParser (code, opts) ->
-  CoffeeScript.ast code, {...opts, withTokens: yes}
+  CoffeeScript.compile code, {...opts, ast: yes, withTokens: yes}
 
 # dump = (obj) -> console.log require('util').inspect obj, no, null
