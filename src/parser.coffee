@@ -204,19 +204,19 @@ tokensForESLint = ({tokens}) ->
     {}
   ]
 
-exports.getParser = getParser = (getAstAndTokens) -> (code, opts) ->
+exports.getParser = getParser = (getAst) -> (code, opts) ->
   patchCodePathAnalysis() unless opts.eslintCodePathAnalyzer
   # patchReact()
   # ESLint replaces shebang #! with //, but leading // could be part of a heregex
   if /// ^ // ///.test code
     try
-      {ast, tokens} = getAstAndTokens code, opts
+      ast = getAst code, opts
     catch
       code = code.replace /// ^ // ///, '#'
-      {ast, tokens} = getAstAndTokens code, opts
+      ast = getAst code, opts
   else
-    {ast, tokens} = getAstAndTokens code, opts
-  ast.tokens = tokensForESLint {tokens}
+    ast = getAst code, opts
+  ast.tokens = tokensForESLint ast
   # dump {tokens, transformedTokens: ast.tokens}
   extendVisitorKeys()
   commentLocs =
@@ -247,6 +247,6 @@ exports.getParser = getParser = (getAstAndTokens) -> (code, opts) ->
   }
 
 exports.parseForESLint = getParser (code, opts) ->
-  CoffeeScript.compile code, {...opts, ast: yes, withTokens: yes}
+  CoffeeScript.compile code, {...opts, ast: yes}
 
 # dump = (obj) -> console.log require('util').inspect obj, no, null
