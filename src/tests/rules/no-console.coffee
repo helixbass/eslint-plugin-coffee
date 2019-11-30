@@ -11,12 +11,13 @@
 
 rule = require 'eslint/lib/rules/no-console'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-console', rule,
   valid: [
@@ -41,10 +42,10 @@ ruleTester.run 'no-console', rule,
     code: 'console.log(foo)', options: [allow: ['info', 'log', 'warn']]
   ,
     # https://github.com/eslint/eslint/issues/7010
-    """
+    '''
       console = require('myconsole')
       console.log(foo)
-    """
+    '''
   ]
   invalid: [
     # no options

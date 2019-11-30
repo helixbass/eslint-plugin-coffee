@@ -11,12 +11,13 @@
 
 rule = require 'eslint/lib/rules/no-eval'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-eval', rule,
   valid: [
@@ -42,25 +43,25 @@ ruleTester.run 'no-eval', rule,
   ,
     "this.noeval('foo')"
     "@noeval 'foo'"
-    """
+    '''
       foo = ->
         'use strict'
         @eval('foo')
-    """
+    '''
   ,
-    code: """
+    code: '''
       foo = -> this.eval('foo')
-    """
+    '''
   ,
-    """
+    '''
       obj = {
         foo: -> this.eval('foo')
       }
-    """
-    """
+    '''
+    '''
       obj = {}
       obj.foo = -> this.eval('foo')
-    """
+    '''
     '''
       class A
         foo: -> this.eval()
@@ -81,26 +82,26 @@ ruleTester.run 'no-eval', rule,
     options: [allowIndirect: yes]
     env: browser: yes
   ,
-    code: """
+    code: '''
       EVAL = eval
       EVAL('foo')
-    """
+    '''
     options: [allowIndirect: yes]
   ,
-    code: """
+    code: '''
       EVAL = @eval
       EVAL('foo')
-    """
+    '''
     options: [allowIndirect: yes]
   ,
-    code: """
+    code: '''
       ((exe) -> exe('foo'))(eval)
-    """
+    '''
     options: [allowIndirect: yes]
   ,
-    code: """
+    code: '''
       do (exe = eval) -> exe('foo')
-    """
+    '''
     options: [allowIndirect: yes]
   ,
     code: "window.eval('foo')"
@@ -123,9 +124,9 @@ ruleTester.run 'no-eval', rule,
   ,
     code: "this.eval('foo')", options: [allowIndirect: yes]
   ,
-    code: """
+    code: '''
       foo = -> this.eval('foo')
-    """
+    '''
     options: [allowIndirect: yes]
   ]
 
@@ -157,10 +158,10 @@ ruleTester.run 'no-eval', rule,
     errors: [messageId: 'unexpected', type: 'MemberExpression']
     env: browser: yes
   ,
-    code: """
+    code: '''
       EVAL = eval
       EVAL 'foo'
-    """
+    '''
     errors: [messageId: 'unexpected', type: 'Identifier']
   ,
     # ,
@@ -169,14 +170,14 @@ ruleTester.run 'no-eval', rule,
     #     EVAL('foo')
     #   """
     #   errors: [messageId: 'unexpected', type: 'MemberExpression']
-    code: """
+    code: '''
       ((exe) -> exe('foo'))(eval)
-    """
+    '''
     errors: [messageId: 'unexpected', type: 'Identifier']
   ,
-    code: """
+    code: '''
       do (exe = eval) -> exe('foo')
-    """
+    '''
     errors: [messageId: 'unexpected', type: 'Identifier']
   ,
     code: "window.eval('foo')"

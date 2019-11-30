@@ -10,6 +10,7 @@
 
 rule = require '../../rules/function-paren-newline'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
@@ -20,7 +21,7 @@ LEFT_UNEXPECTED_ERROR = messageId: 'unexpectedAfter', type: 'Punctuator'
 RIGHT_MISSING_ERROR = messageId: 'expectedBefore', type: 'Punctuator'
 RIGHT_UNEXPECTED_ERROR = messageId: 'unexpectedBefore', type: 'Punctuator'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'function-paren-newline', rule,
   valid: [
@@ -37,73 +38,73 @@ ruleTester.run 'function-paren-newline', rule,
       baz
         a: 1
     '''
-    """
+    '''
       baz = (
         foo,
         bar
       ) ->
-    """
-    """
+    '''
+    '''
       baz = (
         foo
         bar
       ) ->
-    """
-    """
+    '''
+    '''
       baz(
         foo,
         bar
       )
-    """
-    """
+    '''
+    '''
       baz("foo
           bar")
-    """
+    '''
     'new Foo(bar, baz)'
     'new Foo'
     'new (Foo)'
 
-    """
+    '''
       (foo)
       (bar)
-    """
-    """
+    '''
+    '''
       foo.map (value) ->
         return value
-    """
+    '''
   ,
     # always option
     code: 'baz = (foo, bar) ->'
     options: ['multiline']
   ,
-    code: """
+    code: '''
       baz = (
         foo,
         bar
       ) ->
-    """
+    '''
     options: ['always']
   ,
-    code: """
+    code: '''
       baz(
         foo,
         bar
       )
-    """
+    '''
     options: ['always']
   ,
-    code: """
+    code: '''
       baz(
         foo
         bar
       )
-    """
+    '''
     options: ['always']
   ,
-    code: """
+    code: '''
       (
       ) ->
-    """
+    '''
     options: ['always']
   ,
     # never option
@@ -129,18 +130,18 @@ ruleTester.run 'function-paren-newline', rule,
     code: '(foo, bar) ->'
     options: [minItems: 3]
   ,
-    code: """
+    code: '''
       (
         foo, bar, qux
       ) ->
-    """
+    '''
     options: [minItems: 3]
   ,
-    code: """
+    code: '''
       baz(
         foo, bar, qux
       )
-    """
+    '''
     options: [minItems: 3]
   ,
     code: 'baz(foo, bar)'
@@ -149,25 +150,25 @@ ruleTester.run 'function-paren-newline', rule,
     code: 'foo(bar, baz)'
     options: ['consistent']
   ,
-    code: """
+    code: '''
       foo(bar,
       baz)
-    """
+    '''
     options: ['consistent']
   ,
-    code: """
+    code: '''
       foo(
         bar, baz
       )
-    """
+    '''
     options: ['consistent']
   ,
-    code: """
+    code: '''
       foo(
         bar,
         baz
       )
-    """
+    '''
     options: ['consistent']
   ,
     code: '->'
@@ -176,11 +177,11 @@ ruleTester.run 'function-paren-newline', rule,
 
   invalid: [
     # multiline option (default)
-    code: """
+    code: '''
       (foo,
         bar
       ) ->
-    """
+    '''
     # output: """
     #             function baz(\nfoo,
     #                 bar
@@ -188,11 +189,11 @@ ruleTester.run 'function-paren-newline', rule,
     #         """
     errors: [LEFT_MISSING_ERROR]
   ,
-    code: """
+    code: '''
       ((
         foo,
         bar) ->)
-    """
+    '''
     # output: """
     #             (function(
     #                 foo,
@@ -200,95 +201,95 @@ ruleTester.run 'function-paren-newline', rule,
     #         """
     errors: [RIGHT_MISSING_ERROR]
   ,
-    code: """
+    code: '''
       ((foo,
         bar) ->)
-    """
+    '''
     # output: """
     #             (function baz(\nfoo,
     #                 bar\n) {})
     #         """
     errors: [LEFT_MISSING_ERROR, RIGHT_MISSING_ERROR]
   ,
-    code: """
+    code: '''
       baz(
         foo, bar)
-    """
+    '''
     # output: """
     #             baz(foo, bar)
     #         """
     errors: [LEFT_UNEXPECTED_ERROR]
   ,
-    code: """
+    code: '''
       (foo, bar
       ) => {}
-    """
+    '''
     # output: """
     #             (foo, bar) => {}
     #         """
     errors: [RIGHT_UNEXPECTED_ERROR]
   ,
-    code: """
+    code: '''
       (
         foo, bar
       ) ->
-    """
+    '''
     # output: """
     #             function baz(foo, bar) {}
     #         """
     errors: [LEFT_UNEXPECTED_ERROR, RIGHT_UNEXPECTED_ERROR]
   ,
-    code: """
+    code: '''
       (
         foo =
         1
       ) ->
-    """
+    '''
     # output: """
     #             function baz(foo =
     #                 1) {}
     #         """
     errors: [LEFT_UNEXPECTED_ERROR, RIGHT_UNEXPECTED_ERROR]
   ,
-    code: """
+    code: '''
       (
       ) ->
-    """
+    '''
     # output: """
     #             function baz() {}
     #         """
     errors: [LEFT_UNEXPECTED_ERROR, RIGHT_UNEXPECTED_ERROR]
   ,
-    code: """
+    code: '''
       new Foo(bar,
         baz)
-    """
+    '''
     # output: """
     #             new Foo(\nbar,
     #                 baz\n)
     #         """
     errors: [LEFT_MISSING_ERROR, RIGHT_MISSING_ERROR]
   ,
-    code: """
+    code: '''
       (### not fixed due to comment ###
       foo) ->
-    """
+    '''
     # output: null
     errors: [LEFT_UNEXPECTED_ERROR]
   ,
-    code: """
+    code: '''
       baz = (foo
       ### not fixed due to comment ###) ->
-    """
+    '''
     # output: null
     errors: [RIGHT_UNEXPECTED_ERROR]
   ,
     # always option
-    code: """
+    code: '''
       (foo,
         bar
       ) ->
-    """
+    '''
     # output: """
     #             function baz(\nfoo,
     #                 bar
@@ -297,11 +298,11 @@ ruleTester.run 'function-paren-newline', rule,
     options: ['always']
     errors: [LEFT_MISSING_ERROR]
   ,
-    code: """
+    code: '''
       ((
         foo,
         bar) ->)
-    """
+    '''
     # output: """
     #             (function(
     #                 foo,
@@ -310,10 +311,10 @@ ruleTester.run 'function-paren-newline', rule,
     options: ['always']
     errors: [RIGHT_MISSING_ERROR]
   ,
-    code: """
+    code: '''
       ((foo,
           bar) ->)
-    """
+    '''
     # output: """
     #             (function baz(\nfoo,
     #                 bar\n) {})
@@ -342,11 +343,11 @@ ruleTester.run 'function-paren-newline', rule,
     errors: [LEFT_MISSING_ERROR, RIGHT_MISSING_ERROR]
   ,
     # never option
-    code: """
+    code: '''
       (foo,
         bar
       ) ->
-    """
+    '''
     # output: """
     #             function baz(foo,
     #                 bar) {}
@@ -354,11 +355,11 @@ ruleTester.run 'function-paren-newline', rule,
     options: ['never']
     errors: [RIGHT_UNEXPECTED_ERROR]
   ,
-    code: """
+    code: '''
       ((
         foo,
         bar) ->)
-    """
+    '''
     # output: """
     #             (function(foo,
     #                 bar) {})
@@ -366,12 +367,12 @@ ruleTester.run 'function-paren-newline', rule,
     options: ['never']
     errors: [LEFT_UNEXPECTED_ERROR]
   ,
-    code: """
+    code: '''
       (
         foo,
         bar
       ) ->
-    """
+    '''
     # output: """
     #             function baz(foo,
     #                 bar) {}
@@ -379,12 +380,12 @@ ruleTester.run 'function-paren-newline', rule,
     options: ['never']
     errors: [LEFT_UNEXPECTED_ERROR, RIGHT_UNEXPECTED_ERROR]
   ,
-    code: """
+    code: '''
       ((
         foo,
         bar
       ) ->)
-    """
+    '''
     # output: """
     #             (function(foo,
     #                 bar) {})
@@ -392,12 +393,12 @@ ruleTester.run 'function-paren-newline', rule,
     options: ['never']
     errors: [LEFT_UNEXPECTED_ERROR, RIGHT_UNEXPECTED_ERROR]
   ,
-    code: """
+    code: '''
       ((
           foo,
           bar
       ) ->)
-    """
+    '''
     # output: """
     #             (function baz(foo,
     #                 bar) {})
@@ -405,12 +406,12 @@ ruleTester.run 'function-paren-newline', rule,
     options: ['never']
     errors: [LEFT_UNEXPECTED_ERROR, RIGHT_UNEXPECTED_ERROR]
   ,
-    code: """
+    code: '''
       (
         foo,
         bar
       ) => {}
-    """
+    '''
     # output: """
     #             (foo,
     #                 bar) => {}
@@ -418,12 +419,12 @@ ruleTester.run 'function-paren-newline', rule,
     options: ['never']
     errors: [LEFT_UNEXPECTED_ERROR, RIGHT_UNEXPECTED_ERROR]
   ,
-    code: """
+    code: '''
       baz(
         foo
         bar
       )
-    """
+    '''
     # output: """
     #             baz(foo,
     #                 bar)
@@ -431,10 +432,10 @@ ruleTester.run 'function-paren-newline', rule,
     options: ['never']
     errors: [LEFT_UNEXPECTED_ERROR, RIGHT_UNEXPECTED_ERROR]
   ,
-    code: """
+    code: '''
       baz = (
       ) ->
-    """
+    '''
     # output: """
     #             function baz() {}
     #         """
@@ -447,11 +448,11 @@ ruleTester.run 'function-paren-newline', rule,
     options: [minItems: 3]
     errors: [LEFT_MISSING_ERROR, RIGHT_MISSING_ERROR]
   ,
-    code: """
+    code: '''
       (
         foo, bar
       ) ->
-    """
+    '''
     # output: """
     #             function baz(foo, bar) {}
     #         """
@@ -463,12 +464,12 @@ ruleTester.run 'function-paren-newline', rule,
     options: [minItems: 3]
     errors: [LEFT_MISSING_ERROR, RIGHT_MISSING_ERROR]
   ,
-    code: """
+    code: '''
       baz(
         foo,
         bar
       )
-    """
+    '''
     # output: """
     #             baz(foo,
     #                 bar)
@@ -476,11 +477,11 @@ ruleTester.run 'function-paren-newline', rule,
     options: [minItems: 3]
     errors: [LEFT_UNEXPECTED_ERROR, RIGHT_UNEXPECTED_ERROR]
   ,
-    code: """
+    code: '''
       foo(
         bar,
         baz)
-    """
+    '''
     # output: """
     #             foo(
     #                 bar,
@@ -489,11 +490,11 @@ ruleTester.run 'function-paren-newline', rule,
     options: ['consistent']
     errors: [RIGHT_MISSING_ERROR]
   ,
-    code: """
+    code: '''
       foo(bar,
         baz
       )
-    """
+    '''
     # output: """
     #             foo(bar,
     #                 baz)

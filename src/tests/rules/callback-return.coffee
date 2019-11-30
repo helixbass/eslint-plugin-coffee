@@ -10,12 +10,13 @@
 
 rule = require 'eslint/lib/rules/callback-return'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'callback-return', rule,
   valid: [
@@ -75,20 +76,20 @@ ruleTester.run 'callback-return', rule,
       (cb) ->
         cb and cb()
     '''
-    """
+    '''
       (next) ->
         typeof next isnt 'undefined' and next()
-    """
-    """
+    '''
+    '''
       (next) ->
         return next() if typeof next is 'function'
-    """
-    """
+    '''
+    '''
       ->
         switch x
           when 'a'
             return next()
-    """
+    '''
     '''
       ->
         while x
@@ -281,11 +282,11 @@ ruleTester.run 'callback-return', rule,
       nodeType: 'CallExpression'
     ]
   ,
-    code: """
+    code: '''
       (callback) ->
         if typeof callback isnt 'undefined'
           callback()
-    """
+    '''
     errors: [
       messageId: 'missingReturn'
       line: 3
@@ -463,12 +464,12 @@ ruleTester.run 'callback-return', rule,
       nodeType: 'CallExpression'
     ]
   ,
-    code: """
+    code: '''
       ->
         switch x
           when 'horse'
             callback()
-    """
+    '''
     errors: [
       messageId: 'missingReturn'
       line: 4
@@ -476,12 +477,12 @@ ruleTester.run 'callback-return', rule,
       nodeType: 'CallExpression'
     ]
   ,
-    code: """
+    code: '''
       a = ->
         switch x
           when 'horse'
             move()
-    """
+    '''
     options: [['move']]
     errors: [
       messageId: 'missingReturn'

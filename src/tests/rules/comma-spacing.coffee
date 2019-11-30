@@ -10,12 +10,13 @@
 
 rule = require 'eslint/lib/rules/comma-spacing'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ### eslint-disable coffee/no-template-curly-in-string ###
 ruleTester.run 'comma-spacing', rule,
@@ -309,18 +310,18 @@ ruleTester.run 'comma-spacing', rule,
       type: 'Punctuator'
     ]
   ,
-    code: """
+    code: '''
       obj = {
         'foo': 'bar',
         'baz': 'qur'
       }
-    """
-    output: """
+    '''
+    output: '''
       obj = {
         'foo': 'bar' ,
         'baz': 'qur'
       }
-    """
+    '''
     options: [before: yes, after: no]
     errors: [
       messageId: 'missing'

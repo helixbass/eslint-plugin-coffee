@@ -10,12 +10,13 @@
 
 rule = require 'eslint/lib/rules/no-inline-comments'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 lineError =
   messsage: 'Unexpected comment inline with code.'
   type: 'Line'
@@ -28,8 +29,8 @@ ruleTester.run 'no-inline-comments', rule,
     '# A valid comment before code\na = 1'
     'a = 2\n# A valid comment after code'
     '# A solitary comment'
-    'a = 1 # eslint-disable-line some-rule'
-    'a = 1 ### eslint-disable-line some-rule ###'
+    'a = 1 # eslint-disable-line no-debugger'
+    'a = 1 ### eslint-disable-line no-debugger ###'
   ]
 
   invalid: [

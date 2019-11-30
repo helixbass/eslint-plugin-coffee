@@ -10,6 +10,7 @@
 
 rule = require 'eslint-plugin-react/lib/rules/jsx-filename-extension'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # ------------------------------------------------------------------------------
 # Code Snippets
@@ -31,7 +32,7 @@ withoutJSX = 'module.exports = {}'
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'jsx-filename-extension', rule,
   valid: [
     filename: '<text>'

@@ -10,6 +10,7 @@
 
 rule = require '../../rules/prop-types'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 settings =
   react:
@@ -19,7 +20,7 @@ settings =
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'prop-types', rule,
   valid: [
     code: [
@@ -283,7 +284,7 @@ ruleTester.run 'prop-types', rule,
       '}'
     ].join '\n'
   ,
-    code: """
+    code: '''
         class Component extends React.Component
           render: ->
             return <div>{this.props.foo.baz}</div>
@@ -297,9 +298,9 @@ ruleTester.run 'prop-types', rule,
             })
           ])
         }
-      """
+      '''
   ,
-    code: """
+    code: '''
         class Component extends React.Component
           render: ->
             return <div>{this.props.foo.baz}</div>
@@ -311,16 +312,16 @@ ruleTester.run 'prop-types', rule,
             PropTypes.instanceOf(Baz)
           ])
         }
-      """
+      '''
   ,
-    code: """
+    code: '''
         class Component extends React.Component
           render: ->
             return <div>{this.props.foo.baz}</div>
         Component.propTypes = {
           foo: PropTypes.oneOf(['bar', 'baz'])
         }
-      """
+      '''
   ,
     code: [
       'class Hello extends React.Component'
@@ -1788,21 +1789,21 @@ ruleTester.run 'prop-types', rule,
     #     """
     # parser: 'babel-eslint'
     # issue #1288
-    """
+    '''
       Foo = ->
         props = {}
         props.bar = 'bar'
         <div {...props} />
-    """
+    '''
     # issue #1288
-    """
+    '''
       Foo = (props) ->
         props.bar = 'bar'
         <div {...props} />
-    """
+    '''
   ,
     # issue #106
-    code: """
+    code: '''
       import React from 'react'
       import SharedPropTypes from './SharedPropTypes'
 
@@ -1821,7 +1822,7 @@ ruleTester.run 'prop-types', rule,
         a: React.PropTypes.string,
         ...SharedPropTypes # eslint-disable-line object-shorthand
       }
-    """
+    '''
   ,
     # ,
     #   # parser: 'babel-eslint'
@@ -1842,21 +1843,21 @@ ruleTester.run 'prop-types', rule,
     #     }
     #   """
     # parser: 'babel-eslint'
-    code: """
+    code: '''
         Slider = (props) => (
           <RcSlider {...props} />
         )
 
         Slider.propTypes = RcSlider.propTypes
-      """
+      '''
   ,
-    code: """
+    code: '''
         Slider = props => (
           <RcSlider foo={props.bar} />
         )
 
         Slider.propTypes = RcSlider.propTypes
-      """
+      '''
   ]
 
   invalid: [
@@ -3370,7 +3371,7 @@ ruleTester.run 'prop-types', rule,
     #   """
     #   errors: [message: "'bad' is missing in props validation"]
     # parser: 'babel-eslint'
-    code: """
+    code: '''
         class Component extends React.Component
           render: ->
             return <div>{this.props.foo.baz}</div>
@@ -3381,7 +3382,7 @@ ruleTester.run 'prop-types', rule,
             })
           ])
         }
-      """
+      '''
     errors: [message: "'foo.baz' is missing in props validation"]
     # ,
     #   code: """

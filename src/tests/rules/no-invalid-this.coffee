@@ -11,6 +11,7 @@
 
 rule = require '../../rules/no-invalid-this'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Helpers
@@ -26,7 +27,7 @@ errors = [
   message: "Unexpected 'this'.", type: 'ThisExpression'
 ]
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-invalid-this', rule,
   valid: [
@@ -285,7 +286,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     # https://github.com/eslint/eslint/issues/3254
     {
       code: '''
@@ -295,7 +295,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     # Global.
     {
       code: '''
@@ -304,7 +303,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     # IIFE.
     {
       code: '''
@@ -314,7 +312,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     # Just functions.
     {
       code: '''
@@ -324,7 +321,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     {
       code: '''
         foo = ->
@@ -334,7 +330,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     {
       code: '''
         return ->
@@ -343,7 +338,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     {
       code: '''
         foo = (->
@@ -353,7 +347,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     # Functions in methods.
     {
       code: '''
@@ -366,7 +359,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     {
       code: '''
         obj =
@@ -377,7 +369,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     {
       code: '''
         obj =
@@ -389,7 +380,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     {
       code: '''
         obj.foo = ->
@@ -399,7 +389,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     {
       code: '''
         obj.foo = ->
@@ -410,7 +399,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     {
       code: '''
         class A
@@ -420,7 +408,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     {
       code: '''
         obj.foo = do ->
@@ -430,7 +417,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     {
       code: '''
         obj.foo = do => =>
@@ -439,7 +425,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     {
       code: '''
         foo = (->
@@ -449,7 +434,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     {
       code: '''
         (->
@@ -459,7 +443,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     # Array methods.
     {
       code: '''
@@ -469,7 +452,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     {
       code: '''
         foo.every ->
@@ -478,7 +460,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     {
       code: '''
         foo.filter ->
@@ -487,7 +468,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     {
       code: '''
         foo.find ->
@@ -496,7 +476,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     {
       code: '''
         foo.findIndex ->
@@ -505,7 +484,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     {
       code: '''foo.forEach ->
         console.log this
@@ -513,7 +491,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     {
       code: '''
         foo.map ->
@@ -522,7 +499,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     {
       code: '''
         foo.some ->
@@ -531,7 +507,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     {
       code: '''
         foo.forEach ->
@@ -541,7 +516,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     {
       code: '''
         ###* @returns {void} ### ->
@@ -550,7 +524,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     {
       code: '''
         ###* @this Obj ### foo ->
@@ -559,7 +532,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     {
       code: '''
         func = ->
@@ -568,7 +540,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     {
       code: '''
         func = ->
@@ -577,7 +548,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     {
       code: '''
         foo = (func = ->
@@ -587,7 +557,6 @@ ruleTester.run 'no-invalid-this', rule,
       '''
       errors
     }
-  ,
     {
       code: '''
         (@b) ->

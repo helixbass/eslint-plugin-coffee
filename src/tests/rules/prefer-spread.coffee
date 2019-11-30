@@ -11,6 +11,7 @@
 
 rule = require 'eslint/lib/rules/prefer-spread'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
@@ -21,7 +22,7 @@ errors = [
   type: 'CallExpression'
 ]
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'prefer-spread', rule,
   valid: [
@@ -50,49 +51,38 @@ ruleTester.run 'prefer-spread', rule,
   invalid: [
     {
       code: 'foo.apply(undefined, args)'
-      output: 'foo(...args)'
       errors
     }
-  ,
     {
       code: 'foo.apply(null, args)'
-      output: 'foo(...args)'
       errors
     }
-  ,
     {
       code: 'obj.foo.apply(obj, args)'
-      output: 'obj.foo(...args)'
       errors
     }
-  ,
     {
       code: 'obj.foo.apply obj, args'
-      output: 'obj.foo(...args)'
       errors
     }
-  ,
     {
       # Not fixed: a.b.c might activate getters
       code: 'a.b.c.foo.apply(a.b.c, args)'
       output: null
       errors
     }
-  ,
     {
       # Not fixed: a.b(x, y).c might activate getters
       code: 'a.b(x, y).c.foo.apply(a.b(x, y).c, args)'
       output: null
       errors
     }
-  ,
     {
       # Not fixed (not an identifier)
       code: '[].concat.apply([ ], args)'
       output: null
       errors
     }
-  ,
     {
       # Not fixed (not an identifier)
       code: '''

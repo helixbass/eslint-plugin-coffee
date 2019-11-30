@@ -10,12 +10,13 @@
 
 rule = require '../../rules/no-lonely-if'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 errors = [
   message: 'Unexpected if as the only statement in an else block.'
   type: 'IfStatement'
@@ -60,7 +61,6 @@ ruleTester.run 'no-lonely-if', rule,
       # '''
       errors
     }
-  ,
     {
       code: '''
         if a
@@ -77,7 +77,6 @@ ruleTester.run 'no-lonely-if', rule,
       # '''
       errors
     }
-  ,
     {
       code: '''
         if a
@@ -94,7 +93,6 @@ ruleTester.run 'no-lonely-if', rule,
       # '''
       errors
     }
-  ,
     {
       code: '''
         if a
@@ -106,7 +104,6 @@ ruleTester.run 'no-lonely-if', rule,
       # output: null
       errors
     }
-  ,
     {
       code: '''
         if a
@@ -123,7 +120,6 @@ ruleTester.run 'no-lonely-if', rule,
       # '''
       errors
     }
-  ,
     {
       code: '''
         if a
@@ -136,7 +132,6 @@ ruleTester.run 'no-lonely-if', rule,
       # output: null
       errors
     }
-  ,
     {
       code: '''
         if foo
@@ -151,7 +146,6 @@ ruleTester.run 'no-lonely-if', rule,
       # '''
       errors
     }
-  ,
     {
       # Not fixed; removing the braces would cause a SyntaxError.
       code: '''
@@ -165,7 +159,6 @@ ruleTester.run 'no-lonely-if', rule,
       # output: null
       errors
     }
-  ,
     {
       code: '''
         if a

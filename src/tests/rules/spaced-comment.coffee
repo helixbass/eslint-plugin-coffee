@@ -6,8 +6,9 @@
 
 rule = require '../../rules/spaced-comment'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 validShebangProgram = '#!/path/to/node\na = 3'
 # invalidShebangProgram = '#!/path/to/node\n#!/second/shebang\na = 3'
 
@@ -214,11 +215,7 @@ ruleTester.run 'spaced-comment', rule,
     options: ['always', {markers: ['/'], exceptions: ['-']}]
   ,
     code: '#/--------\r\n#/ test\r\n#/--------\r\n### blah ###'
-    options: [
-      'always'
-    ,
-      markers: ['/'], exceptions: ['-'], block: markers: []
-    ]
+    options: ['always', {markers: ['/'], exceptions: ['-'], block: markers: []}]
   ,
     code: '###**\u2028###'
     options: ['always', {exceptions: ['*']}]

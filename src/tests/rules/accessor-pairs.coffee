@@ -11,14 +11,16 @@
 
 rule = require 'eslint/lib/rules/accessor-pairs'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Helpers
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
-getterError = messageId: 'getter'
+missingGetterInPropertyDescriptorError =
+  messageId: 'missingGetterInPropertyDescriptor'
 # setterError = messageId: 'setter'
 
 ruleTester.run 'accessor-pairs', rule,
@@ -26,13 +28,13 @@ ruleTester.run 'accessor-pairs', rule,
     'o = { a: 1 }'
     # 'o = {\n get a() {\n return val \n} \n}'
     # 'o = {\n set a(value) {\n val = value \n},\n get a() {\n return val \n} \n}'
-    """
+    '''
       o = {a: 1}
       Object.defineProperty(o, 'b', {
         set: (value) -> val = value
         get: -> val
       })
-    """
+    '''
     # ,
     #   code: "expr = 'foo'  o = { set [expr](value) { val = value }, get [expr]() { return val } }"
     # ,
@@ -49,10 +51,10 @@ ruleTester.run 'accessor-pairs', rule,
   ,
     code: 'o = {[set]: ->}'
   ,
-    code: """
+    code: '''
       set = 'value'
       Object.defineProperty(obj, 'foo', {[set]: (value) ->})
-    """
+    '''
   ]
   invalid: [
     # code: 'o = {\n set a(value) {\n val = value \n} \n}'
@@ -64,31 +66,31 @@ ruleTester.run 'accessor-pairs', rule,
     # ]
     # errors: [setterError]
     # ,
-    code: """
+    code: '''
       o = {d: 1}
       Object.defineProperty o, 'c',
         set: (value) -> val = value
-    """
-    errors: [getterError]
+    '''
+    errors: [missingGetterInPropertyDescriptorError]
   ,
-    code: """
+    code: '''
       Reflect.defineProperty obj, 'foo',
         set: (value) ->
-    """
-    errors: [getterError]
+    '''
+    errors: [missingGetterInPropertyDescriptorError]
   ,
     code: '''
       Object.defineProperties obj,
         foo:
           set: (value) ->
     '''
-    errors: [getterError]
+    errors: [missingGetterInPropertyDescriptorError]
   ,
     code: '''
       Object.create null,
         foo: set: (value) ->
     '''
-    errors: [getterError]
+    errors: [missingGetterInPropertyDescriptorError]
     # ,
     #   code: "expr = 'foo'  o = { set [expr](value) { val = value } }"
     #   parserOptions: ecmaVersion: 6

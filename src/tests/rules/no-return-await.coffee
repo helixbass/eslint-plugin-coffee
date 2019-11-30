@@ -10,6 +10,7 @@
 
 rule = require '../../rules/no-return-await'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
@@ -20,7 +21,7 @@ errors = [
   message: 'Redundant use of `await` on a return value.', type: 'Identifier'
 ]
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-return-await', rule,
   valid: [
@@ -138,29 +139,29 @@ ruleTester.run 'no-return-await', rule,
     '() => (if baz() then (await bar() && a) else b)\n'
     '() => (if baz() then a : (await bar(); b))\n'
     '() => (if baz() then a : (await bar() && b))\n'
-    """
+    '''
       ->
         try
           return await bar()
         catch e
           baz()
-    """
-    """
+    '''
+    '''
       ->
         try
           return await bar()
         finally
           baz()
-    """
-    """
+    '''
+    '''
       ->
         try
         catch e
           return await bar()
         finally
           baz()
-    """
-    """
+    '''
+    '''
       ->
         try
           try
@@ -168,8 +169,8 @@ ruleTester.run 'no-return-await', rule,
             return await bar()
         finally
           baz()
-    """
-    """
+    '''
+    '''
       ->
         try
           try
@@ -177,28 +178,28 @@ ruleTester.run 'no-return-await', rule,
             return await bar()
         finally
           baz()
-    """
-    """
+    '''
+    '''
       ->
         try
           return (a; await bar())
         catch e
           baz()
-    """
-    """
+    '''
+    '''
       ->
         try
           return (if qux() then await bar() else b)
         catch e
           baz()
-    """
-    """
+    '''
+    '''
       ->
         try
           return (a && await bar())
         catch e
           baz()
-    """
+    '''
   ]
 
   invalid: [
@@ -210,7 +211,6 @@ ruleTester.run 'no-return-await', rule,
       errors
       options: [implicit: no]
     }
-  ,
     {
       code: '''
         ->
@@ -219,7 +219,6 @@ ruleTester.run 'no-return-await', rule,
       errors
       options: [implicit: no]
     }
-  ,
     {
       code: '''
         ->
@@ -228,7 +227,6 @@ ruleTester.run 'no-return-await', rule,
       errors
       options: [implicit: no]
     }
-  ,
     {
       code: '''
         ->
@@ -237,7 +235,6 @@ ruleTester.run 'no-return-await', rule,
       errors
       options: [implicit: no]
     }
-  ,
     {
       code: '''
         ->
@@ -246,7 +243,6 @@ ruleTester.run 'no-return-await', rule,
       errors
       options: [implicit: no]
     }
-  ,
     {
       code: '''
         ->
@@ -255,7 +251,6 @@ ruleTester.run 'no-return-await', rule,
       errors
       options: [implicit: no]
     }
-  ,
     {
       code: '''
         ->
@@ -264,7 +259,6 @@ ruleTester.run 'no-return-await', rule,
       errors
       options: [implicit: no]
     }
-  ,
     {
       code: '''
         ->
@@ -273,7 +267,6 @@ ruleTester.run 'no-return-await', rule,
       errors
       options: [implicit: no]
     }
-  ,
     {
       code: '''
         ->
@@ -282,7 +275,6 @@ ruleTester.run 'no-return-await', rule,
       errors
       options: [implicit: no]
     }
-  ,
     {
       code: '''
         ->
@@ -291,7 +283,6 @@ ruleTester.run 'no-return-await', rule,
       errors
       options: [implicit: no]
     }
-  ,
     {
       code: '''
         ->
@@ -300,7 +291,6 @@ ruleTester.run 'no-return-await', rule,
       errors
       options: [implicit: no]
     }
-  ,
     {
       code: '''
         ->
@@ -309,7 +299,6 @@ ruleTester.run 'no-return-await', rule,
       errors
       options: [implicit: no]
     }
-  ,
     {
       code: '''
         ->
@@ -318,7 +307,6 @@ ruleTester.run 'no-return-await', rule,
       errors
       options: [implicit: no]
     }
-  ,
     {
       code: '''
         ->
@@ -327,7 +315,6 @@ ruleTester.run 'no-return-await', rule,
       errors
       options: [implicit: no]
     }
-  ,
     {
       code: '''
         ->
@@ -336,7 +323,6 @@ ruleTester.run 'no-return-await', rule,
       errors
       options: [implicit: no]
     }
-  ,
     {
       code: '''
         ->
@@ -345,19 +331,16 @@ ruleTester.run 'no-return-await', rule,
       errors
       options: [implicit: no]
     }
-  ,
     {
       code: '=> return await bar()'
       errors
       options: [implicit: no]
     }
-  ,
     {
       code: '=> return await bar()'
       errors
       options: [implicit: yes]
     }
-  ,
     {
       code: '''
         ->
@@ -366,7 +349,6 @@ ruleTester.run 'no-return-await', rule,
       errors
       options: [implicit: yes]
     }
-  ,
     {
       code: '''
         ->
@@ -375,13 +357,11 @@ ruleTester.run 'no-return-await', rule,
       errors
       options: [implicit: yes]
     }
-  ,
     {
       code: '=> await bar()'
       errors
       options: [implicit: yes]
     }
-  ,
     {
       code: '''
         ->
@@ -392,7 +372,6 @@ ruleTester.run 'no-return-await', rule,
       errors
       options: [implicit: yes]
     }
-  ,
     {
       code: '''
         ->
@@ -401,7 +380,6 @@ ruleTester.run 'no-return-await', rule,
       errors
       options: [implicit: yes]
     }
-  ,
     {
       code: '''
         ->
@@ -409,7 +387,6 @@ ruleTester.run 'no-return-await', rule,
       '''
       errors
     }
-  ,
     {
       code: '''
         ->
@@ -420,7 +397,6 @@ ruleTester.run 'no-return-await', rule,
       errors
       options: [implicit: no]
     }
-  ,
     {
       code: '''
         ->
@@ -431,59 +407,54 @@ ruleTester.run 'no-return-await', rule,
       errors
       options: [implicit: no]
     }
-  ,
     {
-      code: """
+      code: '''
         ->
           try
           finally
             return await bar()
-      """
+      '''
       errors
       options: [implicit: no]
     }
-  ,
     {
-      code: """
+      code: '''
         ->
           try
           catch e
             return await bar()
-      """
+      '''
       errors
       options: [implicit: no]
     }
-  ,
     {
-      code: """
+      code: '''
         try
           ->
             return await bar()
         catch e
-      """
+      '''
       errors
       options: [implicit: no]
     }
-  ,
     {
-      code: """
+      code: '''
         try
           () => return await bar()
         catch e
-      """
+      '''
       errors
       options: [implicit: no]
     }
-  ,
     {
-      code: """
+      code: '''
         ->
           try
           catch e
             try
             catch e
               return await bar()
-      """
+      '''
       errors
       options: [implicit: no]
     }

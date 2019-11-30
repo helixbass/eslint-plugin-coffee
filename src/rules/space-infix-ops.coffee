@@ -28,7 +28,10 @@ module.exports =
 
   create: (context) ->
     int32Hint =
-      if context.options[0] then context.options[0].int32Hint is yes else no
+      if context.options[0]
+        context.options[0].int32Hint is yes
+      else
+        no
 
     OPERATORS = [
       '*'
@@ -145,7 +148,10 @@ module.exports =
     ###
     checkBinary = (node) ->
       leftNode =
-        if node.left.typeAnnotation then node.left.typeAnnotation else node.left
+        if node.left.typeAnnotation
+          node.left.typeAnnotation
+        else
+          node.left
       rightNode = node.right
 
       nonSpacedNode = getFirstNonSpacedToken leftNode, rightNode
@@ -162,7 +168,10 @@ module.exports =
     ###
     checkVar = (node) ->
       leftNode =
-        if node.id.typeAnnotation then node.id.typeAnnotation else node.id
+        if node.id.typeAnnotation
+          node.id.typeAnnotation
+        else
+          node.id
       rightNode = node.init
 
       if rightNode

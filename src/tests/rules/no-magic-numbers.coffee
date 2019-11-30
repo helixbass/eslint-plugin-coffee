@@ -11,12 +11,13 @@
 
 rule = require '../../rules/no-magic-numbers'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Helpers
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-magic-numbers', rule,
   valid: [
@@ -37,10 +38,10 @@ ruleTester.run 'no-magic-numbers', rule,
     code: 'setTimeout((-> 1), 0)'
     options: [ignore: [0, 1]]
   ,
-    code: """
+    code: '''
       data = ['foo', 'bar', 'baz']
       third = data[3]
-    """
+    '''
     options: [ignoreArrayIndexes: yes]
   ,
     'a = <input maxLength={10} />'
@@ -116,7 +117,7 @@ ruleTester.run 'no-magic-numbers', rule,
     code: 'getNegativeSecondsInMinute = -> -60'
     errors: [messageId: 'noMagic', data: raw: '-60']
   ,
-    code: """
+    code: '''
       Promise = require('bluebird')
       MINUTE = 60
       HOUR = 3600
@@ -136,7 +137,7 @@ ruleTester.run 'no-magic-numbers', rule,
         setTimeout(func, 0)
       invokeInTen = (func) ->
         setTimeout(func, 10)
-    """
+    '''
     errors: [
       messageId: 'noMagic', data: {raw: '10'}, line: 7
     ,
@@ -151,10 +152,10 @@ ruleTester.run 'no-magic-numbers', rule,
       messageId: 'noMagic', data: {raw: '10'}, line: 19
     ]
   ,
-    code: """
+    code: '''
       data = ['foo', 'bar', 'baz']
       third = data[3]
-    """
+    '''
     options: [{}]
     errors: [
       messageId: 'noMagic'

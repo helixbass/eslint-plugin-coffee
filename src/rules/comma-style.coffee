@@ -188,7 +188,10 @@ module.exports =
 
         items.forEach (item) ->
           commaToken =
-            if item then sourceCode.getTokenBefore item else previousItemToken
+            if item
+              sourceCode.getTokenBefore item
+            else
+              previousItemToken
           currentItemToken =
             if item
               sourceCode.getFirstToken item

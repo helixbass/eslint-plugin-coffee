@@ -132,8 +132,9 @@ module.exports =
                 lineNumberAfterRemovedLines = lineNumber - maxAllowed
                 rangeEnd =
                   if lineNumberAfterRemovedLines <= allLines.length
-                    sourceCode.getIndexFromLoc
+                    sourceCode.getIndexFromLoc(
                       line: lineNumberAfterRemovedLines, column: 0
+                    )
                   else
                     sourceCode.text.length
 

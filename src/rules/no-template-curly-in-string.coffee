@@ -28,3 +28,10 @@ module.exports =
           node
           message: 'Unexpected template string expression.'
         }
+
+    TemplateElement: (node) ->
+      if regex.test node.value.raw
+        context.report {
+          node
+          message: 'Unexpected template string expression.'
+        }

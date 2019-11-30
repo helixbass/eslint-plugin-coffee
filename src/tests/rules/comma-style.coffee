@@ -10,12 +10,13 @@
 
 rule = require '../../rules/comma-style'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'comma-style', rule,
   valid: [
@@ -292,7 +293,7 @@ ruleTester.run 'comma-style', rule,
       'last'
     ,
       exceptions:
-        FunctionExpression: no
+        ArrowFunctionExpression: no
     ]
     errors: [
       messageId: 'expectedCommaLast'

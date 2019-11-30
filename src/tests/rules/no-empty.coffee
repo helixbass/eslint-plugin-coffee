@@ -11,12 +11,13 @@
 
 rule = require 'eslint/lib/rules/no-empty'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-empty', rule,
   valid: [
@@ -34,11 +35,11 @@ ruleTester.run 'no-empty', rule,
       catch ex
         foo()
     '''
-    """
+    '''
       switch foo
         when 'foo'
           break
-    """
+    '''
     'do ->'
     'foo = ->'
     '''

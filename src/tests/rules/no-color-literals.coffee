@@ -11,16 +11,17 @@
 
 rule = require '../../rules/no-color-literals'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # ------------------------------------------------------------------------------
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 tests =
   valid: [
-    code: """
+    code: '''
         $red = 'red'
         $blue = 'blue'
         styles = StyleSheet.create({
@@ -37,9 +38,9 @@ tests =
                 return <View 
                            style={[styles.style1, if isDanger then styles.style1 else styles.style2]}
                        />
-      """
+      '''
   ,
-    code: """
+    code: '''
         styles = StyleSheet.create({
             style1: {
                 color: $red,
@@ -58,30 +59,30 @@ tests =
                      this.state.isDanger and {color: falseColor}, 
                      {color: if someBoolean then trueColor else falseColor }]} 
                    />
-      """
+      '''
   ]
   invalid: [
-    code: """
+    code: '''
         Hello = React.createClass({
           render: ->
             return <Text style={{backgroundColor: '#FFFFFF', opacity: 0.5}}>
               Hello {this.props.name}
              </Text>
         })
-      """
+      '''
     errors: [message: "Color literal: { backgroundColor: '#FFFFFF' }"]
   ,
-    code: """
+    code: '''
         Hello = React.createClass({
           render: ->
             return <Text style={{backgroundColor: '#FFFFFF', opacity: this.state.opacity}}>
               Hello {this.props.name}
              </Text>
         })
-      """
+      '''
     errors: [message: "Color literal: { backgroundColor: '#FFFFFF' }"]
   ,
-    code: """
+    code: '''
         styles = StyleSheet.create({
           text: {fontColor: '#000'}
         })
@@ -91,20 +92,20 @@ tests =
               Hello {this.props.name}
              </Text>
         })
-      """
+      '''
     errors: [message: "Color literal: { fontColor: '#000' }"]
   ,
-    code: """
+    code: '''
         Hello = React.createClass({
           render: ->
             return <Text style={[styles.text, {backgroundColor: '#FFFFFF'}]}>
               Hello {this.props.name}
              </Text>
         })
-      """
+      '''
     errors: [message: "Color literal: { backgroundColor: '#FFFFFF' }"]
   ,
-    code: """
+    code: '''
         Hello = React.createClass({
           render: ->
             someBoolean = false 
@@ -112,10 +113,10 @@ tests =
               Hello {this.props.name}
              </Text>
         })
-      """
+      '''
     errors: [message: "Color literal: { backgroundColor: '#FFFFFF' }"]
   ,
-    code: """
+    code: '''
         styles = StyleSheet.create({
             style1: {
                 color: 'red',
@@ -134,14 +135,13 @@ tests =
                      {backgroundColor: if someBoolean then '#fff' else '#000'}
                    ]} 
                    />
-      """
+      '''
     errors: [
       message: "Color literal: { color: 'red' }"
     ,
       message: "Color literal: { borderBottomColor: 'blue' }"
     ,
-      message:
-        "Color literal: { backgroundColor: 'if someBoolean then \\'#fff\\' else \\'#000\\'' }" #eslint-disable-line
+      message: '''Color literal: { backgroundColor: "if someBoolean then '#fff' else '#000'" }''' #eslint-disable-line
     ]
   ]
 

@@ -11,8 +11,9 @@
 
 rule = require '../../rules/no-regex-spaces'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-regex-spaces', rule,
   valid: [
@@ -22,14 +23,14 @@ ruleTester.run 'no-regex-spaces', rule,
     'foo = /bar\t\t\tbaz/'
     "foo = RegExp('bar\t\t\tbaz')"
     "foo = new RegExp('bar\t\t\tbaz')"
-    """
+    '''
       RegExp = ->
       foo = new RegExp('bar   baz')
-    """
-    """
+    '''
+    '''
       RegExp = ->
       foo = RegExp('bar   baz')
-    """
+    '''
     'foo = /  +/'
     '''
       foo = ///
@@ -66,16 +67,16 @@ ruleTester.run 'no-regex-spaces', rule,
     ]
   ,
     # `RegExp` is not shadowed in the scope where it's called
-    code: """
+    code: '''
       ->
         RegExp = ->
       foo = RegExp('bar    baz')
-    """
-    output: """
+    '''
+    output: '''
       ->
         RegExp = ->
       foo = RegExp('bar {4}baz')
-    """
+    '''
     errors: [
       message: 'Spaces are hard to count. Use {4}.'
       type: 'CallExpression'

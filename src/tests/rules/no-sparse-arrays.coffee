@@ -10,12 +10,13 @@
 
 rule = require 'eslint/lib/rules/no-sparse-arrays'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-sparse-arrays', rule,
   valid: ['a = [ 1, 2, ]']

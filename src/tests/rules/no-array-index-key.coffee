@@ -11,12 +11,13 @@
 
 rule = require 'eslint-plugin-react/lib/rules/no-array-index-key'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # -----------------------------------------------------------------------------
 # Tests
 # -----------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ### eslint-disable coffee/no-template-curly-in-string ###
 ruleTester.run 'no-array-index-key', rule,
   valid: [
@@ -45,11 +46,11 @@ ruleTester.run 'no-array-index-key', rule,
     code:
       'foo.map((baz, i) => React.cloneElement(someChild, { ...someChild.props }))'
   ,
-    code: """
+    code: '''
         foo.map (item, i) =>
           React.cloneElement someChild,
             key: item.id
-      """
+      '''
   ,
     code: 'foo.map((baz, i) => <Foo key />)'
   ,
@@ -89,11 +90,11 @@ ruleTester.run 'no-array-index-key', rule,
     '''
     errors: [message: 'Do not use Array index in keys']
   ,
-    code: """
+    code: '''
       foo.map (item, i) =>
         React.cloneElement someChild,
           key: i
-      """
+      '''
     errors: [message: 'Do not use Array index in keys']
   ,
     code: 'foo.forEach((bar, i) => baz.push(<Foo key={i} />))'

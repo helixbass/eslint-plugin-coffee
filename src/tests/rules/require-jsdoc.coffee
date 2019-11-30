@@ -6,12 +6,13 @@
 
 rule = require '../../rules/require-jsdoc'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'require-jsdoc', rule,
   valid: [
@@ -139,10 +140,10 @@ ruleTester.run 'require-jsdoc', rule,
     '''
       Object.keys(@options.rules ? {}).forEach ((name) ->).bind @
     '''
-    """
+    '''
       object = { name: 'key'}
       Object.keys(object).forEach ->
-    """
+    '''
   ,
     code: '''
       myFunction = ->
@@ -405,21 +406,21 @@ ruleTester.run 'require-jsdoc', rule,
     code: 'myFunction = () => {}'
     options: [
       require:
-        FunctionExpression: yes
+        ArrowFunctionExpression: yes
     ]
     errors: [
       message: 'Missing JSDoc comment.'
-      type: 'FunctionExpression'
+      type: 'ArrowFunctionExpression'
     ]
   ,
     code: 'myFunction = () => () => {}'
     options: [
       require:
-        FunctionExpression: yes
+        ArrowFunctionExpression: yes
     ]
     errors: [
       message: 'Missing JSDoc comment.'
-      type: 'FunctionExpression'
+      type: 'ArrowFunctionExpression'
     ]
   ,
     code: 'foo = ->'

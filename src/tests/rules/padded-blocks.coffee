@@ -11,12 +11,13 @@
 
 rule = require 'eslint/lib/rules/padded-blocks'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ALWAYS_MESSAGE = 'Block must be padded by blank lines.'
 NEVER_MESSAGE = 'Block must not be padded by blank lines.'
 

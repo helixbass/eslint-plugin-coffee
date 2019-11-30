@@ -10,12 +10,13 @@
 
 rule = require 'eslint/lib/rules/no-param-reassign'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-param-reassign', rule,
   valid: [

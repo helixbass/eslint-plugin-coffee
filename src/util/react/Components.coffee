@@ -76,7 +76,7 @@ class Components
   # @param {Object} props Additional properties to add to the component.
   ###
   set: (node, props) ->
-    node = node.parent while node and not @_list[getId(node)]
+    node = node.parent while node and not @_list[getId node]
     return unless node
     id = getId node
     if @_list[id]
@@ -282,7 +282,7 @@ componentRule = (rule, context) ->
       returnsConditionalJSXAlternate =
         node[property] and
         node[property].type is 'ConditionalExpression' and
-        node[property].alternate.type is 'JSXElement'
+        node[property].alternate?.type is 'JSXElement'
       returnsConditionalJSX =
         if strict
           returnsConditionalJSXConsequent and returnsConditionalJSXAlternate

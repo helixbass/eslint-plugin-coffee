@@ -11,12 +11,13 @@
 
 rule = require 'eslint/lib/rules/no-useless-constructor'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 error = message: 'Useless constructor.', type: 'MethodDefinition'
 
 ruleTester.run 'no-useless-constructor', rule,
@@ -27,20 +28,20 @@ ruleTester.run 'no-useless-constructor', rule,
         constructor: ->
           doSomething()
     '''
-    """
+    '''
       class A
         constructor: ->
           super 'foo'
-    """
+    '''
     '''
       class A extends B
         constructor: ->
     '''
-    """
+    '''
       class A extends B
         constructor: ->
           super('foo')
-    """
+    '''
     '''
       class A extends B
         constructor: (foo, bar) -> super(foo, bar, 1)
@@ -110,10 +111,10 @@ ruleTester.run 'no-useless-constructor', rule,
     '''
     errors: [error]
   ,
-    code: """
+    code: '''
       class A
         'constructor': ->
-    """
+    '''
     errors: [error]
   ,
     code: '''

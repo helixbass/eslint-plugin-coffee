@@ -11,12 +11,13 @@
 
 rule = require '../../rules/no-constant-condition'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-constant-condition', rule,
   valid: [
@@ -53,11 +54,11 @@ ruleTester.run 'no-constant-condition', rule,
   ,
     code: 'loop then ;', options: [checkLoops: no]
   ,
-    """
+    '''
       foo = ->
         while true
           yield 'foo'
-    """
+    '''
     '''
       foo = ->
         while yes
@@ -160,36 +161,36 @@ ruleTester.run 'no-constant-condition', rule,
     code: "if (typeof abc is 'str' || true) then ;"
     errors: [messageId: 'unexpected', type: 'LogicalExpression']
   ,
-    code: """
+    code: '''
       ->
         while (true)
           ;
         yield 'foo'
-    """
+    '''
     errors: [messageId: 'unexpected', type: 'Literal']
   ,
-    code: """
+    code: '''
       ->
         loop
           yield 'foo' if true
-    """
+    '''
     errors: [messageId: 'unexpected', type: 'Literal']
   ,
-    code: """
+    code: '''
       ->
         while true
           yield 'foo'
         while true
           ;
-    """
+    '''
     errors: [messageId: 'unexpected', type: 'Literal']
   ,
-    code: """
+    code: '''
       a = ->
         while true
           ;
         yield 'foo'
-    """
+    '''
     errors: [messageId: 'unexpected', type: 'Literal']
   ,
     code: '''
@@ -198,10 +199,10 @@ ruleTester.run 'no-constant-condition', rule,
     '''
     errors: [messageId: 'unexpected', type: 'Literal']
   ,
-    code: """
+    code: '''
       ->
         yield 'foo' if yes
-    """
+    '''
     errors: [messageId: 'unexpected', type: 'Literal']
   ,
     code: '''

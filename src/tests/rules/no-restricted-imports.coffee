@@ -11,12 +11,13 @@
 
 rule = require 'eslint/lib/rules/no-restricted-imports'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-restricted-imports', rule,
   valid: [
@@ -277,7 +278,7 @@ ruleTester.run 'no-restricted-imports', rule,
     ]
     errors: [
       message:
-        "* import is invalid because 'DisallowedObject' from 'foo' is restricted."
+        "* import is invalid because 'DisallowedObject' from 'foo' is restricted. Please import 'DisallowedObject' from /bar/ instead."
       type: 'ImportDeclaration'
     ]
   ,
@@ -410,7 +411,7 @@ ruleTester.run 'no-restricted-imports', rule,
     ]
     errors: [
       message:
-        "* import is invalid because 'DisallowedObject' from 'foo' is restricted."
+        "* import is invalid because 'DisallowedObject' from 'foo' is restricted. Please import 'DisallowedObject' from /bar/ instead."
       type: 'ImportDeclaration'
     ]
   ,
@@ -425,7 +426,7 @@ ruleTester.run 'no-restricted-imports', rule,
     ]
     errors: [
       message:
-        "* import is invalid because 'DisallowedObject,DisallowedObjectTwo' from 'foo' is restricted."
+        "* import is invalid because 'DisallowedObject,DisallowedObjectTwo' from 'foo' is restricted. Please import 'DisallowedObject' and 'DisallowedObjectTwo' from /bar/ instead."
       type: 'ImportDeclaration'
     ]
   ]

@@ -11,12 +11,13 @@
 
 rule = require '../../rules/no-else-return'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-else-return', rule,
   valid: [
@@ -340,17 +341,17 @@ ruleTester.run 'no-else-return', rule,
     options: [allowElseIf: no]
     errors: [messageId: 'unexpected', type: 'IfStatement']
   ,
-    code: """
+    code: '''
       ->
         while foo
           if bar
             return
           else
             baz
-    """
+    '''
     errors: [messageId: 'unexpected', type: 'BlockStatement']
   ,
-    code: """
+    code: '''
       ->
         if foo
           if bar
@@ -359,7 +360,7 @@ ruleTester.run 'no-else-return', rule,
             baz
         else
           qux
-    """
+    '''
     errors: [messageId: 'unexpected', type: 'BlockStatement']
   ,
     code: '''
@@ -370,5 +371,5 @@ ruleTester.run 'no-else-return', rule,
           if bar
             no
     '''
-    errors: [messageId: 'unexpected', type: 'IfStatement']
+    errors: [messageId: 'unexpected', type: 'BlockStatement']
   ]

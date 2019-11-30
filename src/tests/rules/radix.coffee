@@ -11,8 +11,9 @@
 
 rule = require 'eslint/lib/rules/radix'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'radix', rule,
   valid: [

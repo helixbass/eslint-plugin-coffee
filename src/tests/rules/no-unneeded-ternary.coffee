@@ -11,12 +11,13 @@
 
 rule = require '../../rules/no-unneeded-ternary'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-unneeded-ternary', rule,
   valid: [
@@ -26,11 +27,11 @@ ruleTester.run 'no-unneeded-ternary', rule,
     "a = if x is 2 then 'Yes' else no"
     "a = if x is 2 then 'true' else 'false'"
     'a = if foo then foo else bar'
-    """
+    '''
       value = 'a'
       canSet = true
       result = value or (if canSet then 'unset' else 'can not set')
-    """
+    '''
   ,
     code: "a = if foo then 'Yes' else foo"
     options: [defaultAssignment: no]
@@ -183,16 +184,16 @@ ruleTester.run 'no-unneeded-ternary', rule,
       column: 21
     ]
   ,
-    code: """
+    code: '''
       value = 'a'
       canSet = yes
       result = if value then value else if canSet then 'unset' else 'can not set'
-    """
-    output: """
+    '''
+    output: '''
       value = 'a'
       canSet = yes
       result = value or (if canSet then 'unset' else 'can not set')
-    """
+    '''
     options: [defaultAssignment: no]
     errors: [
       message:

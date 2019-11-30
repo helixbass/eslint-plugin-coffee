@@ -11,6 +11,7 @@
 # path = require 'path'
 rule = require '../../rules/array-bracket-spacing'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Helpers
@@ -32,7 +33,7 @@ rule = require '../../rules/array-bracket-spacing'
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'array-bracket-spacing', rule,
   valid: [
@@ -68,13 +69,13 @@ ruleTester.run 'array-bracket-spacing', rule,
     code: "foo = [ 1, 5, { 'bar': 'baz' }]"
     options: ['always', {objectsInArrays: no}]
   ,
-    code: """
+    code: '''
       foo = [{
         'bar': 'baz', 
         'qux': [{ 'bar': 'baz' }], 
         'quxx': 1 
       }]
-    """
+    '''
     options: ['always', {objectsInArrays: no}]
   ,
     code: "foo = [{ 'bar': 'baz' }]"
@@ -133,24 +134,24 @@ ruleTester.run 'array-bracket-spacing', rule,
     '''
     options: ['always']
   ,
-    code: """
+    code: '''
       obj[ 'map' ] (item) -> return [
         1
         2
         3
         4
       ]
-    """
+    '''
     options: ['always']
   ,
-    code: """
+    code: '''
       obj[ 'for' + 'Each' ] (item) -> return [
         1,
         2,
         3,
         4
       ]
-    """
+    '''
     options: ['always']
   ,
     code: 'arr = [ 1, 2, 3, 4 ]', options: ['always']
@@ -167,12 +168,12 @@ ruleTester.run 'array-bracket-spacing', rule,
     code: 'foo = []', options: ['always']
   ,
     # singleValue: false, objectsInArrays: true, arraysInArrays
-    code: """
+    code: '''
       this.db.mappings.insert([
         { alias: 'a', url: 'http://www.amazon.de' },
         { alias: 'g', url: 'http://www.google.de' }
       ], ->)
-    """
+    '''
     options: [
       'always'
     ,
@@ -261,24 +262,24 @@ ruleTester.run 'array-bracket-spacing', rule,
     '''
     options: ['never']
   ,
-    code: """
+    code: '''
       obj['map'] (item) -> return [
         1,
         2,
         3,
         4
       ]
-    """
+    '''
     options: ['never']
   ,
-    code: """
+    code: '''
       obj['for' + 'Each'] (item) -> return [
         1,
         2,
         3,
         4
       ]
-    """
+    '''
     options: ['never']
   ,
     code: 'arr = [1, 2, 3, 4]', options: ['never']
@@ -394,13 +395,13 @@ ruleTester.run 'array-bracket-spacing', rule,
     code: "foo = [1, 5, {'bar': 'baz'} ]"
     options: ['never', {objectsInArrays: yes}]
   ,
-    code: """
+    code: '''
       foo = [ {
         'bar': 'baz', 
         'qux': [ {'bar': 'baz'} ], 
         'quxx': 1 
       } ]
-    """
+    '''
     options: ['never', {objectsInArrays: yes}]
   ,
     code: "foo = [ {'bar': 'baz'} ]"
@@ -449,13 +450,13 @@ ruleTester.run 'array-bracket-spacing', rule,
   ,
     code: "foo = [{'bar': 'baz'}]", options: ['never']
   ,
-    code: """
+    code: '''
       foo = [{
         'bar': 'baz', 
         'qux': [{'bar': 'baz'}], 
         'quxx': 1 
       }]
-    """
+    '''
     options: ['never']
   ,
     code: "foo = [1, {'bar': 'baz'}, 5]", options: ['never']

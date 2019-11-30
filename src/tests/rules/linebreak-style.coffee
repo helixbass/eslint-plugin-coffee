@@ -10,6 +10,7 @@
 
 rule = require 'eslint/lib/rules/linebreak-style'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 EXPECTED_LF_MSG = "Expected linebreaks to be 'LF' but found 'CRLF'."
 EXPECTED_CRLF_MSG = "Expected linebreaks to be 'CRLF' but found 'LF'."
@@ -18,7 +19,7 @@ EXPECTED_CRLF_MSG = "Expected linebreaks to be 'CRLF' but found 'LF'."
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'linebreak-style', rule,
   valid: [

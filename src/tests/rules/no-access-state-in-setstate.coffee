@@ -10,12 +10,13 @@
 
 rule = require '../../rules/no-access-state-in-setstate'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # ------------------------------------------------------------------------------
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'no-access-state-in-setstate', rule,
   valid: [
     code: '''
@@ -35,7 +36,7 @@ ruleTester.run 'no-access-state-in-setstate', rule,
     '''
   ,
     # issue 1559: don't crash
-    code: """
+    code: '''
       SearchForm = createReactClass({
         render: ->
           return (
@@ -47,22 +48,22 @@ ruleTester.run 'no-access-state-in-setstate', rule,
             </div>
           )
       })
-    """
+    '''
   ,
     # issue 1604: allow this.state in callback
-    code: """
+    code: '''
       Hello = React.createClass({
         onClick: ->
           this.setState({}, () => console.log(this.state))
       })
-    """
+    '''
   ,
-    code: """
+    code: '''
       Hello = React.createClass({
         onClick: ->
           this.setState({}, () => 1 + 1)
       })
-    """
+    '''
   ,
     code: '''
       Hello = React.createClass({
@@ -74,9 +75,9 @@ ruleTester.run 'no-access-state-in-setstate', rule,
     '''
   ,
     # https://github.com/yannickcr/eslint-plugin-react/pull/1611
-    code: """
+    code: '''
       testFunction = ({a, b}) ->
-    """
+    '''
   ]
 
   invalid: [
@@ -133,22 +134,22 @@ ruleTester.run 'no-access-state-in-setstate', rule,
       message: 'Use callback in setState when referencing the previous state.'
     ]
   ,
-    code: """
+    code: '''
       Hello = React.createClass({
         onClick: ->
           this.setState(this.state, () => 1 + 1)
       })
-    """
+    '''
     errors: [
       message: 'Use callback in setState when referencing the previous state.'
     ]
   ,
-    code: """
+    code: '''
       Hello = React.createClass({
         onClick: ->
           this.setState(this.state, () => console.log(this.state))
       })
-    """
+    '''
     errors: [
       message: 'Use callback in setState when referencing the previous state.'
     ]

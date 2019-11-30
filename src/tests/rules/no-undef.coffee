@@ -11,12 +11,13 @@
 
 rule = require 'eslint/lib/rules/no-undef'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-undef', rule,
   valid: [
@@ -107,15 +108,15 @@ ruleTester.run 'no-undef', rule,
           super()
     '''
   ,
-    code: """
+    code: '''
       import Warning from '../lib/warning'
       warn = new Warning 'text'
-    """
+    '''
   ,
-    code: """
+    code: '''
       import * as Warning from '../lib/warning'
       warn = new Warning('text')
-    """
+    '''
   ,
     code: '''
       a = null

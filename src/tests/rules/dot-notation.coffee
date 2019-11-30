@@ -11,12 +11,13 @@
 
 rule = require '../../rules/dot-notation'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Helpers
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ###*
 # Quote a string in "double quotes" because it’s painful
@@ -125,12 +126,12 @@ ruleTester.run 'dot-notation', rule,
       '''
     errors: [
       messageId: 'useDot'
-      data: key: q('catch')
+      data: key: q 'catch'
       line: 2
       column: 15
     ,
       messageId: 'useDot'
-      data: key: q('catch')
+      data: key: q 'catch'
       line: 3
       column: 15
     ]

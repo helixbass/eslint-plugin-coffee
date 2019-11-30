@@ -11,6 +11,7 @@
 
 rule = require '../../rules/jsx-tag-spacing'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # -----------------------------------------------------------------------------
 # Helpers
@@ -32,7 +33,7 @@ beforeClosingOptions = (option) -> [
 # Tests
 # -----------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'jsx-tag-spacing', rule,
   valid: [
     code: '<App />'

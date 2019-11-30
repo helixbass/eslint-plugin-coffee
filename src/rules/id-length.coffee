@@ -76,12 +76,12 @@ module.exports =
               return no unless properties
             return no unless (
               prevNode is
-              currentNode[(
+              currentNode[
                 if currentNode.parent.type is 'ObjectPattern'
                   'value'
                 else
                   'key'
-              )]
+              ]
             )
           when 'ClassDeclaration', 'FunctionDeclaration', 'FunctionExpression', 'ArrowFunctionExpression'
             return prevNode is currentNode.id or prevNode in currentNode.params

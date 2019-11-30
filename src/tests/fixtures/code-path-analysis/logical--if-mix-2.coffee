@@ -5,7 +5,7 @@ s1_2->s1_5->s1_6;
 s1_3->s1_5;
 s1_6->final;
 ###
-if a or b and c
+if a or (b and c)
   foo()
 else
   bar()

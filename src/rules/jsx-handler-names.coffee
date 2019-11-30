@@ -45,7 +45,10 @@ module.exports =
       return unless node.value?.expression?.object
 
       propKey =
-        if typeof node.name is 'object' then node.name.name else node.name
+        if typeof node.name is 'object'
+          node.name.name
+        else
+          node.name
       propValue = sourceCode
       .getText(node.value.expression)
       .replace /^this\.|.*::|@/, ''

@@ -100,7 +100,10 @@ module.exports =
     # The options object must be the last option specified…
     lastOption = context.options[context.options.length - 1]
     options =
-      if typeof lastOption is 'object' then Object.create lastOption else {}
+      if typeof lastOption is 'object'
+        Object.create lastOption
+      else
+        {}
 
     # …but max code length…
     if typeof context.options[0] is 'number'

@@ -11,28 +11,29 @@
 
 rule = require 'eslint-plugin-react/lib/rules/jsx-sort-props'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # -----------------------------------------------------------------------------
 # Tests
 # -----------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 expectedError =
   message: 'Props should be sorted alphabetically'
-  type: 'JSXAttribute'
+  type: 'JSXIdentifier'
 expectedCallbackError =
   message: 'Callbacks must be listed after all other props'
-  type: 'JSXAttribute'
+  type: 'JSXIdentifier'
 expectedShorthandFirstError =
   message: 'Shorthand props must be listed before all other props'
-  type: 'JSXAttribute'
+  type: 'JSXIdentifier'
 expectedShorthandLastError =
   message: 'Shorthand props must be listed after all other props'
-  type: 'JSXAttribute'
+  type: 'JSXIdentifier'
 expectedReservedFirstError =
   message: 'Reserved props must be listed before all other props'
-  type: 'JSXAttribute'
+  type: 'JSXIdentifier'
 expectedEmptyReservedFirstError =
   message: 'A customized reserved first list must not be empty'
 expectedInvalidReservedFirstError =
@@ -85,7 +86,7 @@ ruleTester.run 'jsx-sort-props', rule,
   ,
     code: '<App c="a" {...this.props} a="c" b="b" />'
   ,
-    code: '<App A a />'
+    code: '<App a A />'
   ,
     # Ignoring case
     code: '<App a A />', options: ignoreCaseArgs
@@ -154,7 +155,7 @@ ruleTester.run 'jsx-sort-props', rule,
     errors: [expectedError]
     output: '<App c {...this.props} a b />'
   ,
-    code: '<App a A />'
+    code: '<App A a />'
     errors: [expectedError]
     output: '<App a A />'
   ,
@@ -180,7 +181,7 @@ ruleTester.run 'jsx-sort-props', rule,
     output: '<App b="b" d="d" {...this.props} a="c" c="a" />'
     errors: 2
   ,
-    code: """
+    code: '''
       <App
         a={true}
         z
@@ -193,8 +194,8 @@ ruleTester.run 'jsx-sort-props', rule,
       >
         {test}
       </App>
-    """
-    output: """
+    '''
+    output: '''
       <App
         _onClick={->}
         a={true}
@@ -207,7 +208,7 @@ ruleTester.run 'jsx-sort-props', rule,
       >
         {test}
       </App>
-    """
+    '''
     errors: 3
   ,
     code: '<App key="key" b c="c" />'

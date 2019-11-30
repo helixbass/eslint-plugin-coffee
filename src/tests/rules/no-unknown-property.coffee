@@ -11,12 +11,13 @@
 
 rule = require 'eslint-plugin-react/lib/rules/no-unknown-property'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # -----------------------------------------------------------------------------
 # Tests
 # -----------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'no-unknown-property', rule,
   valid: [
     code: '<App class="bar" />'
@@ -55,9 +56,7 @@ ruleTester.run 'no-unknown-property', rule,
   invalid: [
     code: '<div class="bar"></div>'
     output: '<div className="bar"></div>'
-    errors: [
-      message: "Unknown property 'class' found, use 'className' instead"
-    ]
+    errors: [message: "Unknown property 'class' found, use 'className' instead"]
   ,
     code: '<div for="bar"></div>'
     output: '<div htmlFor="bar"></div>'
@@ -84,9 +83,7 @@ ruleTester.run 'no-unknown-property', rule,
   ,
     code: '<div onclick="bar"></div>'
     output: '<div onClick="bar"></div>'
-    errors: [
-      message: "Unknown property 'onclick' found, use 'onClick' instead"
-    ]
+    errors: [message: "Unknown property 'onclick' found, use 'onClick' instead"]
   ,
     code: '<div onmousedown="bar"></div>'
     output: '<div onMouseDown="bar"></div>'

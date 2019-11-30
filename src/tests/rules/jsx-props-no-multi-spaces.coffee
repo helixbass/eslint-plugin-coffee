@@ -10,27 +10,28 @@
 
 rule = require 'eslint-plugin-react/lib/rules/jsx-props-no-multi-spaces'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # ------------------------------------------------------------------------------
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'jsx-props-no-multi-spaces', rule,
   valid: [
-    code: ['<App />'].join('\n')
+    code: ['<App />'].join '\n'
   ,
-    code: ['<App foo />'].join('\n')
+    code: ['<App foo />'].join '\n'
   ,
-    code: ['<App foo bar />'].join('\n')
+    code: ['<App foo bar />'].join '\n'
   ,
-    code: ['<App foo="with  spaces   " bar />'].join('\n')
+    code: ['<App foo="with  spaces   " bar />'].join '\n'
   ,
-    code: ['<App', '  foo bar />'].join('\n')
+    code: ['<App', '  foo bar />'].join '\n'
   ,
-    code: ['<App', '  foo', '  bar />'].join('\n')
+    code: ['<App', '  foo', '  bar />'].join '\n'
   ,
-    code: ['<App', '  foo {...test}', '  bar />'].join('\n')
+    code: ['<App', '  foo {...test}', '  bar />'].join '\n'
   ,
     code: '<Foo.Bar baz="quux" />'
   ,

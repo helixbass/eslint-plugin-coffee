@@ -11,12 +11,13 @@
 
 rule = require 'eslint/lib/rules/constructor-super'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'constructor-super', rule,
   valid: [
@@ -225,10 +226,10 @@ ruleTester.run 'constructor-super', rule,
     '''
     errors: [messageId: 'badSuper', type: 'CallExpression']
   ,
-    code: """
+    code: '''
       class A extends 'test'
         constructor: -> super()
-    """
+    '''
     errors: [messageId: 'badSuper', type: 'CallExpression']
   ,
     # derived classes.
@@ -424,12 +425,12 @@ ruleTester.run 'constructor-super', rule,
     errors: [messageId: 'missingAll', type: 'MethodDefinition']
   ,
     # https://github.com/eslint/eslint/issues/8248
-    code: """
+    code: '''
       class Foo extends Bar
         constructor: ->
           for a of b
             for c of d
               ;
-    """
+    '''
     errors: [messageId: 'missingAll', type: 'MethodDefinition']
   ]

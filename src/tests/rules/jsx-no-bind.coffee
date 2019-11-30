@@ -11,12 +11,13 @@
 
 rule = require '../../rules/jsx-no-bind'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # -----------------------------------------------------------------------------
 # Tests
 # -----------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'jsx-no-bind', rule,
   valid: [
     # Not covered by the rule
@@ -47,38 +48,38 @@ ruleTester.run 'jsx-no-bind', rule,
     options: [allowFunctions: yes]
   ,
     # Redux connect
-    code: """
+    code: '''
       class Hello extends Component
         render: ->
           <div>Hello</div>
       export default connect()(Hello)
-    """
+    '''
     options: [allowBind: yes]
   ,
     # Backbone view with a bind
-    code: """
+    code: '''
       DocumentRow = Backbone.View.extend({
         tagName: "li",
         render: ->
           this.onTap.bind(this)
       })
-    """
+    '''
   ,
-    code: """
+    code: '''
         foo = {
           render: ->
             this.onTap.bind(this)
             return true
         }
-      """
+      '''
   ,
-    code: """
+    code: '''
         foo = {
           render: ->
             this.onTap.bind(this)
             return true
         }
-      """
+      '''
   ,
     code: [
       'class Hello extends Component'
@@ -210,21 +211,21 @@ ruleTester.run 'jsx-no-bind', rule,
     code: '<div ref={this._refCallback.bind(this)}></div>'
     errors: [message: 'JSX props should not use .bind()']
   ,
-    code: """
+    code: '''
         Hello = createReactClass({
           render: ->
             click = @someMethod.bind @
             <div onClick={click}>Hello {@state.name}</div>
         })
-      """
+      '''
     errors: [message: 'JSX props should not use .bind()']
   ,
-    code: """
+    code: '''
       class Hello23 extends React.Component
         render: ->
           click = this.someMethod.bind(this)
           return <div onClick={click}>Hello {this.state.name}</div>
-    """
+    '''
     errors: [message: 'JSX props should not use .bind()']
   ,
     code: [
@@ -244,13 +245,13 @@ ruleTester.run 'jsx-no-bind', rule,
     errors: [message: 'JSX props should not use .bind()']
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
         foo = {
           render: ({onClick}) => (
             <div onClick={onClick.bind(this)}>Hello</div>
           )
         }
-      """
+      '''
     errors: [message: 'JSX props should not use .bind()']
   ,
     code: [
@@ -282,58 +283,58 @@ ruleTester.run 'jsx-no-bind', rule,
     errors: [
       message: 'JSX props should not use .bind()'
     ,
-      message: 'JSX props should not use functions'
+      message: 'JSX props should not use arrow functions'
     ]
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
         foo = {
           render: ({onClick}) => (
             <div onClick={if (returningBoolean()) then onClick.bind(this) else onClick.bind(this)}>Hello</div>
           )
         }
-      """
+      '''
     errors: [message: 'JSX props should not use .bind()']
   ,
-    code: """
+    code: '''
         foo = {
           render: ({onClick}) => (
             <div onClick={if (returningBoolean()) then onClick.bind(this) else handleClick()}>Hello</div>
           )
         }
-      """
+      '''
     errors: [message: 'JSX props should not use .bind()']
   ,
-    code: """
+    code: '''
         foo = {
           render: ({onClick}) => (
             <div onClick={if (returningBoolean()) then handleClick() else this.onClick.bind(this)}>Hello</div>
           )
         }
-      """
+      '''
     errors: [message: 'JSX props should not use .bind()']
   ,
-    code: """
+    code: '''
         foo = {
           render: ({onClick}) => (
             <div onClick={if returningBoolean.bind(this) then handleClick() else onClick()}>Hello</div>
           )
         }
-      """
+      '''
     errors: [message: 'JSX props should not use .bind()']
   ,
     # Arrow functions
     code: '<div onClick={() => alert("1337")}></div>'
-    errors: [message: 'JSX props should not use functions']
+    errors: [message: 'JSX props should not use arrow functions']
   ,
     code: '<div onClick={-> 42}></div>'
     errors: [message: 'JSX props should not use functions']
   ,
     code: '<div onClick={(param) => first()}></div>'
-    errors: [message: 'JSX props should not use functions']
+    errors: [message: 'JSX props should not use arrow functions']
   ,
     code: '<div ref={(c) => this._input = c}></div>'
-    errors: [message: 'JSX props should not use functions']
+    errors: [message: 'JSX props should not use arrow functions']
   ,
     code: [
       'class Hello23 extends React.Component'
@@ -341,7 +342,7 @@ ruleTester.run 'jsx-no-bind', rule,
       '    click = () => true'
       '    return <div onClick={click}>Hello</div>'
     ].join '\n'
-    errors: [message: 'JSX props should not use functions']
+    errors: [message: 'JSX props should not use arrow functions']
   ,
     # parser: 'babel-eslint'
     code: [
@@ -350,7 +351,7 @@ ruleTester.run 'jsx-no-bind', rule,
       '   return <div onClick={() => true} />'
       '})'
     ].join '\n'
-    errors: [message: 'JSX props should not use functions']
+    errors: [message: 'JSX props should not use arrow functions']
   ,
     code: [
       'Hello = React.createClass({'
@@ -358,7 +359,7 @@ ruleTester.run 'jsx-no-bind', rule,
       '   return <div onClick={=> await true} />'
       '})'
     ].join '\n'
-    errors: [message: 'JSX props should not use functions']
+    errors: [message: 'JSX props should not use arrow functions']
   ,
     code: [
       'Hello = React.createClass({'
@@ -367,7 +368,7 @@ ruleTester.run 'jsx-no-bind', rule,
       '    return <div onClick={doThing} />'
       '})'
     ].join '\n'
-    errors: [message: 'JSX props should not use functions']
+    errors: [message: 'JSX props should not use arrow functions']
   ,
     # ,
     #   code: [

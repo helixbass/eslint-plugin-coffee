@@ -10,7 +10,11 @@
 
 astUtils = require '../eslint-ast-utils'
 utils = require '../util/ast-utils'
-FixTracker = require 'eslint/lib/util/fix-tracker'
+FixTracker =
+  try
+    require 'eslint/lib/util/fix-tracker'
+  catch
+    require 'eslint/lib/rules/utils/fix-tracker'
 
 #------------------------------------------------------------------------------
 # Helpers

@@ -11,12 +11,13 @@
 
 rule = require 'eslint/lib/rules/no-dupe-class-members'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-dupe-class-members', rule,
   valid: [
@@ -41,12 +42,12 @@ ruleTester.run 'no-dupe-class-members', rule,
         [foo]: ->
         foo: ->
     '''
-    """
+    '''
       class A
         'foo': ->
         'bar': ->
         baz: ->
-    """
+    '''
     '''
       class A
         1: ->
@@ -80,11 +81,11 @@ ruleTester.run 'no-dupe-class-members', rule,
       data: name: 'foo'
     ]
   ,
-    code: """
+    code: '''
       class A
         'foo': ->
         'foo': ->
-    """
+    '''
     errors: [
       type: 'MethodDefinition'
       line: 3

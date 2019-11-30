@@ -10,6 +10,7 @@
 
 rule = require '../../rules/english-operators'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 error = (op, {args} = {}) ->
   {
@@ -28,7 +29,7 @@ error = (op, {args} = {}) ->
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'english-operators', rule,
   valid: [
@@ -66,7 +67,7 @@ ruleTester.run 'english-operators', rule,
     errors: [error '&&', message: "Prefer the usage of 'and' over '&&'"]
   ,
     code: 'a && b || c'
-    errors: [error('&&'), error('||')]
+    errors: [error('&&'), error '||']
   ,
     code: 'a == b'
     errors: [error '==']

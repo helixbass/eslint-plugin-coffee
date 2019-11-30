@@ -487,9 +487,10 @@ module.exports =
 
       # Search for the proptypes declaration
       node.properties.forEach (property) ->
-        return if (
-          property.type in ['ExperimentalSpreadProperty', 'SpreadElement']
-        )
+        return if property.type in [
+          'ExperimentalSpreadProperty'
+          'SpreadElement'
+        ]
 
         isPropType = propsUtil.isPropTypesDeclaration property
         isDefaultProp = propsUtil.isDefaultPropsDeclaration property

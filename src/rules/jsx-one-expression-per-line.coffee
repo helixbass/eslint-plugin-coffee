@@ -20,7 +20,7 @@ module.exports =
       category: 'Stylistic Issues'
       recommended: no
       url: docsUrl 'jsx-one-expression-per-line'
-    fixable: 'whitespace'
+    # fixable: 'whitespace'
     schema: [
       type: 'object'
       properties:
@@ -156,12 +156,13 @@ module.exports =
         leadingNewLineString = if details.leadingNewLine then '\n' else ''
         trailingNewLineString = if details.trailingNewLine then '\n' else ''
 
+        # eslint-disable-next-line coffee/no-unused-vars
         replaceText = "#{leadingSpaceString}#{leadingNewLineString}#{source}#{trailingNewLineString}#{trailingSpaceString}"
 
         context.report
           node: nodeToReport
           message: "`#{descriptor}` must be placed on a new line"
-          fix: (fixer) -> fixer.replaceText nodeToReport, replaceText
+          # fix: (fixer) -> fixer.replaceText nodeToReport, replaceText
 
     JSXElement: handleJSX
     JSXFragment: handleJSX

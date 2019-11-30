@@ -11,12 +11,13 @@
 
 rule = require 'eslint-plugin-react/lib/rules/jsx-curly-spacing'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # ------------------------------------------------------------------------------
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'jsx-curly-spacing', rule,
   valid: [
     code: '<App foo={bar} />'
@@ -25,7 +26,7 @@ ruleTester.run 'jsx-curly-spacing', rule,
   ,
     code: '<App foo={bar}>{ bar }</App>'
   ,
-    code: ['<App foo={', '  bar', '}>', '{bar}', '</App>'].join('\n')
+    code: ['<App foo={', '  bar', '}>', '{bar}', '</App>'].join '\n'
   ,
     code:
       '<App foo={{ bar: true, baz: true }}>{{ bar: true, baz: true }}</App>'
@@ -36,7 +37,7 @@ ruleTester.run 'jsx-curly-spacing', rule,
     code:
       '<App foo={{ bar: true, baz: true }}>{ { bar: true, baz: true } }</App>'
   ,
-    code: ['<App foo={', '  { bar: true, baz: true }', '} />'].join('\n')
+    code: ['<App foo={', '  { bar: true, baz: true }', '} />'].join '\n'
   ,
     code: [
       '<App foo={'

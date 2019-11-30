@@ -11,12 +11,13 @@
 
 rule = require 'eslint/lib/rules/no-implied-eval'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 expectedErrorMessage =
   'Implied eval. Consider passing a function instead of a string.'
 expectedError = message: expectedErrorMessage, type: 'CallExpression'
@@ -93,12 +94,12 @@ ruleTester.run 'no-implied-eval', rule,
     code: "setTimeout(1 + '' + 1)", errors: [expectedError]
   ,
     # gives the correct node when dealing with nesting
-    code: """
+    code: '''
       setTimeout 'foo' + do ->
         setTimeout(helper)
         execScript('str')
         return 'bar'
-    """
+    '''
     errors: [
       message: expectedErrorMessage
       type: 'CallExpression'

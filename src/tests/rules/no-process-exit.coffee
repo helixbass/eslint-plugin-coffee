@@ -10,12 +10,13 @@
 
 rule = require 'eslint/lib/rules/no-process-exit'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-process-exit', rule,
   valid: ['Process.exit()', 'exit = process.exit', 'f(process.exit)']

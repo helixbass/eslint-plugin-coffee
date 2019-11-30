@@ -10,12 +10,13 @@
 
 rule = require 'eslint/lib/rules/no-empty-pattern'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-empty-pattern', rule,
   # Examples of code that should not trigger the rule

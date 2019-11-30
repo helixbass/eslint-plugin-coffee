@@ -11,13 +11,14 @@
 
 eslint = require 'eslint'
 ruleNoUnusedVars = require '../../rules/no-unused-vars'
+path = require 'path'
 {RuleTester} = eslint
 
 # -----------------------------------------------------------------------------
 # Tests
 # -----------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 linter = ruleTester.linter ? eslint.linter
 linter.defineRule(
   'jsx-uses-vars'
@@ -25,47 +26,47 @@ linter.defineRule(
 )
 ruleTester.run 'no-unused-vars', ruleNoUnusedVars,
   valid: [
-    code: """
+    code: '''
         ### eslint jsx-uses-vars: 1 ###
         foo = ->
           App = null
           bar = React.render(<App/>)
           return bar
         foo()
-      """
+      '''
   ,
-    code: """
+    code: '''
         ### eslint jsx-uses-vars: 1 ###
         App = null
         React.render(<App/>)
-      """
+      '''
   ,
-    code: """
+    code: '''
         ### eslint jsx-uses-vars: 1 ###
         App = null
         React.render(<App/>)
-      """
+      '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
         ### eslint jsx-uses-vars: 1 ###
         a = 1
         React.render(<img src={a} />)
-      """
+      '''
   ,
-    code: """
+    code: '''
         ### eslint jsx-uses-vars: 1 ###
         App = null
         f = ->
           <App />
         f()
-      """
+      '''
   ,
-    code: """
+    code: '''
         ### eslint jsx-uses-vars: 1 ###
         App = null
         <App.Hello />
-      """
+      '''
   ,
     # ,
     #   code: """
@@ -73,38 +74,38 @@ ruleTester.run 'no-unused-vars', ruleNoUnusedVars,
     #       App = null
     #       <App:Hello />
     #     """
-    code: """
+    code: '''
         ### eslint jsx-uses-vars: 1 ###
         class HelloMessage
         <HelloMessage />
-      """
+      '''
   ,
-    code: """
+    code: '''
         ### eslint jsx-uses-vars: 1 ###
         class HelloMessage
           render: ->
             HelloMessage = <div>Hello</div>
             return HelloMessage
         <HelloMessage />
-      """
+      '''
   ,
-    code: """
+    code: '''
         ### eslint jsx-uses-vars: 1 ###
         foo = ->
           App = { Foo: { Bar: {} } }
           bar = React.render(<App.Foo.Bar/>)
           return bar
         foo()
-      """
+      '''
   ,
-    code: """
+    code: '''
         ### eslint jsx-uses-vars: 1 ###
         foo = ->
           App = { Foo: { Bar: { Baz: {} } } }
           bar = React.render(<App.Foo.Bar.Baz/>)
           return bar
         foo()
-      """
+      '''
   ]
   invalid: [
     code: '''
@@ -113,12 +114,12 @@ ruleTester.run 'no-unused-vars', ruleNoUnusedVars,
     '''
     errors: [message: "'App' is assigned a value but never used."]
   ,
-    code: """
+    code: '''
         ### eslint jsx-uses-vars: 1 ###
         App = null
         unused = null
         React.render(<App unused=""/>)
-      """
+      '''
     errors: [message: "'unused' is assigned a value but never used."]
   ,
 
@@ -130,53 +131,53 @@ ruleTester.run 'no-unused-vars', ruleNoUnusedVars,
     #     React.render(<App:Hello/>)
     #   """
     # errors: [message: "'Hello' is defined but never used."]
-    code: """
+    code: '''
         ### eslint jsx-uses-vars: 1 ###
         Button = null
         Input = null
         React.render(<Button.Input unused=""/>)
-      """
+      '''
     errors: [message: "'Input' is assigned a value but never used."]
   ,
-    code: """
+    code: '''
         ### eslint jsx-uses-vars: 1 ###
         class unused
-      """
+      '''
     errors: [message: "'unused' is defined but never used."]
   ,
-    code: """
+    code: '''
         ### eslint jsx-uses-vars: 1 ###
         class HelloMessage
           render: ->
             HelloMessage = <div>Hello</div>
             return HelloMessage
-      """
+      '''
     errors: [
       message: "'HelloMessage' is defined but never used."
       line: 2
     ]
   ,
-    code: """
+    code: '''
         ### eslint jsx-uses-vars: 1 ###
         class HelloMessage
           render: (HelloMessage) ->
             HelloMessage = <div>Hello</div>
             return HelloMessage
-      """
+      '''
     errors: [
       message: "'HelloMessage' is defined but never used."
       line: 2
     ]
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
         ### eslint jsx-uses-vars: 1 ###
         import {Hello} from 'Hello'
         Greetings = (Hello) ->
           Hello = require('Hello').default
           return <Hello />
         Greetings()
-      """
+      '''
     errors: [
       message: "'Hello' is defined but never used."
       line: 2

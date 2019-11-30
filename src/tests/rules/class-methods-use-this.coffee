@@ -11,12 +11,13 @@
 
 rule = require '../../rules/class-methods-use-this'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'class-methods-use-this', rule,
   valid: [
@@ -40,15 +41,15 @@ ruleTester.run 'class-methods-use-this', rule,
         foo: => @
     '''
   ,
-    code: """
+    code: '''
       class A
         foo: -> this.bar = 'bar'
-    """
+    '''
   ,
-    code: """
+    code: '''
       class A
         foo: -> @bar = 'bar'
-    """
+    '''
   ,
     code: '''
       class A
@@ -160,10 +161,10 @@ ruleTester.run 'class-methods-use-this', rule,
       data: name: 'foo'
     ]
   ,
-    code: """
+    code: '''
       class A
         foo: -> that.this = 'this'
-    """
+    '''
     errors: [
       type: 'FunctionExpression'
       line: 2

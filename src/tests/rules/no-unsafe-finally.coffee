@@ -11,16 +11,17 @@
 
 rule = require 'eslint/lib/rules/no-unsafe-finally'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-unsafe-finally', rule,
   valid: [
-    """
+    '''
       foo = ->
         try
           return 1
@@ -28,8 +29,8 @@ ruleTester.run 'no-unsafe-finally', rule,
           return 2
         finally
           console.log 'hola!'
-    """
-    """
+    '''
+    '''
       foo = ->
         try
           return 1
@@ -37,7 +38,7 @@ ruleTester.run 'no-unsafe-finally', rule,
           return 2
         finally
           console.log('hola!')
-    """
+    '''
     '''
       foo = ->
         try
@@ -104,7 +105,7 @@ ruleTester.run 'no-unsafe-finally', rule,
         finally
           (x) => x
     '''
-    """
+    '''
       foo = ->
         try
           return 1
@@ -113,7 +114,7 @@ ruleTester.run 'no-unsafe-finally', rule,
             constructor: ->
             @ehm: ->
               return 'Hola!'
-    """
+    '''
   ]
   invalid: [
     code: '''

@@ -11,15 +11,16 @@
 
 rule = require '../../rules/no-unused-styles'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # ------------------------------------------------------------------------------
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 tests =
   valid: [
-    code: """
+    code: '''
       styles = StyleSheet.create({
         name: {}
       })
@@ -27,9 +28,9 @@ tests =
         render: ->
           return <Text textStyle={styles.name}>Hello {this.props.name}</Text>
       })
-    """
+    '''
   ,
-    code: """
+    code: '''
       Hello = React.createClass({
         render: ->
           return <Text textStyle={styles.name}>Hello {this.props.name}</Text>
@@ -37,9 +38,9 @@ tests =
       styles = StyleSheet.create({
         name: {}
       })
-    """
+    '''
   ,
-    code: """
+    code: '''
       styles = StyleSheet.create({
         name: {}
       })
@@ -47,9 +48,9 @@ tests =
         render: ->
           return <Text style={styles.name}>Hello {this.props.name}</Text>
       })
-    """
+    '''
   ,
-    code: """
+    code: '''
       styles = StyleSheet.create({
         name: {},
         welcome: {}
@@ -62,9 +63,9 @@ tests =
         render: ->
           return <Text style={styles.welcome}>Welcome</Text>
       })
-    """
+    '''
   ,
-    code: """
+    code: '''
       styles = StyleSheet.create({
         text: {}
       })
@@ -75,9 +76,9 @@ tests =
         render: ->
           <Text style={[styles.text, textStyle]}>Hello {this.props.name}</Text>
       })
-    """
+    '''
   ,
-    code: """
+    code: '''
       styles = StyleSheet.create({
         text: {}
       })
@@ -95,9 +96,9 @@ tests =
             </Text>
            )
       })
-    """
+    '''
   ,
-    code: """
+    code: '''
       styles = StyleSheet.create({
         text: {}
       })
@@ -115,9 +116,9 @@ tests =
             </Text>
           )
       })
-    """
+    '''
   ,
-    code: """
+    code: '''
       styles = StyleSheet.create({
         text: {},
         text2: {},
@@ -132,9 +133,9 @@ tests =
             </Text>
           )
       })
-    """
+    '''
   ,
-    code: """
+    code: '''
       styles = StyleSheet.create({
           style1: {
               color: 'red',
@@ -149,15 +150,15 @@ tests =
           }
           render: ->
               return <View style={if @props.isDanger then styles.style1 else styles.style2} />
-    """
+    '''
   ,
-    code: """
+    code: '''
       styles = StyleSheet.create({
         text: {}
       })
-    """
+    '''
   ,
-    code: """
+    code: '''
       Hello = React.createClass({
         getInitialState: ->
           return { condition: true } 
@@ -173,9 +174,9 @@ tests =
         text: {},
         text2: {},
       })
-    """
+    '''
   ,
-    code: """
+    code: '''
       additionalStyles = {}
       styles = StyleSheet.create({
         name: {},
@@ -185,11 +186,11 @@ tests =
         render: ->
           return <Text textStyle={styles.name}>Hello {this.props.name}</Text>
       })
-    """
+    '''
   ]
 
   invalid: [
-    code: """
+    code: '''
       styles = StyleSheet.create({
         text: {}
       })
@@ -197,10 +198,10 @@ tests =
         render: ->
           return <Text style={styles.b}>Hello {this.props.name}</Text>
       })
-    """
+    '''
     errors: [message: 'Unused style detected: styles.text']
   ,
-    code: """
+    code: '''
       styles = StyleSheet.create({
         foo: {},
         bar: {},
@@ -208,10 +209,10 @@ tests =
       class Foo extends React.Component
         render: ->
           return <View style={styles.foo}/>
-    """
+    '''
     errors: [message: 'Unused style detected: styles.bar']
   ,
-    code: """
+    code: '''
       styles = StyleSheet.create({
         foo: {},
         bar: {},
@@ -219,7 +220,7 @@ tests =
       class Foo extends React.PureComponent
         render: ->
           return <View style={styles.foo}/>
-    """
+    '''
     errors: [message: 'Unused style detected: styles.bar']
   ]
 

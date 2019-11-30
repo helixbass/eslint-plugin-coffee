@@ -11,8 +11,9 @@
 
 rule = require 'eslint/lib/rules/jsx-quotes'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'jsx-quotes', rule,
   valid: [

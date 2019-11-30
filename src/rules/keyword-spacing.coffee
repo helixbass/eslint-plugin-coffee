@@ -10,7 +10,7 @@
 #------------------------------------------------------------------------------
 
 astUtils = require '../eslint-ast-utils'
-keywords = require 'eslint/lib/util/keywords'
+keywords = require '../eslint-keywords'
 
 #------------------------------------------------------------------------------
 # Constants
@@ -241,7 +241,10 @@ module.exports =
 
           retv[key] =
             before:
-              if thisBefore then expectSpaceBefore else unexpectSpaceBefore
+              if thisBefore
+                expectSpaceBefore
+              else
+                unexpectSpaceBefore
             after: if thisAfter then expectSpaceAfter else unexpectSpaceAfter
         else
           retv[key] = defaultValue

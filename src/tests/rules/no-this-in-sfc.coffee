@@ -15,67 +15,68 @@ ERROR_MESSAGE = 'Stateless functional components should not use this'
 
 rule = require '../../rules/no-this-in-sfc'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'no-this-in-sfc', rule,
   valid: [
-    code: """
+    code: '''
     Foo = (props) ->
       { foo } = props
       <div bar={foo} />
-    """
+    '''
   ,
-    code: """
+    code: '''
     Foo = ({ foo }) ->
       return <div bar={foo} />
-    """
+    '''
   ,
-    code: """
+    code: '''
     class Foo extends React.Component
       render: ->
         { foo } = this.props
         return <div bar={foo} />
-    """
+    '''
   ,
-    code: """
+    code: '''
     Foo = createReactClass({
       render: ->
         return <div>{this.props.foo}</div>
-    })"""
+    })'''
   ,
-    code: """
+    code: '''
     Foo = React.createClass({
       render: ->
         return <div>{this.props.foo}</div>
-    })"""
+    })'''
     settings: react: createClass: 'createClass'
   ,
-    code: """
+    code: '''
     foo = (bar) ->
       this.bar = bar
       this.props = 'baz'
       this.getFoo = ->
         return this.bar + this.props
-    """
+    '''
   ,
-    code: """
+    code: '''
     Foo = (props) ->
       if props.foo then <span>{props.bar}</span> else null
-    """
+    '''
   ,
-    code: """
+    code: '''
     Foo = (props) ->
       if (props.foo)
         return <div>{props.bar}</div>
       return null
-    """
+    '''
   ,
-    code: """
+    code: '''
     Foo = (props) ->
       if (props.foo)
         something()
       null
-    """
+    '''
   ,
     code: 'Foo = (props) => <span>{props.foo}</span>'
   ,
@@ -87,52 +88,52 @@ ruleTester.run 'no-this-in-sfc', rule,
     code: 'Foo = ({ foo, bar }) => if foo then <span>{bar}</span> else null'
   ]
   invalid: [
-    code: """
+    code: '''
     Foo = (props) ->
       { foo } = @props
       <div>{foo}</div>
-    """
+    '''
     errors: [message: ERROR_MESSAGE]
   ,
-    code: """
+    code: '''
     Foo = (props) ->
       <div>{this.props.foo}</div>
-    """
+    '''
     errors: [message: ERROR_MESSAGE]
   ,
-    code: """
+    code: '''
     Foo = (props) ->
       <div>{this.state.foo}</div>
-    """
+    '''
     errors: [message: ERROR_MESSAGE]
   ,
-    code: """
+    code: '''
     Foo = (props) ->
       { foo } = this.state
       <div>{foo}</div>
-    """
+    '''
     errors: [message: ERROR_MESSAGE]
   ,
-    code: """
+    code: '''
     Foo = (props) ->
       if props.foo then <div>{this.props.bar}</div> else null
-    """
+    '''
     errors: [message: ERROR_MESSAGE]
   ,
-    code: """
+    code: '''
     Foo = (props) ->
       if (props.foo)
         <div>{this.props.bar}</div>
       return null
-    """
+    '''
     errors: [message: ERROR_MESSAGE]
   ,
-    code: """
+    code: '''
     Foo = (props) ->
       if (this.props.foo)
         something()
       null
-    """
+    '''
     errors: [message: ERROR_MESSAGE]
   ,
     code: 'Foo = (props) => <span>{this.props.foo}</span>'
@@ -142,11 +143,11 @@ ruleTester.run 'no-this-in-sfc', rule,
       'Foo = (props) => if this.props.foo then <span>{props.bar}</span> else null'
     errors: [message: ERROR_MESSAGE]
   ,
-    code: """
+    code: '''
     Foo = (props) ->
       onClick = (bar) ->
         this.props.onClick()
       <div onClick={onClick}>{this.props.foo}</div>
-    """
+    '''
     errors: [{message: ERROR_MESSAGE}, {message: ERROR_MESSAGE}]
   ]

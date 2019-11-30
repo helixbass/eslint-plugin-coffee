@@ -11,8 +11,9 @@
 
 rule = require 'eslint/lib/rules/prefer-rest-params'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'prefer-rest-params', rule,
   valid: [

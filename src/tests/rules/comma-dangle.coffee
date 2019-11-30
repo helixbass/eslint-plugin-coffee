@@ -11,6 +11,7 @@
 
 rule = require 'eslint/lib/rules/comma-dangle'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Helpers
@@ -29,7 +30,7 @@ rule = require 'eslint/lib/rules/comma-dangle'
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ###
 ruleTester.run 'comma-dangle', rule,

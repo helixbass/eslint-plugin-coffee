@@ -10,20 +10,21 @@
 
 rule = require 'eslint-plugin-react/lib/rules/jsx-max-depth'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # ------------------------------------------------------------------------------
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'jsx-max-depth', rule,
   valid: [
-    code: ['<App />'].join('\n')
+    code: ['<App />'].join '\n'
   ,
     code: ['<App>', '  <foo />', '</App>'].join '\n'
     options: [max: 1]
   ,
-    code: ['<App>', '  <foo>', '    <bar />', '  </foo>', '</App>'].join('\n')
+    code: ['<App>', '  <foo>', '    <bar />', '  </foo>', '</App>'].join '\n'
   ,
     code: ['<App>', '  <foo>', '    <bar />', '  </foo>', '</App>'].join '\n'
     options: [max: 2]
@@ -34,7 +35,7 @@ ruleTester.run 'jsx-max-depth', rule,
     code: 'foo = (x) => <div><em>{x}</em></div>'
     options: [max: 2]
   ,
-    code: ['<></>'].join('\n')
+    code: ['<></>'].join '\n'
   ,
     # parser: 'babel-eslint'
     code: ['<>', '  <foo />', '</>'].join '\n'

@@ -10,6 +10,7 @@
 
 util = require 'util'
 rule = require '../../rules/operator-linebreak'
+path = require 'path'
 {RuleTester} = require 'eslint'
 
 # BAD_LN_BRK_MSG = "Bad line breaking before and after '%s'."
@@ -21,7 +22,7 @@ NONE_MSG = "There should be no line break before or after '%s'."
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'operator-linebreak', rule,
   valid: [

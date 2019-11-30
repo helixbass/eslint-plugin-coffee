@@ -10,12 +10,13 @@
 
 rule = require '../../rules/no-negated-condition'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-negated-condition', rule,
   # Examples of code that should not trigger the rule

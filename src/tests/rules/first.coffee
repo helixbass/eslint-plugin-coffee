@@ -1,6 +1,7 @@
 {RuleTester} = require 'eslint'
+path = require 'path'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 rule = require 'eslint-plugin-import/lib/rules/first'
 
 test = (x) -> x
@@ -8,99 +9,99 @@ test = (x) -> x
 ruleTester.run 'first', rule,
   valid: [
     test
-      code: """
+      code: '''
         import { x } from './foo'
         import { y } from './bar'
         export { x, y }
-      """
+      '''
     test
-      code: """
+      code: '''
       import { x } from 'foo'
       import { y } from './bar'
-    """
+    '''
     test
-      code: """
+      code: '''
       import { x } from './foo'
       import { y } from 'bar'
-    """
+    '''
     test
-      code: """
+      code: '''
         'use directive'
         import { x } from 'foo'
-      """
+      '''
   ]
   invalid: [
     test
-      code: """
+      code: '''
         import { x } from './foo'
         export { x }
         import { y } from './bar'
-      """
+      '''
       errors: 1
-      output: """
+      output: '''
         import { x } from './foo'
         import { y } from './bar'
         export { x }
-      """
+      '''
     test
-      code: """
+      code: '''
         import { x } from './foo'
         export { x }
         import { y } from './bar'
         import { z } from './baz'
-      """
+      '''
       errors: 2
-      output: """
+      output: '''
         import { x } from './foo'
         import { y } from './bar'
         import { z } from './baz'
         export { x }
-      """
+      '''
     test
-      code: """
+      code: '''
         import { x } from './foo'
         import { y } from 'bar'
-      """
+      '''
       options: ['absolute-first']
       errors: 1
     test
-      code: """
+      code: '''
         import { x } from 'foo'
         'use directive'
         import { y } from 'bar'
-      """
+      '''
       errors: 1
-      output: """
+      output: '''
         import { x } from 'foo'
         import { y } from 'bar'
         'use directive'
-      """
+      '''
     test
-      code: """
+      code: '''
         a = 1
         import { y } from './bar'
         if true
           x()
         import { x } from './foo'
         import { z } from './baz'
-      """
+      '''
       errors: 3
-      output: """
+      output: '''
         import { y } from './bar'
         a = 1
         if true
           x()
         import { x } from './foo'
         import { z } from './baz'
-      """
+      '''
     test
-      code: """
+      code: '''
         if (true) then console.log(1)
         import a from 'b'
-      """
+      '''
       errors: 1
-      output: """
+      output: '''
         import a from 'b'
         if (true) then console.log(1)
-      """
+      '''
   ]

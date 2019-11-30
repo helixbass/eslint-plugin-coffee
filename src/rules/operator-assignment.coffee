@@ -221,4 +221,7 @@ module.exports =
         }
 
     AssignmentExpression:
-      unless context.options[0] is 'never' then verify else prohibit
+      unless context.options[0] is 'never'
+        verify
+      else
+        prohibit

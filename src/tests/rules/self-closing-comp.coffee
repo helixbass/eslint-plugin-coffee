@@ -10,23 +10,28 @@
 
 rule = require 'eslint-plugin-react/lib/rules/self-closing-comp'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # ------------------------------------------------------------------------------
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'self-closing-comp', rule,
   valid: [
     code: 'HelloJohn = <Hello name="John" />'
   ,
     code: 'Profile = <Hello name="John"><img src="picture.png" /></Hello>'
   ,
-    code: """
+    code: '''
         <Hello>
           <Hello name="John" />
         </Hello>
-      """
+      '''
+  ,
+    code: 'HelloJohn = <Hello name="John"> </Hello>'
+  ,
+    code: 'HelloJohn = <Hello name="John">        </Hello>'
   ,
     code: 'HelloJohn = <div>&nbsp;</div>'
   ,
@@ -40,11 +45,17 @@ ruleTester.run 'self-closing-comp', rule,
     code: 'Profile = <Hello name="John"><img src="picture.png" /></Hello>'
     options: []
   ,
-    code: """
+    code: '''
         <Hello>
           <Hello name="John" />
         </Hello>
-      """
+      '''
+    options: []
+  ,
+    code: 'HelloJohn = <Hello name="John"> </Hello>'
+    options: []
+  ,
+    code: 'HelloJohn = <Hello name="John">        </Hello>'
     options: []
   ,
     code: 'HelloJohn = <div>&nbsp;</div>'
@@ -72,11 +83,11 @@ ruleTester.run 'self-closing-comp', rule,
       'contentContainer = <div className="content"><img src="picture.png" /></div>'
     options: [html: yes]
   ,
-    code: """
+    code: '''
         <div>
           <div className="content" />
         </div>
-      """
+      '''
     options: [html: yes]
   ]
 
@@ -98,10 +109,6 @@ ruleTester.run 'self-closing-comp', rule,
     output: 'HelloJohn = <Hello name="John" />'
     errors: [message: 'Empty components are self-closing']
   ,
-    code: 'HelloJohn = <Hello name="John"> </Hello>'
-    output: 'HelloJohn = <Hello name="John" />'
-    errors: [message: 'Empty components are self-closing']
-  ,
     code: 'HelloJohn = <Hello name="John"></Hello>'
     output: 'HelloJohn = <Hello name="John" />'
     options: []
@@ -112,22 +119,12 @@ ruleTester.run 'self-closing-comp', rule,
     options: []
     errors: [message: 'Empty components are self-closing']
   ,
-    code: 'HelloJohn = <Hello name="John"> </Hello>'
-    output: 'HelloJohn = <Hello name="John" />'
-    options: []
-    errors: [message: 'Empty components are self-closing']
-  ,
     code: 'contentContainer = <div className="content"></div>'
     output: 'contentContainer = <div className="content" />'
     options: [html: yes]
     errors: [message: 'Empty components are self-closing']
   ,
     code: 'contentContainer = <div className="content">\n</div>'
-    output: 'contentContainer = <div className="content" />'
-    options: [html: yes]
-    errors: [message: 'Empty components are self-closing']
-  ,
-    code: 'contentContainer = <div className="content"> </div>'
     output: 'contentContainer = <div className="content" />'
     options: [html: yes]
     errors: [message: 'Empty components are self-closing']

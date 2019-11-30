@@ -15,7 +15,7 @@ astUtils = require '../eslint-ast-utils'
 #------------------------------------------------------------------------------
 
 validIdentifier = /^[a-zA-Z_$][a-zA-Z0-9_$]*$/
-keywords = require 'eslint/lib/util/keywords'
+keywords = require '../eslint-keywords'
 
 module.exports =
   meta:
@@ -93,7 +93,10 @@ module.exports =
               not astUtils.canTokensBeAdjacent String(value), tokenAfterProperty
 
             textBeforeDot =
-              if astUtils.isDecimalInteger node.object then ' ' else ''
+              if astUtils.isDecimalInteger node.object
+                ' '
+              else
+                ''
             textAfterProperty = if needsSpaceAfterProperty then ' ' else ''
 
             fixer.replaceTextRange(
@@ -109,7 +112,9 @@ module.exports =
         node.property.type is 'TemplateLiteral' and
         node.property.expressions.length is 0
       )
-        checkComputedProperty node, node.property.quasis[0].value.cooked
+        # TODO: use cooked once exposed on AST?
+        # checkComputedProperty node, node.property.quasis[0].value.cooked
+        checkComputedProperty node, node.property.quasis[0].value.raw
       if (
         not allowKeywords and
         not node.computed and

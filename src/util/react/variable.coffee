@@ -54,7 +54,7 @@ variablesInScope = (context) ->
 findVariableByName = (context, name) ->
   variable = getVariable variablesInScope(context), name
 
-  return null unless (node = variable?.defs[0]?.node)
+  return null unless node = variable?.defs[0]?.node
 
   return node.right if node.type is 'TypeAlias'
 

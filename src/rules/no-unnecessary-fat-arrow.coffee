@@ -8,6 +8,8 @@
 # Requirements
 #------------------------------------------------------------------------------
 
+{isFatArrowFunction} = require '../util/ast-utils'
+
 #------------------------------------------------------------------------------
 # Rule Definition
 #------------------------------------------------------------------------------
@@ -31,12 +33,12 @@ module.exports =
       current.push node
 
     enterFunction = (node) ->
-      markUsed node if node.bound
+      markUsed node if isFatArrowFunction node
       stack.push []
 
     exitFunction = (node) ->
       uses = stack.pop()
-      return unless node.bound
+      return unless isFatArrowFunction node
       return if uses.length
       context.report {
         node
@@ -49,4 +51,8 @@ module.exports =
 
     FunctionExpression: enterFunction
     'FunctionExpression:exit': exitFunction
+    ArrowFunctionExpression: enterFunction
+    'ArrowFunctionExpression:exit': exitFunction
+    ClassMethod: enterFunction
+    'ClassMethod:exit': exitFunction
     ThisExpression: markUsed

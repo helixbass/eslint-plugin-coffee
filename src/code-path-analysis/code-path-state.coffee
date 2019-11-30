@@ -69,7 +69,7 @@ getBreakContext = (state, label) ->
 
   while context
     return context if (
-      (if label then context.label is label else context.breakable)
+      if label then context.label is label else context.breakable
     )
     context = context.upper
 

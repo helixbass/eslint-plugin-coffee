@@ -9,6 +9,7 @@
 
 rule = require '../../rules/sort-prop-types'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # -----------------------------------------------------------------------------
 # Tests
@@ -20,7 +21,7 @@ REQUIRED_ERROR_MESSAGE =
 CALLBACK_ERROR_MESSAGE =
   'Callback prop types must be listed after all other prop types'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'sort-prop-types', rule,
   valid: [
     code: [
@@ -270,7 +271,7 @@ ruleTester.run 'sort-prop-types', rule,
       'First.propTypes = propTypes'
     ].join '\n'
   ,
-    code: """
+    code: '''
       class Component extends React.Component
         render: ->
           return <div />
@@ -284,9 +285,9 @@ ruleTester.run 'sort-prop-types', rule,
           b: PropTypes.bool,
         }),
       }
-    """
+    '''
   ,
-    code: """
+    code: '''
       class Component extends React.Component
         render: ->
           return <div />
@@ -300,10 +301,10 @@ ruleTester.run 'sort-prop-types', rule,
           b: PropTypes.bool,
         }),
       }
-    """
+    '''
     options: [sortShapeProp: yes]
   ,
-    code: """
+    code: '''
       class Component extends React.Component
         render: ->
           return <div />
@@ -314,10 +315,10 @@ ruleTester.run 'sort-prop-types', rule,
           importedPropType,
         ),
       }
-    """
+    '''
     options: [sortShapeProp: yes]
   ,
-    code: """
+    code: '''
       class Component extends React.Component
         render: ->
           return <div />
@@ -325,10 +326,10 @@ ruleTester.run 'sort-prop-types', rule,
         a: PropTypes.any,
         z: PropTypes.any,
       }
-    """
+    '''
     options: [noSortAlphabetically: yes]
   ,
-    code: """
+    code: '''
       class Component extends React.Component
         render: ->
           return <div />
@@ -336,7 +337,7 @@ ruleTester.run 'sort-prop-types', rule,
         z: PropTypes.any,
         a: PropTypes.any,
       }
-    """
+    '''
     options: [noSortAlphabetically: yes]
   ]
 
@@ -915,7 +916,7 @@ ruleTester.run 'sort-prop-types', rule,
       'TextFieldLabel.propTypes = propTypes'
     ].join '\n'
   ,
-    code: """
+    code: '''
       class Component extends React.Component
         render: ->
           return <div />
@@ -928,7 +929,7 @@ ruleTester.run 'sort-prop-types', rule,
           b: PropTypes.bool,
         }),
       }
-    """
+    '''
     options: [sortShapeProp: yes]
     errors: [
       message: ERROR_MESSAGE
@@ -941,7 +942,7 @@ ruleTester.run 'sort-prop-types', rule,
       column: 5
       type: 'Property'
     ]
-    output: """
+    output: '''
       class Component extends React.Component
         render: ->
           return <div />
@@ -954,9 +955,9 @@ ruleTester.run 'sort-prop-types', rule,
           c: PropTypes.any,
         }),
       }
-    """
+    '''
   ,
-    code: """
+    code: '''
       class Component extends React.Component
         render: ->
           return <div />
@@ -965,7 +966,7 @@ ruleTester.run 'sort-prop-types', rule,
         z: PropTypes.shape(),
         y: PropTypes.any,
       }
-    """
+    '''
     options: [sortShapeProp: yes]
     errors: [
       message: ERROR_MESSAGE
@@ -973,7 +974,7 @@ ruleTester.run 'sort-prop-types', rule,
       column: 3
       type: 'Property'
     ]
-    output: """
+    output: '''
       class Component extends React.Component
         render: ->
           return <div />
@@ -982,9 +983,9 @@ ruleTester.run 'sort-prop-types', rule,
         y: PropTypes.any,
         z: PropTypes.shape(),
       }
-    """
+    '''
   ,
-    code: """
+    code: '''
       class Component extends React.Component
         render: ->
           return <div />
@@ -993,7 +994,7 @@ ruleTester.run 'sort-prop-types', rule,
         z: PropTypes.shape(someType),
         y: PropTypes.any,
       }
-    """
+    '''
     options: [sortShapeProp: yes]
     errors: [
       message: ERROR_MESSAGE
@@ -1001,7 +1002,7 @@ ruleTester.run 'sort-prop-types', rule,
       column: 3
       type: 'Property'
     ]
-    output: """
+    output: '''
       class Component extends React.Component
         render: ->
           return <div />
@@ -1010,9 +1011,9 @@ ruleTester.run 'sort-prop-types', rule,
         y: PropTypes.any,
         z: PropTypes.shape(someType),
       }
-    """
+    '''
   ,
-    code: """
+    code: '''
       class Component extends React.Component
         render: ->
           return <div />
@@ -1026,7 +1027,7 @@ ruleTester.run 'sort-prop-types', rule,
           b: PropTypes.bool,
         }),
       }
-    """
+    '''
     options: [sortShapeProp: yes]
     errors: [
       message: ERROR_MESSAGE
@@ -1054,7 +1055,7 @@ ruleTester.run 'sort-prop-types', rule,
       column: 5
       type: 'Property'
     ]
-    output: """
+    output: '''
       class Component extends React.Component
         render: ->
           return <div />
@@ -1068,9 +1069,9 @@ ruleTester.run 'sort-prop-types', rule,
         y: PropTypes.any,
         z: PropTypes.any,
       }
-    """
+    '''
   ,
-    code: """
+    code: '''
       class Component extends React.Component
         render: ->
           return <div />
@@ -1084,7 +1085,7 @@ ruleTester.run 'sort-prop-types', rule,
           b: PropTypes.bool,
         }),
       }
-    """
+    '''
     options: [
       sortShapeProp: yes
       ignoreCase: yes
@@ -1100,7 +1101,7 @@ ruleTester.run 'sort-prop-types', rule,
       column: 5
       type: 'Property'
     ]
-    output: """
+    output: '''
       class Component extends React.Component
         render: ->
           return <div />
@@ -1114,9 +1115,9 @@ ruleTester.run 'sort-prop-types', rule,
           C: PropTypes.string,
         }),
       }
-    """
+    '''
   ,
-    code: """
+    code: '''
       class Component extends React.Component
         render: ->
           return <div />
@@ -1130,7 +1131,7 @@ ruleTester.run 'sort-prop-types', rule,
           d: PropTypes.bool,
         }),
       }
-    """
+    '''
     options: [
       sortShapeProp: yes
       requiredFirst: yes
@@ -1141,7 +1142,7 @@ ruleTester.run 'sort-prop-types', rule,
       column: 5
       type: 'Property'
     ]
-    output: """
+    output: '''
       class Component extends React.Component
         render: ->
           return <div />
@@ -1155,9 +1156,9 @@ ruleTester.run 'sort-prop-types', rule,
           d: PropTypes.bool,
         }),
       }
-    """
+    '''
   ,
-    code: """
+    code: '''
       class Component extends React.Component
         render: ->
           return <div />
@@ -1172,7 +1173,7 @@ ruleTester.run 'sort-prop-types', rule,
           d: PropTypes.bool,
         }),
       }
-    """
+    '''
     options: [
       sortShapeProp: yes
       callbacksLast: yes
@@ -1188,7 +1189,7 @@ ruleTester.run 'sort-prop-types', rule,
       column: 5
       type: 'Property'
     ]
-    output: """
+    output: '''
       class Component extends React.Component
         render: ->
           return <div />
@@ -1203,9 +1204,9 @@ ruleTester.run 'sort-prop-types', rule,
           onFoo: PropTypes.func,
         }),
       }
-    """
+    '''
   ,
-    code: """
+    code: '''
       class Component extends React.Component
         render: ->
           return <div />
@@ -1221,7 +1222,7 @@ ruleTester.run 'sort-prop-types', rule,
           d: PropTypes.string,
         }),
       }
-    """
+    '''
     options: [sortShapeProp: yes]
     errors: [
       message: ERROR_MESSAGE
@@ -1234,7 +1235,7 @@ ruleTester.run 'sort-prop-types', rule,
       column: 5
       type: 'Property'
     ]
-    output: """
+    output: '''
       class Component extends React.Component
         render: ->
           return <div />
@@ -1250,9 +1251,9 @@ ruleTester.run 'sort-prop-types', rule,
           f: PropTypes.bool,
         }),
       }
-    """
+    '''
   ,
-    code: """
+    code: '''
       class Component extends React.Component
         @propTypes = {
           z: PropTypes.any,
@@ -1265,7 +1266,7 @@ ruleTester.run 'sort-prop-types', rule,
         }
         render: ->
           return <div />
-    """
+    '''
     options: [sortShapeProp: yes]
     # parser: 'babel-eslint'
     errors: [
@@ -1289,7 +1290,7 @@ ruleTester.run 'sort-prop-types', rule,
       column: 7
       type: 'Property'
     ]
-    output: """
+    output: '''
       class Component extends React.Component
         @propTypes = {
           a: PropTypes.shape({
@@ -1302,7 +1303,7 @@ ruleTester.run 'sort-prop-types', rule,
         }
         render: ->
           return <div />
-    """
+    '''
   ,
     code: [
       'First = createReactClass({'

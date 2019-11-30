@@ -69,13 +69,11 @@ module.exports =
         context.report {node, message: EXPORT_MESSAGE} unless isInScope
     CallExpression: (call) ->
       return unless context.getScope().type is 'module'
-      return unless (
-        call.parent.type in [
-          'ExpressionStatement'
-          'VariableDeclarator'
-          'AssignmentExpression'
-        ]
-      )
+      return unless call.parent.type in [
+        'ExpressionStatement'
+        'VariableDeclarator'
+        'AssignmentExpression'
+      ]
 
       return unless call.callee.type is 'Identifier'
       return unless call.callee.name is 'require'

@@ -11,6 +11,7 @@
 
 rule = require '../../rules/spread-direction'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 USE_PREFIX = "Use the prefix form of '...'"
 USE_POSTFIX = "Use the postfix form of '...'"
@@ -19,7 +20,7 @@ USE_POSTFIX = "Use the postfix form of '...'"
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'spread-direction', rule,
   valid: [

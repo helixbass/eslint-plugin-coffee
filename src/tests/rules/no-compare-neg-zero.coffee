@@ -11,12 +11,13 @@
 rule = require '../../rules/no-compare-neg-zero'
 
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-compare-neg-zero', rule,
   valid: [

@@ -10,12 +10,13 @@
 
 rule = require 'eslint/lib/rules/no-misleading-character-class'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Helpers
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ###
 # /[👍]/ // ERROR: a surrogate pair in a character class without u flag.
@@ -181,8 +182,7 @@ ruleTester.run 'no-misleading-character-class', rule,
     code: String.raw"r = new RegExp(\"[👶🏻]\", \"u\")"
     errors: [messageId: 'emojiModifier']
   ,
-    code:
-      String.raw"r = new RegExp(\"[\uD83D\uDC76\uD83C\uDFFB]\", \"u\")"
+    code: String.raw"r = new RegExp(\"[\uD83D\uDC76\uD83C\uDFFB]\", \"u\")"
     errors: [messageId: 'emojiModifier']
   ,
     code: String.raw"r = new RegExp(\"[\u{1F476}\u{1F3FB}]\", \"u\")"
@@ -194,8 +194,7 @@ ruleTester.run 'no-misleading-character-class', rule,
     code: String.raw"r = new RegExp(\"[🇯🇵]\", \"u\")"
     errors: [messageId: 'regionalIndicatorSymbol']
   ,
-    code:
-      String.raw"r = new RegExp(\"[\uD83C\uDDEF\uD83C\uDDF5]\", \"u\")"
+    code: String.raw"r = new RegExp(\"[\uD83C\uDDEF\uD83C\uDDF5]\", \"u\")"
     errors: [messageId: 'regionalIndicatorSymbol']
   ,
     code: String.raw"r = new RegExp(\"[\u{1F1EF}\u{1F1F5}]\", \"u\")"
@@ -207,13 +206,9 @@ ruleTester.run 'no-misleading-character-class', rule,
     code: String.raw"r = new RegExp(\"[👨‍👩‍👦]\", \"u\")"
     errors: [messageId: 'zwj']
   ,
-    code:
-      String
-        .raw"r = new RegExp(\"[\uD83D\uDC68\u200D\uD83D\uDC69\u200D\uD83D\uDC66]\", \"u\")"
+    code: String.raw"r = new RegExp(\"[\uD83D\uDC68\u200D\uD83D\uDC69\u200D\uD83D\uDC66]\", \"u\")"
     errors: [messageId: 'zwj']
   ,
-    code:
-      String
-        .raw"r = new RegExp(\"[\u{1F468}\u{200D}\u{1F469}\u{200D}\u{1F466}]\", \"u\")"
+    code: String.raw"r = new RegExp(\"[\u{1F468}\u{200D}\u{1F469}\u{200D}\u{1F466}]\", \"u\")"
     errors: [messageId: 'zwj']
   ]

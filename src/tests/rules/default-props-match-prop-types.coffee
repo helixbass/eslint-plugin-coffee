@@ -11,10 +11,11 @@
 
 rule = require '../../rules/default-props-match-prop-types'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # require 'babel-eslint'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 # ------------------------------------------------------------------------------
 # Tests

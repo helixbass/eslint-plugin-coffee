@@ -11,6 +11,7 @@
 
 eslint = require 'eslint'
 rule = require '../../rules/no-unused-vars'
+path = require 'path'
 {RuleTester} = eslint
 
 settings =
@@ -21,7 +22,7 @@ settings =
 # Tests
 # -----------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 linter = ruleTester.linter ? eslint.linter
 linter.defineRule(
   'jsx-uses-react'
@@ -94,7 +95,6 @@ ruleTester.run 'no-unused-vars', rule,
       errors: [message: "'React' is assigned a value but never used."]
       settings
     }
-  ,
     {
       code: '''
         ###eslint jsx-uses-react:1###

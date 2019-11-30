@@ -10,12 +10,13 @@
 
 rule = require 'eslint-plugin-react/lib/rules/no-direct-mutation-state'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # ------------------------------------------------------------------------------
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'no-direct-mutation-state', rule,
   valid: [
     code: '''
@@ -57,7 +58,7 @@ ruleTester.run 'no-direct-mutation-state', rule,
           this.state.foo = 1
     '''
   ,
-    code: """
+    code: '''
       class OneComponent extends Component
         constructor: ->
           super()
@@ -65,7 +66,7 @@ ruleTester.run 'no-direct-mutation-state', rule,
             constructor: ->
               super()
           this.state = {}
-    """
+    '''
   ]
 
   invalid: [

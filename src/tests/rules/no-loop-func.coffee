@@ -11,12 +11,13 @@
 
 rule = require '../../rules/no-loop-func'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 expectedErrorMessage = "Don't make functions within a loop."
 
 ruleTester.run 'no-loop-func', rule,
@@ -234,5 +235,5 @@ ruleTester.run 'no-loop-func', rule,
           result[letter] = score
       result.__default = 6
     '''
-    errors: [message: expectedErrorMessage, type: 'FunctionExpression']
+    errors: [message: expectedErrorMessage, type: 'ArrowFunctionExpression']
   ]

@@ -10,6 +10,7 @@
 
 rule = require '../../rules/no-unused-prop-types'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 settings =
   react:
@@ -19,7 +20,7 @@ settings =
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'no-unused-prop-types', rule,
   valid: [
     code: '''
@@ -1973,7 +1974,7 @@ ruleTester.run 'no-unused-prop-types', rule,
     options: [skipShapeProps: no]
   ,
     # issue #106
-    code: """
+    code: '''
         import React from 'react'
         import SharedPropTypes from './SharedPropTypes'
 
@@ -1992,7 +1993,7 @@ ruleTester.run 'no-unused-prop-types', rule,
           a: React.PropTypes.string,
           ...SharedPropTypes # eslint-disable-line object-shorthand
         }
-      """
+      '''
   ,
     # ,
     #   # parser: 'babel-eslint'
@@ -2069,7 +2070,7 @@ ruleTester.run 'no-unused-prop-types', rule,
     #   settings: react: flowVersion: '0.53'
     # parser: 'babel-eslint'
     # Issue #1068
-    code: """
+    code: '''
       class MyComponent extends Component
         @propTypes = {
           validate: PropTypes.bool,
@@ -2086,11 +2087,11 @@ ruleTester.run 'no-unused-prop-types', rule,
               <li className={this.props.value == option && "active"}>{option}</li>
             )}
           </ul>
-      """
+      '''
   ,
     # parser: 'babel-eslint'
     # Issue #1068
-    code: """
+    code: '''
       class MyComponent extends Component
         @propTypes = {
           validate: PropTypes.bool,
@@ -2107,11 +2108,11 @@ ruleTester.run 'no-unused-prop-types', rule,
               <li className={this.props.value == option && "active"}>{option}</li>
             )}
           </ul>
-      """
+      '''
   ,
     # parser: 'babel-eslint'
     # Issue #1068
-    code: """
+    code: '''
       class MyComponent extends Component
         @propTypes = {
           validate: PropTypes.bool,
@@ -2128,19 +2129,19 @@ ruleTester.run 'no-unused-prop-types', rule,
               <li className={this.props.value == option && "active"}>{option}</li>
             )}
           </ul>
-      """
+      '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
         class MyComponent extends React.Component
           render: ->
             return <div>{ this.props.other }</div>
         MyComponent.propTypes = { other: () => {} }
-      """
+      '''
   ,
     # Sanity test coverage for new UNSAFE_componentWillReceiveProps lifecycles
     code: [
-      """
+      '''
         class Hello extends Component
           @propTypes = {
             something: PropTypes.bool
@@ -2148,14 +2149,14 @@ ruleTester.run 'no-unused-prop-types', rule,
           UNSAFE_componentWillReceiveProps: (nextProps) ->
             {something} = nextProps
             doSomething(something)
-      """
+      '''
     ].join '\n'
     settings: react: version: '16.3.0'
   ,
     # parser: 'babel-eslint'
     # Destructured props in the `UNSAFE_componentWillUpdate` method shouldn't throw errors
     code: [
-      """
+      '''
         class Hello extends Component
           @propTypes = {
             something: PropTypes.bool
@@ -2163,14 +2164,14 @@ ruleTester.run 'no-unused-prop-types', rule,
           UNSAFE_componentWillUpdate: (nextProps, nextState) ->
             {something} = nextProps
             return something
-      """
+      '''
     ].join '\n'
     settings: react: version: '16.3.0'
   ,
     # parser: 'babel-eslint'
     # Simple test of new @getDerivedStateFromProps lifecycle
     code: [
-      """
+      '''
         class MyComponent extends React.Component
           @propTypes = {
             defaultValue: 'bar'
@@ -2186,14 +2187,14 @@ ruleTester.run 'no-unused-prop-types', rule,
             return null
           render: ->
             return <div>{ this.state.currentValue }</div>
-      """
+      '''
     ].join '\n'
     settings: react: version: '16.3.0'
   ,
     # parser: 'babel-eslint'
     # Simple test of new @getSnapshotBeforeUpdate lifecycle
     code: [
-      """
+      '''
         class MyComponent extends React.Component
           @propTypes = {
             defaultValue: PropTypes.string
@@ -2204,7 +2205,7 @@ ruleTester.run 'no-unused-prop-types', rule,
             return null
           render: ->
             return <div />
-      """
+      '''
     ].join '\n'
     settings: react: version: '16.3.0'
   ,
@@ -2400,9 +2401,7 @@ ruleTester.run 'no-unused-prop-types', rule,
       '}'
     ].join '\n'
     options: [skipShapeProps: no]
-    errors: [
-      message: "'a.*.unused' PropType is defined but prop is never used"
-    ]
+    errors: [message: "'a.*.unused' PropType is defined but prop is never used"]
   ,
     code: [
       'class Hello extends React.Component'
@@ -2422,9 +2421,7 @@ ruleTester.run 'no-unused-prop-types', rule,
       '}'
     ].join '\n'
     options: [skipShapeProps: no]
-    errors: [
-      message: "'a.*.unused' PropType is defined but prop is never used"
-    ]
+    errors: [message: "'a.*.unused' PropType is defined but prop is never used"]
   ,
     code: [
       'class Hello extends React.Component'
@@ -3663,7 +3660,7 @@ ruleTester.run 'no-unused-prop-types', rule,
     #   # parser: 'babel-eslint'
     #   errors: [message: "'lastname' PropType is defined but prop is never used"]
     code: [
-      """
+      '''
         class Hello extends Component
           @propTypes = {
             something: PropTypes.bool
@@ -3671,14 +3668,14 @@ ruleTester.run 'no-unused-prop-types', rule,
           UNSAFE_componentWillReceiveProps: (nextProps) ->
             {something} = nextProps
             doSomething(something)
-      """
+      '''
     ].join '\n'
     settings: react: version: '16.2.0'
     # parser: 'babel-eslint'
     errors: [message: "'something' PropType is defined but prop is never used"]
   ,
     code: [
-      """
+      '''
         class Hello extends Component
           @propTypes = {
             something: PropTypes.bool
@@ -3686,14 +3683,14 @@ ruleTester.run 'no-unused-prop-types', rule,
           UNSAFE_componentWillUpdate: (nextProps, nextState) ->
             {something} = nextProps
             return something
-      """
+      '''
     ].join '\n'
     settings: react: version: '16.2.0'
     # parser: 'babel-eslint'
     errors: [message: "'something' PropType is defined but prop is never used"]
   ,
     code: [
-      """
+      '''
         class MyComponent extends React.Component
           @propTypes = {
             defaultValue: 'bar'
@@ -3709,7 +3706,7 @@ ruleTester.run 'no-unused-prop-types', rule,
             return null
           render: ->
             return <div>{ this.state.currentValue }</div>
-      """
+      '''
     ].join '\n'
     settings: react: version: '16.2.0'
     # parser: 'babel-eslint'
@@ -3718,7 +3715,7 @@ ruleTester.run 'no-unused-prop-types', rule,
     ]
   ,
     code: [
-      """
+      '''
         class MyComponent extends React.Component
           @propTypes = {
             defaultValue: PropTypes.string
@@ -3729,7 +3726,7 @@ ruleTester.run 'no-unused-prop-types', rule,
             return null
           render: ->
             return <div />
-      """
+      '''
     ].join '\n'
     settings: react: version: '16.2.0'
     # parser: 'babel-eslint'

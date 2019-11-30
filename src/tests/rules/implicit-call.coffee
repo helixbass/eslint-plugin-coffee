@@ -10,8 +10,9 @@
 
 rule = require '../../rules/implicit-call'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 # ------------------------------------------------------------------------------
 # Tests

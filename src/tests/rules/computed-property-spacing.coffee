@@ -10,12 +10,13 @@
 
 rule = require 'eslint/lib/rules/computed-property-spacing'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'computed-property-spacing', rule,
   valid: [
@@ -44,24 +45,24 @@ ruleTester.run 'computed-property-spacing', rule,
     '''
     options: ['always']
   ,
-    code: """
+    code: '''
       obj[ 'map' ] (item) -> [
         1,
         2,
         3,
         4
       ]
-    """
+    '''
     options: ['always']
   ,
-    code: """
+    code: '''
       obj[ 'for' + 'Each' ] (item) -> return [
         1,
         2,
         3,
         4
       ]
-    """
+    '''
     options: ['always']
   ,
     code: 'foo = obj[ 1 ]', options: ['always']
@@ -112,24 +113,24 @@ ruleTester.run 'computed-property-spacing', rule,
     '''
     options: ['never']
   ,
-    code: """
+    code: '''
       obj['map'] (item) -> [
         1
         2
         3
         4
       ]
-    """
+    '''
     options: ['never']
   ,
-    code: """
+    code: '''
       obj['for' + 'Each'] (item) -> return [
         1,
         2,
         3,
         4
       ]
-    """
+    '''
     options: ['never']
   ,
 

@@ -1,11 +1,12 @@
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 EXPORT_MESSAGE = 'Expected "export" or "export default"'
 IMPORT_MESSAGE = 'Expected "import" instead of "require()"'
 
 rule = require '../../rules/no-commonjs'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-commonjs', rule,
   valid: [

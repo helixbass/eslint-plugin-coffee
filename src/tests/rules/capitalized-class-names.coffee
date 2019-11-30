@@ -11,12 +11,13 @@
 rule = require '../../rules/capitalized-class-names'
 {RuleTester} = require 'eslint'
 {isString} = require 'lodash'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'capitalized-class-names', rule,
   valid: [

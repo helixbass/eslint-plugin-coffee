@@ -9,7 +9,11 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-Traverser = require 'eslint/lib/util/traverser'
+Traverser =
+  try
+    require 'eslint/lib/util/traverser'
+  catch
+    require 'eslint/lib/shared/traverser'
 astUtils = require '../eslint-ast-utils'
 
 #------------------------------------------------------------------------------
@@ -305,7 +309,7 @@ module.exports =
 
       groupMap = new Map()
 
-      while (scope = queue.pop())
+      while scope = queue.pop()
         queue.push ...scope.childScopes
         scope.variables.forEach checkReferences
 

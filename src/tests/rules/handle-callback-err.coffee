@@ -11,12 +11,13 @@
 
 rule = require 'eslint/lib/rules/handle-callback-err'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 expectedErrorMessage = 'Expected error to be handled.'
 expectedFunctionExpressionError =
@@ -68,11 +69,11 @@ ruleTester.run 'handle-callback-err', rule,
             err
             process.nextTick -> err
     '''
-    """
+    '''
       help = (done) ->
         err = new Error 'error'
         done()
-    """
+    '''
     'test = (err) -> err'
     'test = (err) => !err'
     'test = (err) -> err.message'

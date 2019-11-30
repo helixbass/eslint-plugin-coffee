@@ -11,12 +11,13 @@
 
 rule = require 'eslint/lib/rules/no-restricted-globals'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-restricted-globals', rule,
   valid: [
@@ -156,7 +157,5 @@ ruleTester.run 'no-restricted-globals', rule,
   ,
     code: "foo = (obj) => hasOwnProperty(obj, 'name')"
     options: ['hasOwnProperty']
-    errors: [
-      message: "Unexpected use of 'hasOwnProperty'.", type: 'Identifier'
-    ]
+    errors: [message: "Unexpected use of 'hasOwnProperty'.", type: 'Identifier']
   ]

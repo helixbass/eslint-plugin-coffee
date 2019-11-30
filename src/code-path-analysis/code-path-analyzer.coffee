@@ -12,8 +12,8 @@
 assert = require 'assert'
 CodePath = require './code-path'
 CodePathSegment = require './code-path-segment'
-IdGenerator = require 'eslint/lib/code-path-analysis/id-generator'
-debug = require 'eslint/lib/code-path-analysis/debug-helpers'
+IdGenerator = require '../eslint-code-path-analysis-id-generator'
+debug = require '../eslint-code-path-analysis-debug-helpers'
 astUtils = require '../eslint-ast-utils'
 
 #------------------------------------------------------------------------------
@@ -258,6 +258,10 @@ preprocess = ({codePath}, node) ->
         state.forkBypassPath()
         state.forkPath()
 
+getLabel = (node) ->
+  return node.parent.label.name if node.parent.type is 'LabeledStatement'
+  null
+
 ###*
 # Updates the code path due to the type of a given node in entering.
 #
@@ -297,10 +301,7 @@ processCodePathToEnter = (analyzer, node) ->
       state.pushChoiceContext 'test', no
 
     when 'SwitchStatement'
-      state.pushSwitchContext(
-        node.cases.some isCaseNode
-        astUtils.getLabel node
-      )
+      state.pushSwitchContext node.cases.some(isCaseNode), getLabel node
 
     when 'TryStatement'
       state.pushTryContext Boolean node.finalizer
@@ -315,7 +316,7 @@ processCodePathToEnter = (analyzer, node) ->
         state.forkPath()
 
     when 'WhileStatement', 'DoWhileStatement', 'ForStatement', 'ForInStatement', 'ForOfStatement', 'For'
-      state.pushLoopContext node.type, astUtils.getLabel node
+      state.pushLoopContext node.type, getLabel node
 
     when 'LabeledStatement'
       unless astUtils.isBreakableStatement node.body

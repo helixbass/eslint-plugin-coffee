@@ -11,12 +11,13 @@
 
 rule = require '../../rules/no-empty-character-class'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-empty-character-class', rule,
   valid: [
@@ -39,6 +40,7 @@ ruleTester.run 'no-empty-character-class', rule,
         # []
       ///
     '''
+    # eslint-disable-next-line coffee/no-template-curly-in-string
     '''
       foo = ///
         x
@@ -80,6 +82,7 @@ ruleTester.run 'no-empty-character-class', rule,
       '''
     errors: [messageId: 'unexpected', type: 'Literal']
   ,
+    # eslint-disable-next-line coffee/no-template-curly-in-string
     code: '''
         foo = ///
           x

@@ -10,6 +10,7 @@
 
 rule = require '../../rules/boolean-prop-naming'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # require 'babel-eslint'
 
@@ -17,142 +18,142 @@ rule = require '../../rules/boolean-prop-naming'
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'boolean-prop-naming', rule,
   valid: [
     # Should support both `is` and `has` prefixes by default
-    code: """
+    code: '''
       Hello = createReactClass({
         propTypes: {isSomething: PropTypes.bool, hasValue: PropTypes.bool},
         render: -> return <div />
       })
-    """
+    '''
   ,
     # createReactClass components with PropTypes
-    code: """
+    code: '''
       Hello = createReactClass({
         propTypes: {isSomething: PropTypes.bool},
         render: -> return <div />
       })
-    """
+    '''
     options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
   ,
     # createReactClass components with React.PropTypes
-    code: """
+    code: '''
       Hello = createReactClass
         propTypes: {isSomething: React.PropTypes.bool}
         render: -> <div />
-    """
+    '''
     options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
   ,
     # React.createClass components with PropTypes
-    code: """
+    code: '''
       Hello = React.createClass({
         propTypes: {isSomething: PropTypes.bool},
         render: -> return <div />
       })
-    """
+    '''
     options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
     settings:
       react:
         createClass: 'createClass'
   ,
     # React.createClass components with non-boolean PropTypes
-    code: """
+    code: '''
       Hello = React.createClass({
         propTypes: {something: PropTypes.any},
         render: -> return <div />
       })
-    """
+    '''
     options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
     settings:
       react:
         createClass: 'createClass'
   ,
     # ES6 components as React.Component with boolean PropTypes
-    code: """
+    code: '''
       class Hello extends React.Component
         render: -> return <div />
       Hello.propTypes = {isSomething: PropTypes.bool}
-    """
+    '''
     options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
   ,
     # ES6 components as React.Component with non-boolean PropTypes
-    code: """
+    code: '''
       class Hello extends React.Component
         render: -> <div />
       Hello.propTypes = wrap({ a: PropTypes.bool })
-    """
+    '''
     options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
   ,
-    code: """
+    code: '''
       class Hello extends React.Component
         render: -> return <div />
       Hello.propTypes = {something: PropTypes.any}
-    """
+    '''
     options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
   ,
     # ES6 components as Component with boolean PropTypes
-    code: """
+    code: '''
       class Hello extends Component
         render: -> return <div />
       Hello.propTypes = {isSomething: PropTypes.bool}
-    """
+    '''
     options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
   ,
     # ES6 components with static class properties and PropTypes
-    code: """
+    code: '''
       class Hello extends React.Component
         @propTypes:
           isSomething: PropTypes.bool
         render: -> return <div />
-    """
+    '''
     options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
   ,
     # parser: 'babel-eslint'
     # ES6 components with static class properties and Object.spread syntax in PropTypes
-    code: """
+    code: '''
       spreadProps = { aSpreadProp: PropTypes.string }
       class Hello extends React.Component
         @propTypes: {isSomething: PropTypes.bool, ...spreadProps}
         render: -> return <div />
-    """
+    '''
     options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
   ,
     # parser: 'babel-eslint'
     # ES6 components as Component with boolean PropTypes and Object.spread syntax in PropTypes
-    code: """
+    code: '''
       spreadProps = { aSpreadProp: PropTypes.string }
       class Hello extends Component
         render: -> return <div />
       Hello.propTypes = {isSomething: PropTypes.bool, ...spreadProps}
-    """
+    '''
     options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
   ,
     # ES6 components with static class properties and React.PropTypes
-    code: """
+    code: '''
       class Hello extends React.Component
         @propTypes: {isSomething: React.PropTypes.bool}
         render: -> return <div />
-    """
+    '''
     options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
   ,
     # parser: 'babel-eslint'
     # ES6 components with static class properties an non-booleans
-    code: """
+    code: '''
       class Hello extends React.Component
         @propTypes: {something: PropTypes.any}
         render: -> return <div />
-    """
+    '''
     options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
   ,
     # parser: 'babel-eslint'
     # ES6 components and Flowtype booleans
-    code: """
+    code: '''
       class Hello extends React.Component
         props: {isSomething: boolean}
         render: -> return <div />
-    """
+    '''
     options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
   ,
 
@@ -167,10 +168,10 @@ ruleTester.run 'boolean-prop-naming', rule,
     # options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
     # parser: 'babel-eslint'
     # Stateless components
-    code: """
+    code: '''
       Hello = ({isSomething}) => return <div />
       Hello.propTypes = {isSomething: PropTypes.bool}
-    """
+    '''
     options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
   ,
     # # parser: 'babel-eslint'
@@ -185,14 +186,14 @@ ruleTester.run 'boolean-prop-naming', rule,
     #   options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
     #   # parser: 'babel-eslint'
     # Custom `propTypeNames` option
-    code: """
+    code: '''
       class Hello extends React.Component
         @propTypes: {
           isSomething: PropTypes.mutuallyExclusiveTrueProps,
           something: PropTypes.bool
         }
         render: -> return <div />
-    """
+    '''
     options: [
       propTypeNames: ['mutuallyExclusiveTrueProps']
       rule: '^is[A-Z]([A-Za-z0-9]?)+'
@@ -200,14 +201,14 @@ ruleTester.run 'boolean-prop-naming', rule,
   ,
     # parser: 'babel-eslint'
     # Custom PropTypes that are specified as variables
-    code: """
+    code: '''
       class Hello extends React.Component
         @propTypes: {
           isSomething: mutuallyExclusiveTrueProps,
           isSomethingElse: bool
         }
         render: -> return <div />
-    """
+    '''
     options: [
       propTypeNames: ['bool', 'mutuallyExclusiveTrueProps']
       rule: '^is[A-Z]([A-Za-z0-9]?)+'
@@ -215,41 +216,41 @@ ruleTester.run 'boolean-prop-naming', rule,
   ,
     # parser: 'babel-eslint'
     # Ensure rule doesn't crash on destructured objects [Issue #1369]
-    code: """
+    code: '''
       x = {a: 1}
       y = {...x}
-    """
+    '''
     options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
   ,
     # parser: 'babel-eslint'
     # Ensure rule doesn't crash on on components reference old-style Flow props
-    code: """
+    code: '''
       class Hello extends PureComponent
         props: PropsType
         render: -> return <div />
-    """
+    '''
     options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
   ,
     # parser: 'babel-eslint'
     # No propWrapperFunctions setting
-    code: """
+    code: '''
     Card = (props) ->
       <div>{if props.showScore then 'yeh' else 'no'}</div>
     Card.propTypes = merge({}, Card.propTypes, {
       showScore: PropTypes.bool
-    })"""
+    })'''
     options: [rule: '^(is|has)[A-Z]([A-Za-z0-9]?)+']
   ,
     # Ensure the rule does not throw when a prop isRequired when ES5.
-    code: """
+    code: '''
       Hello = createReactClass({
         propTypes: {isSomething: PropTypes.bool.isRequired, hasValue: PropTypes.bool.isRequired},
         render: -> return <div />
       })
-    """
+    '''
   ,
     # Ensure the rule does not throw when a prop isRequired when ES6 with static properties.
-    code: """
+    code: '''
       class Hello extends React.Component
         @propTypes: {
           isSomething: PropTypes.bool.isRequired,
@@ -260,11 +261,11 @@ ruleTester.run 'boolean-prop-naming', rule,
           return (
             <div />
           )
-    """
+    '''
   ,
     # parser: 'babel-eslint'
     # Ensure the rule does not throw when a prop isRequired when ES6 without static properties.
-    code: """
+    code: '''
       class Hello extends React.Component
         render: ->
           return (
@@ -275,15 +276,15 @@ ruleTester.run 'boolean-prop-naming', rule,
         isSomething: PropTypes.bool.isRequired,
         hasValue: PropTypes.bool.isRequired
       }
-    """
+    '''
   ,
     # Ensure the rule does not throw when a shape prop isRequired.
-    code: """
+    code: '''
       Hello = createReactClass({
         propTypes: {something: PropTypes.shape({}).isRequired},
         render: -> return <div />
       })
-    """
+    '''
     options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
     # # inline Flow type
     # code: """
@@ -303,12 +304,12 @@ ruleTester.run 'boolean-prop-naming', rule,
 
   invalid: [
     # createReactClass components with PropTypes
-    code: """
+    code: '''
       Hello = createReactClass({
         propTypes: {something: PropTypes.bool},
         render: -> <div />
       })
-    """
+    '''
     options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
     errors: [
       message:
@@ -316,12 +317,12 @@ ruleTester.run 'boolean-prop-naming', rule,
     ]
   ,
     # createReactClass components with React.PropTypes
-    code: """
+    code: '''
       Hello = createReactClass({
         propTypes: {something: React.PropTypes.bool},
         render: -> return <div />
       })
-    """
+    '''
     options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
     errors: [
       message:
@@ -329,12 +330,12 @@ ruleTester.run 'boolean-prop-naming', rule,
     ]
   ,
     # React.createClass components with PropTypes
-    code: """
+    code: '''
       Hello = React.createClass({
         propTypes: {something: PropTypes.bool},
         render: -> return <div />
       })
-    """
+    '''
     options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
     settings:
       react:
@@ -345,11 +346,11 @@ ruleTester.run 'boolean-prop-naming', rule,
     ]
   ,
     # ES6 components as React.Component with boolean PropTypes
-    code: """
+    code: '''
       class Hello extends React.Component
         render: -> return <div />
       Hello.propTypes = {something: PropTypes.bool}
-    """
+    '''
     options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
     errors: [
       message:
@@ -357,11 +358,11 @@ ruleTester.run 'boolean-prop-naming', rule,
     ]
   ,
     # ES6 components as Component with non-boolean PropTypes
-    code: """
+    code: '''
       class Hello extends Component
         render: -> return <div />
       Hello.propTypes = {something: PropTypes.bool}
-    """
+    '''
     options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
     errors: [
       message:
@@ -369,11 +370,11 @@ ruleTester.run 'boolean-prop-naming', rule,
     ]
   ,
     # ES6 components as React.Component with non-boolean PropTypes
-    code: """
+    code: '''
       class Hello extends React.Component
         @propTypes: {something: PropTypes.bool}
         render: -> return <div />
-    """
+    '''
     options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
     # parser: 'babel-eslint'
     errors: [
@@ -382,12 +383,12 @@ ruleTester.run 'boolean-prop-naming', rule,
     ]
   ,
     # ES6 components as React.Component with non-boolean PropTypes and Object.spread syntax
-    code: """
+    code: '''
       spreadProps = { aSpreadProp: PropTypes.string }
       class Hello extends Component
         render: -> return <div />
       Hello.propTypes = {something: PropTypes.bool, ...spreadProps}
-    """
+    '''
     options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
     errors: [
       message:
@@ -395,12 +396,12 @@ ruleTester.run 'boolean-prop-naming', rule,
     ]
   ,
     # ES6 components as React.Component with static class property, non-boolean PropTypes, and Object.spread syntax
-    code: """
+    code: '''
       spreadProps = { aSpreadProp: PropTypes.string }
       class Hello extends React.Component
         @propTypes: {something: PropTypes.bool, ...spreadProps}
         render: -> return <div />
-    """
+    '''
     options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
     # parser: 'babel-eslint'
     errors: [
@@ -422,10 +423,10 @@ ruleTester.run 'boolean-prop-naming', rule,
     #   message:
     #     "Prop name (something) doesn't match rule (^is[A-Z]([A-Za-z0-9]?)+)"
     # ]
-    code: """
+    code: '''
       Hello = ({something}) => return <div />
       Hello.propTypes = {something: PropTypes.bool}
-    """
+    '''
     options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
     # parser: 'babel-eslint'
     errors: [
@@ -447,11 +448,11 @@ ruleTester.run 'boolean-prop-naming', rule,
     #       "Prop name (something) doesn't match rule (^is[A-Z]([A-Za-z0-9]?)+)"
     #   ]
     # ES6 components and Flowtype non-booleans
-    code: """
+    code: '''
       class Hello extends React.Component
         @propTypes: {something: PropTypes.mutuallyExclusiveTrueProps}
         render: -> return <div />
-    """
+    '''
     options: [
       propTypeNames: ['bool', 'mutuallyExclusiveTrueProps']
       rule: '^is[A-Z]([A-Za-z0-9]?)+'
@@ -462,14 +463,14 @@ ruleTester.run 'boolean-prop-naming', rule,
         "Prop name (something) doesn't match rule (^is[A-Z]([A-Za-z0-9]?)+)"
     ]
   ,
-    code: """
+    code: '''
       class Hello extends React.Component
         @propTypes: {
           something: PropTypes.mutuallyExclusiveTrueProps,
           somethingElse: PropTypes.bool
         }
         render: -> return <div />
-    """
+    '''
     options: [
       propTypeNames: ['bool', 'mutuallyExclusiveTrueProps']
       rule: '^is[A-Z]([A-Za-z0-9]?)+'
@@ -483,14 +484,14 @@ ruleTester.run 'boolean-prop-naming', rule,
         "Prop name (somethingElse) doesn't match rule (^is[A-Z]([A-Za-z0-9]?)+)"
     ]
   ,
-    code: """
+    code: '''
       class Hello extends React.Component
         @propTypes: {
           something: mutuallyExclusiveTrueProps,
           somethingElse: bool
         }
         render: -> return <div />
-    """
+    '''
     options: [
       propTypeNames: ['bool', 'mutuallyExclusiveTrueProps']
       rule: '^is[A-Z]([A-Za-z0-9]?)+'
@@ -504,12 +505,12 @@ ruleTester.run 'boolean-prop-naming', rule,
         "Prop name (somethingElse) doesn't match rule (^is[A-Z]([A-Za-z0-9]?)+)"
     ]
   ,
-    code: """
+    code: '''
     Card = (props) ->
       return <div>{if props.showScore then 'yeh' else 'no'}</div>
     Card.propTypes = merge({}, Card.propTypes, {
         showScore: PropTypes.bool
-    })"""
+    })'''
     settings:
       propWrapperFunctions: ['merge']
     options: [rule: '^(is|has)[A-Z]([A-Za-z0-9]?)+']
@@ -518,12 +519,12 @@ ruleTester.run 'boolean-prop-naming', rule,
         "Prop name (showScore) doesn't match rule (^(is|has)[A-Z]([A-Za-z0-9]?)+)"
     ]
   ,
-    code: """
+    code: '''
     Card = (props) ->
       <div>{if props.showScore then 'yeh' else 'no'}</div>
     Card.propTypes = Object.assign({}, Card.propTypes, {
         showScore: PropTypes.bool
-    })"""
+    })'''
     settings:
       propWrapperFunctions: ['Object.assign']
     options: [rule: '^(is|has)[A-Z]([A-Za-z0-9]?)+']
@@ -532,12 +533,12 @@ ruleTester.run 'boolean-prop-naming', rule,
         "Prop name (showScore) doesn't match rule (^(is|has)[A-Z]([A-Za-z0-9]?)+)"
     ]
   ,
-    code: """
+    code: '''
     Card = (props) ->
       <div>{if props.showScore then 'yeh' else 'no'}</div>
     Card.propTypes = _.assign({}, Card.propTypes, {
         showScore: PropTypes.bool
-    })"""
+    })'''
     settings:
       propWrapperFunctions: ['_.assign']
     options: [rule: '^(is|has)[A-Z]([A-Za-z0-9]?)+']
@@ -546,12 +547,12 @@ ruleTester.run 'boolean-prop-naming', rule,
         "Prop name (showScore) doesn't match rule (^(is|has)[A-Z]([A-Za-z0-9]?)+)"
     ]
   ,
-    code: """
+    code: '''
     Card = (props) ->
       <div>{if props.showScore then 'yeh' else 'no'}</div>
     Card.propTypes = forbidExtraProps({
         showScore: PropTypes.bool
-    })"""
+    })'''
     settings:
       propWrapperFunctions: ['forbidExtraProps']
     options: [rule: '^(is|has)[A-Z]([A-Za-z0-9]?)+']

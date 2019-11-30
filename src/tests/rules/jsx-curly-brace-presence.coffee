@@ -13,6 +13,7 @@
 
 rule = require 'eslint-plugin-react/lib/rules/jsx-curly-brace-presence'
 {RuleTester} = require 'eslint'
+path = require 'path'
 missingCurlyMessage = 'Need to wrap this literal in a JSX expression.'
 unnecessaryCurlyMessage = 'Curly braces are unnecessary here.'
 
@@ -20,7 +21,7 @@ unnecessaryCurlyMessage = 'Curly braces are unnecessary here.'
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'jsx-curly-brace-presence', rule,
   valid: [
     code: '<App {...props}>foo</App>'
@@ -70,6 +71,7 @@ ruleTester.run 'jsx-curly-brace-presence', rule,
     options: [props: 'never']
   ,
     code: '<App>{<myApp></myApp>}</App>'
+    options: [children: 'always']
   ,
     code: '<App>{[]}</App>'
   ,
@@ -186,6 +188,15 @@ ruleTester.run 'jsx-curly-brace-presence', rule,
     code: '<App prop={"foo"} />'
     output: '<App prop="foo" />'
     options: [props: 'never']
+    errors: [message: unnecessaryCurlyMessage]
+  ,
+    code: '<App>{<myApp></myApp>}</App>'
+    output: '<App><myApp></myApp></App>'
+    options: [children: 'never']
+    errors: [message: unnecessaryCurlyMessage]
+  ,
+    code: '<App>{<myApp></myApp>}</App>'
+    output: '<App><myApp></myApp></App>'
     errors: [message: unnecessaryCurlyMessage]
   ,
     code: "<App prop={'foo'}>foo</App>"

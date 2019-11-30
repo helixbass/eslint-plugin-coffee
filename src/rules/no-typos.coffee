@@ -58,7 +58,7 @@ module.exports =
     checkValidPropType = (node) ->
       if (
         node.name and
-        not PROP_TYPES.some (propTypeName) -> propTypeName is node.name
+        not PROP_TYPES.some((propTypeName) -> propTypeName is node.name)
       )
         context.report {
           node

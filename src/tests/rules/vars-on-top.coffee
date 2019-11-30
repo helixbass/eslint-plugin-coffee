@@ -11,12 +11,13 @@
 
 rule = require '../../rules/vars-on-top'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'vars-on-top', rule,
   valid: [
@@ -117,32 +118,32 @@ ruleTester.run 'vars-on-top', rule,
         alert j for j in [0...10]
         i = i + 1
     '''
-    """
+    '''
       'use strict'
       x = null
       f()
-    """
-    """
+    '''
+    '''
       'use strict'
       'directive'
       x = y = null
       f()
-    """
-    """
+    '''
+    '''
       f = ->
         'use strict'
         x = null
         f()
-    """
-    """
+    '''
+    '''
       f = ->
         'use strict'
         'directive'
         x = null
         y = null
         f()
-    """
-    """
+    '''
+    '''
       import React from 'react'
       y = null
       f = ->
@@ -150,8 +151,8 @@ ruleTester.run 'vars-on-top', rule,
         x = null
         y = null
         f()
-    """
-    """
+    '''
+    '''
       'use strict'
       import React from 'react'
       y = null
@@ -160,8 +161,8 @@ ruleTester.run 'vars-on-top', rule,
         x = null
         y = null
         f()
-    """
-    """
+    '''
+    '''
       import React from 'react'
       'use strict'
       y = null
@@ -170,8 +171,8 @@ ruleTester.run 'vars-on-top', rule,
         x = null
         y = null
         f()
-    """
-    """
+    '''
+    '''
       import * as foo from 'mod.js'
       'use strict'
       y = null
@@ -180,8 +181,8 @@ ruleTester.run 'vars-on-top', rule,
         x = null
         y = null
         f()
-    """
-    """
+    '''
+    '''
       import { square, diag } from 'lib'
       'use strict'
       y = null
@@ -190,8 +191,8 @@ ruleTester.run 'vars-on-top', rule,
         x = null
         y = null
         f()
-    """
-    """
+    '''
+    '''
       import { default as foo } from 'lib'
       'use strict'
       y = null
@@ -200,8 +201,8 @@ ruleTester.run 'vars-on-top', rule,
         x = null
         y = null
         f()
-    """
-    """
+    '''
+    '''
       import 'src/mylib'
       'use strict'
       y = null
@@ -210,8 +211,8 @@ ruleTester.run 'vars-on-top', rule,
         x = null
         y = null
         f()
-    """
-    """
+    '''
+    '''
       import theDefault, { named1, named2 } from 'src/mylib'
       'use strict'
       y = null
@@ -220,7 +221,7 @@ ruleTester.run 'vars-on-top', rule,
         x = null
         y = null
         f()
-    """
+    '''
     '''
       export x = null
       y = null
@@ -363,56 +364,56 @@ ruleTester.run 'vars-on-top', rule,
       type: 'Identifier'
     ]
   ,
-    code: """
+    code: '''
       'use strict'
       0
       x = null
       f()
-    """
+    '''
     errors: [
       message:
         'All declarations must be at the top of the function scope.'
       type: 'Identifier'
     ]
   ,
-    code: """
+    code: '''
       f = ->
         'use strict'
         0
         x = null
         f()
-    """
+    '''
     errors: [
       message:
         'All declarations must be at the top of the function scope.'
       type: 'Identifier'
     ]
   ,
-    code: """
+    code: '''
       import {foo} from 'foo'
       export {foo}
       test = 1
-    """
+    '''
     errors: [
       message:
         'All declarations must be at the top of the function scope.'
       type: 'Identifier'
     ]
   ,
-    code: """
+    code: '''
       export {foo} from 'foo'
       test = 1
-    """
+    '''
     errors: [
       message:
         'All declarations must be at the top of the function scope.'
       type: 'Identifier'
     ]
   ,
-    code: """
+    code: '''
       export * from 'foo'
       test = 1
-    """
+    '''
     errors: [
       message:
         'All declarations must be at the top of the function scope.'

@@ -10,34 +10,35 @@
 
 rule = require 'eslint-plugin-react/lib/rules/no-did-update-set-state'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # ------------------------------------------------------------------------------
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'no-did-update-set-state', rule,
   valid: [
-    code: """
+    code: '''
       Hello = createReactClass
         render: ->
           <div>Hello {this.props.name}</div>
-    """
+    '''
   ,
-    code: """
+    code: '''
       Hello = createReactClass
         componentDidUpdate: ->
-    """
+    '''
   ,
-    code: """
+    code: '''
       Hello = createReactClass({
         componentDidUpdate: ->
           someNonMemberFunction(arg)
           this.someHandler = this.setState
       })
-    """
+    '''
   ,
-    code: """
+    code: '''
       Hello = createReactClass({
         componentDidUpdate: ->
           someClass.onSomeEvent (data) ->
@@ -45,9 +46,9 @@ ruleTester.run 'no-did-update-set-state', rule,
               data: data
             })
       })
-    """
+    '''
   ,
-    code: """
+    code: '''
       Hello = createReactClass({
         componentDidUpdate: ->
           handleEvent = (data) ->
@@ -56,54 +57,54 @@ ruleTester.run 'no-did-update-set-state', rule,
             })
           someClass.onSomeEvent(handleEvent)
       })
-    """
+    '''
     # parser: 'babel-eslint'
   ]
 
   invalid: [
-    code: """
+    code: '''
       Hello = createReactClass({
         componentDidUpdate: ->
           this.setState({
             data: data
           })
       })
-    """
+    '''
     errors: [message: 'Do not use setState in componentDidUpdate']
   ,
-    code: """
+    code: '''
       class Hello extends React.Component
         componentDidUpdate: ->
           this.setState({
             data: data
           })
-    """
+    '''
     # parser: 'babel-eslint'
     errors: [message: 'Do not use setState in componentDidUpdate']
   ,
-    code: """
+    code: '''
       Hello = createReactClass({
         componentDidUpdate: ->
           this.setState({
             data: data
           })
       })
-    """
+    '''
     options: ['disallow-in-func']
     errors: [message: 'Do not use setState in componentDidUpdate']
   ,
-    code: """
+    code: '''
       class Hello extends React.Component
         componentDidUpdate: ->
           this.setState({
             data: data
           })
-    """
+    '''
     # parser: 'babel-eslint'
     options: ['disallow-in-func']
     errors: [message: 'Do not use setState in componentDidUpdate']
   ,
-    code: """
+    code: '''
       Hello = createReactClass({
         componentDidUpdate: ->
           someClass.onSomeEvent (data) ->
@@ -111,23 +112,23 @@ ruleTester.run 'no-did-update-set-state', rule,
               data: data
             })
       })
-    """
+    '''
     options: ['disallow-in-func']
     errors: [message: 'Do not use setState in componentDidUpdate']
   ,
-    code: """
+    code: '''
       class Hello extends React.Component
         componentDidUpdate: ->
           someClass.onSomeEvent (data) ->
             this.setState({
               data: data
             })
-    """
+    '''
     # parser: 'babel-eslint'
     options: ['disallow-in-func']
     errors: [message: 'Do not use setState in componentDidUpdate']
   ,
-    code: """
+    code: '''
       Hello = createReactClass({
         componentDidUpdate: ->
           if (true)
@@ -135,35 +136,35 @@ ruleTester.run 'no-did-update-set-state', rule,
               data: data
             })
       })
-    """
+    '''
     errors: [message: 'Do not use setState in componentDidUpdate']
   ,
-    code: """
+    code: '''
       class Hello extends React.Component
         componentDidUpdate: _>
           if (true)
             this.setState({
               data: data
             })
-    """
+    '''
     # parser: 'babel-eslint'
     errors: [message: 'Do not use setState in componentDidUpdate']
   ,
-    code: """
+    code: '''
       Hello = createReactClass({
         componentDidUpdate: ->
           someClass.onSomeEvent (data) => this.setState({data: data})
       })
-    """
+    '''
     # parser: 'babel-eslint'
     options: ['disallow-in-func']
     errors: [message: 'Do not use setState in componentDidUpdate']
   ,
-    code: """
+    code: '''
       class Hello extends React.Component
         componentDidUpdate: ->
           someClass.onSomeEvent (data) => @setState data: data
-    """
+    '''
     # parser: 'babel-eslint'
     options: ['disallow-in-func']
     errors: [message: 'Do not use setState in componentDidUpdate']

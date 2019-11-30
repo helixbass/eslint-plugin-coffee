@@ -10,12 +10,13 @@
 
 rule = require 'eslint/lib/rules/prefer-promise-reject-errors'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'prefer-promise-reject-errors', rule,
   valid: [
@@ -68,13 +69,13 @@ ruleTester.run 'prefer-promise-reject-errors', rule,
     'new Promise((resolve, reject) => reject(5))'
     'new Promise((resolve, reject) => reject())'
     'new Promise (y, n) -> n(5)'
-    """
+    '''
       new Promise (resolve, reject) =>
         fs.readFile 'foo.txt', (err, file) =>
           if err
             reject 'File not found'
           else resolve file
-    """
+    '''
     'new Promise(({foo, bar, baz}, reject) => reject(5))'
     'new Promise((reject, reject) -> reject(5))'
     'new Promise(({}, reject) -> reject(5))'

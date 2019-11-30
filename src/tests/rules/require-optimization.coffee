@@ -6,28 +6,29 @@
 
 rule = require 'eslint-plugin-react/lib/rules/require-optimization'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 MESSAGE =
   'Component is not optimized. Please add a shouldComponentUpdate method.'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'react-require-optimization', rule,
   valid: [
-    code: """
+    code: '''
       class A
-    """
+    '''
   ,
-    code: """
+    code: '''
       import React from "react"
       class YourComponent extends React.Component
         shouldComponentUpdate : ->
-    """
+    '''
   ,
-    code: """
+    code: '''
       import React, {Component} from "react"
       class YourComponent extends Component
         shouldComponentUpdate : ->
-    """
+    '''
   ,
     # ,
     #   code: """
@@ -38,19 +39,19 @@ ruleTester.run 'react-require-optimization', rule,
     #       render: ->
     #   """
     #   parser: 'babel-eslint'
-    code: """
+    code: '''
       import React from "react"
       createReactClass({
         shouldComponentUpdate: ->
       })
-    """
+    '''
   ,
-    code: """
+    code: '''
       import React from "react"
       createReactClass({
         mixins: [PureRenderMixin]
       })
-    """
+    '''
   ,
     # ,
     #   code: """
@@ -58,22 +59,22 @@ ruleTester.run 'react-require-optimization', rule,
     #     class DecoratedComponent extends Component
     #   """
     #   parser: 'babel-eslint'
-    code: """
+    code: '''
       FunctionalComponent = (props) ->
         <div />
-    """
+    '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       FunctionalComponent = (props) ->
         return <div />
-    """
+    '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       FunctionalComponent = (props) =>
         return <div />
-    """
+    '''
   ,
     # parser: 'babel-eslint'
     # ,
@@ -85,60 +86,60 @@ ruleTester.run 'react-require-optimization', rule,
     #   """
     #   parser: 'babel-eslint'
     #   options: [allowDecorators: ['renderPure', 'pureRender']]
-    code: """
+    code: '''
       import React from "react"
       class YourComponent extends React.PureComponent
-    """
+    '''
     # parser: 'babel-eslint'
     options: [allowDecorators: ['renderPure', 'pureRender']]
   ,
-    code: """
+    code: '''
       import React, {PureComponent} from "react"
       class YourComponent extends PureComponent
-    """
+    '''
     # parser: 'babel-eslint'
     options: [allowDecorators: ['renderPure', 'pureRender']]
   ,
-    code: """
+    code: '''
       obj = { prop: [,,,,,] }
-    """
+    '''
   ]
 
   invalid: [
-    code: """
+    code: '''
       import React from "react"
       class YourComponent extends React.Component
-    """
+    '''
     errors: [message: MESSAGE]
   ,
-    code: """
+    code: '''
       import React from "react"
       class YourComponent extends React.Component
         handleClick: ->
         render: ->
           return <div onClick={this.handleClick}>123</div>
-    """
+    '''
     # parser: 'babel-eslint'
     errors: [message: MESSAGE]
   ,
-    code: """
+    code: '''
       import React, {Component} from "react"
       class YourComponent extends Component
-    """
+    '''
     errors: [message: MESSAGE]
   ,
-    code: """
+    code: '''
       import React from "react"
       createReactClass({})
-    """
+    '''
     errors: [message: MESSAGE]
   ,
-    code: """
+    code: '''
       import React from "react"
       createReactClass({
         mixins: [RandomMixin]
       })
-    """
+    '''
     errors: [message: MESSAGE]
     # ,
     #   code: """

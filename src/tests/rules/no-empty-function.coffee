@@ -11,6 +11,7 @@
 
 rule = require '../../rules/no-empty-function'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Helpers
@@ -35,11 +36,11 @@ ALLOW_OPTIONS = Object.freeze [
 toValidInvalid = (patterns, item) ->
   # Valid Patterns
   patterns.valid.push
-    code: item.code.replace('->', '-> bar()')
+    code: item.code.replace '->', '-> bar()'
   ,
-    code: item.code.replace('->', '-> ### empty ###')
+    code: item.code.replace '->', '-> ### empty ###'
   ,
-    code: item.code.replace('->', '->\n      # empty\n')
+    code: item.code.replace '->', '->\n      # empty\n'
   ,
     code: "#{item.code}\n# allow: #{item.allow}"
     options: [allow: [item.allow]]
@@ -63,7 +64,7 @@ toValidInvalid = (patterns, item) ->
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run(
   'no-empty-function'

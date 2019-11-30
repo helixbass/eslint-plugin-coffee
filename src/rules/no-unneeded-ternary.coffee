@@ -127,9 +127,9 @@ module.exports =
     ###
     matchesDefaultAssignment = (node) ->
       return unless node.alternate
-      return unless (testIdentifierName = justIdentifierName node.test)
+      return unless testIdentifierName = justIdentifierName node.test
       return unless (
-        (consequentIdentifierName = justIdentifierName node.consequent)
+        consequentIdentifierName = justIdentifierName node.consequent
       )
       testIdentifierName is consequentIdentifierName
 
@@ -172,13 +172,11 @@ module.exports =
             alternate = getLoneExpression node.alternate
             nodeAlternate = astUtils.getParenthesisedText sourceCode, alternate
 
-            if (
-              alternate.type in [
-                'ConditionalExpression'
-                'IfStatement'
-                'YieldExpression'
-              ]
-            )
+            if alternate.type in [
+              'ConditionalExpression'
+              'IfStatement'
+              'YieldExpression'
+            ]
               isAlternateParenthesised = astUtils.isParenthesised(
                 sourceCode
                 alternate

@@ -7,10 +7,11 @@
 
 rule = require '../../rules/no-await-in-loop'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 error = messageId: 'unexpectedAwait', type: 'AwaitExpression'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-await-in-loop', rule,
   valid: [

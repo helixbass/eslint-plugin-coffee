@@ -11,12 +11,13 @@
 
 rule = require '../../rules/id-length'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'id-length', rule,
   valid: [
@@ -26,10 +27,10 @@ ruleTester.run 'id-length', rule,
     'xyz = (abc, de) ->'
     'obj = { abc: 1, de: 2 }'
     "obj = { 'a': 1, bc: 2 }"
-    """
+    '''
       obj = {}
       obj['a'] = 2
-    """
+    '''
     'abc = d'
     '''
       try
@@ -42,10 +43,10 @@ ruleTester.run 'id-length', rule,
     '_ad$$ = new $'
     'xyz = new ΣΣ()'
     'unrelatedExpressionThatNeedsToBeIgnored()'
-    """
+    '''
       obj = { 'a': 1, bc: 2 }
       obj.tk = obj.a
-    """
+    '''
     "query = location.query.q or ''"
     "query = if location.query.q then location.query.q else ''"
   ,

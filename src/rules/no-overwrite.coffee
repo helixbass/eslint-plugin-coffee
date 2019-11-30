@@ -118,7 +118,7 @@ module.exports =
     checkIdentifier = (node) ->
       return if node.declaration
       return if identifierHasAllowingComment node
-      return unless (assignmentExpression = isBeingAssignedTo node)
+      return unless assignmentExpression = isBeingAssignedTo node
       return if assignmentHasAllowingComment assignmentExpression
       declaration = getDeclaration node
       return unless declaration?

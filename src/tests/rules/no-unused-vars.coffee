@@ -11,12 +11,13 @@
 
 rule = require '../../rules/no-unused-vars'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.defineRule 'use-every-a', (context) ->
   ###*
@@ -483,11 +484,11 @@ ruleTester.run 'no-unused-vars', rule,
     options: [vars: 'all', args: 'all']
   ,
     # Using object rest for variable omission
-    code: """
+    code: '''
       data = type: 'coords', x: 1, y: 2
       { type, ...coords } = data
       console.log coords
-    """
+    '''
     options: [ignoreRestSiblings: yes]
   ,
     # https://github.com/eslint/eslint/issues/6348
@@ -740,11 +741,11 @@ ruleTester.run 'no-unused-vars', rule,
       do (foo, baz, bar) -> baz
     '''
     options: [vars: 'all', args: 'all']
-    errors: [definedError('foo'), definedError('bar')]
+    errors: [definedError('foo'), definedError 'bar']
   ,
     code: 'do (foo) -> bar = 33'
     options: [vars: 'all', args: 'all']
-    errors: [definedError('foo'), assignedError('bar')]
+    errors: [definedError('foo'), assignedError 'bar']
   ,
     code: 'do z = (foo) -> z()'
     options: [{}]
@@ -907,21 +908,21 @@ ruleTester.run 'no-unused-vars', rule,
     ]
   ,
     # Rest property sibling without ignoreRestSiblings
-    code: """
+    code: '''
       data = { type: 'coords', x: 1, y: 2 }
       { type, ...coords } = data
       console.log(coords)
-    """
+    '''
     errors: [
       line: 2, column: 3, message: "'type' is assigned a value but never used."
     ]
   ,
     # Unused rest property with ignoreRestSiblings
-    code: """
+    code: '''
       data = { type: 'coords', x: 1, y: 2 }
       { type, ...coords } = data
       console.log(type)
-    """
+    '''
     options: [ignoreRestSiblings: yes]
     errors: [
       line: 2
@@ -930,11 +931,11 @@ ruleTester.run 'no-unused-vars', rule,
     ]
   ,
     # Nested array destructuring with rest property
-    code: """
+    code: '''
       data = { vars: ['x','y'], x: 1, y: 2 }
       { vars: [x], ...coords } = data
       console.log(coords)
-    """
+    '''
     errors: [
       line: 2, column: 10, message: "'x' is assigned a value but never used."
     ]
@@ -1208,31 +1209,19 @@ ruleTester.run 'no-unused-vars', rule,
     errors: ["'a' is defined but never used."]
   ,
     code: 'do ({ a }, { b, c } ) -> b'
-    errors: [
-      "'a' is defined but never used."
-      "'c' is defined but never used."
-    ]
+    errors: ["'a' is defined but never used.", "'c' is defined but never used."]
   ,
     code: 'do ({ a, b }, { c } ) -> return b'
-    errors: [
-      "'a' is defined but never used."
-      "'c' is defined but never used."
-    ]
+    errors: ["'a' is defined but never used.", "'c' is defined but never used."]
   ,
     code: 'do ([ a ], b ) -> b'
     errors: ["'a' is defined but never used."]
   ,
     code: 'do ([ a ], [ b, c ] ) -> b'
-    errors: [
-      "'a' is defined but never used."
-      "'c' is defined but never used."
-    ]
+    errors: ["'a' is defined but never used.", "'c' is defined but never used."]
   ,
     code: '([ a, b ], [ c ] ) -> b'
-    errors: [
-      "'a' is defined but never used."
-      "'c' is defined but never used."
-    ]
+    errors: ["'a' is defined but never used.", "'c' is defined but never used."]
   ,
     # https://github.com/eslint/eslint/issues/9774
     code: 'do (_a) ->'

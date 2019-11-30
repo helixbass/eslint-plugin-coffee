@@ -10,12 +10,13 @@
 
 rule = require '../../rules/jsx-max-props-per-line'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # ------------------------------------------------------------------------------
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'jsx-max-props-per-line', rule,
   valid: [
     code: '<App />'
@@ -37,7 +38,7 @@ ruleTester.run 'jsx-max-props-per-line', rule,
     code: '<App {...this.props} bar />'
     options: [maximum: 2]
   ,
-    code: ['<App', '  foo', '  bar', '/>'].join('\n')
+    code: ['<App', '  foo', '  bar', '/>'].join '\n'
   ,
     code: ['<App', '  foo bar', '  baz', '/>'].join '\n'
     options: [maximum: 2]

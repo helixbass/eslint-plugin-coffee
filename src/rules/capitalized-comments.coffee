@@ -8,7 +8,11 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-LETTER_PATTERN = require 'eslint/lib/util/patterns/letters'
+LETTER_PATTERN =
+  try
+    require 'eslint/lib/util/patterns/letters'
+  catch
+    require 'eslint/lib/rules/utils/patterns/letters'
 astUtils = require '../eslint-ast-utils'
 
 #------------------------------------------------------------------------------

@@ -10,12 +10,13 @@
 
 rule = require 'eslint/lib/rules/no-restricted-syntax'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-restricted-syntax', rule,
   valid: [
@@ -98,10 +99,10 @@ ruleTester.run 'no-restricted-syntax', rule,
         x
         y
     '''
-    options: ['FunctionExpression > BlockStatement']
+    options: ['ArrowFunctionExpression > BlockStatement']
     errors: [
       message:
-        "Using 'FunctionExpression > BlockStatement' is not allowed."
+        "Using 'ArrowFunctionExpression > BlockStatement' is not allowed."
       type: 'BlockStatement'
     ]
   ,

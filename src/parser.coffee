@@ -86,10 +86,10 @@ getEspreeTokenType = (token) ->
   {original} = value
   value = original if original?
   return 'JSX_COMMA' if type is ',' and value is 'JSX_COMMA'
-  return 'JSXText' if type is 'STRING' and token.data?.csx
+  return 'JSXText' if type is 'STRING' and token.data?.jsx
   return 'JSXIdentifier' if (
     token.jsxIdentifier or
-    (type is 'PROPERTY' and token.data?.csx)
+    (type is 'PROPERTY' and token.data?.jsx)
   )
   return 'Keyword' if (
     (type is 'UNARY' and value in ['typeof', 'new', 'delete', 'not']) or
@@ -102,11 +102,12 @@ getTokenValue = (token) ->
   if type is 'INTERPOLATION_START'
     return (if range[1] - range[0] is 1 then '{' else '#{')
   return '}' if type is 'INTERPOLATION_END'
-  return repeat '"', range[1] - range[0] if (
-    type in ['STRING_START', 'STRING_END']
-  )
-  return value[1...-1] if type is 'STRING' and token.data?.csx
-  return '=' if token.csxColon
+  return repeat '"', range[1] - range[0] if type in [
+    'STRING_START'
+    'STRING_END'
+  ]
+  return value[1...-1] if type is 'STRING' and token.data?.jsx
+  return '=' if token.jsxColon
   value.original ? value.toString()
 
 # extraTokensForESLint = (ast) ->
@@ -139,65 +140,66 @@ tokensForESLint = ({tokens}) ->
   #     popped.push extraTokens.shift()
   #   popped
   flatten [
-    ...(for token in tokens when (
-      not (
-        token.generated and
+    ...(
+      for token in tokens when (
         not (
-          token.fromThen or
-          token.prevToken or
-          token.data?.closingBracketToken or
-          token.data?.closingTagClosingBracketToken
-        )
-      ) and
-        # excluding INDENT/OUTDENT seems necessary to avoid eslint createIndexMap() potentially choking on comment/token with same start location
-        not (token[0] is 'OUTDENT' and token.prevToken?[1] isnt ';') and
-        # espree doesn't seem to include tokens for \n
-        not (token[0] is 'TERMINATOR' and token[1] isnt ';') and
-        not (token[0] is 'INDENT' and not token.fromThen) and
-        not (
-          token[0] is 'STRING' and
-          token[1].length is 2 and
-          token[2].range[1] - token[2].range[0] < 2
-        )
+          token.generated and
+          not (
+            token.fromThen or
+            token.prevToken or
+            token.data?.closingBracketToken or
+            token.data?.closingTagClosingBracketToken
+          )
+        ) and
+          # excluding INDENT/OUTDENT seems necessary to avoid eslint createIndexMap() potentially choking on comment/token with same start location
+          not (token[0] is 'OUTDENT' and token.prevToken?[1] isnt ';') and
+          # espree doesn't seem to include tokens for \n
+          not (token[0] is 'TERMINATOR' and token[1] isnt ';') and
+          not (token[0] is 'INDENT' and not token.fromThen) and
+          not (
+            token[0] is 'STRING' and
+            token[1].length is 2 and
+            token[2].range[1] - token[2].range[0] < 2
+          )
+      )
+        token = token.prevToken if token.prevToken?[1] is ';'
+        token = token.origin if token.fromThen
+        spreadTokens =
+          if token.data?.openingBracketToken
+            if token.data.tagNameToken[1].length
+              token.data.tagNameToken.jsxIdentifier = yes
+              [token.data.openingBracketToken, token.data.tagNameToken]
+            else
+              [token.data.openingBracketToken]
+          else if token.data?.selfClosingSlashToken
+            [token.data.selfClosingSlashToken, token.data.closingBracketToken]
+          else if token.data?.closingBracketToken
+            [token.data.closingBracketToken]
+          else if token.data?.closingTagClosingBracketToken
+            if token.data.closingTagNameToken[1].length
+              token.data.closingTagNameToken.jsxIdentifier = yes
+              [
+                token.data.closingTagOpeningBracketToken
+                token.data.closingTagSlashToken
+                token.data.closingTagNameToken
+                token.data.closingTagClosingBracketToken
+              ]
+            else
+              [
+                token.data.closingTagOpeningBracketToken
+                token.data.closingTagSlashToken
+                token.data.closingTagClosingBracketToken
+              ]
+          else
+            [token]
+        for token in spreadTokens
+          [, , locationData] = token
+          {
+            type: getEspreeTokenType token
+            value: getTokenValue token
+            ...locationDataToAst(locationData)
+          }
     )
-      token = token.prevToken if token.prevToken?[1] is ';'
-      token = token.origin if token.fromThen
-      spreadTokens =
-        if token.data?.openingBracketToken
-          if token.data.tagNameToken[1].length
-            token.data.tagNameToken.jsxIdentifier = yes
-            [token.data.openingBracketToken, token.data.tagNameToken]
-          else
-            [token.data.openingBracketToken]
-        else if token.data?.selfClosingSlashToken
-          [token.data.selfClosingSlashToken, token.data.closingBracketToken]
-        else if token.data?.closingBracketToken
-          [token.data.closingBracketToken]
-        else if token.data?.closingTagClosingBracketToken
-          if token.data.closingTagNameToken[1].length
-            token.data.closingTagNameToken.jsxIdentifier = yes
-            [
-              token.data.closingTagOpeningBracketToken
-              token.data.closingTagSlashToken
-              token.data.closingTagNameToken
-              token.data.closingTagClosingBracketToken
-            ]
-          else
-            [
-              token.data.closingTagOpeningBracketToken
-              token.data.closingTagSlashToken
-              token.data.closingTagClosingBracketToken
-            ]
-        else
-          [token]
-      for token in spreadTokens
-        [, , locationData] = token
-        {
-          type: getEspreeTokenType token
-          value: getTokenValue token
-          ...locationDataToAst(locationData)
-        })
-  ,
     # ...popExtraTokens(nextStart: 'END')
     {}
   ]
@@ -230,6 +232,8 @@ exports.getParser = getParser = (getAstAndTokens) -> (code, opts) ->
     ast.range[1] = ast.end
   else
     ast.program?.range[1] = ast.program.end
+  # eslint-scope will fail eg on ImportDeclaration's unless treated as module
+  ast.sourceType = 'module'
   # dump espreeAst: ast
   {
     ast

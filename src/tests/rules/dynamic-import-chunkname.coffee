@@ -1,8 +1,9 @@
 # import {SYNTAX_CASES} from '../utils'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 rule = require '../../rules/dynamic-import-chunkname'
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 commentFormat = '[0-9a-zA-Z-_/.]+'
 pickyCommentFormat = '[a-zA-Z-_/.]+'
@@ -30,41 +31,39 @@ pickyCommentFormatError = """dynamic imports require a leading comment in the fo
 ruleTester.run 'dynamic-import-chunkname', rule,
   valid: [
     {
-      code: """
+      code: '''
         dynamicImport(
           ### webpackChunkName: "someModule" ###
           'test'
         )
-      """
+      '''
       options
     }
-  ,
     {
-      code: """
+      code: '''
         dynamicImport(
           ### webpackChunkName: "Some_Other_Module" ###
           "test"
         )
-      """
+      '''
       options
     }
-  ,
     {
-      code: """
+      code: '''
         dynamicImport(
           ### webpackChunkName: "SomeModule123" ###
           "test"
         )
-      """
+      '''
       options
     }
   ,
-    code: """
+    code: '''
       dynamicImport(
         ### webpackChunkName: "someModule" ###
         'someModule'
       )
-    """
+    '''
     options: pickyCommentOptions
     errors: [
       message: pickyCommentFormatError
@@ -342,24 +341,24 @@ ruleTester.run 'dynamic-import-chunkname', rule,
     #     ]
     #   }
     # ,
-    code: """
+    code: '''
       dynamicImport(
         ### webpackChunkName "someModule" ###
         'someModule'
       )
-    """
+    '''
     options: multipleImportFunctionOptions
     errors: [
       message: invalidSyntaxCommentError
       type: 'CallExpression'
     ]
   ,
-    code: """
+    code: '''
       definitelyNotStaticImport(
         ### webpackChunkName "someModule" ###
         'someModule'
       )
-    """
+    '''
     options: multipleImportFunctionOptions
     errors: [
       message: invalidSyntaxCommentError
@@ -367,19 +366,18 @@ ruleTester.run 'dynamic-import-chunkname', rule,
     ]
   ,
     {
-      code: """
+      code: '''
         dynamicImport(
           # webpackChunkName: "someModule"
           'someModule'
         )
-      """
+      '''
       options
       errors: [
         message: nonBlockCommentError
         type: 'CallExpression'
       ]
     }
-  ,
     {
       code: "dynamicImport('test')"
       options
@@ -388,56 +386,52 @@ ruleTester.run 'dynamic-import-chunkname', rule,
         type: 'CallExpression'
       ]
     }
-  ,
     {
-      code: """
+      code: '''
         dynamicImport(
           ### webpackChunkName: someModule ###
           'someModule'
         )
-      """
+      '''
       options
       errors: [
         message: invalidSyntaxCommentError
         type: 'CallExpression'
       ]
     }
-  ,
     {
-      code: """
+      code: '''
         dynamicImport(
           ### webpackChunkName: 'someModule' ###
           'someModule'
         )
-      """
+      '''
       options
       errors: [
         message: commentFormatError
         type: 'CallExpression'
       ]
     }
-  ,
     {
-      code: """
+      code: '''
         dynamicImport(
           ### webpackChunkName "someModule" ###
           'someModule'
         )
-      """
+      '''
       options
       errors: [
         message: invalidSyntaxCommentError
         type: 'CallExpression'
       ]
     }
-  ,
     {
-      code: """
+      code: '''
         dynamicImport(
           ### webpackChunkName:"someModule" ###
           'someModule'
         )
-      """
+      '''
       options
       errors: [
         message: commentFormatError
@@ -445,12 +439,12 @@ ruleTester.run 'dynamic-import-chunkname', rule,
       ]
     }
   ,
-    code: """
+    code: '''
       dynamicImport(
         ### webpackChunkName: "someModule123" ###
         'someModule'
       )
-    """
+    '''
     options: pickyCommentOptions
     errors: [
       message: pickyCommentFormatError

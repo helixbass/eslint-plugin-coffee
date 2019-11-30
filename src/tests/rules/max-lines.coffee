@@ -10,12 +10,13 @@
 
 rule = require 'eslint/lib/rules/max-lines'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ###*
 # Returns the error message with the specified max number of lines
@@ -24,7 +25,7 @@ ruleTester = new RuleTester parser: '../../..'
 # @returns {string} error message
 ###
 errorMessage = (limitLines, actualLines) ->
-  "File must be at most #{limitLines} lines long. It's #{actualLines} lines long."
+  "File has too many lines (#{actualLines}). Maximum allowed is #{limitLines}."
 
 ruleTester.run 'max-lines', rule,
   valid: [

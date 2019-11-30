@@ -10,12 +10,13 @@
 
 rule = require 'eslint-plugin-react/lib/rules/jsx-pascal-case'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # ------------------------------------------------------------------------------
 # Tests
 # ------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'jsx-pascal-case', rule,
   valid: [
     code: '<testComponent />'

@@ -10,12 +10,13 @@
 
 rule = require 'eslint/lib/rules/no-tabs'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ERROR_MESSAGE = 'Unexpected tab character.'
 
 ruleTester.run 'no-tabs', rule,
@@ -33,14 +34,14 @@ ruleTester.run 'no-tabs', rule,
     errors: [
       message: ERROR_MESSAGE
       line: 1
-      column: 11
+      column: 10
     ]
   ,
     code: '###* \t comment test ###'
     errors: [
       message: ERROR_MESSAGE
       line: 1
-      column: 7
+      column: 6
     ]
   ,
     code: '''
@@ -50,7 +51,7 @@ ruleTester.run 'no-tabs', rule,
     errors: [
       message: ERROR_MESSAGE
       line: 2
-      column: 5
+      column: 4
     ]
   ,
     code: '''
@@ -60,7 +61,7 @@ ruleTester.run 'no-tabs', rule,
     errors: [
       message: ERROR_MESSAGE
       line: 1
-      column: 2
+      column: 1
     ]
   ,
     code: '''
@@ -71,10 +72,10 @@ ruleTester.run 'no-tabs', rule,
     errors: [
       message: ERROR_MESSAGE
       line: 2
-      column: 5
+      column: 4
     ,
       message: ERROR_MESSAGE
       line: 3
-      column: 2
+      column: 1
     ]
   ]

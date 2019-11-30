@@ -11,12 +11,13 @@
 
 rule = require '../../rules/no-this-before-super'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-this-before-super', rule,
   valid: [
@@ -196,7 +197,7 @@ ruleTester.run 'no-this-before-super', rule,
     '''
 
     # https://github.com/eslint/eslint/issues/8848
-    """
+    '''
       class A extends B
         constructor: (props) ->
           super props
@@ -206,7 +207,7 @@ ruleTester.run 'no-this-before-super', rule,
             for a from arr
               ;
           catch err
-    """
+    '''
   ]
   invalid: [
     # disallows all `this`/`super` if `super()` is missing.
@@ -238,9 +239,7 @@ ruleTester.run 'no-this-before-super', rule,
       class A extends B
         constructor: -> super.c()
     '''
-    errors: [
-      message: "'super' is not allowed before 'super()'.", type: 'Super'
-    ]
+    errors: [message: "'super' is not allowed before 'super()'.", type: 'Super']
   ,
     # disallows `this`/`super` before `super()`.
     code: '''
@@ -269,9 +268,7 @@ ruleTester.run 'no-this-before-super', rule,
           super.c()
           super()
     '''
-    errors: [
-      message: "'super' is not allowed before 'super()'.", type: 'Super'
-    ]
+    errors: [message: "'super' is not allowed before 'super()'.", type: 'Super']
   ,
     # disallows `this`/`super` in arguments of `super()`.
     code: '''
@@ -294,9 +291,7 @@ ruleTester.run 'no-this-before-super', rule,
       class A extends B
         constructor: -> super super.c()
     '''
-    errors: [
-      message: "'super' is not allowed before 'super()'.", type: 'Super'
-    ]
+    errors: [message: "'super' is not allowed before 'super()'.", type: 'Super']
   ,
     # even if is nested, reports correctly.
     code: '''

@@ -1,6 +1,7 @@
 {RuleTester} = require 'eslint'
+path = require 'path'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 rule = require 'eslint-plugin-import/lib/rules/no-amd'
 
 ruleTester.run 'no-amd', rule,

@@ -11,12 +11,13 @@
 
 rule = require 'eslint/lib/rules/no-duplicate-case'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-duplicate-when', rule,
   valid: [
@@ -30,7 +31,7 @@ ruleTester.run 'no-duplicate-when', rule,
         else
           ;
     '''
-    """
+    '''
       a = 1
       switch a
         when 1
@@ -39,7 +40,7 @@ ruleTester.run 'no-duplicate-when', rule,
           ;
         else
           ;
-    """
+    '''
     '''
       a = 1
       switch a
@@ -166,7 +167,7 @@ ruleTester.run 'no-duplicate-when', rule,
       type: 'SwitchCase'
     ]
   ,
-    code: """
+    code: '''
       a = '1'
       switch a
         when '1'
@@ -177,7 +178,7 @@ ruleTester.run 'no-duplicate-when', rule,
           ;
         else
           ;
-    """
+    '''
     errors: [
       messageId: 'unexpected'
       type: 'SwitchCase'

@@ -11,12 +11,13 @@
 
 rule = require 'eslint/lib/rules/no-proto'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'no-proto', rule,
   valid: ['a = test[__proto__]', '__proto__ = null']

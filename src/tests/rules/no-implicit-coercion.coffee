@@ -11,12 +11,13 @@
 
 rule = require '../../rules/no-implicit-coercion'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ### eslint-disable coffee/no-template-curly-in-string ###
 ruleTester.run 'no-implicit-coercion', rule,
@@ -142,9 +143,7 @@ ruleTester.run 'no-implicit-coercion', rule,
   ,
     code: '+foo.bar'
     output: 'Number(foo.bar)'
-    errors: [
-      message: 'use `Number(foo.bar)` instead.', type: 'UnaryExpression'
-    ]
+    errors: [message: 'use `Number(foo.bar)` instead.', type: 'UnaryExpression']
   ,
     code: '1*foo'
     output: 'Number(foo)'

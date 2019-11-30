@@ -65,9 +65,10 @@ module.exports =
       # Check for `ExperimentalSpreadProperty` (ESLint 3/4) and `SpreadElement` (ESLint 5)
       # so we can skip validation of those fields.
       # Otherwise it will look for `node.value.property` which doesn't exist and breaks ESLint.
-      return null if (
-        node.type in ['ExperimentalSpreadProperty', 'SpreadElement']
-      )
+      return null if node.type in [
+        'ExperimentalSpreadProperty'
+        'SpreadElement'
+      ]
       if node.value.property
         {name} = node.value.property
         if name is 'isRequired'

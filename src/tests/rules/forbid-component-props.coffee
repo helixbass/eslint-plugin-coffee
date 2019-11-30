@@ -9,6 +9,7 @@
 
 rule = require 'eslint-plugin-react/lib/rules/forbid-component-props'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # -----------------------------------------------------------------------------
 # Tests
@@ -17,7 +18,7 @@ rule = require 'eslint-plugin-react/lib/rules/forbid-component-props'
 CLASSNAME_ERROR_MESSAGE = 'Prop `className` is forbidden on Components'
 STYLE_ERROR_MESSAGE = 'Prop `style` is forbidden on Components'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'forbid-component-props', rule,
   valid: [
     code: '''

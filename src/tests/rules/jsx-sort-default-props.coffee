@@ -10,6 +10,7 @@
 
 rule = require '../../rules/jsx-sort-default-props'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # -----------------------------------------------------------------------------
 # Tests
@@ -18,7 +19,7 @@ rule = require '../../rules/jsx-sort-default-props'
 ERROR_MESSAGE =
   'Default prop types declarations should be sorted alphabetically'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'jsx-sort-default-props', rule,
   valid: [
     code: [

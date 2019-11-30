@@ -10,6 +10,7 @@
 #------------------------------------------------------------------------------
 rule = require '../../rules/consistent-this'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Helpers
@@ -31,7 +32,7 @@ destructuringTest = (code) ->
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'consistent-this', rule,
   valid: [

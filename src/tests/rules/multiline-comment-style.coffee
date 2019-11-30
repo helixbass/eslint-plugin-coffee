@@ -10,6 +10,7 @@
 
 rule = require '../../rules/multiline-comment-style'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
@@ -26,65 +27,65 @@ ALIGNMENT_ERROR =
 EXPECTED_LINES_ERROR =
   'Expected multiple line comments instead of a block comment.'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'multiline-comment-style', rule,
   valid: [
-    """
+    '''
       ###
       # this is
       # a comment
       ###
-    """
+    '''
   ,
-    code: """
+    code: '''
       ###
       # this is
       # a comment
       ###
-    """
+    '''
     options: ['hashed-block']
   ,
-    code: """
+    code: '''
       ###
        * this is
        * a comment
       ###
-    """
+    '''
     options: ['starred-block']
   ,
-    """
+    '''
       ###*
       # this is
       # a JSDoc comment
       ###
-    """
+    '''
   ,
-    code: """
+    code: '''
       ###*
        * this is
        * a JSDoc comment
       ###
-    """
+    '''
     options: ['starred-block']
   ,
-    """
+    '''
       ### eslint semi: [
         "error"
       ] ###
-    """
-    """
+    '''
+    '''
       # this is a single-line comment
-    """
-    """
+    '''
+    '''
       ### foo ###
-    """
-    """
+    '''
+    '''
       # this is a comment
       foo()
       # this is another comment
-    """
-    """
+    '''
+    '''
       ###
       # Function overview
       # ...
@@ -92,9 +93,9 @@ ruleTester.run 'multiline-comment-style', rule,
 
       # Step 1: Do the first thing
       foo()
-    """
+    '''
   ,
-    code: """
+    code: '''
       ###
        * Function overview
        * ...
@@ -102,10 +103,10 @@ ruleTester.run 'multiline-comment-style', rule,
 
       # Step 1: Do the first thing
       foo()
-    """
+    '''
     options: ['starred-block']
   ,
-    """
+    '''
       ###
       # Function overview
       # ...
@@ -116,9 +117,9 @@ ruleTester.run 'multiline-comment-style', rule,
       # The first thing is foo().
       ###
       foo()
-    """
+    '''
   ,
-    code: """
+    code: '''
       ###
        * Function overview
        * ...
@@ -129,7 +130,7 @@ ruleTester.run 'multiline-comment-style', rule,
        * The first thing is foo().
       ###
       foo()
-    """
+    '''
     options: ['starred-block']
   ,
     '\t\t###*\n\t\t# this comment\n\t\t# is tab-aligned\n\t\t###'
@@ -144,201 +145,201 @@ ruleTester.run 'multiline-comment-style', rule,
   ,
     '###*\u2029 * this comment\u2029 * uses paragraph separators\u2029 ###'
 
-    """
+    '''
       foo(### this is an
           inline comment ###)
-    """
+    '''
 
-    """
+    '''
       # The following line comment
       # contains '###'.
-    """
+    '''
   ,
-    code: """
+    code: '''
       # The following line comment
       # contains '###'.
-    """
+    '''
     options: ['bare-block']
   ,
-    code: """
+    code: '''
       ###
        * this is
        * a comment
       ###
-    """
+    '''
     options: ['starred-block']
   ,
-    code: """
+    code: '''
       ###*
        * this is
        * a JSDoc comment
       ###
-    """
+    '''
     options: ['starred-block']
   ,
-    code: """
+    code: '''
       ### eslint semi: [
         "error"
       ] ###
-    """
+    '''
     options: ['starred-block']
   ,
-    code: """
+    code: '''
       # this is a single-line comment
-    """
+    '''
     options: ['starred-block']
   ,
-    code: """
+    code: '''
       ### foo ###
-    """
+    '''
     options: ['starred-block']
   ,
-    code: """
+    code: '''
       # this is
       # a comment
-    """
+    '''
     options: ['separate-lines']
   ,
-    code: """
+    code: '''
       ### this is
          a comment ### foo
-    """
+    '''
     options: ['separate-lines']
   ,
-    code: """
+    code: '''
       # a comment
 
       # another comment
-    """
+    '''
     options: ['separate-lines']
   ,
-    code: """
+    code: '''
       # a comment
 
       # another comment
-    """
+    '''
     options: ['bare-block']
   ,
-    code: """
+    code: '''
       # a comment
 
       # another comment
-    """
+    '''
     options: ['starred-block']
   ,
-    code: """
+    code: '''
       ### eslint semi: "error" ###
-    """
+    '''
     options: ['separate-lines']
   ,
-    code: """
+    code: '''
       ###*
       # This is
       # a JSDoc comment
       ###
-    """
+    '''
     options: ['separate-lines']
   ,
-    code: """
+    code: '''
       ###*
        * This is
        * a JSDoc comment
       ###
-    """
+    '''
     options: ['separate-lines']
   ,
-    code: """
+    code: '''
       ###*
        * This is
        * a JSDoc comment
       ###
-    """
+    '''
     options: ['starred-block']
   ,
-    code: """
+    code: '''
       ###*
       # This is
       # a JSDoc comment
       ###
-    """
+    '''
     options: ['bare-block']
   ,
-    code: """
+    code: '''
       ###*
        * This is
        * a JSDoc comment
       ###
-    """
+    '''
     options: ['bare-block']
   ,
-    code: """
+    code: '''
       ### This is
          a comment ###
-    """
+    '''
     options: ['bare-block']
   ,
-    code: """
+    code: '''
       ### This is
          a comment ###
-    """
+    '''
     options: ['bare-block']
   ,
-    code: """
+    code: '''
       ### eslint semi: [
         "error"
       ] ###
-    """
+    '''
     options: ['separate-lines']
   ,
-    code: """
+    code: '''
       ### The value of 5
        + 4 is 9, and the value of 5
        * 4 is 20. ###
-    """
+    '''
     options: ['bare-block']
   ]
 
   invalid: [
-    code: """
+    code: '''
       # these are
       # line comments
-    """
-    output: """
+    '''
+    output: '''
       ###
       # these are
       # line comments
       ###
-    """
+    '''
     errors: [message: EXPECTED_BLOCK_ERROR, line: 1]
   ,
-    code: """
+    code: '''
       # these are
       # line comments
-    """
-    output: """
+    '''
+    output: '''
       ###
        * these are
        * line comments
       ###
-    """
+    '''
     errors: [message: EXPECTED_BLOCK_ERROR, line: 1]
     options: ['starred-block']
   ,
-    code: """
+    code: '''
       #foo
       ##bar
-    """
+    '''
     output: null
     errors: [message: EXPECTED_BLOCK_ERROR, line: 1]
   ,
-    code: """
+    code: '''
       # foo
       # bar
 
       # baz
       # qux
-    """
-    output: """
+    '''
+    output: '''
       ###
       # foo
       # bar
@@ -348,21 +349,21 @@ ruleTester.run 'multiline-comment-style', rule,
       # baz
       # qux
       ###
-    """
+    '''
     errors: [
       message: EXPECTED_BLOCK_ERROR, line: 1
     ,
       message: EXPECTED_BLOCK_ERROR, line: 4
     ]
   ,
-    code: """
+    code: '''
       # foo
       # bar
 
       # baz
       # qux
-    """
-    output: """
+    '''
+    output: '''
       ###
        * foo
        * bar
@@ -372,7 +373,7 @@ ruleTester.run 'multiline-comment-style', rule,
        * baz
        * qux
       ###
-    """
+    '''
     errors: [
       message: EXPECTED_BLOCK_ERROR, line: 1
     ,
@@ -380,394 +381,394 @@ ruleTester.run 'multiline-comment-style', rule,
     ]
     options: ['starred-block']
   ,
-    code: """
+    code: '''
       ### this block
       # is missing a newline at the start
       ###
-    """
-    output: """
+    '''
+    output: '''
       ###
       # this block
       # is missing a newline at the start
       ###
-    """
+    '''
     errors: [message: START_NEWLINE_ERROR, line: 1]
   ,
-    code: """
+    code: '''
       ### this block
        * is missing a newline at the start
       ###
-    """
-    output: """
+    '''
+    output: '''
       ###
        * this block
        * is missing a newline at the start
       ###
-    """
+    '''
     errors: [message: START_NEWLINE_ERROR, line: 1]
     options: ['starred-block']
   ,
-    code: """
+    code: '''
       ###* this JSDoc comment
       # is missing a newline at the start
       ###
-    """
-    output: """
+    '''
+    output: '''
       ###*
       # this JSDoc comment
       # is missing a newline at the start
       ###
-    """
+    '''
     errors: [message: START_NEWLINE_ERROR, line: 1]
   ,
-    code: """
+    code: '''
       ###* this JSDoc comment
        * is missing a newline at the start
       ###
-    """
-    output: """
+    '''
+    output: '''
       ###*
        * this JSDoc comment
        * is missing a newline at the start
       ###
-    """
+    '''
     errors: [message: START_NEWLINE_ERROR, line: 1]
     options: ['starred-block']
   ,
-    code: """
+    code: '''
       ###
       # this block
       # is missing a newline at the end###
-    """
-    output: """
+    '''
+    output: '''
         ###
         # this block
         # is missing a newline at the end
         ###
-    """
+    '''
     errors: [message: END_NEWLINE_ERROR, line: 3]
   ,
-    code: """
+    code: '''
       ###
        * this block
        * is missing a newline at the end###
-    """
-    output: """
+    '''
+    output: '''
         ###
          * this block
          * is missing a newline at the end
         ###
-    """
+    '''
     errors: [message: END_NEWLINE_ERROR, line: 3]
     options: ['starred-block']
   ,
-    code: """
+    code: '''
         ###
         # the following line
          is missing a '*' at the start
         ###
-    """
-    output: """
+    '''
+    output: '''
         ###
         # the following line
         # is missing a '*' at the start
         ###
-    """
+    '''
     errors: [message: MISSING_HASH_ERROR, line: 3]
   ,
-    code: """
+    code: '''
         ###
          * the following line
          is missing a '*' at the start
         ###
-    """
-    output: """
+    '''
+    output: '''
         ###
          * the following line
          * is missing a '*' at the start
         ###
-    """
+    '''
     errors: [message: MISSING_STAR_ERROR, line: 3]
     options: ['starred-block']
   ,
-    code: """
+    code: '''
       ###
       # the following line
            # has a '*' with the wrong offset at the start
       ###
-    """
-    output: """
+    '''
+    output: '''
       ###
       # the following line
       # has a '*' with the wrong offset at the start
       ###
-    """
+    '''
     errors: [message: ALIGNMENT_ERROR, line: 3]
   ,
-    code: """
+    code: '''
       ###
        * the following line
             * has a '*' with the wrong offset at the start
       ###
-    """
-    output: """
+    '''
+    output: '''
       ###
        * the following line
        * has a '*' with the wrong offset at the start
       ###
-    """
+    '''
     errors: [message: ALIGNMENT_ERROR, line: 3]
     options: ['starred-block']
   ,
-    code: """
+    code: '''
       ->
         ###
         # the following line
       # has a '*' with the wrong offset at the start
         ###
-    """
-    output: """
+    '''
+    output: '''
       ->
         ###
         # the following line
         # has a '*' with the wrong offset at the start
         ###
-    """
+    '''
     errors: [message: ALIGNMENT_ERROR, line: 4]
   ,
-    code: """
+    code: '''
       ->
         ###
          * the following line
        * has a '*' with the wrong offset at the start
         ###
-    """
-    output: """
+    '''
+    output: '''
       ->
         ###
          * the following line
          * has a '*' with the wrong offset at the start
         ###
-    """
+    '''
     errors: [message: ALIGNMENT_ERROR, line: 4]
     options: ['starred-block']
   ,
-    code: """
+    code: '''
       ###
       # the last line of this comment
       # is misaligned
          ###
-    """
-    output: """
+    '''
+    output: '''
       ###
       # the last line of this comment
       # is misaligned
       ###
-    """
+    '''
     errors: [message: ALIGNMENT_ERROR, line: 4]
   ,
-    code: """
+    code: '''
       ###
        * the last line of this comment
        * is misaligned
          ###
-    """
-    output: """
+    '''
+    output: '''
       ###
        * the last line of this comment
        * is misaligned
       ###
-    """
+    '''
     errors: [message: ALIGNMENT_ERROR, line: 4]
     options: ['starred-block']
   ,
-    code: """
+    code: '''
       ->
         ###
         # the following line
        #
         # is blank
         ###
-    """
-    output: """
+    '''
+    output: '''
       ->
         ###
         # the following line
         #
         # is blank
         ###
-    """
+    '''
     errors: [message: ALIGNMENT_ERROR, line: 4]
   ,
-    code: """
+    code: '''
       ###
        * the following line
       *
        * is blank
       ###
-    """
-    output: """
+    '''
+    output: '''
       ###
        * the following line
        *
        * is blank
       ###
-    """
+    '''
     errors: [message: ALIGNMENT_ERROR, line: 3]
     options: ['starred-block']
   ,
-    code: """
+    code: '''
       ###
       # the following line
        #
       # is blank
       ###
-    """
-    output: """
+    '''
+    output: '''
       ###
       # the following line
       #
       # is blank
       ###
-    """
+    '''
     errors: [message: ALIGNMENT_ERROR, line: 3]
   ,
-    code: """
+    code: '''
       ###
        * the following line
         *
        * is blank
       ###
-    """
-    output: """
+    '''
+    output: '''
       ###
        * the following line
        *
        * is blank
       ###
-    """
+    '''
     errors: [message: ALIGNMENT_ERROR, line: 3]
     options: ['starred-block']
   ,
-    code: """
+    code: '''
       ###
       # the last line of this comment
       # is misaligned
          ### foo
-    """
-    output: """
+    '''
+    output: '''
       ###
       # the last line of this comment
       # is misaligned
       ### foo
-    """
+    '''
     errors: [message: ALIGNMENT_ERROR, line: 4]
   ,
-    code: """
+    code: '''
       ###
        * the last line of this comment
        * is misaligned
          ### foo
-    """
-    output: """
+    '''
+    output: '''
       ###
        * the last line of this comment
        * is misaligned
       ### foo
-    """
+    '''
     errors: [message: ALIGNMENT_ERROR, line: 4]
     options: ['starred-block']
   ,
-    code: """
+    code: '''
       ###
       # foo
       # bar
       ###
-    """
-    output: """
+    '''
+    output: '''
       # foo
       # bar
-    """
+    '''
     options: ['separate-lines']
     errors: [message: EXPECTED_LINES_ERROR, line: 1]
   ,
-    code: """
+    code: '''
       ###
        * foo
        * bar
       ###
-    """
-    output: """
+    '''
+    output: '''
       # foo
       # bar
-    """
+    '''
     options: ['separate-lines']
     errors: [message: EXPECTED_LINES_ERROR, line: 1]
   ,
-    code: """
+    code: '''
       ### foo
        #bar
        baz
        qux###
-    """
-    output: """
+    '''
+    output: '''
       # foo
       # bar
       # baz
       # qux
-    """
+    '''
     options: ['separate-lines']
     errors: [message: EXPECTED_LINES_ERROR, line: 1]
   ,
-    code: """
+    code: '''
       ### foo
        *bar
        baz
        qux###
-    """
-    output: """
+    '''
+    output: '''
       # foo
       # bar
       # baz
       # qux
-    """
+    '''
     options: ['separate-lines']
     errors: [message: EXPECTED_LINES_ERROR, line: 1]
   ,
-    code: """
+    code: '''
       # foo
       # bar
-    """
-    output: """
+    '''
+    output: '''
       ### foo
           bar ###
-    """
+    '''
     options: ['bare-block']
     errors: [message: EXPECTED_BLOCK_ERROR, line: 1]
   ,
-    code: """
+    code: '''
       ###
       # foo
       # bar
       ###
-    """
-    output: """
+    '''
+    output: '''
       ### foo
           bar ###
-    """
+    '''
     options: ['bare-block']
     errors: [message: EXPECTED_BLOCK_ERROR, line: 1]
   ,
-    code: """
+    code: '''
       ###
       * foo
       * bar
       ###
-    """
-    output: """
+    '''
+    output: '''
       ### foo
           bar ###
-    """
+    '''
     options: ['bare-block']
     errors: [message: EXPECTED_BLOCK_ERROR, line: 1]
   ]

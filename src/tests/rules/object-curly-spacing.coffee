@@ -10,12 +10,13 @@
 
 rule = require '../../rules/object-curly-spacing'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'object-curly-spacing', rule,
   valid: [
@@ -86,11 +87,11 @@ ruleTester.run 'object-curly-spacing', rule,
     code: "import { door } from 'room'"
     options: ['always']
   ,
-    code: """
+    code: '''
       import {
         door
       } from 'room'
-    """
+    '''
     options: ['always']
   ,
     code: "export { door } from 'room'"
@@ -117,21 +118,21 @@ ruleTester.run 'object-curly-spacing', rule,
     code: "import { x, } from 'foo'"
     options: ['always']
   ,
-    code: """
+    code: '''
       import {
         x,
       } from 'foo'
-    """
+    '''
     options: ['always']
   ,
     code: "export { x, } from 'foo'"
     options: ['always']
   ,
-    code: """
+    code: '''
       export {
         x,
       } from 'foo'
-    """
+    '''
     options: ['always']
   ,
     # always - empty object
@@ -251,18 +252,18 @@ ruleTester.run 'object-curly-spacing', rule,
     code: "export {door} from 'room'"
     options: ['never']
   ,
-    code: """
+    code: '''
       import {
         door
       } from 'room'
-    """
+    '''
     options: ['never']
   ,
-    code: """
+    code: '''
       export {
         door
       } from 'room'
-    """
+    '''
     options: ['never']
   ,
     code: "import {house,mouse} from 'caravan'"
@@ -289,21 +290,21 @@ ruleTester.run 'object-curly-spacing', rule,
     code: "import {x,} from 'foo'"
     options: ['never']
   ,
-    code: """
+    code: '''
       import {
         x,
       } from 'foo'
-    """
+    '''
     options: ['never']
   ,
     code: "export {x,} from 'foo'"
     options: ['never']
   ,
-    code: """
+    code: '''
       export {
         x,
       } from 'foo'
-    """
+    '''
     options: ['never']
   ,
     # never - empty object

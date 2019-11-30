@@ -9,7 +9,6 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-lodash = require 'lodash'
 astUtils = require '../eslint-ast-utils'
 utils = require '../util/ast-utils'
 
@@ -101,7 +100,10 @@ module.exports =
         pattern = config.varsIgnorePattern.toString()
 
       additional =
-        if type then " Allowed unused #{type} must match #{pattern}." else ''
+        if type
+          " Allowed unused #{type} must match #{pattern}."
+        else
+          ''
 
       "'{{name}}' is defined but never used.#{additional}"
 
@@ -487,48 +489,11 @@ module.exports =
           )
             unusedVars.push variable
 
-      collectUnusedVariables(
-        childScope
-        unusedVars
-      ) for childScope in childScopes
+      collectUnusedVariables childScope, unusedVars for childScope in (
+        childScopes
+      )
 
       unusedVars
-
-    ###*
-    # Gets the index of a given variable name in a given comment.
-    # @param {eslint-scope.Variable} variable - A variable to get.
-    # @param {ASTNode} comment - A comment node which includes the variable name.
-    # @returns {number} The index of the variable name's location.
-    # @private
-    ###
-    getColumnInComment = (variable, comment) ->
-      namePattern = new RegExp(
-        "[\\s,]#{lodash.escapeRegExp variable.name}(?:$|[\\s,:])"
-        'g'
-      )
-
-      # To ignore the first text "global".
-      namePattern.lastIndex = comment.value.indexOf('global') + 6
-
-      # Search a given variable name.
-      match = namePattern.exec comment.value
-
-      if match then match.index + 1 else 0
-
-    ###*
-    # Creates the correct location of a given variables.
-    # The location is at its name string in a `/*global` comment.
-    #
-    # @param {eslint-scope.Variable} variable - A variable to get its location.
-    # @returns {{line: number, column: number}} The location object for the variable.
-    # @private
-    ###
-    getLocation = (variable) ->
-      comment = variable.eslintExplicitGlobalComment
-
-      sourceCode.getLocFromIndex(
-        comment.range[0] + 2 + getColumnInComment variable, comment
-      )
 
     #--------------------------------------------------------------------------
     # Public
@@ -538,18 +503,24 @@ module.exports =
       unusedVars = collectUnusedVariables context.getScope(), []
 
       for unusedVar in unusedVars
-        if unusedVar.eslintExplicitGlobal
-          context.report
-            node: programNode
-            loc: getLocation unusedVar
-            message: getDefinedMessage unusedVar
-            data: unusedVar
-        else if unusedVar.defs.length > 0
+        if unusedVar.defs.length > 0
           context.report
             node: unusedVar.identifiers[0]
             message:
-              if unusedVar.references.some (ref) -> ref.isWrite()
+              if unusedVar.references.some((ref) -> ref.isWrite())
                 getAssignedMessage()
               else
                 getDefinedMessage unusedVar
+            data: unusedVar
+        else if unusedVar.eslintExplicitGlobalComments
+          directiveComment = unusedVar.eslintExplicitGlobalComments[0]
+
+          context.report
+            node: programNode
+            loc: astUtils.getNameLocationInGlobalDirectiveComment(
+              sourceCode
+              directiveComment
+              unusedVar.name
+            )
+            message: getDefinedMessage unusedVar
             data: unusedVar

@@ -10,12 +10,13 @@
 
 rule = require '../../rules/jsx-first-prop-new-line'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 # -----------------------------------------------------------------------------
 # Tests
 # -----------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'jsx-first-prop-new-line', rule,
   valid: [
     code: '<Foo />'

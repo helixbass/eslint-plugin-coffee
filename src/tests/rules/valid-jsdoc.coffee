@@ -10,12 +10,13 @@
 
 rule = require '../../rules/valid-jsdoc'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ruleTester.run 'valid-jsdoc', rule,
   valid: [
@@ -133,24 +134,24 @@ ruleTester.run 'valid-jsdoc', rule,
       * @returns {void} ###
       foo = (p, cb) ->
     '''
-    """
+    '''
       ###*
       * Description
       * @override ###
       foo = (arg1, arg2) -> ''
-    """
-    """
+    '''
+    '''
       ###*
       * Description
       * @inheritdoc ###
       foo = (arg1, arg2) -> ''
-    """
-    """
+    '''
+    '''
       ###*
       * Description
       * @inheritDoc ###
       foo = (arg1, arg2) -> ''
-    """
+    '''
     '''
       ###*
       * Description

@@ -5,139 +5,140 @@
 
 rule = require '../../rules/destructuring-assignment'
 {RuleTester} = require 'eslint'
+path = require 'path'
 
-ruleTester = new RuleTester parser: '../../..'
+ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'destructuring-assignment', rule,
   valid: [
-    code: """
+    code: '''
       Foo = class extends React.PureComponent
         render: ->
           { foo } = @props
           <div>{foo}</div>
-    """
+    '''
     options: ['always']
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       MyComponent = ({ id, className }) => (
         <div id={id} className={className} />
       )
-    """
+    '''
   ,
-    code: """
+    code: '''
       MyComponent = (props) =>
         { id, className } = props
         return <div id={id} className={className} />
-    """
+    '''
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       MyComponent = ({ id, className }) => (
         <div id={id} className={className} />
       )
-    """
+    '''
     options: ['always']
   ,
-    code: """
+    code: '''
       MyComponent = (props) =>
         { id, className } = props
         return <div id={id} className={className} />
-    """
+    '''
   ,
-    code: """
+    code: '''
       MyComponent = (props) =>
         { id, className } = props
         return <div id={id} className={className} />
-    """
+    '''
     options: ['always']
   ,
-    code: """
+    code: '''
       MyComponent = (props) => (
         <div id={id} props={props} />
       )
-    """
+    '''
   ,
-    code: """
+    code: '''
       MyComponent = (props) => (
         <div id={id} props={props} />
       )
-    """
+    '''
     options: ['always']
   ,
-    code: """
+    code: '''
       MyComponent = (props, { color }) => (
         <div id={id} props={props} color={color} />
       )
-    """
+    '''
   ,
-    code: """
+    code: '''
       MyComponent = (props, { color }) => (
         <div id={id} props={props} color={color} />
       )
-    """
+    '''
     options: ['always']
   ,
-    code: """
+    code: '''
       Foo = class extends React.PureComponent
         render: ->
           return <div>{this.props.foo}</div>
-    """
+    '''
     options: ['never']
   ,
-    code: """
+    code: '''
       class Foo extends React.Component
         doStuff: ->
         render: ->
           return <div>{this.props.foo}</div>
-    """
+    '''
     options: ['never']
   ,
-    code: """
+    code: '''
       Foo = class extends React.PureComponent
         render: ->
           { foo } = this.props
           return <div>{foo}</div>
-    """
+    '''
   ,
-    code: """
+    code: '''
       Foo = class extends React.PureComponent
         render: ->
           { foo } = this.props
           return <div>{foo}</div>
-    """
+    '''
     options: ['always']
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       Foo = class extends React.PureComponent
         render: ->
           { foo } = this.props
           return <div>{foo}</div>
-    """
+    '''
   ,
-    code: """
+    code: '''
       Foo = class extends React.PureComponent
         render: ->
           { foo } = this.props
           return <div>{foo}</div>
-    """
+    '''
     options: ['always']
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       MyComponent = (props) =>
         { h, i } = hi
         return <div id={props.id} className={props.className} />
-    """
+    '''
     options: ['never']
   ,
     # parser: 'babel-eslint'
-    code: """
+    code: '''
       Foo = class extends React.PureComponent
         constructor: ->
           @state = {}
           @state.foo = 'bar'
-    """
+    '''
     options: ['always']
   ,
     code: '''
@@ -155,115 +156,115 @@ ruleTester.run 'destructuring-assignment', rule,
     #     })
     #   """
     #   # parser: 'babel-eslint'
-    code: """
+    code: '''
       class Foo
         bar: (context) ->
           context.baz
-    """
+    '''
   ,
-    code: """
+    code: '''
       class Foo
         bar: (props) ->
           return props.baz
-    """
+    '''
   ]
 
   invalid: [
-    code: """
+    code: '''
       MyComponent = (props) =>
         return (<div id={props.id} />)
-    """
+    '''
     errors: [message: 'Must use destructuring props assignment']
   ,
-    code: """
+    code: '''
       MyComponent = ({ id, className }) => (
         <div id={id} className={className} />
       )
-    """
+    '''
     options: ['never']
     errors: [
       message: 'Must never use destructuring props assignment in SFC argument'
     ]
   ,
-    code: """
+    code: '''
       MyComponent = (props, { color }) => (
         <div id={props.id} className={props.className} />
       )
-    """
+    '''
     options: ['never']
     errors: [
       message: 'Must never use destructuring context assignment in SFC argument'
     ]
   ,
-    code: """
+    code: '''
       Foo = class extends React.PureComponent
         render: ->
           <div>{@props.foo}</div>
-    """
+    '''
     errors: [message: 'Must use destructuring props assignment']
   ,
-    code: """
+    code: '''
       Foo = class extends React.PureComponent
         render: ->
           return <div>{this.state.foo}</div>
-    """
+    '''
     errors: [message: 'Must use destructuring state assignment']
   ,
-    code: """
+    code: '''
       Foo = class extends React.PureComponent
         render: ->
           return <div>{this.context.foo}</div>
-    """
+    '''
     errors: [message: 'Must use destructuring context assignment']
   ,
-    code: """
+    code: '''
       class Foo extends React.Component
         render: ->
         foo: ->
           return this.props.children
-    """
+    '''
     errors: [message: 'Must use destructuring props assignment']
   ,
-    code: """
+    code: '''
       Hello = React.createClass
         render: ->
           <Text>{this.props.foo}</Text>
-    """
+    '''
     errors: [message: 'Must use destructuring props assignment']
   ,
-    code: """
+    code: '''
       Foo = class extends React.PureComponent
         render: ->
           foo = this.props.foo
           return <div>{foo}</div>
-    """
+    '''
     errors: [message: 'Must use destructuring props assignment']
   ,
-    code: """
+    code: '''
       Foo = class extends React.PureComponent
         render: ->
           { foo } = this.props
           return <div>{foo}</div>
-    """
+    '''
     options: ['never']
     # parser: 'babel-eslint'
     errors: [message: 'Must never use destructuring props assignment']
   ,
-    code: """
+    code: '''
       MyComponent = (props) =>
         { id, className } = props
         return <div id={id} className={className} />
-    """
+    '''
     options: ['never']
     # parser: 'babel-eslint'
     errors: [message: 'Must never use destructuring props assignment']
   ,
-    code: """
+    code: '''
       Foo = class extends React.PureComponent
         render: ->
           { foo } = @state
           <div>{foo}</div>
-    """
+    '''
     options: ['never']
     # parser: 'babel-eslint'
     errors: [message: 'Must never use destructuring state assignment']
