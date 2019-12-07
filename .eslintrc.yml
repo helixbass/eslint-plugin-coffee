@@ -30,6 +30,7 @@ rules:
   coffee/wrap-regex: off
   no-sparse-arrays: off
   coffee/no-cond-assign: off
+  coffee/spread-direction: off
 env:
   node: true
   es6: true

@@ -32,6 +32,7 @@ ruleTester.run 'no-unused-expressions', rule,
     'i++'
     'a()'
     'a?()'
+    '@upper?.childCodePaths.push @'
     'do a'
     'do -> a'
   ,

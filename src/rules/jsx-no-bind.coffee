@@ -69,33 +69,28 @@ module.exports =
     getNodeViolationType = (node) ->
       nodeType = node.type
 
-      if (
+      return 'bindCall' if (
         not configuration.allowBind and
         nodeType is 'CallExpression' and
         node.callee.type is 'MemberExpression' and
         node.callee.property.type is 'Identifier' and
         node.callee.property.name is 'bind'
       )
-        return 'bindCall'
-      else if nodeType is 'ConditionalExpression'
-        return (
-          getNodeViolationType(node.test) or
-          getNodeViolationType(node.consequent) or
-          getNodeViolationType node.alternate
-        )
-      else if (
+      return (
+        getNodeViolationType(node.test) or
+        getNodeViolationType(node.consequent) or
+        getNodeViolationType node.alternate
+      ) if nodeType is 'ConditionalExpression'
+      return 'arrowFunc' if (
         not configuration.allowArrowFunctions and
         nodeType is 'ArrowFunctionExpression'
       )
-        return 'arrowFunc'
-      else if (
+      return 'func' if (
         not configuration.allowFunctions and nodeType is 'FunctionExpression'
       )
-        return 'func'
-      else
-        return 'bindExpression' if (
-          not configuration.allowBind and nodeType is 'BindExpression'
-        )
+      return 'bindExpression' if (
+        not configuration.allowBind and nodeType is 'BindExpression'
+      )
 
       null
 

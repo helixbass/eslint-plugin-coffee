@@ -59,10 +59,8 @@ module.exports =
         switch currentNode.type
           when 'AssignmentExpression'
             return no unless currentNode.operator is '='
-            if prevNode is currentNode.left
-              return currentNode
-            else
-              return no
+            return currentNode if prevNode is currentNode.left
+            return no
           when 'AssignmentPattern'
             return no unless prevNode is currentNode.left
           when 'ArrayPattern', 'ObjectPattern'

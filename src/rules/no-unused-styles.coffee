@@ -17,6 +17,7 @@ module.exports = Components.detect (context, components) ->
 
   reportUnusedStyles = (unusedStyles) ->
     for own key, styles of unusedStyles
+      # eslint-disable-next-line coffee/no-loop-func
       styles.forEach (node) ->
         message = ['Unused style detected: ', key, '.', node.key.name].join ''
 
