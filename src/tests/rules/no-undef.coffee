@@ -178,6 +178,11 @@ ruleTester.run 'no-undef', rule,
     code: '{b: a} = {}'
   ,
     'a = 1'
+    '''
+      astHelpers =
+        containsStyleSheetObject: (node) ->
+          right = node?.init ? node?.right
+    '''
   ]
   invalid: [
     code: "if (typeof anUndefinedVar is 'string') then ;"
