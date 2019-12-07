@@ -29,7 +29,6 @@ bugs:
       # comment
     b
   - no-useless-escape is flagging ///^(#{pragma}\.)?#{createClass}$/// (I guess because it gets exposed as a new RegExp call? should it escape differently in the AST? or should the rule handle that case differently?)
-  - yoda shouldn't yell at you if you're doing chained comparison eg 1 < x < 7
   - looks like the version of babel-eslint doesn't understand fragments so doesn't eg transform children JSXText of fragments into Literal (worked around in jsx-no-comment-textnodes by also checking JSXText, which some other existing tests seem to do - is that for a similar reason (ie support older version of babel-eslint)?)
 nice to have:
   - add excludeLoop option to no-constant-condition?
