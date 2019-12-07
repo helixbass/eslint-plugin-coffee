@@ -4,20 +4,6 @@
 ###
 'use strict'
 
-isProperty = (node) ->
-  {parent} = node
-  parent.type is 'MemberExpression' and node is parent.object
-
-isThisParam = (node) ->
-  return no unless isProperty node
-  {parent} = node
-  parent.parent.type is 'FunctionExpression' and parent in parent.parent.params
-
-isObjectShorthand = (node) ->
-  return no unless isProperty node
-  {parent} = node
-  parent.parent.type is 'Property' and parent.parent.shorthand
-
 #------------------------------------------------------------------------------
 # Rule Definition
 #------------------------------------------------------------------------------
