@@ -43,7 +43,6 @@ nice to have:
   - make empty-func-parens (and some other ones) fixable
   - add individual usage-type options to spread-direction eg jsxSpreadProp, object, array, objectSpread, objectRest, arraySpread, arrayRest
     should allow you to either override for some of these types (['postfix', jsxSpreadProp: 'prefix']) or *just* warn for some of these types ([jsxSpreadProp: 'prefix'])
-  - no-unused-expressions flags implicitly returned JSX (this is a CS AST bug) - this may not be broken?
 upstream:
   - push id-length fixes upstream to eslint?
   - no-extra-bind doesn't check if bind expression it's removing could have side effects
