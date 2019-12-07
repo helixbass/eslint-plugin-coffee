@@ -224,6 +224,7 @@ ruleTester.run 'no-unused-vars', rule,
   ,
     code: ' ', globals: a: yes
   ,
+    # eslint-disable-next-line coffee/no-template-curly-in-string
     '''
       who = "Paul"
       module.exports = "Hello #{who}!"
@@ -562,6 +563,7 @@ ruleTester.run 'no-unused-vars', rule,
         cb = yield (a) -> cb(1 + a)
       foo
     '''
+    # eslint-disable-next-line coffee/no-template-curly-in-string
     '''
       foo = (cb) ->
         cb = tag"hello#{(a) -> cb(1 + a)}"

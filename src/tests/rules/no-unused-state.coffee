@@ -88,6 +88,7 @@ eslintTester.run 'no-unused-state', rule,
           return <SomeComponent foo={this.state.foo} />
       })
     '''
+    # eslint-disable-next-line coffee/no-template-curly-in-string
     '''
       ComputedKeyFromTemplateLiteralTest = createReactClass({
         getInitialState: ->
@@ -184,6 +185,7 @@ eslintTester.run 'no-unused-state', rule,
         render: ->
           return <SomeComponent foo={this.state.foo} />
     '''
+    # eslint-disable-next-line coffee/no-template-curly-in-string
     '''
       class ComputedKeyFromTemplateLiteralTest extends React.Component
         constructor: ->

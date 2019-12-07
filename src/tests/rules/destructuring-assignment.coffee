@@ -141,6 +141,7 @@ ruleTester.run 'destructuring-assignment', rule,
     '''
     options: ['always']
   ,
+    # eslint-disable-next-line coffee/no-template-curly-in-string
     code: '''
       div = styled.div"""
         & .button {

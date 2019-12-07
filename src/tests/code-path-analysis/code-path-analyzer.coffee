@@ -471,8 +471,8 @@ describe 'CodePathAnalyzer', ->
           ...(
             if isJS
               env: es6: yes
+            # parser: path.join __dirname, '../../..'
             else
-              # parser: path.join __dirname, '../../..'
               parser:
                 filePath: path.join __dirname, '../../..'
                 definition: require path.join __dirname, '../../..'
