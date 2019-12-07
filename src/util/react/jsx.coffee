@@ -5,7 +5,7 @@
 
 elementType = require 'jsx-ast-utils/elementType'
 
-COMPAT_TAG_REGEX = /^[a-z]|\-/
+COMPAT_TAG_REGEX = /^[a-z]|-/
 
 ###*
 # Checks if a node represents a DOM element.
@@ -30,6 +30,7 @@ isDOMComponent = (node) ->
 ###
 isJSX = (node) -> ['JSXElement', 'JSXFragment'].indexOf(node.type) >= 0
 
-module.exports =
-  isDOMComponent: isDOMComponent
-  isJSX: isJSX
+module.exports = {
+  isDOMComponent
+  isJSX
+}

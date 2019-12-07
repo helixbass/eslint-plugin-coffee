@@ -25,7 +25,7 @@ isSuperTypeParameterPropsDeclaration = (node) ->
 # Removes quotes from around an identifier.
 # @param {string} the identifier to strip
 ###
-stripQuotes = (string) -> string.replace /^\'|\'$/g, ''
+stripQuotes = (string) -> string.replace /^'|'$/g, ''
 
 ###*
 # Retrieve the name of a key node
@@ -58,7 +58,7 @@ iterateProperties = (context, properties, fn) ->
       node = properties[i]
       key = getKeyValue context, node
 
-      value = node.value
+      {value} = node
       fn key, value
       i++
 
@@ -69,8 +69,8 @@ module.exports = (context, components, utils) ->
 
   classExpressions = []
   defaults = customValidators: []
-  configuration = Object.assign {}, defaults, context.options[0] or {}
-  customValidators = configuration.customValidators
+  configuration = {...defaults, ...(context.options[0] or {})}
+  {customValidators} = configuration
   sourceCode = context.getSourceCode()
   propWrapperFunctions = new Set context.settings.propWrapperFunctions
 
@@ -105,7 +105,7 @@ module.exports = (context, components, utils) ->
   hasCustomValidator = (validator) ->
     customValidators.indexOf(validator) isnt -1
 
-  ### eslint-disable no-use-before-define ###
+  ### eslint-disable coffee/no-use-before-define ###
   typeDeclarationBuilders =
     GenericTypeAnnotation: (annotation, parentName, seen) ->
       return buildTypeAnnotationDeclarationTypes(
@@ -126,7 +126,7 @@ module.exports = (context, components, utils) ->
       ) ->
         fullName = [parentName, childKey].join '.'
         if not childKey and not childValue
-          containsObjectTypeSpread = yes
+          containsObjectTypeSpread ###:### = yes
         else
           types = buildTypeAnnotationDeclarationTypes childValue, fullName, seen
           types.fullName = fullName
@@ -178,7 +178,7 @@ module.exports = (context, components, utils) ->
       type: 'object'
       children:
         __ANY_KEY__: child
-  ### eslint-enable no-use-before-define ###
+  ### eslint-enable coffee/no-use-before-define ###
 
   ###*
   # Resolve the type annotation for a given node.
@@ -238,7 +238,7 @@ module.exports = (context, components, utils) ->
 
     iterateProperties context, propTypes.properties, (key, value) ->
       unless value
-        ignorePropsValidation = yes
+        ignorePropsValidation ###:### = yes
         return
 
       types = buildTypeAnnotationDeclarationTypes value, key
@@ -275,13 +275,12 @@ module.exports = (context, components, utils) ->
 
       typeNode = getInTypeScope annotation.id.name
 
-      unless typeNode
-        return yes
-      else
-        return declarePropTypesForIntersectionTypeAnnotation(
-          typeNode
-          declaredPropTypes
-        ) if typeNode.type is 'IntersectionTypeAnnotation'
+      return yes unless typeNode
+
+      return declarePropTypesForIntersectionTypeAnnotation(
+        typeNode
+        declaredPropTypes
+      ) if typeNode.type is 'IntersectionTypeAnnotation'
 
       declarePropTypesForObjectTypeAnnotation typeNode, declaredPropTypes
 
