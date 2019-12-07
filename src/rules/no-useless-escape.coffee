@@ -162,13 +162,18 @@ module.exports =
       # Don't report tagged template literals, because the backslash character is accessible to the tag function.
       return if (
         isTemplateElement and
-        node.parent and
-        node.parent.parent and
-        node.parent.parent.type is 'TaggedTemplateExpression' and
+        node.parent?.parent?.type is 'TaggedTemplateExpression' and
         node.parent is node.parent.parent.quasi
       )
 
-      if typeof node.value is 'string' or isTemplateElement
+      isInterpolatedRegex =
+        isTemplateElement and
+        node.parent?.parent?.type is 'InterpolatedRegExpLiteral'
+
+      if (
+        typeof node.value is 'string' or
+        (isTemplateElement and not isInterpolatedRegex)
+      )
         ###
         # JSXAttribute doesn't have any escape sequence: https://facebook.github.io/jsx/.
         # In addition, backticks are not supported by JSX yet: https://github.com/facebook/jsx/issues/25.
@@ -188,8 +193,8 @@ module.exports =
 
         while match = pattern.exec value
           validateString node, match, value
-      else if node.regex
-        parseRegExp node.regex.pattern
+      else if node.regex or isInterpolatedRegex
+        parseRegExp node.regex?.pattern ? node.value.raw
         ###
         # The '-' character is a special case, because it's only valid to escape it if it's in a character
         # class, and is not at either edge of the character class. To account for this, don't consider '-'

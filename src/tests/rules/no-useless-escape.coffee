@@ -19,6 +19,8 @@ ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'no-useless-escape', rule,
   valid: [
     'foo = /\\./'
+    'foo = ///\\.///'
+    'foo = ///#{a}\\.///'
     'foo = /\\//g'
     'foo = /""/'
     "foo = /''/"
