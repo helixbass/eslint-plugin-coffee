@@ -63,22 +63,13 @@ and [`eslint-plugin-react-native`](https://github.com/intellicode/eslint-plugin-
 Make sure you have supported versions of CoffeeScript and ESLint installed:
 
 ```
-npm i --save-dev coffeescript@^2.5.0 eslint@^6.0.0
+npm install --save-dev coffeescript@^2.5.0 eslint@^6.0.0
 ```
 
 Then install the plugin:
 
 ```
-npm i --save-dev eslint-plugin-coffee
-```
-
-If you want to use rules from `eslint-plugin-react`, `eslint-plugin-import` and/or `eslint-plugin-react-native`
-(whether rules that "just work" or CoffeeScript custom overrides), install supported versions of those dependencies:
-
-```
-npm i --save-dev eslint-plugin-react
-npm i --save-dev eslint-plugin-import
-npm i --save-dev eslint-plugin-react-native
+npm install --save-dev eslint-plugin-coffee
 ```
 
 ## Usage
@@ -122,6 +113,41 @@ projects by the ESLint team) with this plugin. As noted [above](#can-i-use-all-o
 }
 ```
 
+If you want to use rules from `eslint-plugin-react`, `eslint-plugin-import` and/or `eslint-plugin-react-native`
+(whether rules that "just work" or CoffeeScript custom overrides), install supported versions of those dependencies:
+
+```
+npm install --save-dev eslint-plugin-react
+npm install --save-dev eslint-plugin-import
+npm install --save-dev eslint-plugin-react-native
+```
+
+And correspondingly add those plugins and rules to your config:
+```
+{
+  "plugins": [
+    "coffee",
+    "react",
+    "import",
+    "react-native"
+  ],
+  "rules": {
+    // Can include existing rules that "just work":
+    "react/no-array-index-key": "error",
+    "import/prefer-default-export": "error",
+    "react-native/no-inline-styles": "error",
+    // ...and CoffeeScript custom overriding rules.
+    // For these, the corresponding existing rule should also be disabled if need be:
+    "react/prop-types": "off",
+    "coffee/prop-types": "error",
+    "import/no-anonymous-default-export": "off",
+    "coffee/no-anonymous-default-export": "error",
+    "react-native/no-unused-styles": "off",
+    "coffee/no-unused-styles": "error",
+  }
+} 
+```
+
 ### Running from the command line
 
 To invoke ESLint from the command line, you can add an appropriate script to your `package.json` scripts section, for example:
@@ -153,6 +179,33 @@ We will add instructions for different code editors here as they become supporte
 If you've gotten ESLint running in an editor not listed here and would like to share back, please [file an issue](https://github.com/coffeescript/eslint-plugin-coffee/issues)!
 
 ## Usage with Prettier
+
+To disable our code formatting related rules, install [`eslint-config-prettier`](https://github.com/prettier/eslint-config-prettier):
+
+```
+npm install --save-dev eslint-config-prettier
+```
+
+Then use the `prettier` config exposed by this plugin:
+```
+{
+  "extends": ["plugin:coffee/prettier"]
+}
+```
+
+Alternatively, if you want to run Prettier as an ESLint rule (a nice option especially if you're running ESLint in fix mode
+via your editor):
+
+```
+npm install --save-dev eslint-config-prettier eslint-plugin-prettier
+```
+
+Then use the `prettier-run-as-rule` config exposed by this plugin:
+```
+{
+  "extends": ["plugin:coffee/prettier-run-as-rule"]
+}
+```
 
 ## Supported Rules
 
