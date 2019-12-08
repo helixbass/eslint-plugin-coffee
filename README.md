@@ -209,6 +209,28 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 
 ## Supported Rules
 
+**Key**: :heavy_check_mark: = ESLint recommended, :wrench: = fixable
+
+### ESLint-included rules
+
+#### Possible Errors
+
+|                    |          | Name                                    | Description |
+| ------------------ | -------- | --------------------------------------- | ----------- |
+| :heavy_check_mark: |          | [`coffee/no-async-promise-executor`](https://eslint.org/docs/rules/no-async-promise-executor)   | disallow using an async function as a Promise executor |
+|                    |          | [`coffee/no-await-in-loop`](https://eslint.org/docs/rules/no-await-in-loop) | disallow `await` inside of loops |
+| :heavy_check_mark: |          | [`coffee/no-compare-neg-zero`](https://eslint.org/docs/rules/no-compare-neg-zero) | disallow comparing against -0 |
+| :heavy_check_mark: |          | [`coffee/no-cond-assign`](https://eslint.org/docs/rules/no-cond-assign) | disallow assignment operators in conditional expressions |
+|                    |          | [`no-console`](https://eslint.org/docs/rules/no-console) | disallow the use of `console` |
+
+### Non-applicable ESLint-included rules
+
+Some rules included with ESLint don't apply to CoffeeScript. These include:
+
+- [`for-direction`](https://eslint.org/docs/rules/for-direction)
+- [`getter-return`](https://eslint.org/docs/rules/getter-return)
+
+
 ## Supported CoffeeScript version
 
 We will always endeavor to support the latest stable version of CoffeeScript.
