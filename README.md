@@ -7,7 +7,10 @@ ESLint custom parser + rules for linting CoffeeScript source files
 - [Why does this project exist?](#why-does-this-project-exist)
 - [How does eslint-plugin-coffee work?](#how-does-eslint-plugin-coffee-work)
 - [Can I use all of the existing ESLint plugins and rules without any changes?](#can-i-use-all-of-the-existing-eslint-plugins-and-rules-without-any-changes)
-- [How do I configure my project to use eslint-plugin-coffee?](#how-do-i-configure-my-project-to-use-eslint-plugin-coffee)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Usage with Prettier](#usage-with-prettier)
+- [Supported Rules](#supported-rules)
 - [Supported CoffeeScript version](#supported-coffeescript-version)
 - [Supported ESLint version](#supported-eslint-version)
 - [Supported versions of eslint-plugin-import, eslint-plugin-react, eslint-plugin-react-native](#supported-versions-of-eslint-plugin-import-eslint-plugin-react-eslint-plugin-react-native)
@@ -55,6 +58,13 @@ and [`eslint-plugin-react-native`](https://github.com/intellicode/eslint-plugin-
 
 **Here's a [guide to all of the supported rules](#supported-rules).**
 
+## Installation
+
+## Usage
+
+## Usage with Prettier
+
+## Supported Rules
 
 ## How can I help?
 
