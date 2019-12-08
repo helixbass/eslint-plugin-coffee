@@ -21,7 +21,7 @@ ESLint custom parser + rules for linting CoffeeScript source files
 
 The following sections will give you an overview of what this project is, why it exists and how it works.
 
-If you are ready to get started you can jump to [how to configure my project to use `eslint-plugin-coffee`](#how-do-i-configure-my-project-to-use-eslint-plugin-coffee).
+If you are ready to get started you can jump to [Installation](#installation).
 
 ## Why does this project exist?
 
@@ -60,11 +60,110 @@ and [`eslint-plugin-react-native`](https://github.com/intellicode/eslint-plugin-
 
 ## Installation
 
+Make sure you have supported versions of CoffeeScript and ESLint installed:
+
+```
+npm i --save-dev coffeescript@^2.5.0 eslint@^6.0.0
+```
+
+Then install the plugin:
+
+```
+npm i --save-dev eslint-plugin-coffee
+```
+
+If you want to use rules from `eslint-plugin-react`, `eslint-plugin-import` and/or `eslint-plugin-react-native`
+(whether rules that "just work" or CoffeeScript custom overrides), install supported versions of those dependencies:
+
+```
+npm i --save-dev eslint-plugin-react
+npm i --save-dev eslint-plugin-import
+npm i --save-dev eslint-plugin-react-native
+```
+
 ## Usage
+
+Add `eslint-plugin-coffee` to the `parser` field and `coffee` to the plugins section of your `.eslintrc` configuration file:
+
+```
+{
+  "parser": "eslint-plugin-coffee",
+  "plugins": ["coffee"]
+}
+```
+
+Then configure the rules you want to use under the rules section.
+```
+{
+  "parser": "eslint-plugin-coffee",
+  "plugins": ["coffee"],
+  "rules": {
+    // Can include existing rules that "just work":
+    "no-undef": "error",
+    "react/no-array-index-key": "error",
+    // ...CoffeeScript-specific rules:
+    "coffee/spread-direction": ["error", "postfix"],
+    // ...and CoffeeScript custom overriding rules.
+    // For these, the corresponding existing rule should also be disabled:
+    "no-unused-vars": "off",
+    "coffee/no-unused-vars": "error"
+}
+```
+
+You can also use [eslint:recommended](https://eslint.org/docs/rules/) (the set of rules which are recommended for all
+projects by the ESLint team) with this plugin. As noted [above](#can-i-use-all-of-the-existing-eslint-plugins-and-rules-without-any-changes), not all ESLint core rules are compatible with CoffeeScript, so you need to add both `eslint:recommended` and `plugin:coffee/eslint-recommended` (which will adjust the one from ESLint appropriately for CoffeeScript) to your config:
+
+```
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:coffee/eslint-recommended"
+  ]
+}
+```
+
+### Running from the command line
+
+To invoke ESLint from the command line, you can add an appropriate script to your `package.json` scripts section, for example:
+
+```
+{
+  "scripts": {
+    "lint": "eslint 'src/**/*.coffee'",
+    "lint-fix": "eslint --fix 'src/**/*.coffee'"
+  }
+}
+```
+
+### Running from your editor
+
+Running ESLint directly from your code editor (e.g. on save) provides a quick feedback loop while developing.
+
+Depending on your editor, there may or may not currently be a straightforward way to get ESLint running against `.coffee` files (e.g. using an ESLint editor plugin).
+
+If you're having trouble getting ESLint running in your editor (and it's not listed below), please [file an issue](https://github.com/coffeescript/eslint-plugin-coffee/issues) and we'll try and help with support for your editor.
+
+We will add instructions for different code editors here as they become supported.
+
+If you've gotten ESLint running in an editor not listed here and would like to share back, please [file an issue](https://github.com/coffeescript/eslint-plugin-coffee/issues)!
 
 ## Usage with Prettier
 
 ## Supported Rules
+
+## Supported CoffeeScript version
+
+We will always endeavor to support the latest stable version of CoffeeScript.
+
+**The version range of CoffeeScript currently supported by this plugin is `>=2.5.0`.**
+
+## Supported ESLint version
+
+**The version range of ESLint currently supported by this plugin is `>=6.0.0`.**
+
+## Supported versions of `eslint-plugin-import`, `eslint-plugin-react`, `eslint-plugin-react-native`
+
+
 
 ## How can I help?
 
