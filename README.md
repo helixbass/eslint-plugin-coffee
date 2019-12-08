@@ -54,3 +54,14 @@ custom alternative rule - this includes rules that come with ESLint, as well as 
 and [`eslint-plugin-react-native`](https://github.com/intellicode/eslint-plugin-react-native).
 
 **Here's a [guide to all of the supported rules](#supported-rules).**
+
+
+## How can I help?
+
+See an issue? [Report it](https://github.com/coffeescript/eslint-plugin-coffee/issues)!
+
+If you have the time and inclination, you can even take it a step further and submit a PR to improve the project.
+
+## License
+
+`eslint-plugin-coffee` is licensed under the MIT License.
