@@ -104,7 +104,7 @@ Then configure the rules you want to use under the rules section.
     // ...CoffeeScript-specific rules:
     "coffee/spread-direction": ["error", "postfix"],
     // ...and CoffeeScript custom overriding rules.
-    // For these, the corresponding existing rule should also be disabled:
+    // For these, the corresponding existing rule should also be disabled if need be:
     "no-unused-vars": "off",
     "coffee/no-unused-vars": "error"
 }
@@ -133,6 +133,11 @@ To invoke ESLint from the command line, you can add an appropriate script to you
     "lint-fix": "eslint --fix 'src/**/*.coffee'"
   }
 }
+```
+
+Then you can invoke those scripts as needed from the command line to lint the CoffeeScript source files in your project:
+```
+npm run lint
 ```
 
 ### Running from your editor
