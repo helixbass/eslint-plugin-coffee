@@ -171,6 +171,9 @@ yet = [
   'no-dupe-else-if'
   'no-import-assign'
   'no-setter-return'
+  'default-param-last'
+  'grouped-accessor-pairs'
+  'no-constructor-return'
 ]
 
 dontApply = [

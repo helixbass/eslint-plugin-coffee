@@ -18,6 +18,8 @@ module.exports =
       recommended: no
       url: 'https://eslint.org/docs/rules/no-div-regex'
 
+    fixable: 'code'
+
     schema: []
 
     messages:
@@ -34,4 +36,12 @@ module.exports =
         token.value[1] is '=' and
         node.delimiter isnt '///'
       )
-        context.report {node, messageId: 'unexpected'}
+        context.report {
+          node
+          messageId: 'unexpected'
+          fix: (fixer) ->
+            fixer.replaceTextRange(
+              [token.range[0] + 1, token.range[0] + 2]
+              '[=]'
+            )
+        }

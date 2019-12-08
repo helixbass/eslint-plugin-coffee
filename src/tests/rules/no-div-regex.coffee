@@ -23,5 +23,6 @@ ruleTester.run 'no-div-regex', rule,
   valid: ["f = -> /foo/ig.test('bar')", 'f = -> /\\=foo/', 'f = -> ///=foo///']
   invalid: [
     code: 'f = -> /=foo/'
+    output: 'f = -> /[=]foo/'
     errors: [messageId: 'unexpected', type: 'Literal']
   ]
