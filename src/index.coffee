@@ -1,13 +1,5 @@
-{
-  flow
-  map: fmap
-  flatten: fflatten
-  fromPairs: ffromPairs
-  keys: fkeys
-  mapValues: fmapValues
-  pickBy: fpickBy
-} = require 'lodash/fp'
-fmapWithKey = fmap.convert cap: no
+{flow, map, flatten, fromPairs, keys, mapValues, pickBy} = require 'lodash/fp'
+mapWithKey = map.convert cap: no
 
 {parseForESLint} = require './parser'
 
@@ -247,14 +239,14 @@ dontApply = [
 
 rules =
   flow(
-    fmapWithKey (config, rule) -> [
+    mapWithKey (config, rule) -> [
       rule
       {
         ...config
         module: require "./rules/#{rule}"
       }
     ]
-    ffromPairs
+    fromPairs
   )(
     'use-isnan':
       'eslint-recommended': yes
@@ -499,7 +491,7 @@ rules =
   )
 
 configureAsError = flow(
-  fmapWithKey ({plugin}, rule) -> [
+  mapWithKey ({plugin}, rule) -> [
     ["coffee/#{rule}", 'error']
     ...(
       unless plugin is no
@@ -516,17 +508,29 @@ configureAsError = flow(
         []
     )
   ]
-  fflatten
-  ffromPairs
+  flatten
+  fromPairs
 )
 
 turnOff = flow(
-  fmap (rule) -> [rule, 'off']
-  ffromPairs
+  map (rule) -> [rule, 'off']
+  fromPairs
 )
 
+prettierConfig =
+  extends: ['prettier']
+  plugins: ['coffee', 'prettier']
+  parser: 'eslint-plugin-coffee'
+  rules: turnOff(
+    flow(
+      pickBy 'prettier'
+      keys
+      map (rule) -> "coffee/#{rule}"
+    ) rules
+  )
+
 module.exports = {
-  rules: fmapValues('module') rules
+  rules: mapValues('module') rules
   configs:
     all:
       plugins: ['coffee']
@@ -540,27 +544,21 @@ module.exports = {
       plugins: ['coffee']
       parser: 'eslint-plugin-coffee'
       rules: {
-        ...configureAsError(fpickBy('eslint-recommended') rules)
+        ...configureAsError(pickBy('eslint-recommended') rules)
         ...turnOff(dontApply)
         # ...turnOff(unusable)
       }
-    prettier:
-      extends: ['prettier']
-      plugins: ['coffee', 'prettier']
-      parser: 'eslint-plugin-coffee'
+    prettier: prettierConfig
+    'prettier-run-as-rule': {
+      ...prettierConfig
       rules: {
         'prettier/prettier': [
           'error'
         ,
           parser: 'coffeescript', pluginSearchDirs: ['.']
         ]
-        ...turnOff(
-          flow(
-            fpickBy 'prettier'
-            fkeys
-            fmap (rule) -> "coffee/#{rule}"
-          ) rules
-        )
+        ...prettierConfig.rules
       }
+    }
   parseForESLint
 }

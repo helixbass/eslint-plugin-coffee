@@ -2,7 +2,7 @@
 extends:
   - eslint:recommended
   - plugin:coffee/all
-  - plugin:coffee/prettier
+  - plugin:coffee/prettier-run-as-rule
 rules:
   coffee/prefer-destructuring: [error, {object: true}]
   coffee/no-unused-vars: [error, {varsIgnorePattern: ^_+$}]
