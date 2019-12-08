@@ -153,6 +153,7 @@ usable = [
   'react/jsx-uses-vars'
   'react/void-dom-elements-no-children'
   'react-native/no-inline-styles'
+  'no-empty-pattern'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
@@ -241,6 +242,7 @@ dontApply = [
   'yield-star-spacing'
   'func-call-spacing'
   'react/require-render-return'
+  'no-eq-null'
 ]
 
 rules =
@@ -257,7 +259,6 @@ rules =
     'use-isnan':
       'eslint-recommended': yes
     'no-self-compare': {}
-    'no-eq-null': {}
     'valid-typeof':
       'eslint-recommended': yes
     'no-negated-condition': {}
