@@ -168,6 +168,9 @@ yet = [
   'no-nested-interpolation'
   'ensure_comprehensions'
   'no_private_function_fat_arrows' # maybe this should cover warning about non-fat arrow = -> assignments in class bodies as well (since they're often intended to be : ->)?
+  'no-dupe-else-if'
+  'no-import-assign'
+  'no-setter-return'
 ]
 
 dontApply = [
@@ -519,7 +522,7 @@ turnOff = flow(
 
 prettierConfig =
   extends: ['prettier']
-  plugins: ['coffee', 'prettier']
+  plugins: ['coffee']
   parser: 'eslint-plugin-coffee'
   rules: turnOff(
     flow(
@@ -551,6 +554,7 @@ module.exports = {
     prettier: prettierConfig
     'prettier-run-as-rule': {
       ...prettierConfig
+      plugins: ['coffee', 'prettier']
       rules: {
         'prettier/prettier': [
           'error'
