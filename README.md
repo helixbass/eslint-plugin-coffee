@@ -247,6 +247,33 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 | :heavy_check_mark: |          | [`coffee/use-isnan`](https://eslint.org/docs/rules/use-isnan) | require calls to `isNaN()` when checking for `NaN` |
 | :heavy_check_mark: |          | [`coffee/valid-typeof`](https://eslint.org/docs/rules/valid-typeof) | enforce comparing `typeof` expressions against valid strings |
 
+#### Best Practices
+
+|                    |          | Name                                    | Description |
+| ------------------ | -------- | --------------------------------------- | ----------- |
+|                    |          | [`accessor-pairs`](https://eslint.org/docs/rules/accessor-pairs) | enforce getter and setter pairs in objects and classes <br> :warning: Only checks e.g. `Object.defineProperty()` since CoffeeScript doesn't support getters/setters |
+|                    |          | [`coffee/block-scoped-var`](https://eslint.org/docs/rules/block-scoped-var) | enforce the use of variables within the scope they are defined |
+|                    |          | [`coffee/class-methods-use-this`](https://eslint.org/docs/rules/class-methods-use-this) | enforce that class methods utilize `this` |
+|                    |          | [`coffee/complexity`](https://eslint.org/docs/rules/complexity) | enforce a maximum cyclomatic complexity allowed in a program |
+|                    |          | [`default-case`](https://eslint.org/docs/rules/default-case) | require `else` cases in `switch` statements |
+|                    | :wrench: | [`dot-location`](https://eslint.org/docs/rules/dot-location) | enforce consistent newlines before and after dots |
+|                    | :wrench: | [`coffee/dot-notation`](https://eslint.org/docs/rules/dot-notation) | enforce dot notation whenever possible |
+|                    |          | [`coffee/guard-for-in`](https://eslint.org/docs/rules/guard-for-in) | require `for-of` loops to include `own` or an `if` statement |
+|                    |          | [`max-classes-per-file`](https://eslint.org/docs/rules/max-classes-per-file) | enforce a maximum number of classes per file |
+|                    |          | [`no-alert`](https://eslint.org/docs/rules/no-alert) | disallow the use of `alert`, `confirm`, and `prompt` |
+|                    |          | [`no-caller`](https://eslint.org/docs/rules/no-caller) | disallow the use of `arguments.caller` or `arguments.callee` |
+|                    | :wrench: | [`coffee/no-div-regex`](https://eslint.org/docs/rules/no-div-regex) | disallow division operators explicitly at the beginning of regular expressions |
+|                    |          | [`coffee/no-else-return`](https://eslint.org/docs/rules/no-else-return) | disallow `else` blocks after `return` statements in `if` statements <br> :warning: Unlike the ESLint rule, the CoffeeScript version is not fixable |
+|                    |          | [`coffee/no-empty-function`](https://eslint.org/docs/rules/no-empty-function) | disallow empty functions |
+| :heavy_check_mark: |          | [`no-empty-pattern`](https://eslint.org/docs/rules/no-empty-pattern) | disallow empty destructuring patterns |
+|                    |          | [`no-eval`](https://eslint.org/docs/rules/no-eval) | disallow the use of `eval()` |
+|                    |          | [`no-extend-native`](https://eslint.org/docs/rules/no-extend-native) | disallow extending native types |
+|                    | :wrench: | [`coffee/no-extra-bind`](https://eslint.org/docs/rules/no-extra-bind) | disallow unnecessary calls to `.bind()` |
+|                    | :wrench: | [`no-floating-decimal`](https://eslint.org/docs/rules/no-floating-decimal) | disallow leading or trailing decimal points in numeric literals |
+| :heavy_check_mark: |          | [`no-global-assign`](https://eslint.org/docs/rules/no-global-assign) | disallow assignments to native objects or read-only global variables <br> :warning: Only applies to e.g. `++` operations since CoffeeScript generates declarations on other write references. |
+|                    | :wrench: | [`coffee/no-implicit-coercion`](https://eslint.org/docs/rules/no-implicit-coercion) | disallow shorthand type conversions |
+|                    |          | [`no-implied-eval`](https://eslint.org/docs/rules/no-implied-eval) | disallow the use of `eval()`-like methods |
+
 ### Non-applicable ESLint-included rules
 
 Some rules included with ESLint don't apply to CoffeeScript. These include:
@@ -257,6 +284,15 @@ Some rules included with ESLint don't apply to CoffeeScript. These include:
 - [`no-extra-semi`](https://eslint.org/docs/rules/no-extra-semi)
 - [`no-func-assign`](https://eslint.org/docs/rules/no-func-assign)
 - [`no-unexpected-multiline`](https://eslint.org/docs/rules/no-unexpected-multiline)
+- [`array-callback-return`](https://eslint.org/docs/rules/array-callback-return)
+- [`consistent-return`](https://eslint.org/docs/rules/consistent-return)
+- [`curly`](https://eslint.org/docs/rules/curly)
+- [`eqeqeq`](https://eslint.org/docs/rules/eqeqeq)
+- [`no-case-declarations`](https://eslint.org/docs/rules/no-case-declarations)
+- [`no-eq-null`](https://eslint.org/docs/rules/no-eq-null)
+- [`no-extra-label`](https://eslint.org/docs/rules/no-extra-label)
+- [`no-fallthrough`](https://eslint.org/docs/rules/no-fallthrough)
+- [`no-implicit-globals`](https://eslint.org/docs/rules/no-implicit-globals)
 
 
 ## Supported CoffeeScript version
