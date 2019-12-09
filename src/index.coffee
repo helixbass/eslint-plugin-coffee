@@ -175,6 +175,9 @@ yet = [
   'default-param-last'
   'grouped-accessor-pairs'
   'no-constructor-return'
+  'no-useless-catch'
+  'prefer-named-capture-group'
+  'prefer-regex-literals'
 ]
 
 dontApply = [
