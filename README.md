@@ -298,6 +298,11 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 | :heavy_check_mark: |          | [`coffee/no-useless-escape`](https://eslint.org/docs/rules/no-useless-escape) | disallow unnecessary escape characters |
 |                    | :wrench: | [`coffee/no-useless-return`](https://eslint.org/docs/rules/no-useless-return) | disallow redundant return statements |
 |                    |          | [`no-warning-comments`](https://eslint.org/docs/rules/no-warning-comments) | disallow specified warning terms in comments |
+|                    |          | [`prefer-promise-reject-errors`](https://eslint.org/docs/rules/prefer-promise-reject-errors) | require using Error objects as Promise rejection reasons |
+|                    |          | [`radix`](https://eslint.org/docs/rules/radix) | enforce the consistent use of the radix argument when using `parseInt()` |
+|                    |          | [`require-unicode-regexp`](https://eslint.org/docs/rules/require-unicode-regexp) | enforce the use of `u` flag on RegExp |
+|                    |          | [`coffee/vars-on-top`](https://eslint.org/docs/rules/vars-on-top) | require "declarations" be placed at the top of their containing scope |
+|                    |          | [`coffee/yoda`](https://eslint.org/docs/rules/yoda) | require or disallow "Yoda" conditions <br> :warning: Unlike the ESLint rule, the CoffeeScript version is not fixable |
 
 ### Non-applicable ESLint-included rules
 
@@ -326,6 +331,8 @@ Some rules included with ESLint don't apply to CoffeeScript. These include:
 - [`no-unused-labels`](https://eslint.org/docs/rules/no-unused-labels)
 - [`no-void`](https://eslint.org/docs/rules/no-void)
 - [`no-with`](https://eslint.org/docs/rules/no-with)
+- [`require-await`](https://eslint.org/docs/rules/require-await)
+- [`wrap-iife`](https://eslint.org/docs/rules/wrap-iife)
 
 
 ## Supported CoffeeScript version
