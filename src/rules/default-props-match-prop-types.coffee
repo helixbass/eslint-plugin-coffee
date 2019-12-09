@@ -66,10 +66,8 @@ module.exports =
     # @returns {Object|ASTNode} Either the whole scope or the ASTNode associated with the given identifier.
     ###
     typeScope = (key, value) ->
-      if arguments.length is 0
-        return stack[stack.length - 1]
-      else
-        return stack[stack.length - 1][key] if arguments.length is 1
+      return stack[stack.length - 1] if arguments.length is 0
+      return stack[stack.length - 1][key] if arguments.length is 1
       stack[stack.length - 1][key] = value
       value
 

@@ -11,12 +11,6 @@ rule = require 'eslint-plugin-react/lib/rules/forbid-dom-props'
 {RuleTester} = require 'eslint'
 path = require 'path'
 
-parserOptions =
-  ecmaVersion: 2018
-  sourceType: 'module'
-  ecmaFeatures:
-    jsx: yes
-
 require 'babel-eslint'
 
 # -----------------------------------------------------------------------------

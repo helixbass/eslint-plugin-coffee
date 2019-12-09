@@ -40,10 +40,10 @@ findReturnStatement = (node) ->
 # @returns {Object} Property name node.
 ###
 getPropertyNameNode = (node) ->
-  if node.key or ['MethodDefinition', 'Property'].indexOf(node.type) isnt -1
-    return node.key
-  else
-    return node.property if node.type is 'MemberExpression'
+  return node.key if (
+    node.key or ['MethodDefinition', 'Property'].indexOf(node.type) isnt -1
+  )
+  return node.property if node.type is 'MemberExpression'
   null
 
 ###*

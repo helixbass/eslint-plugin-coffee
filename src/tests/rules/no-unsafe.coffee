@@ -86,7 +86,10 @@ ruleTester.run 'no-unsafe', rule,
       column: 1
       type: 'ClassDeclaration'
     ,
-      message: errorMessage 'UNSAFE_componentWillReceiveProps', 'getDerivedStateFromProps'
+      message: errorMessage(
+        'UNSAFE_componentWillReceiveProps'
+        'getDerivedStateFromProps'
+      )
       line: 1
       column: 1
       type: 'ClassDeclaration'
@@ -110,7 +113,10 @@ ruleTester.run 'no-unsafe', rule,
       column: 3
       type: 'ObjectExpression'
     ,
-      message: errorMessage 'UNSAFE_componentWillReceiveProps', 'getDerivedStateFromProps'
+      message: errorMessage(
+        'UNSAFE_componentWillReceiveProps'
+        'getDerivedStateFromProps'
+      )
       line: 2
       column: 3
       type: 'ObjectExpression'

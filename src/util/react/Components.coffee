@@ -341,6 +341,7 @@ componentRule = (rule, context) ->
     # @returns {ASTNode} component node, null if we are not in a component
     ###
     getParentES5Component: ->
+      # eslint-disable-next-line coffee/destructuring-assignment
       scope = context.getScope()
       while scope
         node = scope.block?.parent?.parent
@@ -367,6 +368,7 @@ componentRule = (rule, context) ->
     # @returns {ASTNode} component node, null if we are not in a component
     ###
     getParentStatelessComponent: ->
+      # eslint-disable-next-line coffee/destructuring-assignment
       scope = context.getScope()
       while scope
         node = scope.block

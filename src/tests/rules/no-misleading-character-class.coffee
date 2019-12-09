@@ -140,75 +140,75 @@ ruleTester.run 'no-misleading-character-class', rule,
     errors: [messageId: 'zwj']
   ,
     # RegExp constructors.
-    code: String.raw"r = new RegExp(\"[👍]\", \"\")"
+    code: String.raw'''r = new RegExp("[👍]", "")'''
     errors: [messageId: 'surrogatePairWithoutUFlag']
   ,
-    code: String.raw"r = new RegExp(\"[\uD83D\uDC4D]\", \"\")"
+    code: String.raw'''r = new RegExp("[\uD83D\uDC4D]", "")'''
     errors: [messageId: 'surrogatePairWithoutUFlag']
   ,
-    code: String.raw"r = new RegExp(\"[Á]\", \"\")"
+    code: String.raw'''r = new RegExp("[Á]", "")'''
     errors: [messageId: 'combiningClass']
   ,
-    code: String.raw"r = new RegExp(\"[Á]\", \"u\")"
+    code: String.raw'''r = new RegExp("[Á]", "u")'''
     errors: [messageId: 'combiningClass']
   ,
-    code: String.raw"r = new RegExp(\"[\u0041\u0301]\", \"\")"
+    code: String.raw'''r = new RegExp("[\u0041\u0301]", "")'''
     errors: [messageId: 'combiningClass']
   ,
-    code: String.raw"r = new RegExp(\"[\u0041\u0301]\", \"u\")"
+    code: String.raw'''r = new RegExp("[\u0041\u0301]", "u")'''
     errors: [messageId: 'combiningClass']
   ,
-    code: String.raw"r = new RegExp(\"[\u{41}\u{301}]\", \"u\")"
+    code: String.raw'''r = new RegExp("[\u{41}\u{301}]", "u")'''
     errors: [messageId: 'combiningClass']
   ,
-    code: String.raw"r = new RegExp(\"[❇️]\", \"\")"
+    code: String.raw'''r = new RegExp("[❇️]", "")'''
     errors: [messageId: 'combiningClass']
   ,
-    code: String.raw"r = new RegExp(\"[❇️]\", \"u\")"
+    code: String.raw'''r = new RegExp("[❇️]", "u")'''
     errors: [messageId: 'combiningClass']
   ,
-    code: String.raw"r = new RegExp(\"[\u2747\uFE0F]\", \"\")"
+    code: String.raw'''r = new RegExp("[\u2747\uFE0F]", "")'''
     errors: [messageId: 'combiningClass']
   ,
-    code: String.raw"r = new RegExp(\"[\u2747\uFE0F]\", \"u\")"
+    code: String.raw'''r = new RegExp("[\u2747\uFE0F]", "u")'''
     errors: [messageId: 'combiningClass']
   ,
-    code: String.raw"r = new RegExp(\"[\u{2747}\u{FE0F}]\", \"u\")"
+    code: String.raw'''r = new RegExp("[\u{2747}\u{FE0F}]", "u")'''
     errors: [messageId: 'combiningClass']
   ,
-    code: String.raw"r = new RegExp(\"[👶🏻]\", \"\")"
+    code: String.raw'''r = new RegExp("[👶🏻]", "")'''
     errors: [messageId: 'surrogatePairWithoutUFlag']
   ,
-    code: String.raw"r = new RegExp(\"[👶🏻]\", \"u\")"
+    code: String.raw'''r = new RegExp("[👶🏻]", "u")'''
     errors: [messageId: 'emojiModifier']
   ,
-    code: String.raw"r = new RegExp(\"[\uD83D\uDC76\uD83C\uDFFB]\", \"u\")"
+    code: String.raw'''r = new RegExp("[\uD83D\uDC76\uD83C\uDFFB]", "u")'''
     errors: [messageId: 'emojiModifier']
   ,
-    code: String.raw"r = new RegExp(\"[\u{1F476}\u{1F3FB}]\", \"u\")"
+    code: String.raw'''r = new RegExp("[\u{1F476}\u{1F3FB}]", "u")'''
     errors: [messageId: 'emojiModifier']
   ,
-    code: String.raw"r = new RegExp(\"[🇯🇵]\", \"\")"
+    code: String.raw'''r = new RegExp("[🇯🇵]", "")'''
     errors: [messageId: 'surrogatePairWithoutUFlag']
   ,
-    code: String.raw"r = new RegExp(\"[🇯🇵]\", \"u\")"
+    code: String.raw'''r = new RegExp("[🇯🇵]", "u")'''
     errors: [messageId: 'regionalIndicatorSymbol']
   ,
-    code: String.raw"r = new RegExp(\"[\uD83C\uDDEF\uD83C\uDDF5]\", \"u\")"
+    code: String.raw'''r = new RegExp("[\uD83C\uDDEF\uD83C\uDDF5]", "u")'''
     errors: [messageId: 'regionalIndicatorSymbol']
   ,
-    code: String.raw"r = new RegExp(\"[\u{1F1EF}\u{1F1F5}]\", \"u\")"
+    code: String.raw'''r = new RegExp("[\u{1F1EF}\u{1F1F5}]", "u")'''
     errors: [messageId: 'regionalIndicatorSymbol']
   ,
-    code: String.raw"r = new RegExp(\"[👨‍👩‍👦]\", \"\")"
+    code: String.raw'''r = new RegExp("[👨‍👩‍👦]", "")'''
     errors: [{messageId: 'surrogatePairWithoutUFlag'}, {messageId: 'zwj'}]
   ,
-    code: String.raw"r = new RegExp(\"[👨‍👩‍👦]\", \"u\")"
+    code: String.raw'''r = new RegExp("[👨‍👩‍👦]", "u")'''
     errors: [messageId: 'zwj']
   ,
-    code: String.raw"r = new RegExp(\"[\uD83D\uDC68\u200D\uD83D\uDC69\u200D\uD83D\uDC66]\", \"u\")"
+    code: String.raw'''r = new RegExp("[\uD83D\uDC68\u200D\uD83D\uDC69\u200D\uD83D\uDC66]", "u")'''
     errors: [messageId: 'zwj']
   ,
-    code: String.raw"r = new RegExp(\"[\u{1F468}\u{200D}\u{1F469}\u{200D}\u{1F466}]\", \"u\")"
+    code: String.raw'''r = new RegExp("[\u{1F468}\u{200D}\u{1F469}\u{200D}\u{1F466}]", "u")'''
     errors: [messageId: 'zwj']
   ]

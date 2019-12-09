@@ -16,8 +16,10 @@ todo:
   - include tests from coffeelint?
   - documentation
   - get added to docs Configuring list of compatible parsers
-  - expose eg prettier-conflict config that just turns off rules that conflict with prettier (without turning on prettier/prettier)?
   - attributions in files originally from other projects?
+  - `recommended` config?
+  - get config added to eslint-config-prettier so can use `prettier/coffee` like `prettier/@typescript-eslint`?
+  - target Airbnb rules first (among remaining non-covered rules)? And add "Usage with Airbnb" section to README (like typescript-eslint)
 bugs:
   - code path analysis needs to actually understand for when, since it considers anything after a for when whose body returns to be unreachable? or is eslint-plugin-known-imports using outdated?
   - no-unused-vars doesn't understand do (x) -> as a usage of outer x
@@ -29,7 +31,6 @@ bugs:
       # comment
     b
   - no-useless-escape is flagging ///^(#{pragma}\.)?#{createClass}$/// (I guess because it gets exposed as a new RegExp call? should it escape differently in the AST? or should the rule handle that case differently?)
-  - yoda shouldn't yell at you if you're doing chained comparison eg 1 < x < 7
   - looks like the version of babel-eslint doesn't understand fragments so doesn't eg transform children JSXText of fragments into Literal (worked around in jsx-no-comment-textnodes by also checking JSXText, which some other existing tests seem to do - is that for a similar reason (ie support older version of babel-eslint)?)
 nice to have:
   - add excludeLoop option to no-constant-condition?
@@ -43,7 +44,7 @@ nice to have:
   - make empty-func-parens (and some other ones) fixable
   - add individual usage-type options to spread-direction eg jsxSpreadProp, object, array, objectSpread, objectRest, arraySpread, arrayRest
     should allow you to either override for some of these types (['postfix', jsxSpreadProp: 'prefix']) or *just* warn for some of these types ([jsxSpreadProp: 'prefix'])
-  - no-unused-expressions flags implicitly returned JSX (this is a CS AST bug) - this may not be broken?
+  - no-return-assign option to ignore implicit returns? how should that interplay with except-parens?
 upstream:
   - push id-length fixes upstream to eslint?
   - no-extra-bind doesn't check if bind expression it's removing could have side effects

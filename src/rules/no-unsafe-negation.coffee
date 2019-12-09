@@ -45,7 +45,7 @@ module.exports =
       recommended: yes
       url: 'https://eslint.org/docs/rules/no-unsafe-negation'
     schema: []
-    fixable: 'code'
+    # fixable: 'code'
 
   create: (context) ->
     sourceCode = context.getSourceCode()
@@ -63,19 +63,19 @@ module.exports =
             "Unexpected negating the left operand of '{{operator}}' operator."
           data: node
 
-          fix: (fixer) ->
-            negationToken = sourceCode.getFirstToken node.left
-            fixRange = [
-              if (
-                node.left.operator is 'not' and
-                /^\s+/.test sourceCode.getText()[negationToken.range[1]..]
-              )
-                negationToken.range[1] + 1
-              else
-                negationToken.range[1]
-              node.range[1]
-            ]
-            text = sourceCode.text.slice fixRange[0], fixRange[1]
+          # fix: (fixer) ->
+          #   negationToken = sourceCode.getFirstToken node.left
+          #   fixRange = [
+          #     if (
+          #       node.left.operator is 'not' and
+          #       /^\s+/.test sourceCode.getText()[negationToken.range[1]..]
+          #     )
+          #       negationToken.range[1] + 1
+          #     else
+          #       negationToken.range[1]
+          #     node.range[1]
+          #   ]
+          #   text = sourceCode.text.slice fixRange[0], fixRange[1]
 
-            fixer.replaceTextRange fixRange, "(#{text})"
+          #   fixer.replaceTextRange fixRange, "(#{text})"
         }

@@ -106,6 +106,11 @@ ruleTester.run 'yoda', rule,
   ,
     code: 'if (x < 2 && x isnt -3) then ;'
     options: ['always', {onlyEquality: yes}]
+  ,
+    # Chained comparisons
+    code: 'if 2 < a < 5 then ;', options: ['always']
+  ,
+    code: 'if 2 < a < 5 then ;', options: ['never']
   ]
   invalid: [
     code: 'if ("red" == value) then ;'

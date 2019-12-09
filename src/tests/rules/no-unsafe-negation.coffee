@@ -47,101 +47,101 @@ ruleTester.run 'no-unsafe-negation', rule,
   ]
   invalid: [
     code: '!a in b'
-    output: '!(a in b)'
+    # output: '!(a in b)'
     errors: ["Unexpected negating the left operand of 'in' operator."]
   ,
     code: 'not a in b'
-    output: 'not (a in b)'
+    # output: 'not (a in b)'
     errors: ["Unexpected negating the left operand of 'in' operator."]
   ,
     code: '!a not in b'
-    output: '!(a not in b)'
+    # output: '!(a not in b)'
     errors: ["Unexpected negating the left operand of 'not in' operator."]
   ,
     code: '!a of b'
-    output: '!(a of b)'
+    # output: '!(a of b)'
     errors: ["Unexpected negating the left operand of 'of' operator."]
   ,
     code: '!a not of b'
-    output: '!(a not of b)'
+    # output: '!(a not of b)'
     errors: ["Unexpected negating the left operand of 'not of' operator."]
   ,
     code: 'not a not of b'
-    output: 'not (a not of b)'
+    # output: 'not (a not of b)'
     errors: ["Unexpected negating the left operand of 'not of' operator."]
   ,
     code: '(!a in b)'
-    output: '(!(a in b))'
+    # output: '(!(a in b))'
     errors: ["Unexpected negating the left operand of 'in' operator."]
   ,
     code: '(not a in b)'
-    output: '(not (a in b))'
+    # output: '(not (a in b))'
     errors: ["Unexpected negating the left operand of 'in' operator."]
   ,
     code: '(!a not in b)'
-    output: '(!(a not in b))'
+    # output: '(!(a not in b))'
     errors: ["Unexpected negating the left operand of 'not in' operator."]
   ,
     code: '(!a of b)'
-    output: '(!(a of b))'
+    # output: '(!(a of b))'
     errors: ["Unexpected negating the left operand of 'of' operator."]
   ,
     code: '(!a not of b)'
-    output: '(!(a not of b))'
+    # output: '(!(a not of b))'
     errors: ["Unexpected negating the left operand of 'not of' operator."]
   ,
     code: '!(a) in b'
-    output: '!((a) in b)'
+    # output: '!((a) in b)'
     errors: ["Unexpected negating the left operand of 'in' operator."]
   ,
     code: '!(a) not in b'
-    output: '!((a) not in b)'
+    # output: '!((a) not in b)'
     errors: ["Unexpected negating the left operand of 'not in' operator."]
   ,
     code: '!(a) of b'
-    output: '!((a) of b)'
+    # output: '!((a) of b)'
     errors: ["Unexpected negating the left operand of 'of' operator."]
   ,
     code: '!(a) not of b'
-    output: '!((a) not of b)'
+    # output: '!((a) not of b)'
     errors: ["Unexpected negating the left operand of 'not of' operator."]
   ,
     code: '!a instanceof b'
-    output: '!(a instanceof b)'
+    # output: '!(a instanceof b)'
     errors: ["Unexpected negating the left operand of 'instanceof' operator."]
   ,
     code: '!a not instanceof b'
-    output: '!(a not instanceof b)'
+    # output: '!(a not instanceof b)'
     errors: [
       "Unexpected negating the left operand of 'not instanceof' operator."
     ]
   ,
     code: 'not a not instanceof b'
-    output: 'not (a not instanceof b)'
+    # output: 'not (a not instanceof b)'
     errors: [
       "Unexpected negating the left operand of 'not instanceof' operator."
     ]
   ,
     code: '(!a instanceof b)'
-    output: '(!(a instanceof b))'
+    # output: '(!(a instanceof b))'
     errors: ["Unexpected negating the left operand of 'instanceof' operator."]
   ,
     code: '(!a not instanceof b)'
-    output: '(!(a not instanceof b))'
+    # output: '(!(a not instanceof b))'
     errors: [
       "Unexpected negating the left operand of 'not instanceof' operator."
     ]
   ,
     code: '!(a) instanceof b'
-    output: '!((a) instanceof b)'
+    # output: '!((a) instanceof b)'
     errors: ["Unexpected negating the left operand of 'instanceof' operator."]
   ,
     code: 'not (a) instanceof b'
-    output: 'not ((a) instanceof b)'
+    # output: 'not ((a) instanceof b)'
     errors: ["Unexpected negating the left operand of 'instanceof' operator."]
   ,
     code: '!(a) not instanceof b'
-    output: '!((a) not instanceof b)'
+    # output: '!((a) not instanceof b)'
     errors: [
       "Unexpected negating the left operand of 'not instanceof' operator."
     ]

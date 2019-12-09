@@ -22,6 +22,7 @@ error = type: 'PassthroughLiteral'
 ruleTester.run 'no-backticks', rule,
   valid: [
     'foo = ->'
+    # eslint-disable-next-line coffee/no-template-curly-in-string
     '''
       "a#{b}`c`"
     '''

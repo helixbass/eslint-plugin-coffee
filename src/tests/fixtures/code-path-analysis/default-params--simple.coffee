@@ -1,3 +1,4 @@
+### eslint-disable ###
 ###expected
 initial->s2_1->s2_2->s2_3;
 s2_1->s2_3->final;

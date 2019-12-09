@@ -135,7 +135,7 @@ ruleTester.run 'no-dupe-class-members', rule,
     errors: [
       type: 'MethodDefinition'
       line: 3
-      column: 4
+      column: 3
       messageId: 'unexpected'
       data: name: 'foo'
     ]

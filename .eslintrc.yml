@@ -2,7 +2,7 @@
 extends:
   - eslint:recommended
   - plugin:coffee/all
-  - plugin:coffee/prettier
+  - plugin:coffee/prettier-run-as-rule
 rules:
   coffee/prefer-destructuring: [error, {object: true}]
   coffee/no-unused-vars: [error, {varsIgnorePattern: ^_+$}]
@@ -29,6 +29,8 @@ rules:
   coffee/block-scoped-var: off
   coffee/wrap-regex: off
   no-sparse-arrays: off
+  coffee/no-cond-assign: off
+  coffee/spread-direction: off
 env:
   node: true
   es6: true

@@ -116,7 +116,7 @@ module.exports =
         allowTaggedTemplates and node.type is 'TaggedTemplateExpression'
       )
 
-      /^(?:Assignment|Call|New|Update|Yield|Await)Expression$/.test(
+      /^(?:Optional)?(?:Assignment|Call|New|Update|Yield|Await)Expression$/.test(
         node.type
       ) or
         # our ConditionalExpression could have statements

@@ -1,13 +1,5 @@
-{
-  flow
-  map: fmap
-  flatten: fflatten
-  fromPairs: ffromPairs
-  keys: fkeys
-  mapValues: fmapValues
-  pickBy: fpickBy
-} = require 'lodash/fp'
-fmapWithKey = fmap.convert cap: no
+{flow, map, flatten, fromPairs, keys, mapValues, pickBy} = require 'lodash/fp'
+mapWithKey = map.convert cap: no
 
 {parseForESLint} = require './parser'
 
@@ -161,6 +153,7 @@ usable = [
   'react/jsx-uses-vars'
   'react/void-dom-elements-no-children'
   'react-native/no-inline-styles'
+  'no-empty-pattern'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
@@ -176,6 +169,15 @@ yet = [
   'no-nested-interpolation'
   'ensure_comprehensions'
   'no_private_function_fat_arrows' # maybe this should cover warning about non-fat arrow = -> assignments in class bodies as well (since they're often intended to be : ->)?
+  'no-dupe-else-if'
+  'no-import-assign'
+  'no-setter-return'
+  'default-param-last'
+  'grouped-accessor-pairs'
+  'no-constructor-return'
+  'no-useless-catch'
+  'prefer-named-capture-group'
+  'prefer-regex-literals'
 ]
 
 dontApply = [
@@ -243,23 +245,23 @@ dontApply = [
   'yield-star-spacing'
   'func-call-spacing'
   'react/require-render-return'
+  'no-eq-null'
 ]
 
 rules =
   flow(
-    fmapWithKey (config, rule) -> [
+    mapWithKey (config, rule) -> [
       rule
       {
         ...config
         module: require "./rules/#{rule}"
       }
     ]
-    ffromPairs
+    fromPairs
   )(
     'use-isnan':
       'eslint-recommended': yes
     'no-self-compare': {}
-    'no-eq-null': {}
     'valid-typeof':
       'eslint-recommended': yes
     'no-negated-condition': {}
@@ -499,7 +501,7 @@ rules =
   )
 
 configureAsError = flow(
-  fmapWithKey ({plugin}, rule) -> [
+  mapWithKey ({plugin}, rule) -> [
     ["coffee/#{rule}", 'error']
     ...(
       unless plugin is no
@@ -516,17 +518,29 @@ configureAsError = flow(
         []
     )
   ]
-  fflatten
-  ffromPairs
+  flatten
+  fromPairs
 )
 
 turnOff = flow(
-  fmap (rule) -> [rule, 'off']
-  ffromPairs
+  map (rule) -> [rule, 'off']
+  fromPairs
 )
 
+prettierConfig =
+  extends: ['prettier']
+  plugins: ['coffee']
+  parser: 'eslint-plugin-coffee'
+  rules: turnOff(
+    flow(
+      pickBy 'prettier'
+      keys
+      map (rule) -> "coffee/#{rule}"
+    ) rules
+  )
+
 module.exports = {
-  rules: fmapValues('module') rules
+  rules: mapValues('module') rules
   configs:
     all:
       plugins: ['coffee']
@@ -540,27 +554,22 @@ module.exports = {
       plugins: ['coffee']
       parser: 'eslint-plugin-coffee'
       rules: {
-        ...configureAsError(fpickBy('eslint-recommended') rules)
+        ...configureAsError(pickBy('eslint-recommended') rules)
         ...turnOff(dontApply)
         # ...turnOff(unusable)
       }
-    prettier:
-      extends: ['prettier']
+    prettier: prettierConfig
+    'prettier-run-as-rule': {
+      ...prettierConfig
       plugins: ['coffee', 'prettier']
-      parser: 'eslint-plugin-coffee'
       rules: {
         'prettier/prettier': [
           'error'
         ,
           parser: 'coffeescript', pluginSearchDirs: ['.']
         ]
-        ...turnOff(
-          flow(
-            fpickBy 'prettier'
-            fkeys
-            fmap (rule) -> "coffee/#{rule}"
-          ) rules
-        )
+        ...prettierConfig.rules
       }
+    }
   parseForESLint
 }

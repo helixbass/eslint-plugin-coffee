@@ -141,7 +141,7 @@ ruleTester.run 'no-did-update-set-state', rule,
   ,
     code: '''
       class Hello extends React.Component
-        componentDidUpdate: _>
+        componentDidUpdate: ->
           if (true)
             this.setState({
               data: data

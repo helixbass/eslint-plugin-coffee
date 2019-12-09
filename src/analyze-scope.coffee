@@ -42,6 +42,10 @@ class Referencer extends OriginalReferencer
     @visitChildren node
     delete node.argument._isDoIife if isDoIife
 
+  OptionalMemberExpression: (node) ->
+    @visit node.object
+    @visit node.property if node.computed
+
   AssignmentExpression: (node) ->
     # @visit node.left if node.left.type is 'Identifier'
     @visitPattern node.left, (identifier) =>

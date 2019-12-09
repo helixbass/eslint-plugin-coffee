@@ -70,6 +70,8 @@ module.exports =
       }
 
     IfStatement: (node) ->
+      return if node.postfix
+
       ancestors = context.getAncestors()
       parent = ancestors.pop()
       grandparent = ancestors.pop()

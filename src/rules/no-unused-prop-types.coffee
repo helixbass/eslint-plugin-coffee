@@ -73,13 +73,11 @@ module.exports =
         if scope.block?.parent?.key
           {name} = scope.block.parent.key
 
-          if LIFE_CYCLE_METHODS.indexOf(name) >= 0
-            return yes
-          else
-            return yes if (
-              checkAsyncSafeLifeCycles and
-              ASYNC_SAFE_LIFE_CYCLE_METHODS.indexOf(name) >= 0
-            )
+          return yes if LIFE_CYCLE_METHODS.indexOf(name) >= 0
+          return yes if (
+            checkAsyncSafeLifeCycles and
+            ASYNC_SAFE_LIFE_CYCLE_METHODS.indexOf(name) >= 0
+          )
         scope = scope.upper
       no
 
@@ -147,15 +145,12 @@ module.exports =
     isNodeALifeCycleMethod = (node) ->
       nodeKeyName = node.key?.name
 
-      if node.kind is 'constructor'
-        return yes
-      else if LIFE_CYCLE_METHODS.indexOf(nodeKeyName) >= 0
-        return yes
-      else
-        return yes if (
-          checkAsyncSafeLifeCycles and
-          ASYNC_SAFE_LIFE_CYCLE_METHODS.indexOf(nodeKeyName) >= 0
-        )
+      return yes if node.kind is 'constructor'
+      return yes if LIFE_CYCLE_METHODS.indexOf(nodeKeyName) >= 0
+      return yes if (
+        checkAsyncSafeLifeCycles and
+        ASYNC_SAFE_LIFE_CYCLE_METHODS.indexOf(nodeKeyName) >= 0
+      )
 
       no
 

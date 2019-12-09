@@ -67,10 +67,8 @@ module.exports =
     # @returns {Object|ASTNode} Either the whole scope or the ASTNode associated with the given identifier.
     ###
     typeScope = (key, value) ->
-      if arguments.length is 0
-        return stack[stack.length - 1]
-      else
-        return stack[stack.length - 1][key] if arguments.length is 1
+      return stack[stack.length - 1] if arguments.length is 0
+      return stack[stack.length - 1][key] if arguments.length is 1
       stack[stack.length - 1][key] = value
       value
 
@@ -140,7 +138,7 @@ module.exports =
           )
 
         when 'ObjectTypeAnnotation'
-          properties = node.typeAnnotation.properties
+          {properties} = node.typeAnnotation
 
         else
           properties = []
@@ -153,9 +151,11 @@ module.exports =
         tokens = context.getFirstTokens property, 1
         name = tokens[0].value
 
-        name: name
-        isRequired: not property.optional
-        node: property
+        {
+          name
+          isRequired: not property.optional
+          node: property
+        }
 
     ###*
     # Extracts a DefaultProp from an ObjectExpression node.
@@ -299,9 +299,11 @@ module.exports =
         tokens = context.getFirstTokens property, 1
         name = tokens[0].value
 
-        name: name
-        isRequired: not property.optional
-        node: property
+        {
+          name
+          isRequired: not property.optional
+          node: property
+        }
 
     hasPropTypesAsGeneric = (node) ->
       node?.parent and node.parent.type is 'ClassDeclaration'

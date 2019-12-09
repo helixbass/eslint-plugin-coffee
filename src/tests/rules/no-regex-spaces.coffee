@@ -37,6 +37,7 @@ ruleTester.run 'no-regex-spaces', rule,
             a
        b     ///
     '''
+    # eslint-disable-next-line coffee/no-template-curly-in-string
     '''
       foo = ///
             a

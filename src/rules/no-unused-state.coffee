@@ -23,16 +23,13 @@ uncast = (node) ->
 # method definitions, ObjectExpression property keys).
 getName = (node) ->
   node = uncast node
-  type = node.type
+  {type} = node
 
-  if type is 'Identifier'
-    return node.name
-  else if type is 'Literal'
-    return String node.value
-  else
-    return node.quasis[0].value.raw if (
-      type is 'TemplateLiteral' and node.expressions.length is 0
-    )
+  return node.name if type is 'Identifier'
+  return String node.value if type is 'Literal'
+  return node.quasis[0].value.raw if (
+    type is 'TemplateLiteral' and node.expressions.length is 0
+  )
   null
 
 isThisExpression = (node) -> uncast(node).type is 'ThisExpression'
@@ -96,7 +93,7 @@ module.exports =
     # current set of state fields.
     addStateFields = (node) ->
       for prop from node.properties
-        key = prop.key
+        {key} = prop
 
         if (
           prop.type is 'Property' and
@@ -157,19 +154,20 @@ module.exports =
       if utils.isES6Component node then classInfo = getInitialClassInfo()
 
     ObjectExpression: (node) ->
-      if utils.isES5Component node then classInfo = getInitialClassInfo()
+      if utils.isES5Component node
+        classInfo ###:### = getInitialClassInfo()
 
     'ObjectExpression:exit': (node) ->
       return unless classInfo
 
       if utils.isES5Component node
         reportUnusedFields()
-        classInfo = null
+        classInfo ###:### = null
 
     'ClassDeclaration:exit': ->
       return unless classInfo
       reportUnusedFields()
-      classInfo = null
+      classInfo ###:### = null
 
     CallExpression: (node) ->
       return unless classInfo
@@ -281,16 +279,18 @@ module.exports =
       if isStateReference node.object
         # If we see this.state[foo] access, give up.
         if node.computed and node.property.type isnt 'Literal'
-          classInfo = null
+          classInfo ###:### = null
           return
         # Otherwise, record that we saw this property being accessed.
         addUsedStateField node.property
         # If we see a `this.state` access in a CallExpression, give up.
       else if isStateReference(node) and node.parent.type is 'CallExpression'
-        classInfo = null
+        classInfo ###:### = null
 
     JSXSpreadAttribute: (node) ->
-      if classInfo and isStateReference node.argument then classInfo = null
+      if classInfo and isStateReference node.argument
+        classInfo ###:### = null
 
     'ExperimentalSpreadProperty, SpreadElement': (node) ->
-      if classInfo and isStateReference node.argument then classInfo = null
+      if classInfo and isStateReference node.argument
+        classInfo ###:### = null

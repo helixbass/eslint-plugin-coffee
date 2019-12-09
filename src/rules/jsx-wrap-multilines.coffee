@@ -171,9 +171,5 @@ module.exports =
 
     JSXAttribute: (node) ->
       type = 'prop'
-      if (
-        isEnabled(type) and
-        node.value and
-        node.value.type is 'JSXExpressionContainer'
-      )
+      if isEnabled(type) and node.value?.type is 'JSXExpressionContainer'
         check node.value.expression, type

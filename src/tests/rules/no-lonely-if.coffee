@@ -41,6 +41,13 @@ ruleTester.run 'no-lonely-if', rule,
     '''
     'if a then b else if c then d'
     'x = if a then b else if c then d'
+    # postfix if shouldn't trigger
+    '''
+      if a
+        b
+      else
+        c if d
+    '''
   ]
 
   # Examples of code that should trigger the rule

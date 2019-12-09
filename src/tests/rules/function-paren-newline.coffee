@@ -239,18 +239,19 @@ ruleTester.run 'function-paren-newline', rule,
     #         """
     errors: [LEFT_UNEXPECTED_ERROR, RIGHT_UNEXPECTED_ERROR]
   ,
-    code: '''
-      (
-        foo =
-        1
-      ) ->
-    '''
-    # output: """
-    #             function baz(foo =
-    #                 1) {}
-    #         """
-    errors: [LEFT_UNEXPECTED_ERROR, RIGHT_UNEXPECTED_ERROR]
-  ,
+    # TODO: uncomment if https://github.com/jashkenas/coffeescript/pull/5081 gets merged
+    # ,
+    #   code: '''
+    #     (
+    #       foo =
+    #       1
+    #     ) ->
+    #   '''
+    #   # output: """
+    #   #             function baz(foo =
+    #   #                 1) {}
+    #   #         """
+    #   errors: [LEFT_UNEXPECTED_ERROR, RIGHT_UNEXPECTED_ERROR]
     code: '''
       (
       ) ->
