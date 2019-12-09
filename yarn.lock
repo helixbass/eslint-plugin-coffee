@@ -496,21 +496,6 @@ co@^4.6.0:
     eslint-plugin-standard "^3.0.1"
     prettier "github:helixbass/prettier#just-format-ast"
 
-"coffeescript@github:helixbass/coffeescript#d8ae23f6":
-  version "2.3.2"
-  resolved "https://codeload.github.com/helixbass/coffeescript/tar.gz/d8ae23f68010d613f8aae9b9b191d96808201c19"
-  dependencies:
-    babel-eslint "^7.2.2"
-    babylon "^7.0.0-beta.44"
-    eslint "^4.19.0"
-    eslint-config-prettier "^2.9.0"
-    eslint-config-standard "^11.0.0"
-    eslint-plugin-import "^2.9.0"
-    eslint-plugin-node "^6.0.1"
-    eslint-plugin-promise "^3.7.0"
-    eslint-plugin-standard "^3.0.1"
-    prettier "github:helixbass/prettier#just-format-ast"
-
 "coffeescript@github:jashkenas/coffeescript#69521b97":
   version "2.4.1"
   resolved "https://codeload.github.com/jashkenas/coffeescript/tar.gz/69521b97cef6704b7915316b162804a24629de7d"
@@ -818,14 +803,14 @@ eslint-module-utils@^2.4.1:
     debug "^2.6.9"
     pkg-dir "^2.0.0"
 
-eslint-plugin-coffee@^0.0.12:
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-coffee/-/eslint-plugin-coffee-0.0.12.tgz#9d857adf621e9f1b0f8a7ddabb66e3f1e45a29df"
-  integrity sha512-iVy9928Fz7lzOLj3DDEOm/F8oMQHIbaaSnAngAT8/Uw8fu5kY1hPHVmlMxkxDxnuYK2siiJkhZ1Nh1WEvOVpTw==
+eslint-plugin-coffee@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-coffee/-/eslint-plugin-coffee-0.1.0.tgz#c0815ff2587a18f7f6d8d6897d16f7aa3c233e6b"
+  integrity sha512-q7bU7Gg/YIsRfVsAxvMGiHeFNRZSpv0PoK5c6DEi4Hk8eaWbXxwVwlYLO45WJ9YLVMk4ftgIM+Sl5phHVUswKw==
   dependencies:
     babel-eslint "^7.2.2"
     babylon "^7.0.0-beta.44"
-    coffeescript "github:helixbass/coffeescript#d8ae23f6"
+    coffeescript "github:jashkenas/coffeescript#69521b97"
     doctrine "^2.1.0"
     eslint-scope "~3.7.3"
     eslint-utils "^1.4.3"
