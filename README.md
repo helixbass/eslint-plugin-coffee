@@ -273,6 +273,31 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 | :heavy_check_mark: |          | [`no-global-assign`](https://eslint.org/docs/rules/no-global-assign) | disallow assignments to native objects or read-only global variables <br> :warning: Only applies to e.g. `++` operations since CoffeeScript generates declarations on other write references. |
 |                    | :wrench: | [`coffee/no-implicit-coercion`](https://eslint.org/docs/rules/no-implicit-coercion) | disallow shorthand type conversions |
 |                    |          | [`no-implied-eval`](https://eslint.org/docs/rules/no-implied-eval) | disallow the use of `eval()`-like methods |
+|                    |          | [`coffee/no-invalid-this`](https://eslint.org/docs/rules/no-invalid-this) | disallow `this` keywords outside of classes or class-like objects |
+|                    |          | [`no-iterator`](https://eslint.org/docs/rules/no-iterator) | disallow the use of the `__iterator__` property |
+|                    |          | [`coffee/no-loop-func`](https://eslint.org/docs/rules/no-loop-func) | disallow function declarations that contain unsafe references inside loop statements |
+|                    |          | [`coffee/no-magic-numbers`](https://eslint.org/docs/rules/no-magic-numbers) | disallow magic numbers |
+|                    | :wrench: | [`coffee/no-multi-spaces`](https://eslint.org/docs/rules/no-multi-spaces) | disallow multiple spaces |
+|                    |          | [`no-multi-str`](https://eslint.org/docs/rules/no-multi-str) | disallow multiline strings |
+|                    |          | [`no-new`](https://eslint.org/docs/rules/no-new) | disallow `new` operators outside of assignments or comparisons |
+|                    |          | [`no-new-func`](https://eslint.org/docs/rules/no-new-func) | disallow `new` operators with the `Function` object |
+|                    |          | [`no-new-wrappers`](https://eslint.org/docs/rules/no-new-wrappers) | disallow `new` operators with the `String`, `Number`, and `Boolean` objects |
+|                    |          | [`no-param-reassign`](https://eslint.org/docs/rules/no-param-reassign) | disallow reassigning `function` parameters |
+|                    |          | [`no-proto`](https://eslint.org/docs/rules/no-proto) | disallow the use of the `__proto__` property |
+|                    |          | [`no-restricted-properties`](https://eslint.org/docs/rules/no-restricted-properties) | disallow certain properties on certain objects |
+|                    |          | [`coffee/no-return-assign`](https://eslint.org/docs/rules/no-return-assign) | disallow assignment operators in `return` statements <br> :warning: Currently, this also flags assignments in implicit return statements |
+|                    |          | [`no-script-url`](https://eslint.org/docs/rules/no-script-url) | disallow `javascript:` urls |
+| :heavy_check_mark: |          | [`coffee/no-self-assign`](https://eslint.org/docs/rules/no-self-assign) | disallow assignments where both sides are exactly the same |
+|                    |          | [`coffee/no-self-compare`](https://eslint.org/docs/rules/no-self-compare) | disallow comparisons where both sides are exactly the same |
+|                    |          | [`coffee/no-sequences`](https://eslint.org/docs/rules/no-sequences) | disallow semicolon operators |
+|                    |          | [`no-throw-literal`](https://eslint.org/docs/rules/no-throw-literal) | disallow throwing literals as exceptions |
+|                    |          | [`coffee/no-unmodified-loop-condition`](https://eslint.org/docs/rules/no-unmodified-loop-condition) | disallow unmodified loop conditions |
+|                    |          | [`coffee/no-unused-expressions`](https://eslint.org/docs/rules/no-unused-expressions) | disallow unused expressions |
+|                    |          | [`no-useless-call`](https://eslint.org/docs/rules/no-useless-call) | disallow unnecessary calls to `.call()` and `.apply()` |
+|                    |          | [`no-useless-concat`](https://eslint.org/docs/rules/no-useless-concat) | disallow unnecessary concatenation of literals or template literals |
+| :heavy_check_mark: |          | [`coffee/no-useless-escape`](https://eslint.org/docs/rules/no-useless-escape) | disallow unnecessary escape characters |
+|                    | :wrench: | [`coffee/no-useless-return`](https://eslint.org/docs/rules/no-useless-return) | disallow redundant return statements |
+|                    |          | [`no-warning-comments`](https://eslint.org/docs/rules/no-warning-comments) | disallow specified warning terms in comments |
 
 ### Non-applicable ESLint-included rules
 
@@ -293,6 +318,14 @@ Some rules included with ESLint don't apply to CoffeeScript. These include:
 - [`no-extra-label`](https://eslint.org/docs/rules/no-extra-label)
 - [`no-fallthrough`](https://eslint.org/docs/rules/no-fallthrough)
 - [`no-implicit-globals`](https://eslint.org/docs/rules/no-implicit-globals)
+- [`no-labels`](https://eslint.org/docs/rules/no-labels)
+- [`no-lone-blocks`](https://eslint.org/docs/rules/no-lone-blocks)
+- [`no-octal`](https://eslint.org/docs/rules/no-octal)
+- [`no-octal-escape`](https://eslint.org/docs/rules/no-octal-escape)
+- [`no-redeclare`](https://eslint.org/docs/rules/no-redeclare)
+- [`no-unused-labels`](https://eslint.org/docs/rules/no-unused-labels)
+- [`no-void`](https://eslint.org/docs/rules/no-void)
+- [`no-with`](https://eslint.org/docs/rules/no-with)
 
 
 ## Supported CoffeeScript version
