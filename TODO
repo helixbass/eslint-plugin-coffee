@@ -20,6 +20,7 @@ todo:
   - `recommended` config?
   - get config added to eslint-config-prettier so can use `prettier/coffee` like `prettier/@typescript-eslint`?
   - target Airbnb rules first (among remaining non-covered rules)? And add "Usage with Airbnb" section to README (like typescript-eslint)
+  - `all` should also turn on all "just works" ESLint rules? What about all "just works" eg eslint-plugin-react rules?
 bugs:
   - code path analysis needs to actually understand for when, since it considers anything after a for when whose body returns to be unreachable? or is eslint-plugin-known-imports using outdated?
   - no-unused-vars doesn't understand do (x) -> as a usage of outer x
