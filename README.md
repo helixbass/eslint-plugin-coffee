@@ -197,7 +197,7 @@ Alternatively, if you want to run Prettier as an ESLint rule (a nice option espe
 via your editor):
 
 ```
-npm install --save-dev eslint-config-prettier eslint-plugin-prettier
+npm install --save-dev eslint-config-prettier eslint-plugin-prettier prettier-plugin-coffeescript
 ```
 
 Then use the `prettier-run-as-rule` config exposed by this plugin:
@@ -325,6 +325,56 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 |                    |          | [`no-restricted-modules`](https://eslint.org/docs/rules/no-restricted-modules) | disallow specified modules when loaded by `require` |
 |                    |          | [`no-sync`](https://eslint.org/docs/rules/no-sync) | disallow synchronous methods |
 
+#### Stylistic Issues
+
+|                    |          | Name                                    | Description |
+| ------------------ | -------- | --------------------------------------- | ----------- |
+|                    |          | [`coffee/array-bracket-newline`](https://eslint.org/docs/rules/array-bracket-newline) | enforce linebreaks after opening and before closing array brackets <br> :warning: Unlike the ESLint rule, the CoffeeScript version is not fixable |
+|                    | :wrench: | [`coffee/array-bracket-spacing`](https://eslint.org/docs/rules/array-bracket-spacing) | enforce consistent spacing inside array brackets |
+|                    |          | [`coffee/array-element-newline`](https://eslint.org/docs/rules/array-element-newline) | enforce line breaks after each array element <br> :warning: Unlike the ESLint rule, the CoffeeScript version is not fixable |
+|                    |          | [`coffee/camelcase`](https://eslint.org/docs/rules/camelcase) | enforce camelcase naming convention |
+|                    | :wrench: | [`coffee/capitalized-comments`](https://eslint.org/docs/rules/capitalized-comments) | enforce or disallow capitalization of the first letter of a comment |
+|                    | :wrench: | [`comma-spacing`](https://eslint.org/docs/rules/comma-spacing) | enforce consistent spacing before and after commas |
+|                    |          | [`coffee/comma-style`](https://eslint.org/docs/rules/comma-style) | enforce consistent comma style <br> :warning: Unlike the ESLint rule, the CoffeeScript version is not fixable |
+|                    | :wrench: | [`computed-property-spacing`](https://eslint.org/docs/rules/computed-property-spacing) | enforce consistent spacing inside computed property brackets |
+|                    |          | [`coffee/consistent-this`](https://eslint.org/docs/rules/consistent-this) | enforce consistent naming when capturing the current execution context |
+|                    | :wrench: | [`eol-last`](https://eslint.org/docs/rules/eol-last) | require or disallow newline at the end of files |
+|                    |          | [`coffee/function-paren-newline`](https://eslint.org/docs/rules/function-paren-newline) | enforce consistent line breaks inside function parentheses <br> :warning: Unlike the ESLint rule, the CoffeeScript version is not fixable |
+|                    |          | [`id-blacklist`](https://eslint.org/docs/rules/id-blacklist) | disallow specified identifiers |
+|                    |          | [`coffee/id-length`](https://eslint.org/docs/rules/id-length) | enforce minimum and maximum identifier lengths |
+|                    |          | [`coffee/id-match`](https://eslint.org/docs/rules/id-match) | require identifiers to match a specified regular expression |
+|                    |          | [`coffee/implicit-arrow-linebreak`](https://eslint.org/docs/rules/implicit-arrow-linebreak) | enforce the location of function bodies <br> :warning: Unlike the ESLint rule, the CoffeeScript version is not fixable |
+|                    | :wrench: | [`jsx-quotes`](https://eslint.org/docs/rules/jsx-quotes) | enforce the consistent use of either double or single quotes in JSX attributes |
+|                    | :wrench: | [`key-spacing`](https://eslint.org/docs/rules/key-spacing) | enforce consistent spacing between keys and values in object literal properties |
+|                    | :wrench: | [`coffee/keyword-spacing`](https://eslint.org/docs/rules/keyword-spacing) | enforce consistent spacing before and after keywords |
+|                    |          | [`line-comment-position`](https://eslint.org/docs/rules/line-comment-position) | enforce position of line comments |
+|                    | :wrench: | [`linebreak-style`](https://eslint.org/docs/rules/linebreak-style) | enforce consistent linebreak style |
+|                    | :wrench: | [`coffee/lines-around-comment`](https://eslint.org/docs/rules/lines-around-comment) | require empty lines around comments |
+|                    |          | [`coffee/lines-between-class-members`](https://eslint.org/docs/rules/lines-between-class-members) | require or disallow an empty line between class members <br> :warning: Unlike the ESLint rule, the CoffeeScript version is not fixable |
+|                    |          | [`coffee/max-depth`](https://eslint.org/docs/rules/max-depth) | enforce a maximum depth that blocks can be nested |
+|                    |          | [`coffee/max-len`](https://eslint.org/docs/rules/max-len) | enforce a maximum line length |
+|                    |          | [`max-lines`](https://eslint.org/docs/rules/max-lines) | enforce a maximum number of lines per file |
+|                    |          | [`coffee/max-lines-per-function`](https://eslint.org/docs/rules/max-lines-per-function) | enforce a maximum number of line of code in a function |
+|                    |          | [`max-nested-callbacks`](https://eslint.org/docs/rules/max-nested-callbacks) | enforce a maximum depth that callbacks can be nested |
+|                    |          | [`max-params`](https://eslint.org/docs/rules/max-params) | enforce a maximum number of parameters in function definitions |
+|                    |          | [`max-statements`](https://eslint.org/docs/rules/max-statements) | enforce a maximum number of statements allowed in function blocks |
+|                    | :wrench: | [`coffee/multiline-comment-style`](https://eslint.org/docs/rules/multiline-comment-style) | enforce a particular style for multiline comments |
+|                    |          | [`new-cap`](https://eslint.org/docs/rules/new-cap) | require constructor names to begin with a capital letter |
+|                    | :wrench: | [`new-parens`](https://eslint.org/docs/rules/new-parens) | enforce or disallow parentheses when invoking a constructor with no arguments |
+|                    |          | [`coffee/newline-per-chained-call`](https://eslint.org/docs/rules/newline-per-chained-call) | require a newline after each call in a method chain <br> :warning: Unlike the ESLint rule, the CoffeeScript version is not fixable |
+|                    |          | [`no-array-constructor`](https://eslint.org/docs/rules/no-array-constructor) | disallow `Array` constructors |
+|                    |          | [`no-bitwise`](https://eslint.org/docs/rules/no-bitwise) | disallow bitwise operators |
+|                    |          | [`no-continue`](https://eslint.org/docs/rules/no-continue) | disallow `continue` statements |
+|                    |          | [`no-inline-comments`](https://eslint.org/docs/rules/no-inline-comments) | disallow inline comments after code |
+|                    |          | [`coffee/no-lonely-if`](https://eslint.org/docs/rules/no-lonely-if) | disallow `if` statements as the only statement in `else` blocks <br> :warning: Unlike the ESLint rule, the CoffeeScript version is not fixable |
+|                    |          | [`coffee/no-mixed-operators`](https://eslint.org/docs/rules/no-mixed-operators) | disallow mixed binary operators |
+|                    |          | [`no-multi-assign`](https://eslint.org/docs/rules/no-multi-assign) | disallow use of chained assignment expressions |
+|                    | :wrench: | [`coffee/no-multiple-empty-lines`](https://eslint.org/docs/rules/no-multiple-empty-lines) | disallow multiple empty lines |
+|                    |          | [`coffee/no-negated-condition`](https://eslint.org/docs/rules/no-negated-condition) | disallow negated conditions |
+|                    |          | [`no-new-object`](https://eslint.org/docs/rules/no-new-object) | disallow `Object` constructors |
+
+
+
 ### Non-applicable ESLint-included rules
 
 Some rules included with ESLint don't apply to CoffeeScript. These include:
@@ -360,6 +410,15 @@ Some rules included with ESLint don't apply to CoffeeScript. These include:
 - [`no-undef-init`](https://eslint.org/docs/rules/no-undef-init)
 - [`no-undefined`](https://eslint.org/docs/rules/no-undefined)
 - [`no-mixed-requires`](https://eslint.org/docs/rules/no-mixed-requires)
+- [`block-spacing`](https://eslint.org/docs/rules/block-spacing)
+- [`brace-style`](https://eslint.org/docs/rules/brace-style)
+- [`func-call-spacing`](https://eslint.org/docs/rules/func-call-spacing)
+- [`func-name-matching`](https://eslint.org/docs/rules/func-name-matching)
+- [`func-names`](https://eslint.org/docs/rules/func-names)
+- [`func-style`](https://eslint.org/docs/rules/func-style)
+- [`max-statements-per-line`](https://eslint.org/docs/rules/max-statements-per-line)
+- [`no-mixed-spaces-and-tabs`](https://eslint.org/docs/rules/no-mixed-spaces-and-tabs)
+- [`no-nested-ternary`](https://eslint.org/docs/rules/no-nested-ternary)
 
 
 ## Supported CoffeeScript version
