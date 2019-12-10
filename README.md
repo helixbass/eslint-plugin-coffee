@@ -372,7 +372,18 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 |                    | :wrench: | [`coffee/no-multiple-empty-lines`](https://eslint.org/docs/rules/no-multiple-empty-lines) | disallow multiple empty lines |
 |                    |          | [`coffee/no-negated-condition`](https://eslint.org/docs/rules/no-negated-condition) | disallow negated conditions |
 |                    |          | [`no-new-object`](https://eslint.org/docs/rules/no-new-object) | disallow `Object` constructors |
-
+|                    |          | [`no-plusplus`](https://eslint.org/docs/rules/no-plusplus) | disallow the unary operators `++` and `--` |
+|                    |          | [`no-restricted-syntax`](https://eslint.org/docs/rules/no-restricted-syntax) | disallow specified syntax |
+|                    |          | [`no-tabs`](https://eslint.org/docs/rules/no-tabs) | disallow all tabs |
+|                    | :wrench: | [`no-trailing-spaces`](https://eslint.org/docs/rules/no-trailing-spaces) | disallow trailing whitespace at the end of lines |
+|                    |          | [`coffee/no-underscore-dangle`](https://eslint.org/docs/rules/no-underscore-dangle) | disallow dangling underscores in identifiers |
+|                    | :wrench: | [`coffee/no-unneeded-ternary`](https://eslint.org/docs/rules/no-unneeded-ternary) | disallow `if`/`else` expressions when simpler alternatives exist |
+|                    | :wrench: | [`no-whitespace-before-property`](https://eslint.org/docs/rules/no-whitespace-before-property) | disallow whitespace before properties |
+|                    | :wrench: | [`coffee/object-curly-spacing`](https://eslint.org/docs/rules/object-curly-spacing) | enforce consistent spacing inside braces |
+|                    |          | [`coffee/object-property-newline`](https://eslint.org/docs/rules/object-property-newline) | enforce placing object properties on separate lines <br> :warning: Unlike the ESLint rule, the CoffeeScript version is not fixable |
+|                    | :wrench: | [`coffee/operator-assignment`](https://eslint.org/docs/rules/operator-assignment) | require or disallow assignment operator shorthand where possible |
+|                    |          | [`coffee/operator-linebreak`](https://eslint.org/docs/rules/operator-linebreak) | enforce consistent linebreak style for operators <br> :warning: Unlike the ESLint rule, the CoffeeScript version is not fixable |
+|                    |          | [`coffee/prefer-object-spread`](https://eslint.org/docs/rules/prefer-object-spread) | disallow using Object.assign with an object literal as the first argument and prefer the use of object spread instead <br> :warning: Unlike the ESLint rule, the CoffeeScript version is not fixable |
 
 
 ### Non-applicable ESLint-included rules
@@ -419,6 +430,11 @@ Some rules included with ESLint don't apply to CoffeeScript. These include:
 - [`max-statements-per-line`](https://eslint.org/docs/rules/max-statements-per-line)
 - [`no-mixed-spaces-and-tabs`](https://eslint.org/docs/rules/no-mixed-spaces-and-tabs)
 - [`no-nested-ternary`](https://eslint.org/docs/rules/no-nested-ternary)
+- [`no-ternary`](https://eslint.org/docs/rules/no-ternary)
+- [`nonblock-statement-body-position`](https://eslint.org/docs/rules/nonblock-statement-body-position)
+- [`object-curly-newline`](https://eslint.org/docs/rules/object-curly-newline)
+- [`one-var`](https://eslint.org/docs/rules/one-var)
+- [`one-var-declaration-per-line`](https://eslint.org/docs/rules/one-var-declaration-per-line)
 
 
 ## Supported CoffeeScript version
