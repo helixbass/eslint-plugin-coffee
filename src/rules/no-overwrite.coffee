@@ -63,8 +63,8 @@ module.exports =
             return no
           when 'AssignmentPattern'
             return no unless prevNode is currentNode.left
-          when 'ArrayPattern', 'ObjectPattern'
-            ; # continue
+          when 'ArrayPattern', 'ObjectPattern' # continue
+            ;
           when 'Property'
             return no unless prevNode is currentNode.value
           when 'ClassDeclaration'

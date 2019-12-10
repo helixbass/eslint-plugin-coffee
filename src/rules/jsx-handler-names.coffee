@@ -49,9 +49,8 @@ module.exports =
           node.name.name
         else
           node.name
-      propValue = sourceCode
-      .getText(node.value.expression)
-      .replace /^this\.|.*::|@/, ''
+      propValue =
+        sourceCode.getText(node.value.expression).replace /^this\.|.*::|@/, ''
 
       return if propKey is 'ref'
 

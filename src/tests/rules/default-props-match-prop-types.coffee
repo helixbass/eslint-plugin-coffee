@@ -973,8 +973,7 @@ ruleTester.run 'default-props-match-prop-types', rule,
       column: 3
     ]
   ,
-
-  ,
+    ,
     #
     # ES6 classes with static getter methods
     # code: '''

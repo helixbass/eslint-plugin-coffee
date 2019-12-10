@@ -405,9 +405,10 @@ module.exports =
           # prohibits block comments from having a * at the beginning of each line.
           if commentGroup[0].type is 'Block'
             block = commentGroup[0]
-            lines = block.value
-            .split astUtils.LINEBREAK_MATCHER
-            .filter (line) -> line.trim()
+            lines =
+              block.value
+              .split astUtils.LINEBREAK_MATCHER
+              .filter (line) -> line.trim()
 
             if lines.length > 0 and lines.every((line) -> /^\s*[*#]/.test line)
               context.report
@@ -456,6 +457,7 @@ module.exports =
             commentGroups.push [comment]
 
           commentGroups
+      ,
         []
       )
       .filter (commentGroup) ->

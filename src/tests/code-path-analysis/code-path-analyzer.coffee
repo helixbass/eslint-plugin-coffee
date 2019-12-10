@@ -56,7 +56,7 @@ getExpectedDotArrows = (source, {isJS}) ->
 
   retv = []
 
-  while (m = regex.exec(source)) isnt null
+  while (m = regex.exec source) isnt null
     retv.push m[1].replace lineEndingPattern, '\n'
 
   retv

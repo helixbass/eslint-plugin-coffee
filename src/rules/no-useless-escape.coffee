@@ -70,6 +70,7 @@ parseRegExp = (regExpText) ->
         endsCharClass: no
       }
       Object.assign state, escapeNextChar: no, startingCharClass: no
+  ,
     escapeNextChar: no, inCharClass: no, startingCharClass: no
   )
 

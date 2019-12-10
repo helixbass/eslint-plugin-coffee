@@ -133,8 +133,7 @@ ruleTester.run 'computed-property-spacing', rule,
     '''
     options: ['never']
   ,
-
-  ,
+    ,
     code: 'foo = obj[1]', options: ['never']
   ,
     code: "foo = obj['foo']", options: ['never']

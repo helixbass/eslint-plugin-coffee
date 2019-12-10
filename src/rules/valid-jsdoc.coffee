@@ -211,6 +211,7 @@ module.exports =
               fixer.replaceTextRange(
                 typeToCheck.currentType.range.map (indexInComment) ->
                   jsdocNode.range[0] + '###'.length + indexInComment
+              ,
                 typeToCheck.expectedTypeName
               )
 

@@ -179,9 +179,10 @@ module.exports =
       # ]
       ###
       if options.multiline
-        elementBreak = elements
-        .filter (element) -> element isnt null
-        .some (element) -> element.loc.start.line isnt element.loc.end.line
+        elementBreak =
+          elements
+          .filter (element) -> element isnt null
+          .some (element) -> element.loc.start.line isnt element.loc.end.line
 
       linebreaksCount =
         elements

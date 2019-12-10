@@ -134,6 +134,7 @@ module.exports =
               return acc unless curr
 
               acc.concat curr.properties
+          ,
             []
           )
 

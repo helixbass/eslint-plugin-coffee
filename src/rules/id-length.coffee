@@ -45,6 +45,7 @@ module.exports =
         obj[item] = yes
 
         obj
+    ,
       {}
     )
 

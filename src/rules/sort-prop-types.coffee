@@ -110,6 +110,7 @@ module.exports =
               else
                 acc[acc.length - 1].push curr
               acc
+          ,
             [[]]
           )
 
@@ -196,6 +197,7 @@ module.exports =
             return prev
 
           curr
+      ,
         declarations[0]
       )
 

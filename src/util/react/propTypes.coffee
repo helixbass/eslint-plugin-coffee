@@ -438,9 +438,10 @@ module.exports = (context, components, utils) ->
             propTypes is propTypes.parent.left and propTypes.parent.left.object
           )
             ignorePropsValidation = yes
-          parentProp = context
-          .getSource(propTypes.parent.left.object)
-          .replace /^.*\.propTypes\./, ''
+          parentProp =
+            context
+            .getSource(propTypes.parent.left.object)
+            .replace /^.*\.propTypes\./, ''
           types = buildReactDeclarationTypes propTypes.parent.right, parentProp
 
           types.name = propTypes.property.name

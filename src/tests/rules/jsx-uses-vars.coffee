@@ -122,8 +122,7 @@ ruleTester.run 'no-unused-vars', ruleNoUnusedVars,
       '''
     errors: [message: "'unused' is assigned a value but never used."]
   ,
-
-  ,
+    ,
     # code: """
     #     ### eslint jsx-uses-vars: 1 ###
     #     App = null

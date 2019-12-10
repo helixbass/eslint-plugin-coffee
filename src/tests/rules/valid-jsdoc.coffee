@@ -322,8 +322,7 @@ ruleTester.run 'valid-jsdoc', rule,
     '''
     options: [requireReturnDescription: no]
   ,
-
-  ,
+    ,
     code: '''
       ###*
        * Description for A.

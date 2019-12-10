@@ -114,6 +114,7 @@ module.exports =
                   after: type: 'boolean'
                 additionalProperties: no
               retv
+          ,
             {}
           )
           additionalProperties: no

@@ -45,13 +45,14 @@ module.exports =
         messageId: 'unexpected'
         loc: node.parent.property.loc.start
         fix: (fixer) ->
-          firstTokenToRemove = context
-          .getSourceCode()
-          .getFirstTokenBetween(
-            node.parent.object
-            node.parent.property
-            astUtils.isNotClosingParenToken
-          )
+          firstTokenToRemove =
+            context
+            .getSourceCode()
+            .getFirstTokenBetween(
+              node.parent.object
+              node.parent.property
+              astUtils.isNotClosingParenToken
+            )
 
           fixer.removeRange [
             firstTokenToRemove.range[0]

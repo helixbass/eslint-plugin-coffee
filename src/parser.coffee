@@ -100,7 +100,7 @@ getEspreeTokenType = (token) ->
 getTokenValue = (token) ->
   [type, value, {range}] = token
   if type is 'INTERPOLATION_START'
-    return (if range[1] - range[0] is 1 then '{' else '#{')
+    return if range[1] - range[0] is 1 then '{' else '#{'
   return '}' if type is 'INTERPOLATION_END'
   return repeat '"', range[1] - range[0] if type in [
     'STRING_START'

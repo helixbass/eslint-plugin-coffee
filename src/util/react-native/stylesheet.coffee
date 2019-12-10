@@ -32,7 +32,8 @@ class StyleSheets
     if @styleSheets[styleSheetName]
       @styleSheets[styleSheetName] = @styleSheets[styleSheetName].filter (
         property
-      ) -> property.key.name isnt styleSheetProperty
+      ) ->
+        property.key.name isnt styleSheetProperty
 
   ###*
   # GetUnusedReferences returns all collected StyleSheets and their

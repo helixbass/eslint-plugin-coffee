@@ -257,6 +257,7 @@ rules =
         module: require "./rules/#{rule}"
       }
     ]
+  ,
     fromPairs
   )(
     'use-isnan':
@@ -511,6 +512,7 @@ configureAsError = flow(
               "#{plugin}/#{rule}"
             else
               rule
+          ,
             'off'
           ]
         ]
@@ -518,6 +520,7 @@ configureAsError = flow(
         []
     )
   ]
+,
   flatten
   fromPairs
 )

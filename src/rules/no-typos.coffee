@@ -165,9 +165,9 @@ module.exports =
 
       return if (
         not propertyName or
-        STATIC_CLASS_PROPERTIES.map((prop) -> prop.toLocaleLowerCase()).indexOf(
-          propertyName.toLowerCase()
-        ) is -1
+        STATIC_CLASS_PROPERTIES.map((prop) ->
+          prop.toLocaleLowerCase()
+        ).indexOf(propertyName.toLowerCase()) is -1
       )
 
       relatedComponent = utils.getRelatedComponent node

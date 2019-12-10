@@ -171,7 +171,7 @@ module.exports =
       ###
       isBetweenTest = ->
         node.operator in ['&&', 'and'] and
-        (leftLiteral = getNormalizedLiteral(left.left)) and
+        (leftLiteral = getNormalizedLiteral left.left) and
         (rightLiteral = getNormalizedLiteral(
           right.right
           Number.POSITIVE_INFINITY
@@ -189,7 +189,7 @@ module.exports =
           left.right
           Number.NEGATIVE_INFINITY
         )) and
-        (rightLiteral = getNormalizedLiteral(right.left)) and
+        (rightLiteral = getNormalizedLiteral right.left) and
         leftLiteral.value <= rightLiteral.value and
         same left.left, right.right
 
@@ -228,25 +228,30 @@ module.exports =
     getFlippedString = (node) ->
       operatorToken = sourceCode.getFirstTokenBetween node.left, node.right, (
         token
-      ) -> token.value is node.operator
-      textBeforeOperator = sourceCode
-      .getText()
-      .slice(
-        sourceCode.getTokenBefore(operatorToken).range[1]
-        operatorToken.range[0]
-      )
-      textAfterOperator = sourceCode
-      .getText()
-      .slice(
-        operatorToken.range[1]
-        sourceCode.getTokenAfter(operatorToken).range[0]
-      )
-      leftText = sourceCode
-      .getText()
-      .slice node.range[0], sourceCode.getTokenBefore(operatorToken).range[1]
-      rightText = sourceCode
-      .getText()
-      .slice sourceCode.getTokenAfter(operatorToken).range[0], node.range[1]
+      ) ->
+        token.value is node.operator
+      textBeforeOperator =
+        sourceCode
+        .getText()
+        .slice(
+          sourceCode.getTokenBefore(operatorToken).range[1]
+          operatorToken.range[0]
+        )
+      textAfterOperator =
+        sourceCode
+        .getText()
+        .slice(
+          operatorToken.range[1]
+          sourceCode.getTokenAfter(operatorToken).range[0]
+        )
+      leftText =
+        sourceCode
+        .getText()
+        .slice node.range[0], sourceCode.getTokenBefore(operatorToken).range[1]
+      rightText =
+        sourceCode
+        .getText()
+        .slice sourceCode.getTokenAfter(operatorToken).range[0], node.range[1]
 
       rightText +
         textBeforeOperator +

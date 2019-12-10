@@ -144,7 +144,7 @@ updateModifiedFlag = (conditions, modifiers) ->
       inLoop =
         condition.isInLoop(modifier) or
         !!(
-          (funcName = getEncloseFunctionName(modifier)) and
+          (funcName = getEncloseFunctionName modifier) and
           (funcVar = astUtils.getVariableByName(
             modifier.from.upper
             funcName

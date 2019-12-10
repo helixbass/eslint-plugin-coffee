@@ -144,9 +144,8 @@ module.exports =
     # @returns {string} The text between the nodes, excluding other tokens
     ###
     getTextBetween = (node1, node2) ->
-      allTokens = [node1]
-      .concat(sourceCode.getTokensBetween node1, node2)
-      .concat node2
+      allTokens =
+        [node1].concat(sourceCode.getTokensBetween node1, node2).concat node2
       sourceText = sourceCode.getText()
 
       allTokens
@@ -155,6 +154,7 @@ module.exports =
         (accumulator, token, index) ->
           accumulator +
           sourceText.slice token.range[1], allTokens[index + 1].range[0]
+      ,
         ''
       )
 
@@ -173,11 +173,12 @@ module.exports =
       # an actual backslash character to appear before the dollar sign).
       ###
       return "\"#{
-        str = currentNode.raw
-        .slice 1, -1
-        .replace /\\*(#{|")/g, (matched) ->
-          return "\\#{matched}" if matched.lastIndexOf('\\') % 2
-          matched
+        str =
+          currentNode.raw
+          .slice 1, -1
+          .replace /\\*(#{|")/g, (matched) ->
+            return "\\#{matched}" if matched.lastIndexOf('\\') % 2
+            matched
 
         unless currentNode.raw[0] is '"'
           # Unescape any quotes that appear in the original Literal that no longer need to be escaped.

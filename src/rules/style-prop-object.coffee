@@ -31,9 +31,10 @@ module.exports =
     # @param {object} node A Identifier node
     ###
     checkIdentifiers = (node) ->
-      variable = variableUtil
-      .variablesInScope context
-      .find (item) -> item.name is node.name
+      variable =
+        variableUtil
+        .variablesInScope context
+        .find (item) -> item.name is node.name
 
       if variable?.defs[0]?.node.init
         if isNonNullaryLiteral variable.defs[0].node.init

@@ -377,13 +377,14 @@ module.exports =
     # @private
     ###
     isUsedVariable = (variable) ->
-      functionNodes = variable.defs
-      .filter ({node}) ->
-        node.type is 'Identifier' and
-        node.declaration and
-        node.parent.type is 'AssignmentExpression' and
-        node.parent.right.type is 'FunctionExpression'
-      .map (def) -> def.node
+      functionNodes =
+        variable.defs
+        .filter ({node}) ->
+          node.type is 'Identifier' and
+          node.declaration and
+          node.parent.type is 'AssignmentExpression' and
+          node.parent.right.type is 'FunctionExpression'
+        .map (def) -> def.node
       isFunctionDefinition = functionNodes.length > 0
       rhsNode = null
 

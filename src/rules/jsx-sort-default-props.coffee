@@ -72,9 +72,10 @@ module.exports =
     # @returns {ASTNode|null} Return null if the variable could not be found, ASTNode otherwise.
     ###
     findVariableByName = (name) ->
-      variable = variableUtil
-      .variablesInScope context
-      .find (item) -> item.name is name
+      variable =
+        variableUtil
+        .variablesInScope context
+        .find (item) -> item.name is name
 
       return null unless defNode = variable?.defs[0]?.node
 
@@ -112,6 +113,7 @@ module.exports =
             return prev
 
           curr
+      ,
         declarations[0]
       )
 

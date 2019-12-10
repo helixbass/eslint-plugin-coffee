@@ -21,12 +21,13 @@ astUtils = require '../eslint-ast-utils'
 # @returns {Array} An array of line numbers.
 ###
 getEmptyLineNums = (lines) ->
-  emptyLines = lines
-  .map (line, i) ->
-    code: line.trim()
-    num: i + 1
-  .filter (line) -> not line.code
-  .map (line) -> line.num
+  emptyLines =
+    lines
+    .map (line, i) ->
+      code: line.trim()
+      num: i + 1
+    .filter (line) -> not line.code
+    .map (line) -> line.num
 
   emptyLines
 

@@ -60,8 +60,7 @@ ruleTester.run 'no-render-return-value', rule,
     '''
     errors: [message: 'Do not depend on the return value from ReactDOM.render']
   ,
-
-  ,
+    ,
     code: '''
         render = ->
           ReactDOM.render(<div />, document.body)

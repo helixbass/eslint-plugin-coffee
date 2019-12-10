@@ -90,6 +90,7 @@ module.exports =
           if line.trim() or templateLiteralLines.has index + 1
             nonEmptyLineNumbers.push index + 1
           nonEmptyLineNumbers
+      ,
         []
       )
       # Add a value at the end to allow trailing empty lines to be checked.
@@ -142,5 +143,6 @@ module.exports =
             }
 
           lineNumber
+      ,
         0
       )

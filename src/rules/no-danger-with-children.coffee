@@ -110,9 +110,10 @@ module.exports =
         props = node.arguments[1]
 
         if props.type is 'Identifier'
-          variable = variableUtil
-          .variablesInScope context
-          .find (item) -> item.name is props.name
+          variable =
+            variableUtil
+            .variablesInScope context
+            .find (item) -> item.name is props.name
           if variable?.defs[0]?.node.init
             props = variable.defs[0].node.init
           else if isDeclarationAssignment variable?.defs[0]?.node.parent

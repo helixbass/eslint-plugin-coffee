@@ -79,7 +79,8 @@ module.exports =
       )
         operatorToken = sourceCode.getFirstTokenBetween node.left, node.right, (
           token
-        ) -> token.value is node.operator
+        ) ->
+          token.value is node.operator
         text = sourceCode.getText()
 
         return (

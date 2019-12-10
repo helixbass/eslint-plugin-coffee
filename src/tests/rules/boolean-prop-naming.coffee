@@ -156,8 +156,7 @@ ruleTester.run 'boolean-prop-naming', rule,
     '''
     options: [rule: '^is[A-Z]([A-Za-z0-9]?)+']
   ,
-
-  ,
+    ,
     # parser: 'babel-eslint'
     # ES6 components and Flowtype non-booleans
     # code: """
@@ -409,8 +408,7 @@ ruleTester.run 'boolean-prop-naming', rule,
         "Prop name (something) doesn't match rule (^is[A-Z]([A-Za-z0-9]?)+)"
     ]
   ,
-
-  ,
+    ,
     # ES6 components as React.Component with non-boolean PropTypes
     # code: """
     #   class Hello extends React.Component

@@ -220,6 +220,7 @@ module.exports =
           markers: new RegExp "^(#{markers.map(escape).join '|'})"
 
         rule
+    ,
       {}
     )
 

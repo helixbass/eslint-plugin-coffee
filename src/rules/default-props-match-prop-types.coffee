@@ -128,6 +128,7 @@ module.exports =
           return properties if not annotation or not annotation.properties
 
           properties.concat annotation.properties
+      ,
         []
       )
 
@@ -163,6 +164,7 @@ module.exports =
               return acc unless curr
 
               acc.concat curr.properties
+          ,
             []
           )
 

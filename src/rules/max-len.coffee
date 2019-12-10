@@ -281,7 +281,8 @@ module.exports =
             (comment = comments[++commentsIndex]) and
             comment.loc.start.line <= lineNumber
           )
-            ; # eslint-disable-line no-empty
+            # eslint-disable-line no-empty
+            ;
 
           # and step back by one
           comment = comments[--commentsIndex]

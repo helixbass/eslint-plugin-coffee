@@ -75,6 +75,7 @@ module.exports =
                 [prevToken.range[1], operator.range[0]]
               else
                 [operator.range[1], nextToken.range[0]]
+            ,
               ' '
             )
         }

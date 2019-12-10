@@ -106,8 +106,7 @@ ruleTester.run 'no-mixed-operators', rule,
       column: 12, message: "Unexpected mix of '&&' and '||'."
     ]
   ,
-
-  ,
+    ,
     code: 'a and b > 0 or c'
     options: [groups: [['and', 'or', '>']]]
     errors: [
