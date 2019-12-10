@@ -60,16 +60,23 @@ and [`eslint-plugin-react-native`](https://github.com/intellicode/eslint-plugin-
 
 ## Installation
 
-Make sure you have supported versions of CoffeeScript and ESLint installed:
+Make sure you have supported versions of CoffeeScript and ESLint installed and install the plugin:
+
+yarn:
+```
+# yarn seems to occasionally get confused by Github dependencies, so I'd recommend clearing your lockfile first
+rm yarn.lock
+# then explicitly install the dependencies and plugin
+yarn add --dev github:jashkenas/coffeescript#05d45e9b eslint@^6.0.0 eslint-plugin-coffee
+```
+
+npm:
 
 ```
-npm install --save-dev coffeescript@^2.5.0 eslint@^6.0.0
-```
-
-Then install the plugin:
-
-```
-npm install --save-dev eslint-plugin-coffee
+# npm also seems to occasionally get confused by Github dependencies, so I'd recommend clearing your lockfile first
+rm package-lock.json
+# then explicitly install the dependencies
+npm install --save-dev github:jashkenas/coffeescript#05d45e9b eslint@^6.0.0 eslint-plugin-coffee
 ```
 
 ## Usage
@@ -441,7 +448,7 @@ Some rules included with ESLint don't apply to CoffeeScript. These include:
 
 We will always endeavor to support the latest stable version of CoffeeScript.
 
-**The version range of CoffeeScript currently supported by this plugin is `>=2.5.0`.**
+**Currently to run this plugin you need to use the latest Coffeescript `ast` branch: github:jashkenas/coffeescript#05d45e9b.**
 
 ## Supported ESLint version
 
