@@ -303,6 +303,13 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 |                    |          | [`require-unicode-regexp`](https://eslint.org/docs/rules/require-unicode-regexp) | enforce the use of `u` flag on RegExp |
 |                    |          | [`coffee/vars-on-top`](https://eslint.org/docs/rules/vars-on-top) | require "declarations" be placed at the top of their containing scope |
 |                    |          | [`coffee/yoda`](https://eslint.org/docs/rules/yoda) | require or disallow "Yoda" conditions <br> :warning: Unlike the ESLint rule, the CoffeeScript version is not fixable |
+| :heavy_check_mark: |          | [`no-delete-var`](https://eslint.org/docs/rules/no-delete-var) | disallow deleting variables |
+|                    |          | [`no-restricted-globals`](https://eslint.org/docs/rules/no-restricted-globals) | disallow specified global variables |
+|                    |          | [`coffee/no-shadow`](https://eslint.org/docs/rules/no-shadow) | disallow variable declarations from shadowing variables declared in the outer scope |
+| :heavy_check_mark: |          | [`no-undef`](https://eslint.org/docs/rules/no-undef) | disallow the use of undeclared variables unless mentioned in `###global ###` comments |
+| :heavy_check_mark: |          | [`coffee/no-unused-vars`](https://eslint.org/docs/rules/no-unused-vars) | disallow unused variables |
+|                    |          | [`coffee/no-use-before-define`](https://eslint.org/docs/rules/no-use-before-define) | disallow the use of variables before they are "defined" |
+
 
 ### Non-applicable ESLint-included rules
 
@@ -333,6 +340,11 @@ Some rules included with ESLint don't apply to CoffeeScript. These include:
 - [`no-with`](https://eslint.org/docs/rules/no-with)
 - [`require-await`](https://eslint.org/docs/rules/require-await)
 - [`wrap-iife`](https://eslint.org/docs/rules/wrap-iife)
+- [`init-declarations`](https://eslint.org/docs/rules/init-declarations)
+- [`no-label-var`](https://eslint.org/docs/rules/no-label-var)
+- [`no-shadow-restricted-names`](https://eslint.org/docs/rules/no-shadow-restricted-names)
+- [`no-undef-init`](https://eslint.org/docs/rules/no-undef-init)
+- [`no-undefined`](https://eslint.org/docs/rules/no-undefined)
 
 
 ## Supported CoffeeScript version
