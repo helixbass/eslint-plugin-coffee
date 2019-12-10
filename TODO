@@ -21,6 +21,7 @@ todo:
   - get config added to eslint-config-prettier so can use `prettier/coffee` like `prettier/@typescript-eslint`?
   - target Airbnb rules first (among remaining non-covered rules)? And add "Usage with Airbnb" section to README (like typescript-eslint)
   - `all` should also turn on all "just works" ESLint rules? What about all "just works" eg eslint-plugin-react rules?
+  - what's up with recommended + plugin: react (eg display-name)? Is that rule included when using eslint-recommended (shouldn't be)? If not, what does recommended do?
 bugs:
   - code path analysis needs to actually understand for when, since it considers anything after a for when whose body returns to be unreachable? or is eslint-plugin-known-imports using outdated?
   - no-unused-vars doesn't understand do (x) -> as a usage of outer x
@@ -46,6 +47,7 @@ nice to have:
   - add individual usage-type options to spread-direction eg jsxSpreadProp, object, array, objectSpread, objectRest, arraySpread, arrayRest
     should allow you to either override for some of these types (['postfix', jsxSpreadProp: 'prefix']) or *just* warn for some of these types ([jsxSpreadProp: 'prefix'])
   - no-return-assign option to ignore implicit returns? how should that interplay with except-parens?
+  - could prefer-object-spread add fixing?
 upstream:
   - push id-length fixes upstream to eslint?
   - no-extra-bind doesn't check if bind expression it's removing could have side effects

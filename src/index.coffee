@@ -58,7 +58,6 @@ usable = [
   'comma-spacing'
   'eol-last'
   'id-blacklist'
-  'id-length'
   'key-spacing'
   'line-comment-position'
   'linebreak-style'
@@ -178,6 +177,8 @@ yet = [
   'no-useless-catch'
   'prefer-named-capture-group'
   'prefer-regex-literals'
+  'function-call-argument-newline'
+  'prefer-exponentiation-operator'
 ]
 
 dontApply = [
@@ -499,6 +500,8 @@ rules =
       plugin: no
     'spread-direction':
       plugin: no
+    'id-length':
+      recommended: yes
   )
 
 configureAsError = flow(
