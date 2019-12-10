@@ -53,6 +53,7 @@ KEYS = keywords.concat [
   'when'
   'unless'
   'until'
+  'not'
 ]
 
 # check duplications.

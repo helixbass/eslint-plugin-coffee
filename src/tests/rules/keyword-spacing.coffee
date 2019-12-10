@@ -581,7 +581,7 @@ ruleTester.run 'keyword-spacing', rule,
     code: 'while (a)then{}', options: [override 'while', BOTH]
   ,
     code: 'while(a) then {}', options: [override 'while', NEITHER]
-
+  ,
     #----------------------------------------------------------------------
     # typescript parser
     #----------------------------------------------------------------------
@@ -604,6 +604,15 @@ ruleTester.run 'keyword-spacing', rule,
     # # type keywords can be used as parameters in arrow functions
     # code: 'symbol => 4;'
     # parser: parser 'typescript-parsers/keyword-with-arrow-function'
+    'not a'
+    '''
+      try
+        a
+      catch b
+        c
+      finally
+        d
+    '''
   ]
 
   invalid: [
@@ -1274,7 +1283,7 @@ ruleTester.run 'keyword-spacing', rule,
     output: 'do->'
     options: [override 'do', NEITHER]
     errors: unexpectedAfter 'do'
-
+  ,
     # #----------------------------------------------------------------------
     # # typescript parser
     # #----------------------------------------------------------------------
@@ -1286,4 +1295,7 @@ ruleTester.run 'keyword-spacing', rule,
     #   'class Foo { @desc({set a(value) {}, get a() {}, async c() {}}) async [foo]() {} }'
     # errors: expectedAfter 'async'
     # parser: parser 'typescript-parsers/decorator-with-keywords-class-method'
+    code: 'not(a)'
+    output: 'not (a)'
+    errors: expectedAfter 'not'
   ]
