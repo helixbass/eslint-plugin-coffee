@@ -310,6 +310,20 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 | :heavy_check_mark: |          | [`coffee/no-unused-vars`](https://eslint.org/docs/rules/no-unused-vars) | disallow unused variables |
 |                    |          | [`coffee/no-use-before-define`](https://eslint.org/docs/rules/no-use-before-define) | disallow the use of variables before they are "defined" |
 
+#### Node.js and CommonJS
+
+|                    |          | Name                                    | Description |
+| ------------------ | -------- | --------------------------------------- | ----------- |
+|                    |          | [`callback-return`](https://eslint.org/docs/rules/callback-return) | require `return` statements after callbacks |
+|                    |          | [`global-require`](https://eslint.org/docs/rules/global-require) | require `require()` calls to be placed at top-level module scope |
+|                    |          | [`handle-callback-err`](https://eslint.org/docs/rules/handle-callback-err) | require error handling in callbacks |
+|                    |          | [`no-buffer-constructor`](https://eslint.org/docs/rules/no-buffer-constructor) | disallow use of the `Buffer()` constructor |
+|                    |          | [`no-new-require`](https://eslint.org/docs/rules/no-new-require) | disallow `new` operators with calls to `require` |
+|                    |          | [`no-path-concat`](https://eslint.org/docs/rules/no-path-concat) | disallow string concatenation with `__dirname` and `__filename` |
+|                    |          | [`no-process-env`](https://eslint.org/docs/rules/no-process-env) | disallow the use of `process.env` |
+|                    |          | [`no-process-exit`](https://eslint.org/docs/rules/no-process-exit) | disallow the use of `process.exit()` |
+|                    |          | [`no-restricted-modules`](https://eslint.org/docs/rules/no-restricted-modules) | disallow specified modules when loaded by `require` |
+|                    |          | [`no-sync`](https://eslint.org/docs/rules/no-sync) | disallow synchronous methods |
 
 ### Non-applicable ESLint-included rules
 
@@ -345,6 +359,7 @@ Some rules included with ESLint don't apply to CoffeeScript. These include:
 - [`no-shadow-restricted-names`](https://eslint.org/docs/rules/no-shadow-restricted-names)
 - [`no-undef-init`](https://eslint.org/docs/rules/no-undef-init)
 - [`no-undefined`](https://eslint.org/docs/rules/no-undefined)
+- [`no-mixed-requires`](https://eslint.org/docs/rules/no-mixed-requires)
 
 
 ## Supported CoffeeScript version
