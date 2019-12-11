@@ -476,11 +476,32 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 | :heavy_check_mark: |          | [`react/no-is-mounted`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-is-mounted.md) | Prevent usage of `isMounted` |
 |                    |          | [`coffee/no-multi-comp`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-multi-comp.md) | Prevent multiple component definition per file |
 |                    |          | [`coffee/no-redundant-should-component-update`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-redundant-should-component-update.md) | Prevent usage of `shouldComponentUpdate` when extending React.PureComponent |
-
+| :heavy_check_mark: |          | [`coffee/no-render-return-value`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-render-return-value.md) | Prevent usage of the return value of `React.render` |
+|                    |          | [`react/no-set-state`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-set-state.md) | Prevent usage of `setState` |
+|                    |          | [`coffee/no-typos`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-typos.md) | Prevent common casing typos |
+| :heavy_check_mark: |          | [`react/no-string-refs`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-string-refs.md) | Prevent using string references in `ref` attribute. |
+|                    |          | [`coffee/no-this-in-sfc`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-this-in-sfc.md) | Prevent using `this` in stateless functional components |
+| :heavy_check_mark: |          | [`coffee/no-unescaped-entities`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-unescaped-entities.md) | Prevent invalid characters from appearing in markup |
+| :heavy_check_mark: | :wrench: | [`react/no-unknown-property`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-unknown-property.md) | Prevent usage of unknown DOM property |
+|                    |          | [`react/no-unsafe`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-unsafe.md) | Prevent usage of unsafe lifecycle methods |
+|                    |          | [`coffee/no-unused-prop-types`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-unused-prop-types.md) | Prevent definitions of unused prop types |
+|                    |          | [`coffee/no-unused-state`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-unused-state.md) | Prevent definitions of unused state properties |
+|                    |          | [`react/no-will-update-set-state`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-will-update-set-state.md) | Prevent usage of `setState` in `componentWillUpdate` |
+|                    |          | [`react/prefer-es6-class`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prefer-es6-class.md) | Enforce ES5 or ES6 class for React Components |
+|                    |          | [`coffee/prefer-stateless-function`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prefer-stateless-function.md) | Enforce stateless React Components to be written as a pure function |
+| :heavy_check_mark: |          | [`coffee/prop-types`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prop-types.md) | Prevent missing props validation in a React component definition |
+| :heavy_check_mark: |          | [`react/react-in-jsx-scope`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/react-in-jsx-scope.md) | Prevent missing `React` when using JSX |
+|                    |          | [`coffee/require-default-props`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/require-default-props.md) | Enforce a defaultProps definition for every prop that is not a required prop |
+|                    |          | [`react/require-optimization`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/require-optimization.md) | Enforce React components to have a `shouldComponentUpdate` method |
+|                    | :wrench: | [`react/self-closing-comp`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/self-closing-comp.md) | Prevent extra closing tags for components without children |
+|                    |          | [`coffee/sort-comp`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-comp.md) | Enforce component methods order <br> :warning: Unlike the ESLint rule, the CoffeeScript version is not fixable |
+|                    |          | [`coffee/sort-prop-types`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-prop-types.md) | Enforce propTypes declarations alphabetical sorting |
+|                    |          | [`coffee/style-prop-object`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/style-prop-object.md) | Enforce style prop value being an object |
+|                    |          | [`react/void-dom-elements-no-children`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/void-dom-elements-no-children.md) | Prevent void DOM elements (e.g. `<img />`, `<br />`) from receiving children |
 
 ### Non-applicable ESLint-included rules
 
-Some rules included with ESLint don't apply to CoffeeScript. These include:
+Some rules included with ESLint and `eslint-plugin-react` don't apply to CoffeeScript. These include:
 
 - [`for-direction`](https://eslint.org/docs/rules/for-direction)
 - [`getter-return`](https://eslint.org/docs/rules/getter-return)
@@ -545,7 +566,7 @@ Some rules included with ESLint don't apply to CoffeeScript. These include:
 - [`prefer-const`](https://eslint.org/docs/rules/prefer-const)
 - [`require-yield`](https://eslint.org/docs/rules/require-yield)
 - [`yield-star-spacing`](https://eslint.org/docs/rules/yield-star-spacing)
-
+- [`react/require-render-return`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/require-render-return.md)
 
 ## Supported CoffeeScript version
 
