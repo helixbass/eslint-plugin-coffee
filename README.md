@@ -418,6 +418,13 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 |                    |          | [`coffee/object-shorthand`](https://eslint.org/docs/rules/object-shorthand) | require or disallow method and property shorthand syntax for object literals <br> :warning: Unlike the ESLint rule, the CoffeeScript version is not fixable |
 |                    |          | [`coffee/prefer-destructuring`](https://eslint.org/docs/rules/prefer-destructuring) | require destructuring from arrays and/or objects <br> :warning: Unlike the ESLint rule, the CoffeeScript version is not fixable |
 |                    | :wrench: | [`prefer-numeric-literals`](https://eslint.org/docs/rules/prefer-numeric-literals) | disallow `parseInt()` and `Number.parseInt()` in favor of binary, octal, and hexadecimal literals |
+|                    |          | [`prefer-rest-params`](https://eslint.org/docs/rules/prefer-rest-params) | require rest parameters instead of `arguments` |
+|                    |          | [`prefer-spread`](https://eslint.org/docs/rules/prefer-spread) | require spread operators instead of `.apply()` |
+|                    | :wrench: | [`coffee/prefer-template`](https://eslint.org/docs/rules/prefer-template) | require interpolated strings instead of string concatenation |
+|                    | :wrench: | [`coffee/rest-spread-spacing`](https://eslint.org/docs/rules/rest-spread-spacing) | enforce spacing between rest and spread operators and their expressions |
+|                    | :wrench: | [`sort-imports`](https://eslint.org/docs/rules/sort-imports) | enforce sorted import declarations within modules |
+|                    |          | [`symbol-description`](https://eslint.org/docs/rules/symbol-description) | require symbol descriptions |
+|                    | :wrench: | [`coffee/template-curly-spacing`](https://eslint.org/docs/rules/template-curly-spacing) | require or disallow spacing around embedded expressions of template strings |
 
 ### Non-applicable ESLint-included rules
 
@@ -484,6 +491,8 @@ Some rules included with ESLint don't apply to CoffeeScript. These include:
 - [`no-var`](https://eslint.org/docs/rules/no-var)
 - [`prefer-arrow-callback`](https://eslint.org/docs/rules/prefer-arrow-callback)
 - [`prefer-const`](https://eslint.org/docs/rules/prefer-const)
+- [`require-yield`](https://eslint.org/docs/rules/require-yield)
+- [`yield-star-spacing`](https://eslint.org/docs/rules/yield-star-spacing)
 
 
 ## Supported CoffeeScript version
