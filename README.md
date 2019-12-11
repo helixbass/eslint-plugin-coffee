@@ -307,7 +307,7 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 |                    |          | [`coffee/no-magic-numbers`](https://eslint.org/docs/rules/no-magic-numbers) | disallow magic numbers |
 |                    | :wrench: | [`coffee/no-multi-spaces`](https://eslint.org/docs/rules/no-multi-spaces) | disallow multiple spaces |
 |                    |          | [`no-multi-str`](https://eslint.org/docs/rules/no-multi-str) | disallow multiline strings |
-|                    |          | [`no-new`](https://eslint.org/docs/rules/no-new) | disallow `new` operators outside of assignments or comparisons |
+|                    |          | [`coffee/no-new`](https://eslint.org/docs/rules/no-new) | disallow `new` operators outside of assignments or comparisons |
 |                    |          | [`no-new-func`](https://eslint.org/docs/rules/no-new-func) | disallow `new` operators with the `Function` object |
 |                    |          | [`no-new-wrappers`](https://eslint.org/docs/rules/no-new-wrappers) | disallow `new` operators with the `String`, `Number`, and `Boolean` objects |
 |                    |          | [`no-param-reassign`](https://eslint.org/docs/rules/no-param-reassign) | disallow reassigning `function` parameters |
@@ -449,8 +449,34 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 
 ### eslint-plugin-react rules
 
+**Key**: :heavy_check_mark: = recommended, :wrench: = fixable
+
 |                    |          | Name                                    | Description |
 | ------------------ | -------- | --------------------------------------- | ----------- |
+|                    |          | [`coffee/boolean-prop-naming`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/boolean-prop-naming.md) | Enforces consistent naming for boolean props |
+|                    |          | [`react/button-has-type`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/button-has-type.md) | Forbid "button" element without an explicit "type" attribute |
+|                    |          | [`coffee/default-props-match-prop-types`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/default-props-match-prop-types.md) | Prevent extraneous defaultProps on components |
+|                    |          | [`coffee/destructuring-assignment`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/destructuring-assignment.md) | Rule enforces consistent usage of destructuring assignment in component |
+| :heavy_check_mark: |          | [`coffee/display-name`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/display-name.md) | Prevent missing `displayName` in a React component definition |
+|                    |          | [`react/forbid-component-props`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/forbid-component-props.md) | Forbid certain props on Components |
+|                    |          | [`react/forbid-dom-props`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/forbid-dom-props.md) | Forbid certain props on DOM Nodes |
+|                    |          | [`react/forbid-elements`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/forbid-elements.md) | Forbid certain elements |
+|                    |          | [`coffee/forbid-prop-types`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/forbid-prop-types.md) | Forbid certain propTypes |
+|                    |          | [`react/forbid-foreign-prop-types`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/forbid-foreign-prop-types.md) | Forbid foreign propTypes |
+|                    |          | [`coffee/no-access-state-in-setstate`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-access-state-in-setstate.md) | Prevent using this.state inside this.setState |
+|                    |          | [`react/no-array-index-key`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-array-index-key.md) | Prevent using Array index in `key` props |
+| :heavy_check_mark: |          | [`react/no-children-prop`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-children-prop.md) | Prevent passing children as props |
+|                    |          | [`react/no-danger`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-danger.md) | Prevent usage of dangerous JSX properties |
+| :heavy_check_mark: |          | [`coffee/no-danger-with-children`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-danger-with-children.md) | Prevent problem with children and props.dangerouslySetInnerHTML |
+| :heavy_check_mark: |          | [`coffee/no-deprecated`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-deprecated.md) | Prevent usage of deprecated methods, including component lifecycle methods |
+|                    |          | [`react/no-did-mount-set-state`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-did-mount-set-state.md) | Prevent usage of `setState` in `componentDidMount` |
+|                    |          | [`react/no-did-update-set-state`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-did-update-set-state.md) | Prevent usage of `setState` in `componentDidUpdate` |
+| :heavy_check_mark: |          | [`react/no-direct-mutation-state`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-direct-mutation-state.md) | Prevent direct mutation of `this.state` |
+| :heavy_check_mark: |          | [`react/no-find-dom-node`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-find-dom-node.md) | Prevent usage of `findDOMNode` |
+| :heavy_check_mark: |          | [`react/no-is-mounted`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-is-mounted.md) | Prevent usage of `isMounted` |
+|                    |          | [`coffee/no-multi-comp`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-multi-comp.md) | Prevent multiple component definition per file |
+|                    |          | [`coffee/no-redundant-should-component-update`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-redundant-should-component-update.md) | Prevent usage of `shouldComponentUpdate` when extending React.PureComponent |
+
 
 ### Non-applicable ESLint-included rules
 
