@@ -494,10 +494,45 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 |                    |          | [`coffee/require-default-props`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/require-default-props.md) | Enforce a defaultProps definition for every prop that is not a required prop |
 |                    |          | [`react/require-optimization`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/require-optimization.md) | Enforce React components to have a `shouldComponentUpdate` method |
 |                    | :wrench: | [`react/self-closing-comp`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/self-closing-comp.md) | Prevent extra closing tags for components without children |
-|                    |          | [`coffee/sort-comp`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-comp.md) | Enforce component methods order <br> :warning: Unlike the ESLint rule, the CoffeeScript version is not fixable |
+|                    |          | [`coffee/sort-comp`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-comp.md) | Enforce component methods order <br> :warning: Unlike the eslint-plugin-react rule, the CoffeeScript version is not fixable |
 |                    |          | [`coffee/sort-prop-types`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-prop-types.md) | Enforce propTypes declarations alphabetical sorting |
 |                    |          | [`coffee/style-prop-object`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/style-prop-object.md) | Enforce style prop value being an object |
 |                    |          | [`react/void-dom-elements-no-children`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/void-dom-elements-no-children.md) | Prevent void DOM elements (e.g. `<img />`, `<br />`) from receiving children |
+
+#### JSX-specific rules
+
+|                    |          | Name                                    | Description |
+| ------------------ | -------- | --------------------------------------- | ----------- |
+|                    |          | [`coffee/jsx-boolean-value`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-boolean-value.md) | Enforce boolean attributes notation in JSX <br> :warning: Unlike the eslint-plugin-react rule, the CoffeeScript version is not fixable |
+|                    |          | [`react/jsx-child-element-spacing`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-child-element-spacing.md) | Enforce or disallow spaces inside of curly braces in JSX attributes and expressions. |
+|                    | :wrench: | [`coffee/jsx-closing-bracket-location`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-closing-bracket-location.md) | Validate closing bracket location in JSX |
+|                    | :wrench: | [`react/jsx-closing-tag-location`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-closing-tag-location.md) | Validate closing tag location in JSX |
+|                    | :wrench: | [`react/jsx-curly-spacing`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-curly-spacing.md) | Enforce or disallow spaces inside of curly braces in JSX attributes and expressions |
+|                    | :wrench: | [`react/jsx-equals-spacing`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-equals-spacing.md) | Enforce or disallow spaces around equal signs in JSX attributes |
+|                    |          | [`react/jsx-filename-extension`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-filename-extension.md) | Restrict file extensions that may contain JSX |
+|                    |          | [`coffee/jsx-first-prop-new-line`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-first-prop-new-line.md) | Enforce position of the first prop in JSX <br> :warning: Unlike the eslint-plugin-react rule, the CoffeeScript version is not fixable |
+|                    |          | [`coffee/jsx-handler-names`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-handler-names.md) | Enforce event handler naming conventions in JSX |
+|                    | :wrench: | [`coffee/jsx-indent`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-indent.md) | Validate JSX indentation |
+|                    | :wrench: | [`react/jsx-indent-props`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-indent-props.md) | Validate props indentation in JSX |
+| :heavy_check_mark: |          | [`coffee/jsx-key`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-key.md) | Validate JSX has key prop when in array or iterator |
+|                    |          | [`react/jsx-max-depth`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-max-depth.md) | Validate JSX maximum depth |
+|                    |          | [`coffee/jsx-max-props-per-line`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-max-props-per-line.md) | Limit maximum of props on a single line in JSX <br> :warning: Unlike the eslint-plugin-react rule, the CoffeeScript version is not fixable |
+|                    |          | [`coffee/jsx-no-bind`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md) | Prevent usage of `.bind()` and arrow functions in JSX props |
+| :heavy_check_mark: |          | [`coffee/jsx-no-comment-textnodes`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-comment-textnodes.md) | Prevent comments from being inserted as text nodes |
+| :heavy_check_mark: |          | [`react/jsx-no-duplicate-props`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-duplicate-props.md) | Prevent duplicate props in JSX |
+|                    |          | [`react/jsx-no-literals`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-literals.md) | Prevent usage of unwrapped JSX strings |
+| :heavy_check_mark: |          | [`react/jsx-no-target-blank`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-target-blank.md) | Prevent usage of unsafe `target='_blank'` |
+| :heavy_check_mark: |          | [`react/jsx-no-undef`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-undef.md) | Disallow undeclared variables in JSX |
+|                    |          | [`coffee/jsx-one-expression-per-line`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-one-expression-per-line.md) | Limit to one expression per line in JSX |
+|                    | :wrench: | [`react/jsx-curly-brace-presence`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-curly-brace-presence.md) | Enforce curly braces or disallow unnecessary curly braces in JSX |
+|                    |          | [`react/jsx-pascal-case`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-pascal-case.md) | Enforce PascalCase for user-defined JSX components |
+|                    | :wrench: | [`react/jsx-props-no-multi-spaces`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-props-no-multi-spaces.md) | Disallow multiple spaces between inline JSX props |
+|                    |          | [`coffee/jsx-sort-default-props`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-sort-default-props.md) | Enforce default props alphabetical sorting |
+|                    | :wrench: | [`react/jsx-sort-props`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-sort-props.md) | Enforce props alphabetical sorting |
+|                    | :wrench: | [`coffee/jsx-tag-spacing`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-tag-spacing.md) | Validate whitespace in and around the JSX opening and closing brackets |
+| :heavy_check_mark: |          | [`react/jsx-uses-react`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-uses-react.md) | Prevent React to be incorrectly marked as unused |
+| :heavy_check_mark: |          | [`react/jsx-uses-vars`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-uses-vars.md) | Prevent variables used in JSX to be incorrectly marked as unused |
+|                    |          | [`coffee/jsx-wrap-multilines`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-wrap-multilines.md) | Prevent missing parentheses around multilines JSX <br> :warning: Unlike the eslint-plugin-react rule, the CoffeeScript version is not fixable |
 
 ### Non-applicable ESLint-included rules
 
