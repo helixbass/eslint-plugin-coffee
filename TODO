@@ -47,7 +47,7 @@ nice to have:
   - add individual usage-type options to spread-direction eg jsxSpreadProp, object, array, objectSpread, objectRest, arraySpread, arrayRest
     should allow you to either override for some of these types (['postfix', jsxSpreadProp: 'prefix']) or *just* warn for some of these types ([jsxSpreadProp: 'prefix'])
   - no-return-assign option to ignore implicit returns? how should that interplay with except-parens?
-  - could prefer-object-spread add fixing?
+  - could prefer-object-spread add fixing? same with object-shorthand? same with prefer-destructuring?
 upstream:
   - push id-length fixes upstream to eslint?
   - no-extra-bind doesn't check if bind expression it's removing could have side effects

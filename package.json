@@ -29,20 +29,20 @@
     "eslint-plugin-coffee": "^0.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-prettier": "^2.6.2",
-    "eslint-plugin-react": "^7.11.1",
     "eslint-plugin-react-native": "^3.3.0",
     "mocha": "^5.2.0",
     "prettier": "github:helixbass/prettier#9105f5f1",
     "prettier-plugin-coffeescript": "^0.1.1"
   },
   "peerDependencies": {
-    "eslint": ">=4.14.0"
+    "eslint": ">=6.0.0"
   },
   "dependencies": {
     "babel-eslint": "^7.2.2",
     "babylon": "^7.0.0-beta.44",
     "coffeescript": "github:jashkenas/coffeescript#05d45e9b",
     "doctrine": "^2.1.0",
+    "eslint-plugin-react": "^7.17.0",
     "eslint-scope": "~3.7.3",
     "eslint-utils": "^1.4.3",
     "eslint-visitor-keys": "^1.0.0",

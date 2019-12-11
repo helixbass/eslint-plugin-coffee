@@ -81,9 +81,9 @@
   integrity sha512-SPBKHUHvaFINuzmxFgtVC+Yj3w2qAzS3+gsm9M0M2NkbTGdL/xz3SKWUeyhrGNMJ7sb2l49BzdLbAKFq+5DIZw==
 
 "@types/node@^10.11.7":
-  version "10.17.8"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.17.8.tgz#07c0819207b4bb46e5a509fe25f3232e76fa6683"
-  integrity sha512-FeTtEwXbQa187ABpeEQoO7pq3dHgE85FmAUExx2sKO6U1/MYrLTYv+BIMcgVbQ66WjI4w+Ni+5HJtY+gHgWnPg==
+  version "10.17.9"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.17.9.tgz#4f251a1ed77ac7ef09d456247d67fc8173f6b9da"
+  integrity sha512-+6VygF9LbG7Gaqeog2G7u1+RUcmo0q1rI+2ZxdIg2fAUngk5Vz9fOCHXdloNUOHEPd1EuuOpL5O0CdgN9Fx5UQ==
 
 "@types/semver@^5.5.0":
   version "5.5.0"
@@ -380,10 +380,6 @@ cli-width@^2.0.0:
   version "2.4.1"
   resolved "https://codeload.github.com/jashkenas/coffeescript/tar.gz/05d45e9b270faa2343e8b1277a7067252c15b0a2"
 
-"coffeescript@github:jashkenas/coffeescript#69521b97":
-  version "2.4.1"
-  resolved "https://codeload.github.com/jashkenas/coffeescript/tar.gz/69521b97cef6704b7915316b162804a24629de7d"
-
 collapse-white-space@^1.0.2:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/collapse-white-space/-/collapse-white-space-1.0.5.tgz#c2495b699ab1ed380d29a1091e01063e75dbbe3a"
@@ -619,13 +615,13 @@ eslint-module-utils@^2.4.1:
     pkg-dir "^2.0.0"
 
 eslint-plugin-coffee@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-coffee/-/eslint-plugin-coffee-0.1.0.tgz#c0815ff2587a18f7f6d8d6897d16f7aa3c233e6b"
-  integrity sha512-q7bU7Gg/YIsRfVsAxvMGiHeFNRZSpv0PoK5c6DEi4Hk8eaWbXxwVwlYLO45WJ9YLVMk4ftgIM+Sl5phHVUswKw==
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-coffee/-/eslint-plugin-coffee-0.1.2.tgz#28bf3dffccad0dd46c78df4caa4a386364e3a44e"
+  integrity sha512-OL5sVgVUv6xqPQkZjp/z1W7BjwDMiSvblnBl9nHss63jFlU0OBu4plzyK+fr6zCFkEY8tfpGiHTRUut2Q9HcDA==
   dependencies:
     babel-eslint "^7.2.2"
     babylon "^7.0.0-beta.44"
-    coffeescript "github:jashkenas/coffeescript#69521b97"
+    coffeescript "github:jashkenas/coffeescript#05d45e9b"
     doctrine "^2.1.0"
     eslint-scope "~3.7.3"
     eslint-utils "^1.4.3"
@@ -676,7 +672,7 @@ eslint-plugin-react-native@^3.3.0:
   dependencies:
     eslint-plugin-react-native-globals "^0.1.1"
 
-eslint-plugin-react@^7.11.1:
+eslint-plugin-react@^7.17.0:
   version "7.17.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.17.0.tgz#a31b3e134b76046abe3cd278e7482bd35a1d12d7"
   integrity sha512-ODB7yg6lxhBVMeiH1c7E95FLD4E/TwmFjltiU+ethv7KPdCwgiFuOZg9zNRHyufStTDLl/dEFqI2Q1VPmCd78A==
