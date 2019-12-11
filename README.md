@@ -556,6 +556,21 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 | [`import/no-amd`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-amd.md) | Report AMD `require` and `define` calls. |
 | [`import/no-nodejs-modules`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-nodejs-modules.md) | No Node.js builtin modules. |
 
+#### Style guide
+
+|          | Name                                    | Description |
+| -------- | --------------------------------------- | ----------- |
+| :wrench: | [`import/first`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/first.md) | Ensure all imports appear before other statements |
+|          | [`import/exports-last`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/exports-last.md) | Ensure all exports appear after other statements |
+|          | [`import/no-namespace`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-namespace.md) | Forbid namespace (a.k.a. "wildcard" `*`) imports <br> :warning: Unlike the eslint-plugin-import rule, the CoffeeScript version is not fixable |
+| :wrench: | [`import/newline-after-import`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/newline-after-import.md) | Enforce a newline after import statements |
+|          | [`import/prefer-default-export`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/prefer-default-export.md) | Prefer a default export if module exports a single name |
+|          | [`import/max-dependencies`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/max-dependencies.md) | Limit the maximum number of dependencies a module can have |
+|          | [`coffee/no-default-export`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-default-export.md) | Forbid default exports |
+|          | [`coffee/no-anonymous-default-export`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-anonymous-default-export.md) | Forbid anonymous values as default exports |
+|          | [`import/group-exports`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/group-exports.md) | Prefer named exports to be grouped together in a single export declaration |
+|          | [`coffee/dynamic-import-chunkname`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/dynamic-import-chunkname.md) | Enforce a leading comment with the webpackChunkName for dynamic imports |
+
 ### Non-applicable ESLint-included rules
 
 Some rules included with ESLint, `eslint-plugin-react` and `eslint-plugin-import` don't apply to CoffeeScript. These include:
