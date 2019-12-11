@@ -1,6 +1,5 @@
 # parser: ./lib/index.js
 extends:
-  - eslint:recommended
   - plugin:coffee/all
   - plugin:coffee/prettier-run-as-rule
 rules:
@@ -31,6 +30,12 @@ rules:
   no-sparse-arrays: off
   coffee/no-cond-assign: off
   coffee/spread-direction: off
+  sort-keys: off
+  global-require: off
+  max-lines: off
+  require-unicode-regexp: off
+  no-inline-comments: off
+  line-comment-position: off
 env:
   node: true
   es6: true

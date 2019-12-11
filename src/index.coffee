@@ -1,9 +1,18 @@
-{flow, map, flatten, fromPairs, keys, mapValues, pickBy} = require 'lodash/fp'
+{
+  flow
+  map
+  flatten
+  fromPairs
+  keys
+  mapValues
+  pickBy
+  reject
+  omitBy
+} = require 'lodash/fp'
 mapWithKey = map.convert cap: no
 
 {parseForESLint} = require './parser'
 
-# eslint-disable-next-line coffee/no-unused-vars
 usable = [
   'no-console'
   'no-control-regex'
@@ -501,7 +510,7 @@ rules =
     'spread-direction':
       plugin: no
     'id-length':
-      recommended: yes
+      'eslint-recommended': yes
   )
 
 configureAsError = flow(
@@ -525,6 +534,11 @@ configureAsError = flow(
   ]
 ,
   flatten
+  fromPairs
+)
+
+turnOn = flow(
+  map (rule) -> [rule, 'error']
   fromPairs
 )
 
@@ -552,17 +566,33 @@ module.exports = {
       plugins: ['coffee']
       parser: 'eslint-plugin-coffee'
       rules: {
-        ...configureAsError(rules)
+        ...configureAsError(omitBy('plugin') rules)
+        ...turnOn(reject((rule) -> /\//.test rule) usable)
         ...turnOff(dontApply)
-        # ...turnOff(unusable)
       }
     'eslint-recommended':
       plugins: ['coffee']
       parser: 'eslint-plugin-coffee'
+      extends: ['eslint:recommended']
       rules: {
         ...configureAsError(pickBy('eslint-recommended') rules)
         ...turnOff(dontApply)
-        # ...turnOff(unusable)
+      }
+    'react-recommended':
+      plugins: ['coffee']
+      parser: 'eslint-plugin-coffee'
+      extends: ['plugin:react/recommended']
+      rules: {
+        ...configureAsError(pickBy(plugin: 'react', recommended: yes) rules)
+        ...turnOff(dontApply)
+      }
+    'react-all':
+      plugins: ['coffee']
+      parser: 'eslint-plugin-coffee'
+      extends: ['plugin:react/all']
+      rules: {
+        ...configureAsError(pickBy(plugin: 'react') rules)
+        ...turnOff(dontApply)
       }
     prettier: prettierConfig
     'prettier-run-as-rule': {
