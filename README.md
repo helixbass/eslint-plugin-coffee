@@ -534,9 +534,31 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 | :heavy_check_mark: |          | [`react/jsx-uses-vars`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-uses-vars.md) | Prevent variables used in JSX to be incorrectly marked as unused |
 |                    |          | [`coffee/jsx-wrap-multilines`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-wrap-multilines.md) | Prevent missing parentheses around multilines JSX <br> :warning: Unlike the eslint-plugin-react rule, the CoffeeScript version is not fixable |
 
+### eslint-plugin-import rules
+
+#### Static analysis 
+
+| Name                                    | Description |
+| --------------------------------------- | ----------- |
+| [`import/no-webpack-loader-syntax`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-webpack-loader-syntax.md) | Forbid webpack loader syntax in imports |
+
+#### Helpful warnings
+
+| Name                                    | Description |
+| --------------------------------------- | ----------- |
+| [`coffee/export`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/export.md) | Report any invalid exports, i.e. re-export of the same name |
+
+#### Module systems
+
+| Name                                    | Description |
+| --------------------------------------- | ----------- |
+| [`coffee/no-commonjs`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-commonjs.md) | Report CommonJS `require` calls and `module.exports` or `exports.*`. |
+| [`import/no-amd`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-amd.md) | Report AMD `require` and `define` calls. |
+| [`import/no-nodejs-modules`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-nodejs-modules.md) | No Node.js builtin modules. |
+
 ### Non-applicable ESLint-included rules
 
-Some rules included with ESLint and `eslint-plugin-react` don't apply to CoffeeScript. These include:
+Some rules included with ESLint, `eslint-plugin-react` and `eslint-plugin-import` don't apply to CoffeeScript. These include:
 
 - [`for-direction`](https://eslint.org/docs/rules/for-direction)
 - [`getter-return`](https://eslint.org/docs/rules/getter-return)
@@ -602,6 +624,7 @@ Some rules included with ESLint and `eslint-plugin-react` don't apply to CoffeeS
 - [`require-yield`](https://eslint.org/docs/rules/require-yield)
 - [`yield-star-spacing`](https://eslint.org/docs/rules/yield-star-spacing)
 - [`react/require-render-return`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/require-render-return.md)
+- [`import/no-mutable-exports`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-mutable-exports.md)
 
 ## Supported CoffeeScript version
 
