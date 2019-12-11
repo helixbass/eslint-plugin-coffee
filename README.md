@@ -571,6 +571,15 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 |          | [`import/group-exports`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/group-exports.md) | Prefer named exports to be grouped together in a single export declaration |
 |          | [`coffee/dynamic-import-chunkname`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/dynamic-import-chunkname.md) | Enforce a leading comment with the webpackChunkName for dynamic imports |
 
+### eslint-plugin-react-native rules
+
+| Name                                    | Description |
+| --------------------------------------- | ----------- |
+| [`coffee/no-unused-styles`](https://github.com/Intellicode/eslint-plugin-react-native/blob/master/docs/rules/no-unused-styles.md) | Detect `StyleSheet` rules which are not used in your React components |
+| [`coffee/split-platform-components`](https://github.com/Intellicode/eslint-plugin-react-native/blob/master/docs/rules/split-platform-components.md) | Enforce using platform specific filenames when necessary |
+| [`react-native/no-inline-styles`](https://github.com/Intellicode/eslint-plugin-react-native/blob/master/docs/rules/no-inline-styles.md) | Detect JSX components with inline styles that contain literal values |
+| [`coffee/no-color-literals`](https://github.com/Intellicode/eslint-plugin-react-native/blob/master/docs/rules/no-color-literals.md) | Detect `StyleSheet` rules and inline styles containing color literals instead of variables |
+
 ### Non-applicable ESLint-included rules
 
 Some rules included with ESLint, `eslint-plugin-react` and `eslint-plugin-import` don't apply to CoffeeScript. These include:
