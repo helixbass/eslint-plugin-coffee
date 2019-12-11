@@ -229,6 +229,7 @@ ruleTester.run 'newline-after-import', rule,
     errors: [
       line: 1
       column: 1
+      # eslint-disable-next-line new-cap
       message: IMPORT_ERROR_MESSAGE_MULTIPLE 2
     ]
   ,

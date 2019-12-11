@@ -20,7 +20,6 @@ todo:
   - `recommended` config?
   - get config added to eslint-config-prettier so can use `prettier/coffee` like `prettier/@typescript-eslint`?
   - target Airbnb rules first (among remaining non-covered rules)? And add "Usage with Airbnb" section to README (like typescript-eslint)
-  - `all` should also turn on all "just works" ESLint rules? What about all "just works" eg eslint-plugin-react rules?
   - what's up with recommended + plugin: react (eg display-name)? Is that rule included when using eslint-recommended (shouldn't be)? If not, what does recommended do?
 bugs:
   - code path analysis needs to actually understand for when, since it considers anything after a for when whose body returns to be unreachable? or is eslint-plugin-known-imports using outdated?
@@ -54,6 +53,7 @@ upstream:
   - seems like lines-around-comment would benefit from memoizing getParentNodeOfToken()
   - looks like the node.type is 'BlockStatement' check in implicit-arrow-linebreak should be node.body.type is 'BlockStatement'
   - id-match claims to work on classes (when onlyDeclarations: true) but it doesn't
+  - should new-cap ignore ALL_CAPS? eg it flags IMPORT_ERROR_MESSAGE_MULTIPLE 2
 
 rule ideas:
 - prefer-implicit-return (could use code path analysis similar to no-useless-return - or should this just be a coffeescript-specific customization of no-useless-return?)

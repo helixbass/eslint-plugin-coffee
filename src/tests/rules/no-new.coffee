@@ -9,7 +9,7 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-rule = require 'eslint/lib/rules/no-new'
+rule = require '../../rules/no-new'
 {RuleTester} = require 'eslint'
 path = require 'path'
 
@@ -25,6 +25,10 @@ ruleTester.run 'no-new', rule,
     '''
       a = null
       a = no if a is new Date()
+    '''
+    '''
+      ->
+        new Date()
     '''
   ]
   invalid: [

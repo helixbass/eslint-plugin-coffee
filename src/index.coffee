@@ -39,7 +39,6 @@ usable = [
   'no-implied-eval'
   'no-iterator'
   'no-multi-str'
-  'no-new'
   'no-new-func'
   'no-new-wrappers'
   'no-param-reassign'
@@ -511,6 +510,7 @@ rules =
       plugin: no
     'id-length':
       'eslint-recommended': yes
+    'no-new': {}
   )
 
 configureAsError = flow(

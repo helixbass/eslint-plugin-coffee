@@ -18,6 +18,7 @@ path = require 'path'
 
 ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
+### eslint-disable no-useless-concat ###
 ruleTester.run 'max-len', rule,
   valid: [
     'x = 5\nx = 2'

@@ -36,6 +36,15 @@ rules:
   require-unicode-regexp: off
   no-inline-comments: off
   line-comment-position: off
+  max-statements: off
+  coffee/id-length: off
+  no-plusplus: off
+  no-param-reassign: off
+  no-continue: off
+  default-case: off
+  no-warning-comments: off
+  max-params: off
+  no-sync: off
 env:
   node: true
   es6: true

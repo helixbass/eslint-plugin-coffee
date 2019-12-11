@@ -9,6 +9,8 @@
 # Requirements
 #------------------------------------------------------------------------------
 
+### eslint-disable ###
+
 rule = require 'eslint/lib/rules/padded-blocks'
 {RuleTester} = require 'eslint'
 path = require 'path'

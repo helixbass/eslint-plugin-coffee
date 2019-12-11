@@ -59,7 +59,7 @@ getExpectedErrorBOF = (lines) ->
   type: 'Program'
   column: 1
 
-### eslint-disable coffee/no-template-curly-in-string ###
+### eslint-disable coffee/no-template-curly-in-string, no-useless-concat ###
 ruleTester.run 'no-multiple-empty-lines', rule,
   valid: [
     code: '# valid 1\na = 5\nb = 3\n\n'

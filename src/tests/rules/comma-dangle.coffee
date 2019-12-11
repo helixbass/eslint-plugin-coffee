@@ -9,6 +9,8 @@
 # Requirements
 #------------------------------------------------------------------------------
 
+### eslint-disable ###
+
 rule = require 'eslint/lib/rules/comma-dangle'
 {RuleTester} = require 'eslint'
 path = require 'path'

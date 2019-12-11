@@ -1,0 +1,30 @@
+###*
+# @fileoverview Rule to flag statements with function invocation preceded by
+# "new" and not part of assignment
+# @author Ilya Volodin
+###
+
+'use strict'
+
+#------------------------------------------------------------------------------
+# Rule Definition
+#------------------------------------------------------------------------------
+
+module.exports =
+  meta:
+    type: 'suggestion'
+
+    docs:
+      description:
+        'disallow `new` operators outside of assignments or comparisons'
+      category: 'Best Practices'
+      recommended: no
+      url: 'https://eslint.org/docs/rules/no-new'
+
+    schema: []
+
+  create: (context) ->
+    'ExpressionStatement > NewExpression': (node) ->
+      return if node.returns
+      context.report
+        node: node.parent, message: "Do not use 'new' for side effects."
