@@ -161,6 +161,8 @@ usable = [
   'react/void-dom-elements-no-children'
   'react-native/no-inline-styles'
   'no-empty-pattern'
+  'react/require-optimization'
+  'react/self-closing-comp'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
@@ -187,6 +189,7 @@ yet = [
   'prefer-regex-literals'
   'function-call-argument-newline'
   'prefer-exponentiation-operator'
+  'react/prefer-read-only-props'
 ]
 
 dontApply = [

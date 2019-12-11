@@ -19,7 +19,7 @@ module.exports =
       recommended: no
       url: docsUrl 'sort-prop-types'
 
-    fixable: 'code'
+    # fixable: 'code'
 
     schema: [
       type: 'object'
@@ -100,6 +100,7 @@ module.exports =
       # example, if it is a propType imported from another file.
       return unless declarations
 
+      # eslint-disable-next-line coffee/no-unused-vars
       fix = (fixer) ->
         sortInSource = (allNodes, source) ->
           originalSource = source
@@ -167,12 +168,11 @@ module.exports =
             return curr if previousIsRequired and not currentIsRequired
             if not previousIsRequired and currentIsRequired
               # Encountered a non-required prop after a required prop
-              context.report {
+              context.report
                 node: curr
                 message:
                   'Required prop types must be listed before all other prop types'
-                fix
-              }
+                  # fix
               return curr
 
           if callbacksLast
@@ -180,20 +180,18 @@ module.exports =
             return curr if not previousIsCallback and currentIsCallback
             if previousIsCallback and not currentIsCallback
               # Encountered a non-callback prop after a callback prop
-              context.report {
+              context.report
                 node: prev
                 message:
                   'Callback prop types must be listed after all other prop types'
-                fix
-              }
+                  # fix
               return prev
 
           if not noSortAlphabetically and currentPropName < prevPropName
-            context.report {
+            context.report
               node: curr
               message: 'Prop types declarations should be sorted alphabetically'
-              fix
-            }
+              # fix
             return prev
 
           curr
