@@ -190,6 +190,8 @@ yet = [
   'function-call-argument-newline'
   'prefer-exponentiation-operator'
   'react/prefer-read-only-props'
+  'react/state-in-constructor'
+  'react/static-property-placement'
 ]
 
 dontApply = [
