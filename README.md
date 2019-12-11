@@ -391,7 +391,14 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 |                    | :wrench: | [`coffee/operator-assignment`](https://eslint.org/docs/rules/operator-assignment) | require or disallow assignment operator shorthand where possible |
 |                    |          | [`coffee/operator-linebreak`](https://eslint.org/docs/rules/operator-linebreak) | enforce consistent linebreak style for operators <br> :warning: Unlike the ESLint rule, the CoffeeScript version is not fixable |
 |                    |          | [`coffee/prefer-object-spread`](https://eslint.org/docs/rules/prefer-object-spread) | disallow using Object.assign with an object literal as the first argument and prefer the use of object spread instead <br> :warning: Unlike the ESLint rule, the CoffeeScript version is not fixable |
-
+|                    | :wrench: | [`quote-props`](https://eslint.org/docs/rules/quote-props) | require quotes around object literal property names |
+|                    |          | [`sort-keys`](https://eslint.org/docs/rules/sort-keys) | require object keys to be sorted |
+|                    | :wrench: | [`space-in-parens`](https://eslint.org/docs/rules/space-in-parens) | enforce consistent spacing inside parentheses |
+|                    | :wrench: | [`coffee/space-infix-ops`](https://eslint.org/docs/rules/space-infix-ops) | require spacing around infix operators |
+|                    | :wrench: | [`coffee/space-unary-ops`](https://eslint.org/docs/rules/space-unary-ops) | enforce consistent spacing before or after unary operators |
+|                    | :wrench: | [`coffee/spaced-comment`](https://eslint.org/docs/rules/spaced-comment) | enforce consistent spacing after the `#` or `###` in a comment |
+|                    | :wrench: | [`unicode-bom`](https://eslint.org/docs/rules/unicode-bom) | require or disallow Unicode byte order mark (BOM) |
+|                    | :wrench: | [`coffee/wrap-regex`](https://eslint.org/docs/rules/wrap-regex) | require parenthesis around regex literals |
 
 ### Non-applicable ESLint-included rules
 
@@ -442,6 +449,14 @@ Some rules included with ESLint don't apply to CoffeeScript. These include:
 - [`object-curly-newline`](https://eslint.org/docs/rules/object-curly-newline)
 - [`one-var`](https://eslint.org/docs/rules/one-var)
 - [`one-var-declaration-per-line`](https://eslint.org/docs/rules/one-var-declaration-per-line)
+- [`semi`](https://eslint.org/docs/rules/semi)
+- [`semi-spacing`](https://eslint.org/docs/rules/semi-spacing)
+- [`semi-style`](https://eslint.org/docs/rules/semi-style)
+- [`sort-vars`](https://eslint.org/docs/rules/sort-vars)
+- [`space-before-blocks`](https://eslint.org/docs/rules/space-before-blocks)
+- [`space-before-function-paren`](https://eslint.org/docs/rules/space-before-function-paren)
+- [`switch-colon-spacing`](https://eslint.org/docs/rules/switch-colon-spacing)
+- [`template-tag-spacing`](https://eslint.org/docs/rules/template-tag-spacing)
 
 
 ## Supported CoffeeScript version
