@@ -45,6 +45,8 @@ rules:
   no-warning-comments: off
   max-params: off
   no-sync: off
+  no-multi-assign: off
+  no-bitwise: off
 env:
   node: true
   es6: true
