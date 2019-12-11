@@ -222,6 +222,9 @@ yet = [
   'import/no-unassigned-import'
   'import/no-named-default'
   'import/no-named-export'
+  'react-native/sort-styles'
+  'react-native/no-raw-text'
+  'react-native/no-single-element-style-arrays'
 ]
 
 dontApply = [
