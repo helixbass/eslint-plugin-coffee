@@ -13,7 +13,7 @@ ESLint custom parser + rules for linting CoffeeScript source files
 - [Supported Rules](#supported-rules)
 - [Supported CoffeeScript version](#supported-coffeescript-version)
 - [Supported ESLint version](#supported-eslint-version)
-- [Supported versions of eslint-plugin-import, eslint-plugin-react, eslint-plugin-react-native](#supported-versions-of-eslint-plugin-import-eslint-plugin-react-eslint-plugin-react-native)
+- [Supported versions of eslint-plugin-react, eslint-plugin-import, eslint-plugin-react-native](#supported-versions-of-eslint-plugin-react-eslint-plugin-import-eslint-plugin-react-native)
 - [How can I help?](#how-can-i-help)
 - [License](#license)
 
@@ -660,9 +660,13 @@ We will always endeavor to support the latest stable version of CoffeeScript.
 
 **The version range of ESLint currently supported by this plugin is `>=6.0.0`.**
 
-## Supported versions of `eslint-plugin-import`, `eslint-plugin-react`, `eslint-plugin-react-native`
+## Supported versions of eslint-plugin-react, eslint-plugin-import, eslint-plugin-react-native
 
+**The version range of `eslint-plugin-react` currently supported by this plugin is `>=7.17.0`.**
 
+**The version range of `eslint-plugin-import` currently supported by this plugin is `>=2.19.0`.**
+
+**The version range of `eslint-plugin-react-native` currently supported by this plugin is `>=3.8.0`.**
 
 ## How can I help?
 
