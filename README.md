@@ -108,13 +108,12 @@ Then configure the rules you want to use under the rules section.
 }
 ```
 
-You can also use [eslint:recommended](https://eslint.org/docs/rules/) (the set of rules which are recommended for all
-projects by the ESLint team) with this plugin. As noted [above](#can-i-use-all-of-the-existing-eslint-plugins-and-rules-without-any-changes), not all ESLint core rules are compatible with CoffeeScript, so you need to add both `eslint:recommended` and `plugin:coffee/eslint-recommended` (which will adjust the one from ESLint appropriately for CoffeeScript) to your config:
+To apply [eslint:recommended](https://eslint.org/docs/rules/) (the set of rules which are recommended for all
+projects by the ESLint team) with this plugin, add `plugin:coffee/eslint-recommended` (which will adjust the `eslint:recommended` config appropriately for CoffeeScript) to your config:
 
 ```
 {
   "extends": [
-    "eslint:recommended",
     "plugin:coffee/eslint-recommended"
   ]
 }
@@ -153,6 +152,28 @@ And correspondingly add those plugins and rules to your config:
     "coffee/no-unused-styles": "error",
   }
 } 
+```
+
+To apply the [`recommended`](https://github.com/yannickcr/eslint-plugin-react#recommended) config from `eslint-plugin-react`,
+add `plugin:coffee/react-recommended` to your config:
+
+```
+{
+  "extends": [
+    "plugin:coffee/react-recommended"
+  ]
+}
+```
+
+To apply the [`all`](https://github.com/yannickcr/eslint-plugin-react#all) config from `eslint-plugin-react`,
+add `plugin:coffee/react-all` to your config:
+
+```
+{
+  "extends": [
+    "plugin:coffee/react-all"
+  ]
+}
 ```
 
 ### Running from the command line
@@ -425,6 +446,11 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 |                    | :wrench: | [`sort-imports`](https://eslint.org/docs/rules/sort-imports) | enforce sorted import declarations within modules |
 |                    |          | [`symbol-description`](https://eslint.org/docs/rules/symbol-description) | require symbol descriptions |
 |                    | :wrench: | [`coffee/template-curly-spacing`](https://eslint.org/docs/rules/template-curly-spacing) | require or disallow spacing around embedded expressions of template strings |
+
+### eslint-plugin-react rules
+
+|                    |          | Name                                    | Description |
+| ------------------ | -------- | --------------------------------------- | ----------- |
 
 ### Non-applicable ESLint-included rules
 
