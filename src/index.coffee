@@ -99,7 +99,6 @@ usable = [
   'symbol-description'
   'no-catch-shadow'
   'import/no-webpack-loader-syntax'
-  'import/prefer-default-export'
   'import/first'
   'import/no-amd'
   'import/no-nodejs-modules'
@@ -107,7 +106,7 @@ usable = [
   'import/no-namespace'
   'import/prefer-default-export'
   'import/max-dependencies'
-  'import/newline-after-export'
+  'import/newline-after-import'
   'import/group-exports'
   'no-misleading-character-class'
   'require-unicode-regexp'
@@ -163,6 +162,7 @@ usable = [
   'no-empty-pattern'
   'react/require-optimization'
   'react/self-closing-comp'
+  'react/jsx-sort-props'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
@@ -192,6 +192,36 @@ yet = [
   'react/prefer-read-only-props'
   'react/state-in-constructor'
   'react/static-property-placement'
+  'react/jsx-curly-newline'
+  'react/jsx-no-script-url'
+  'react/jsx-no-useless-fragment'
+  'react/jsx-fragments'
+  'react/jsx-props-no-spreading'
+  'react/jsx-space-before-closing'
+  'import/no-unresolved'
+  'import/named'
+  'import/default'
+  'import/namespace'
+  'import/no-restricted-paths'
+  'import/no-absolute-path'
+  'import/no-dynamic-require'
+  'import/no-internal-modules'
+  'import/no-self-import'
+  'import/no-cycle'
+  'import/no-useless-path-segments'
+  'import/no-relative-parent-imports'
+  'import/no-unused-modules'
+  'import/no-named-as-default'
+  'import/no-named-as-default-member'
+  'import/no-deprecated'
+  'import/no-extraneous-dependencies'
+  'import/unambiguous'
+  'import/no-duplicates'
+  'import/extensions'
+  'import/order'
+  'import/no-unassigned-import'
+  'import/no-named-default'
+  'import/no-named-export'
 ]
 
 dontApply = [
@@ -210,7 +240,7 @@ dontApply = [
   'func-names'
   'no-ternary'
   'init-declarations'
-  'import/no-mutable-export' # since you can't control whether an exported member is const - might be nice to implement its "possible future behavior" of checking whether it in fact does get reassigned?)
+  'import/no-mutable-exports' # since you can't control whether an exported member is const - might be nice to implement its "possible future behavior" of checking whether it in fact does get reassigned?)
   'no-label-var'
   'no-extra-label'
   'no-unused-labels'
@@ -457,6 +487,7 @@ rules =
       prettier: yes
     'jsx-key':
       plugin: 'react'
+      recommended: yes
     'jsx-max-props-per-line':
       plugin: 'react'
       prettier: yes
