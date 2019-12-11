@@ -179,11 +179,11 @@ Running ESLint directly from your code editor (e.g. on save) provides a quick fe
 
 Depending on your editor, there may or may not currently be a straightforward way to get ESLint running against `.coffee` files (e.g. using an ESLint editor plugin).
 
-If you're having trouble getting ESLint running in your editor (and it's not listed below), please [file an issue](https://github.com/coffeescript/eslint-plugin-coffee/issues) and we'll try and help with support for your editor.
+If you're having trouble getting ESLint running in your editor (and it's not listed below), please [file an issue](https://github.com/helixbass/eslint-plugin-coffee/issues) and we'll try and help with support for your editor.
 
 We will add instructions for different code editors here as they become supported.
 
-If you've gotten ESLint running in an editor not listed here and would like to share back, please [file an issue](https://github.com/coffeescript/eslint-plugin-coffee/issues)!
+If you've gotten ESLint running in an editor not listed here and would like to share back, please [file an issue](https://github.com/helixbass/eslint-plugin-coffee/issues)!
 
 ## Usage with Prettier
 
@@ -400,6 +400,25 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 |                    | :wrench: | [`unicode-bom`](https://eslint.org/docs/rules/unicode-bom) | require or disallow Unicode byte order mark (BOM) |
 |                    | :wrench: | [`coffee/wrap-regex`](https://eslint.org/docs/rules/wrap-regex) | require parenthesis around regex literals |
 
+#### "ECMAScript 6"
+
+|                    |          | Name                                    | Description |
+| ------------------ | -------- | --------------------------------------- | ----------- |
+|                    | :wrench: | [`coffee/arrow-spacing`](https://eslint.org/docs/rules/arrow-spacing) | enforce consistent spacing before and after the arrow in functions |
+| :heavy_check_mark: |          | [`constructor-super`](https://eslint.org/docs/rules/constructor-super) | require `super()` calls in constructors |
+| :heavy_check_mark: |          | [`coffee/no-class-assign`](https://eslint.org/docs/rules/no-class-assign) | disallow reassigning class members |
+| :heavy_check_mark: |          | [`no-dupe-class-members`](https://eslint.org/docs/rules/no-dupe-class-members) | disallow duplicate class members |
+|                    |          | [`no-duplicate-imports`](https://eslint.org/docs/rules/no-duplicate-imports) | disallow duplicate module imports |
+| :heavy_check_mark: |          | [`no-new-symbol`](https://eslint.org/docs/rules/no-new-symbol) | disallow `new` operators with the `Symbol` object |
+|                    |          | [`no-restricted-imports`](https://eslint.org/docs/rules/no-restricted-imports) | disallow specified modules when loaded by `import` |
+| :heavy_check_mark: |          | [`coffee/no-this-before-super`](https://eslint.org/docs/rules/no-this-before-super) | disallow `this`/`super` before calling `super()` in constructors |
+|                    | :wrench: | [`no-useless-computed-key`](https://eslint.org/docs/rules/no-useless-computed-key) | disallow unnecessary computed property keys in objects and classes |
+|                    |          | [`no-useless-constructor`](https://eslint.org/docs/rules/no-useless-constructor) | disallow unnecessary constructors |
+|                    | :wrench: | [`no-useless-rename`](https://eslint.org/docs/rules/no-useless-rename) | disallow renaming import, export, and destructured assignments to the same name |
+|                    |          | [`coffee/object-shorthand`](https://eslint.org/docs/rules/object-shorthand) | require or disallow method and property shorthand syntax for object literals <br> :warning: Unlike the ESLint rule, the CoffeeScript version is not fixable |
+|                    |          | [`coffee/prefer-destructuring`](https://eslint.org/docs/rules/prefer-destructuring) | require destructuring from arrays and/or objects <br> :warning: Unlike the ESLint rule, the CoffeeScript version is not fixable |
+|                    | :wrench: | [`prefer-numeric-literals`](https://eslint.org/docs/rules/prefer-numeric-literals) | disallow `parseInt()` and `Number.parseInt()` in favor of binary, octal, and hexadecimal literals |
+
 ### Non-applicable ESLint-included rules
 
 Some rules included with ESLint don't apply to CoffeeScript. These include:
@@ -457,6 +476,14 @@ Some rules included with ESLint don't apply to CoffeeScript. These include:
 - [`space-before-function-paren`](https://eslint.org/docs/rules/space-before-function-paren)
 - [`switch-colon-spacing`](https://eslint.org/docs/rules/switch-colon-spacing)
 - [`template-tag-spacing`](https://eslint.org/docs/rules/template-tag-spacing)
+- [`arrow-body-style`](https://eslint.org/docs/rules/arrow-body-style)
+- [`arrow-parens`](https://eslint.org/docs/rules/arrow-parens)
+- [`generator-star-spacing`](https://eslint.org/docs/rules/generator-star-spacing)
+- [`no-confusing-arrow`](https://eslint.org/docs/rules/no-confusing-arrow)
+- [`no-const-assign`](https://eslint.org/docs/rules/no-const-assign)
+- [`no-var`](https://eslint.org/docs/rules/no-var)
+- [`prefer-arrow-callback`](https://eslint.org/docs/rules/prefer-arrow-callback)
+- [`prefer-const`](https://eslint.org/docs/rules/prefer-const)
 
 
 ## Supported CoffeeScript version
@@ -475,7 +502,7 @@ We will always endeavor to support the latest stable version of CoffeeScript.
 
 ## How can I help?
 
-See an issue? [Report it](https://github.com/coffeescript/eslint-plugin-coffee/issues)!
+See an issue? [Report it](https://github.com/helixbass/eslint-plugin-coffee/issues)!
 
 If you have the time and inclination, you can even take it a step further and submit a PR to improve the project.
 
