@@ -227,6 +227,8 @@ If you've gotten ESLint running in an editor not listed here and would like to s
 
 ## Usage with Prettier
 
+You can now use [Prettier](https://prettier.io/) to format your CoffeeScript code, see the Prettier CoffeeScript plugin [README](https://github.com/helixbass/prettier-plugin-coffeescript) for instructions.
+
 To disable our code formatting related rules, install [`eslint-config-prettier`](https://github.com/prettier/eslint-config-prettier):
 
 ```
@@ -244,7 +246,7 @@ Alternatively, if you want to run Prettier as an ESLint rule (a nice option espe
 via your editor):
 
 ```
-npm install --save-dev eslint-config-prettier eslint-plugin-prettier prettier-plugin-coffeescript
+npm install --save-dev eslint-config-prettier eslint-plugin-prettier
 ```
 
 Then use the `prettier-run-as-rule` config exposed by this plugin:
