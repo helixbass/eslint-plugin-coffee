@@ -638,11 +638,7 @@ module.exports = {
       ...prettierConfig
       plugins: ['coffee', 'prettier']
       rules: {
-        'prettier/prettier': [
-          'error'
-        ,
-          parser: 'coffeescript', pluginSearchDirs: ['.']
-        ]
+        'prettier/prettier': ['error', {parser: 'coffeescript'}]
         ...prettierConfig.rules
       }
     }
