@@ -202,6 +202,25 @@ Depending on your editor, there may or may not currently be a straightforward wa
 
 If you're having trouble getting ESLint running in your editor (and it's not listed below), please [file an issue](https://github.com/helixbass/eslint-plugin-coffee/issues) and we'll try and help with support for your editor.
 
+#### VS Code
+
+To run ESLint from VS Code, first install the VS Code [ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
+
+Then add to your VS Code [`settings.json`](https://code.visualstudio.com/docs/getstarted/settings):
+```
+"eslint.validate": [
+    // "javascript", "javascriptreact" is the default setting
+    "javascript",
+    "javascriptreact",
+    {
+        "language": "coffeescript",
+        "autoFix": true
+    },
+]
+```
+
+#### Other editors
+
 We will add instructions for different code editors here as they become supported.
 
 If you've gotten ESLint running in an editor not listed here and would like to share back, please [file an issue](https://github.com/helixbass/eslint-plugin-coffee/issues)!
