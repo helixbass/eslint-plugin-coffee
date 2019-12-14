@@ -23,6 +23,9 @@ ruleTester.run 'capitalized-class-names', rule,
   valid: [
     'class Animal'
     'class Wolf extends Animal'
+    'class BurmesePython extends Animal'
+    'class ELO extends Band'
+    'class Eiffel65 extends Band'
     'class nested.Name'
     'class deeply.nested.Name'
     '''

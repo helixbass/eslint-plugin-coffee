@@ -381,4 +381,12 @@ ruleTester.run 'camelcase', rule,
       message: "Identifier 'no_camelcased' is not in camel case."
       type: 'Identifier'
     ]
+  ,
+    code: '''
+      class My_Class
+    '''
+    errors: [
+      message: "Identifier 'My_Class' is not in camel case."
+      type: 'Identifier'
+    ]
   ]
