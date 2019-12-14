@@ -706,6 +706,20 @@ Here is a mapping from CoffeeLint rules to their corresponding ESLint rules:
 | `empty_constructor_needs_parens` | [`new-parens`](https://eslint.org/docs/rules/new-parens) |
 | `ensure_comprehensions` | `coffee/postfix-comprehension-assign-parens` <br> (this behavior is also covered if you're using [Prettier](https://github.com/helixbass/prettier-plugin-coffeescript)) |
 | `eol_last` | [`eol-last`](https://eslint.org/docs/rules/eol-last) |
+| `indentation` | Not yet implemented. <br> (this behavior is also covered if you're using [Prettier](https://github.com/helixbass/prettier-plugin-coffeescript)) |
+| `line_endings` | [`linebreak-style`](https://eslint.org/docs/rules/linebreak-style) |
+| `max_line_length` | [`coffee/max-len`](https://eslint.org/docs/rules/max-len) |
+| `missing_fat_arrows` | [`coffee/no-invalid-this`](https://eslint.org/docs/rules/no-invalid-this) |
+| `newlines_after_classes` | Not yet implemented. <br> (this behavior is also covered if you're using [Prettier](https://github.com/helixbass/prettier-plugin-coffeescript)) |
+| `no_backticks` | `coffee/no-backticks` |
+| `no_debugger` | [`no-debugger`](https://eslint.org/docs/rules/no-debugger) |
+| `no_empty_functions` | [`coffee/no-empty-function`](https://eslint.org/docs/rules/no-empty-function) |
+| `no_empty_param_list` | [`coffee/empty-func-parens`](https://eslint.org/docs/rules/no-empty-function) |
+| `no_implicit_braces` | `coffee/implicit-object` |
+| `no_implicit_parens` | `coffee/implicit-call` |
+| `no_interpolation_in_single_quotes` | [`coffee/no-template-curly-in-string`](https://eslint.org/docs/rules/no-template-curly-in-string) |
+| `no_nested_string_interpolation` | Not yet implemented. |
+| `no_plusplus` | [`no-plusplus`](https://eslint.org/docs/rules/no-plusplus) |
 
 ## How can I help?
 
