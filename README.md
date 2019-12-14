@@ -701,6 +701,11 @@ Here is a mapping from CoffeeLint rules to their corresponding ESLint rules:
 | `camel_case_classes` | [`coffee/camelcase`](https://eslint.org/docs/rules/camelcase) + `coffee/capitalized-class-names` |
 | `coffeescript_error` | If the CoffeeScript compiler fails to parse/produce AST for a source file, ESLint will report it as a parsing error. |
 | `colon_assignment_spacing` | [`key-spacing`](https://eslint.org/docs/rules/key-spacing) |
+| `cyclomatic_complexity` | [`coffee/complexity`](https://eslint.org/docs/rules/complexity) |
+| `duplicate_key` | [`no-dupe-keys`](https://eslint.org/docs/rules/no-dupe-keys) |
+| `empty_constructor_needs_parens` | [`new-parens`](https://eslint.org/docs/rules/new-parens) |
+| `ensure_comprehensions` | `coffee/postfix-comprehension-assign-parens` <br> (this behavior is also covered if you're using [Prettier](https://github.com/helixbass/prettier-plugin-coffeescript)) |
+| `eol_last` | [`eol-last`](https://eslint.org/docs/rules/eol-last) |
 
 ## How can I help?
 
