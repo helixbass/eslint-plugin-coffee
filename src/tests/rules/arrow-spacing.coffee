@@ -92,6 +92,9 @@ valid = [
 ,
   code: '(a)  =>\n  {}'
   options: [after: no]
+,
+  '-> -> b'
+  '=> => b'
 ]
 
 invalid = [
@@ -312,6 +315,22 @@ invalid = [
     column: 11, line: 1, messageId: 'expectedBefore'
   ,
     column: 14, line: 1, messageId: 'expectedAfter'
+  ]
+,
+  code: '->->1'
+  output: '-> -> 1'
+  errors: [
+    column: 3, line: 1, messageId: 'expectedAfter'
+  ,
+    column: 5, line: 1, messageId: 'expectedAfter'
+  ]
+,
+  code: '=>=>1'
+  output: '=> => 1'
+  errors: [
+    column: 3, line: 1, messageId: 'expectedAfter'
+  ,
+    column: 5, line: 1, messageId: 'expectedAfter'
   ]
 ]
 

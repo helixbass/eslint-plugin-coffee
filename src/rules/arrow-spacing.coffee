@@ -58,13 +58,7 @@ module.exports =
     # @returns {Object} Tokens of arrow and before/after arrow.
     ###
     getTokens = (node) ->
-      # AST currently includes arrow in body, so check there first
-      firstBodyToken = sourceCode.getTokens(node.body)?[0]
-      arrow =
-        if isArrowToken firstBodyToken
-          firstBodyToken
-        else
-          sourceCode.getTokenBefore node.body, isArrowToken
+      arrow = sourceCode.getTokenBefore node.body, isArrowToken
 
       {
         before: sourceCode.getTokenBefore arrow
