@@ -14,6 +14,7 @@ ESLint custom parser + rules for linting CoffeeScript source files
 - [Supported CoffeeScript version](#supported-coffeescript-version)
 - [Supported ESLint version](#supported-eslint-version)
 - [Supported versions of eslint-plugin-react, eslint-plugin-import, eslint-plugin-react-native](#supported-versions-of-eslint-plugin-react-eslint-plugin-import-eslint-plugin-react-native)
+- [Migrating from CoffeeLint](#migrating-from-coffeelint)
 - [How can I help?](#how-can-i-help)
 - [License](#license)
 
@@ -688,6 +689,18 @@ We will always endeavor to support the latest stable version of CoffeeScript.
 **The version range of `eslint-plugin-import` currently supported by this plugin is `>=2.19.0`.**
 
 **The version range of `eslint-plugin-react-native` currently supported by this plugin is `>=3.8.0`.**
+
+## Migrating from CoffeeLint
+
+Here is a mapping from CoffeeLint rules to their corresponding ESLint rules:
+
+| CoffeeLint rule | ESLint rule |
+| --------------- | ----------- |
+| `arrow_spacing` | [`coffee/arrow-spacing`](https://eslint.org/docs/rules/arrow-spacing) |
+| `braces_spacing` | [`coffee/object-curly-spacing`](https://eslint.org/docs/rules/object-curly-spacing) |
+| `camel_case_classes` | [`coffee/camelcase`](https://eslint.org/docs/rules/camelcase) + `coffee/capitalized-class-names` |
+| `coffeescript_error` | If the CoffeeScript compiler fails to parse/produce AST for a source file, ESLint will report it as a parsing error. |
+| `colon_assignment_spacing` | [`key-spacing`](https://eslint.org/docs/rules/key-spacing) |
 
 ## How can I help?
 
