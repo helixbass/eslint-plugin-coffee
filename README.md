@@ -710,7 +710,7 @@ Here is a mapping from CoffeeLint rules to their corresponding ESLint rules:
 | `line_endings` | [`linebreak-style`](https://eslint.org/docs/rules/linebreak-style) |
 | `max_line_length` | [`coffee/max-len`](https://eslint.org/docs/rules/max-len) |
 | `missing_fat_arrows` | [`coffee/no-invalid-this`](https://eslint.org/docs/rules/no-invalid-this) |
-| `newlines_after_classes` | Not yet implemented. <br> (this behavior is also covered if you're using [Prettier](https://github.com/helixbass/prettier-plugin-coffeescript)) |
+| `newlines_after_classes` | Not yet implemented. <br> (this behavior is also partially covered if you're using [Prettier](https://github.com/helixbass/prettier-plugin-coffeescript)) |
 | `no_backticks` | `coffee/no-backticks` |
 | `no_debugger` | [`no-debugger`](https://eslint.org/docs/rules/no-debugger) |
 | `no_empty_functions` | [`coffee/no-empty-function`](https://eslint.org/docs/rules/no-empty-function) |
@@ -734,6 +734,8 @@ Here is a mapping from CoffeeLint rules to their corresponding ESLint rules:
 | `space_operators` | [`coffee/space-infix-ops`](https://eslint.org/docs/rules/space-infix-ops) + [`coffee/space-unary-ops`](https://eslint.org/docs/rules/space-unary-ops) |
 | `spacing_after_comma` | [`comma-spacing`](https://eslint.org/docs/rules/comma-spacing) |
 | `transform_messes_up_line_numbers` | Doesn't apply. |
+
+If you haven't used ESLint before, you'll just need an `.eslintrc` config file in your project root - the [Installation](#installation) and [Usage](#usage) sections above cover how to get started. For further information, you may want to look at the [official ESLint guide](https://eslint.org/docs/user-guide/getting-started).
 
 ## How can I help?
 
