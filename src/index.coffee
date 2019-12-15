@@ -175,7 +175,6 @@ yet = [
   'padded-blocks' # prettier: yes I think only leading padding would apply (since trailing padding is considered outside the block)
   'padding-line-between-statements' # I think only leading padding would apply (since trailing padding is considered outside the block)
   'quotes' # prettier: yes
-  'no_private_function_fat_arrows' # maybe this should cover warning about non-fat arrow = -> assignments in class bodies as well (since they're often intended to be : ->)?
   'no-dupe-else-if'
   'no-import-assign'
   'no-setter-return'
@@ -551,6 +550,8 @@ rules =
     'postfix-comprehension-assign-parens':
       plugin: no
     'no-nested-string-interpolation':
+      plugin: no
+    'no-private-function-fat-arrows':
       plugin: no
   )
 
