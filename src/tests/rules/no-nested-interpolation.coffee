@@ -8,7 +8,7 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-rule = require '../../rules/no-nested-string-interpolation'
+rule = require '../../rules/no-nested-interpolation'
 {RuleTester} = require 'eslint'
 path = require 'path'
 
@@ -20,7 +20,7 @@ ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
 ### eslint-disable coffee/no-template-curly-in-string ###
 
-ruleTester.run 'no-nested-string-interpolation', rule,
+ruleTester.run 'no-nested-interpolation', rule,
   valid: ['"Book by #{firstName.toUpperCase()} #{lastName.toUpperCase()}"']
   invalid: [
     code: 'str = "Book by #{"#{firstName} #{lastName}".toUpperCase()}"'
@@ -57,5 +57,29 @@ ruleTester.run 'no-nested-string-interpolation', rule,
       messageId: 'dontNest'
       line: 1
       column: 43
+    ]
+  ,
+    code: '''
+      ///
+        #{"a#{b}"}
+      ///
+    '''
+    errors: [
+      messageId: 'dontNest'
+      line: 2
+      column: 5
+    ]
+  ,
+    code: '''
+      """
+        #{///
+          a#{b}
+        ///}
+      """
+    '''
+    errors: [
+      messageId: 'dontNest'
+      line: 2
+      column: 5
     ]
   ]

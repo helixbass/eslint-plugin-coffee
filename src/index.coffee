@@ -549,9 +549,11 @@ rules =
     'no-new': {}
     'postfix-comprehension-assign-parens':
       plugin: no
-    'no-nested-string-interpolation':
+    'no-nested-interpolation':
       plugin: no
     'no-private-function-fat-arrows':
+      plugin: no
+    'no-unnecessary-double-quotes':
       plugin: no
   )
 
