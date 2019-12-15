@@ -718,8 +718,22 @@ Here is a mapping from CoffeeLint rules to their corresponding ESLint rules:
 | `no_implicit_braces` | `coffee/implicit-object` |
 | `no_implicit_parens` | `coffee/implicit-call` |
 | `no_interpolation_in_single_quotes` | [`coffee/no-template-curly-in-string`](https://eslint.org/docs/rules/no-template-curly-in-string) |
-| `no_nested_string_interpolation` | Not yet implemented. |
+| `no_nested_string_interpolation` | `coffee/no-nested-interpolation` |
 | `no_plusplus` | [`no-plusplus`](https://eslint.org/docs/rules/no-plusplus) |
+| `no_private_function_fat_arrows` | `coffee/no-private-function-fat-arrows` |
+| `no_stand_alone_at` | `coffee/shorthand-this` |
+| `no_tabs` | [`no-tabs`](https://eslint.org/docs/rules/no-tabs) |
+| `no_this` | `coffee/shorthand-this` |
+| `no_throwing_strings` | [`no-throw-literal`](https://eslint.org/docs/rules/no-throw-literal) |
+| `no_trailing_semicolons` | Not yet implemented. <br> (this behavior is also covered if you're using [Prettier](https://github.com/helixbass/prettier-plugin-coffeescript)) |
+| `no_trailing_whitespace` | [`no-trailing-spaces`](https://eslint.org/docs/rules/no-trailing-spaces) |
+| `no_unnecessary_double_quotes` | `coffee/no-unnecessary-double-quotes` |
+| `no_unnecessary_fat_arrows` | `coffee/no-unnecessary-fat-arrow` |
+| `non_empty_constructor_needs_parens` | `coffee/implicit-call` |
+| `prefer_english_operator` | `coffee/english-operators` |
+| `space_operators` | [`coffee/space-infix-ops`](https://eslint.org/docs/rules/space-infix-ops) + [`coffee/space-unary-ops`](https://eslint.org/docs/rules/space-unary-ops) |
+| `spacing_after_comma` | [`comma-spacing`](https://eslint.org/docs/rules/comma-spacing) |
+| `transform_messes_up_line_numbers` | Doesn't apply. |
 
 ## How can I help?
 
