@@ -306,7 +306,7 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 |                    |          | [`coffee/class-methods-use-this`](https://eslint.org/docs/rules/class-methods-use-this) | enforce that class methods utilize `this` |
 |                    |          | [`coffee/complexity`](https://eslint.org/docs/rules/complexity) | enforce a maximum cyclomatic complexity allowed in a program |
 |                    |          | [`default-case`](https://eslint.org/docs/rules/default-case) | require `else` cases in `switch` statements |
-|                    | :wrench: | [`dot-location`](https://eslint.org/docs/rules/dot-location) | enforce consistent newlines before and after dots |
+|                    | :wrench: | [`coffee/dot-location`](https://eslint.org/docs/rules/dot-location) | enforce consistent newlines before and after dots |
 |                    | :wrench: | [`coffee/dot-notation`](https://eslint.org/docs/rules/dot-notation) | enforce dot notation whenever possible |
 |                    |          | [`coffee/guard-for-in`](https://eslint.org/docs/rules/guard-for-in) | require `for-of` loops to include `own` or an `if` statement |
 |                    |          | [`max-classes-per-file`](https://eslint.org/docs/rules/max-classes-per-file) | enforce a maximum number of classes per file |
