@@ -85,6 +85,7 @@ module.exports =
 
     MemberExpression: (node) ->
       return if node.shorthand
+      return if node.object.type is 'ThisExpression' and node.object.shorthand
       return unless astUtils.isTokenOnSameLine node.object, node.property
       return if (
         isPrototypeShorthand(node) and

@@ -173,6 +173,9 @@ ruleTester.run 'no-whitespace-before-property', rule,
     'foo[(bar.baz() + 0) + qux]'
     "foo['bar ' + 1 + ' baz']"
     "5['toExponential']()"
+    '@b'
+    '@::c'
+    '@[d]'
   ]
 
   invalid: [
@@ -182,6 +185,10 @@ ruleTester.run 'no-whitespace-before-property', rule,
   ,
     code: 'foo:: bar'
     output: 'foo::bar'
+    errors: ['Unexpected whitespace before property bar.']
+  ,
+    code: '@:: bar'
+    output: '@::bar'
     errors: ['Unexpected whitespace before property bar.']
   ,
     code: 'foo .bar'
