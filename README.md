@@ -454,8 +454,8 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 | :heavy_check_mark: |          | [`no-new-symbol`](https://eslint.org/docs/rules/no-new-symbol) | disallow `new` operators with the `Symbol` object |
 |                    |          | [`no-restricted-imports`](https://eslint.org/docs/rules/no-restricted-imports) | disallow specified modules when loaded by `import` |
 | :heavy_check_mark: |          | [`coffee/no-this-before-super`](https://eslint.org/docs/rules/no-this-before-super) | disallow `this`/`super` before calling `super()` in constructors |
-|                    | :wrench: | [`no-useless-computed-key`](https://eslint.org/docs/rules/no-useless-computed-key) | disallow unnecessary computed property keys in objects and classes |
-|                    |          | [`no-useless-constructor`](https://eslint.org/docs/rules/no-useless-constructor) | disallow unnecessary constructors |
+|                    | :wrench: | [`coffee/no-useless-computed-key`](https://eslint.org/docs/rules/no-useless-computed-key) | disallow unnecessary computed property keys in objects and classes |
+|                    |          | [`coffee/no-useless-constructor`](https://eslint.org/docs/rules/no-useless-constructor) | disallow unnecessary constructors |
 |                    | :wrench: | [`no-useless-rename`](https://eslint.org/docs/rules/no-useless-rename) | disallow renaming import, export, and destructured assignments to the same name |
 |                    |          | [`coffee/object-shorthand`](https://eslint.org/docs/rules/object-shorthand) | require or disallow method and property shorthand syntax for object literals <br> :warning: Unlike the ESLint rule, the CoffeeScript version is not fixable |
 |                    |          | [`coffee/prefer-destructuring`](https://eslint.org/docs/rules/prefer-destructuring) | require destructuring from arrays and/or objects <br> :warning: Unlike the ESLint rule, the CoffeeScript version is not fixable |
