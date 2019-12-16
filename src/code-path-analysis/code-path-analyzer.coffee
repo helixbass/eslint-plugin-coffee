@@ -368,6 +368,9 @@ processCodePathToExit = (analyzer, node) ->
         dontForward = yes
 
     when 'TryStatement'
+      if not node.handler and not node.finalizer
+        # implicit `catch` block
+        state.makeCatchBlock()
       state.popTryContext()
 
     when 'BreakStatement'

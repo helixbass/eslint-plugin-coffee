@@ -47,6 +47,7 @@ rules:
   no-sync: off
   no-multi-assign: off
   no-bitwise: off
+  coffee/dot-location: off
 env:
   node: true
   es6: true
