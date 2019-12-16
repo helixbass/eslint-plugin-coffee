@@ -37,7 +37,6 @@ usable = [
   'no-global-assign' # only ++ applies since we generate declarations on other write references
   'no-implied-eval'
   'no-iterator'
-  'no-multi-str'
   'no-new-func'
   'no-new-wrappers'
   'no-param-reassign'
@@ -287,6 +286,7 @@ dontApply = [
   'func-call-spacing'
   'react/require-render-return'
   'no-eq-null'
+  'no-multi-str'
 ]
 
 rules =
