@@ -428,7 +428,7 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 |                    | :wrench: | [`no-trailing-spaces`](https://eslint.org/docs/rules/no-trailing-spaces) | disallow trailing whitespace at the end of lines |
 |                    |          | [`coffee/no-underscore-dangle`](https://eslint.org/docs/rules/no-underscore-dangle) | disallow dangling underscores in identifiers |
 |                    | :wrench: | [`coffee/no-unneeded-ternary`](https://eslint.org/docs/rules/no-unneeded-ternary) | disallow `if`/`else` expressions when simpler alternatives exist |
-|                    | :wrench: | [`no-whitespace-before-property`](https://eslint.org/docs/rules/no-whitespace-before-property) | disallow whitespace before properties |
+|                    | :wrench: | [`coffee/no-whitespace-before-property`](https://eslint.org/docs/rules/no-whitespace-before-property) | disallow whitespace before properties |
 |                    | :wrench: | [`coffee/object-curly-spacing`](https://eslint.org/docs/rules/object-curly-spacing) | enforce consistent spacing inside braces |
 |                    |          | [`coffee/object-property-newline`](https://eslint.org/docs/rules/object-property-newline) | enforce placing object properties on separate lines <br> :warning: Unlike the ESLint rule, the CoffeeScript version is not fixable |
 |                    | :wrench: | [`coffee/operator-assignment`](https://eslint.org/docs/rules/operator-assignment) | require or disallow assignment operator shorthand where possible |
