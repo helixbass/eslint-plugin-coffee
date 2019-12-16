@@ -183,6 +183,10 @@ ruleTester.run 'no-undef', rule,
         containsStyleSheetObject: (node) ->
           right = node?.init ? node?.right
     '''
+    '''
+      class A
+        prop: 3
+    '''
   ]
   invalid: [
     code: "if (typeof anUndefinedVar is 'string') then ;"
@@ -225,6 +229,12 @@ ruleTester.run 'no-undef', rule,
     code: '''
       c = 0
       a = {...b, c}
+    '''
+    errors: [message: "'b' is not defined."]
+  ,
+    code: '''
+      class A
+        prop: b
     '''
     errors: [message: "'b' is not defined."]
   ]

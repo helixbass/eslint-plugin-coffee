@@ -95,6 +95,9 @@ class Referencer extends OriginalReferencer
   ClassProperty: (node) ->
     @visitProperty node
 
+  ClassPrototypeProperty: (node) ->
+    @visitProperty node
+
 module.exports = (ast, parserOptions) ->
   options =
     fallback: 'iteration'
