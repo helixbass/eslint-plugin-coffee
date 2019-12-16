@@ -9,7 +9,7 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-rule = require 'eslint/lib/rules/no-useless-constructor'
+rule = require '../../rules/no-useless-constructor'
 {RuleTester} = require 'eslint'
 path = require 'path'
 
@@ -102,6 +102,42 @@ ruleTester.run 'no-useless-constructor', rule,
       class A extends B
         constructor: (foo, bar) ->
           super(bar)
+    '''
+    '''
+      class A
+        constructor: (@foo) ->
+    '''
+    '''
+      class A
+        constructor: ([@foo]) ->
+    '''
+    '''
+      class A
+        constructor: ({@foo}) ->
+    '''
+    '''
+      class A
+        constructor: ([{@foo}]) ->
+    '''
+    '''
+      class A
+        constructor: (@foo = 1) ->
+    '''
+    '''
+      class A
+        constructor: ([@foo = 1]) ->
+    '''
+    '''
+      class A
+        constructor: ({@foo = 1}) ->
+    '''
+    '''
+      class A
+        constructor: ([{@foo = 1}]) ->
+    '''
+    '''
+      class A
+        constructor: ({foo: @bar = 1}) ->
     '''
   ]
   invalid: [

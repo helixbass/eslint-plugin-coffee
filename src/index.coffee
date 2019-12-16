@@ -87,7 +87,6 @@ usable = [
   'no-duplicate-imports'
   'no-new-symbol'
   'no-restricted-imports'
-  'no-useless-constructor'
   'no-useless-rename'
   'prefer-numeric-literals'
   'prefer-rest-params'
@@ -555,6 +554,7 @@ rules =
     'dot-location': {}
     'no-whitespace-before-property': {}
     'no-useless-computed-key': {}
+    'no-useless-constructor': {}
   )
 
 configureAsError = flow(
