@@ -613,6 +613,9 @@ ruleTester.run 'keyword-spacing', rule,
       finally
         d
     '''
+    '''
+      indentRegex = ///#{b}///g if indent
+    '''
   ]
 
   invalid: [
