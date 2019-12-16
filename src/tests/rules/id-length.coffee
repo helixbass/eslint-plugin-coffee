@@ -271,4 +271,11 @@ ruleTester.run 'id-length', rule,
     errors: [
       message: "Identifier name 'x' is too short (< 2).", type: 'Identifier'
     ]
+  ,
+    code: '''
+      class B extends A
+    '''
+    errors: [
+      message: "Identifier name 'B' is too short (< 2).", type: 'Identifier'
+    ]
   ]

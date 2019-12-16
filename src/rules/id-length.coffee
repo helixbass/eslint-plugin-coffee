@@ -84,7 +84,9 @@ module.exports =
                   'key'
               ]
             )
-          when 'ClassDeclaration', 'FunctionDeclaration', 'FunctionExpression', 'ArrowFunctionExpression'
+          when 'ClassDeclaration'
+            return prevNode is currentNode.id
+          when 'FunctionDeclaration', 'FunctionExpression', 'ArrowFunctionExpression'
             return prevNode is currentNode.id or prevNode in currentNode.params
           when 'MethodDefinition'
             return prevNode is currentNode.key and not currentNode.computed
