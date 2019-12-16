@@ -123,16 +123,22 @@ module.exports =
         isQuoteEscape = quote? and escapedChar is quote[0]
         if isQuoteEscape and quote.length is 3
           isQuoteEscape = no
-          followingQuoteEscapes = /// ^ (?: \\#{quote[0]} )+ ///.exec(
+          followingQuotes = /// ^ (?: \\?#{quote[0]} )+ ///.exec(
             value[(match.index + match[0].length)..]
           )
-          precedingQuoteEscapes = /// (?: \\#{quote[0]} )+ $ ///.exec(
+          precedingQuotes = /// (?: \\?#{quote[0]} )+ $ ///.exec(
             value[...match.index]
           )
+          isClosingQuote = match.index + match[0].length is value.length
+          # eslint-disable-next-line coffee/no-inner-declarations
+          getNumFoundQuotes = (quotesMatch) ->
+            return 0 unless quotesMatch
+            quotesMatch[0].match(///#{quote[0]}///g).length
           isQuoteEscape = yes if (
-            (followingQuoteEscapes ? [''])[0].length +
-              (precedingQuoteEscapes ? [''])[0].length >=
-            4
+            isClosingQuote or
+            getNumFoundQuotes(followingQuotes) +
+              getNumFoundQuotes(precedingQuotes) >=
+              2
           )
 
         if escapedChar is '#'

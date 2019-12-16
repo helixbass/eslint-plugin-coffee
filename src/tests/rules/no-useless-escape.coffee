@@ -9,13 +9,14 @@
 # Requirements
 #------------------------------------------------------------------------------
 
+### eslint-disable ###
 rule = require '../../rules/no-useless-escape'
 {RuleTester} = require 'eslint'
 path = require 'path'
 
 ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
-### eslint-disable coffee/no-template-curly-in-string ###
+### eslint-disable coffee/no-template-curly-in-string, coffee/no-unnecessary-double-quotes ###
 ruleTester.run 'no-useless-escape', rule,
   valid: [
     'foo = /\\./'
@@ -173,6 +174,9 @@ ruleTester.run 'no-useless-escape', rule,
         \\'\\'\\'a\\'\\'\\'
       '''
     """
+    '''
+      """""surrounded by two quotes"\\""""
+    '''
   ]
 
   invalid: [
@@ -576,4 +580,15 @@ ruleTester.run 'no-useless-escape', rule,
       message: 'Unnecessary escape character: \\".'
       type: 'TemplateElement'
     ]
+  # ,
+  #   code: '''
+  #     ok ///\\\u2028///.test '\\u2028'
+  #     ok ///\\"///.test '"'
+  #   '''
+  #   errors: [
+  #     line: 2
+  #     # column: 8
+  #     message: 'Unnecessary escape character: \\".'
+  #     type: 'Literal'
+  #   ]
   ]
