@@ -40,10 +40,21 @@ ruleTester.run 'dot-location', rule,
       String::dasherize = ->
         this.replace /_/g, "-"
     '''
+    '@b'
   ]
   invalid: [
     code: 'obj\n.property'
     output: 'obj.\nproperty'
+    options: ['object']
+    errors: [
+      messageId: 'expectedDotAfterObject'
+      type: 'MemberExpression'
+      line: 2
+      column: 1
+    ]
+  ,
+    code: 'this\n.property'
+    output: 'this.\nproperty'
     options: ['object']
     errors: [
       messageId: 'expectedDotAfterObject'

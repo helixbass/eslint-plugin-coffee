@@ -92,7 +92,8 @@ module.exports =
       return if node.computed
       return if (
         node.shorthand or
-        (node.object.type is 'MemberExpression' and node.object.shorthand)
+        (node.object.type is 'MemberExpression' and node.object.shorthand) or
+        (node.object.type is 'ThisExpression' and node.object.shorthand)
       )
       checkDotLocation node
 
