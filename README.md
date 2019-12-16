@@ -328,7 +328,6 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 |                    |          | [`coffee/no-loop-func`](https://eslint.org/docs/rules/no-loop-func) | disallow function declarations that contain unsafe references inside loop statements |
 |                    |          | [`coffee/no-magic-numbers`](https://eslint.org/docs/rules/no-magic-numbers) | disallow magic numbers |
 |                    | :wrench: | [`coffee/no-multi-spaces`](https://eslint.org/docs/rules/no-multi-spaces) | disallow multiple spaces |
-|                    |          | [`no-multi-str`](https://eslint.org/docs/rules/no-multi-str) | disallow multiline strings |
 |                    |          | [`coffee/no-new`](https://eslint.org/docs/rules/no-new) | disallow `new` operators outside of assignments or comparisons |
 |                    |          | [`no-new-func`](https://eslint.org/docs/rules/no-new-func) | disallow `new` operators with the `Function` object |
 |                    |          | [`no-new-wrappers`](https://eslint.org/docs/rules/no-new-wrappers) | disallow `new` operators with the `String`, `Number`, and `Boolean` objects |
@@ -669,6 +668,7 @@ Some rules included with ESLint, `eslint-plugin-react` and `eslint-plugin-import
 - [`prefer-const`](https://eslint.org/docs/rules/prefer-const)
 - [`require-yield`](https://eslint.org/docs/rules/require-yield)
 - [`yield-star-spacing`](https://eslint.org/docs/rules/yield-star-spacing)
+- [`no-multi-str`](https://eslint.org/docs/rules/no-multi-str)
 - [`react/require-render-return`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/require-render-return.md)
 - [`import/no-mutable-exports`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-mutable-exports.md)
 
