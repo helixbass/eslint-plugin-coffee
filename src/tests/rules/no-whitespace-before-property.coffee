@@ -8,7 +8,7 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-rule = require 'eslint/lib/rules/no-whitespace-before-property'
+rule = require '../../rules/no-whitespace-before-property'
 {RuleTester} = require 'eslint'
 path = require 'path'
 
@@ -28,9 +28,14 @@ ruleTester.run 'no-whitespace-before-property', rule,
     'foo[ bar ]'
     "foo[ 'bar' ]"
     'foo[ 0 ]'
+    'foo::bar'
     '''
       foo
       .bar
+    '''
+    '''
+      foo
+      ::bar
     '''
     '''
       foo.
@@ -77,6 +82,8 @@ ruleTester.run 'no-whitespace-before-property', rule,
       .\tbar()
     '''
     'foo.bar.baz'
+    'foo::bar.baz'
+    'foo::bar::baz'
     '''
       foo
       .bar
@@ -88,6 +95,7 @@ ruleTester.run 'no-whitespace-before-property', rule,
       baz
     '''
     'foo.bar().baz()'
+    'foo::bar().baz()'
     '''
       foo
       .bar()
@@ -172,8 +180,16 @@ ruleTester.run 'no-whitespace-before-property', rule,
     output: 'foo.bar'
     errors: ['Unexpected whitespace before property bar.']
   ,
+    code: 'foo:: bar'
+    output: 'foo::bar'
+    errors: ['Unexpected whitespace before property bar.']
+  ,
     code: 'foo .bar'
     output: 'foo.bar'
+    errors: ['Unexpected whitespace before property bar.']
+  ,
+    code: 'foo ::bar'
+    output: 'foo::bar'
     errors: ['Unexpected whitespace before property bar.']
   ,
     code: 'foo. bar. baz'
@@ -301,6 +317,10 @@ ruleTester.run 'no-whitespace-before-property', rule,
   ,
     code: '(foo + bar) .baz'
     output: '(foo + bar).baz'
+    errors: ['Unexpected whitespace before property baz.']
+  ,
+    code: '(foo + bar) ::baz'
+    output: '(foo + bar)::baz'
     errors: ['Unexpected whitespace before property baz.']
   ,
     code: '(foo + bar). baz'

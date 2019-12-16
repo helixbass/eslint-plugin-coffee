@@ -115,7 +115,6 @@ usable = [
   'quote-props'
   'require-atomic-updates'
   'no-floating-decimal'
-  'no-whitespace-before-property'
   'computed-property-spacing'
   'no-undef'
   'space-in-parens'
@@ -555,6 +554,7 @@ rules =
     'no-unnecessary-double-quotes':
       plugin: no
     'dot-location': {}
+    'no-whitespace-before-property': {}
   )
 
 configureAsError = flow(

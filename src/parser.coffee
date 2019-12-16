@@ -42,6 +42,7 @@ espreeTokenTypes =
   ',': 'Punctuator'
   ':': 'Punctuator'
   '.': 'Punctuator'
+  '::': 'Punctuator'
   '+': 'Punctuator'
   '++': 'Punctuator'
   '-': 'Punctuator'
