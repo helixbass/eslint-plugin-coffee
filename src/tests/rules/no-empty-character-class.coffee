@@ -19,6 +19,8 @@ path = require 'path'
 
 ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
+### eslint-disable ###
+
 ruleTester.run 'no-empty-character-class', rule,
   valid: [
     'foo = /^abc[a-zA-Z]/'
@@ -40,13 +42,15 @@ ruleTester.run 'no-empty-character-class', rule,
         # []
       ///
     '''
-    # eslint-disable-next-line coffee/no-template-curly-in-string
     '''
       foo = ///
         x
         # []
         #{b []}
       ///
+    '''
+    '''
+      ///#{a}\\ ///
     '''
   ]
   invalid: [

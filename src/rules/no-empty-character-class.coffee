@@ -27,7 +27,7 @@ regex = ///
   (
     [^\\[]
       |
-    \\.
+    \\[\S\s]
       |
     \[
     (
@@ -40,13 +40,13 @@ regex = ///
   /
   [gimuys]*
   $
-///
+///u
 justContentRegex = ///
   ^
   (
     [^\\[]
       |
-    \\.
+    \\[\S\s]
       |
     \[
     (
@@ -57,7 +57,7 @@ justContentRegex = ///
     \]
   )*
   $
-///
+///u
 
 withoutCommentLines = (regexChunk) ->
   regexChunk.replace /^\s*#.*$/m, ''
