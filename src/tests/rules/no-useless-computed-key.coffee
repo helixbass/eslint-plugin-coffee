@@ -9,7 +9,7 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-rule = require 'eslint/lib/rules/no-useless-computed-key'
+rule = require '../../rules/no-useless-computed-key'
 {RuleTester} = require 'eslint'
 path = require 'path'
 
@@ -25,6 +25,9 @@ ruleTester.run 'no-useless-computed-key', rule,
     '({ [x]: 0 });'
     '({ a: 0, [b]: -> })'
     "({ ['__proto__']: [] })"
+    '{[5]}'
+    '{[a]}'
+    '{["a"]}'
   ]
   invalid: [
     code: "({ ['0']: 0 })"
