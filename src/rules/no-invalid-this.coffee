@@ -228,6 +228,16 @@ isDefaultThisBinding = (node, sourceCode) ->
 
   yes
 
+isDestructuredAssignmentKey = ({parent}) ->
+  return no unless parent.type is 'MemberExpression'
+  return no unless (
+    parent.parent.type is 'Property' and
+    parent.parent.shorthand and
+    parent.parent.parent.type is 'ObjectPattern' and
+    parent is parent.parent.key
+  )
+  yes
+
 #------------------------------------------------------------------------------
 # Rule Definition
 #------------------------------------------------------------------------------
@@ -348,6 +358,9 @@ module.exports =
 
     # Reports if `this` of the current context is invalid.
     ThisExpression: (node) ->
+      # TODO: can't distinguish shorthand key from value eg in ({@a}) ->?
+      # So it's currently double-triggering.
+      # return if isDestructuredAssignmentKey node
       current = stack.getCurrent()
 
       if current and not current.valid

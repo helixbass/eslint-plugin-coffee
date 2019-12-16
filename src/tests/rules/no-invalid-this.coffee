@@ -285,6 +285,21 @@ ruleTester.run 'no-invalid-this', rule,
       class A
         @b = c
     '''
+  ,
+    code: '''
+      ({@a}) =>
+    '''
+    options: [fatArrowsOk: yes]
+  ,
+    code: '''
+      ([@a]) =>
+    '''
+    options: [fatArrowsOk: yes]
+  ,
+    code: '''
+      ([{@a}]) =>
+    '''
+    options: [fatArrowsOk: yes]
   ]
   invalid: [
     {
@@ -572,6 +587,27 @@ ruleTester.run 'no-invalid-this', rule,
       code: '''
         (@b) ->
           z (x) => console.log(x, this)
+      '''
+      errors
+    }
+    {
+      code: '''
+        ([@b]) ->
+          z (x) => console.log(x, this)
+      '''
+      errors
+    }
+    {
+      code: '''
+        ({@b}) ->
+          z
+      '''
+      errors
+    }
+    {
+      code: '''
+        ([{@b}]) ->
+          z
       '''
       errors
     }
