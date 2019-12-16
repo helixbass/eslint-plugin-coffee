@@ -177,13 +177,13 @@ ruleTester.run 'constructor-super', rule,
           @method = method or ->
     '''
 
-    # https://github.com/eslint/eslint/issues/5894
-    '''
-      class A
-        constructor: ->
-          return
-          super()
-    '''
+    # # https://github.com/eslint/eslint/issues/5894
+    # '''
+    #   class A
+    #     constructor: ->
+    #       return
+    #       super()
+    # '''
 
     # https://github.com/eslint/eslint/issues/8848
     '''
@@ -199,13 +199,13 @@ ruleTester.run 'constructor-super', rule,
     '''
   ]
   invalid: [
-    # non derived classes.
-    code: '''
-      class A
-        constructor: -> super()
-    '''
-    errors: [messageId: 'unexpected', type: 'CallExpression']
-  ,
+    # # non derived classes.
+    # code: '''
+    #   class A
+    #     constructor: -> super()
+    # '''
+    # errors: [messageId: 'unexpected', type: 'CallExpression']
+    # ,
     # inherit from non constructors.
     code: '''
       class A extends null

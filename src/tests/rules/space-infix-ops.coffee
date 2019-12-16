@@ -29,7 +29,10 @@ ruleTester.run 'space-infix-ops', rule,
     'a if b'
     'a ? b'
     'a and b'
-    'a and= b'
+    '''
+      a = 1
+      a and= b
+    '''
     'a %% b'
     'a or b'
     "my_object = {key: 'value'}"
@@ -159,21 +162,33 @@ ruleTester.run 'space-infix-ops', rule,
       column: 3
     ]
   ,
-    code: 'a or=b'
-    output: 'a or= b'
+    code: '''
+      a = 1
+      a or=b
+    '''
+    output: '''
+      a = 1
+      a or= b
+    '''
     errors: [
       message: 'Infix operators must be spaced.'
       type: 'AssignmentExpression'
-      line: 1
+      line: 2
       column: 3
     ]
   ,
-    code: 'a ?=b'
-    output: 'a ?= b'
+    code: '''
+      a = 1
+      a ?=b
+    '''
+    output: '''
+      a = 1
+      a ?= b
+    '''
     errors: [
       message: 'Infix operators must be spaced.'
       type: 'AssignmentExpression'
-      line: 1
+      line: 2
       column: 3
     ]
   ,

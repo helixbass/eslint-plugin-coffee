@@ -77,7 +77,7 @@ ruleTester.run 'prefer-promise-reject-errors', rule,
           else resolve file
     '''
     'new Promise(({foo, bar, baz}, reject) => reject(5))'
-    'new Promise((reject, reject) -> reject(5))'
+    # 'new Promise((reject, reject) -> reject(5))'
     'new Promise(({}, reject) -> reject(5))'
     'new Promise((resolve, reject, somethingElse = reject(5)) =>)'
   ].map (invalidCase) ->

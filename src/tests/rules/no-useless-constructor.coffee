@@ -29,7 +29,7 @@ ruleTester.run 'no-useless-constructor', rule,
           doSomething()
     '''
     '''
-      class A
+      class A extends B
         constructor: ->
           super 'foo'
     '''

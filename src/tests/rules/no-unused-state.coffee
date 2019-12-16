@@ -139,6 +139,7 @@ eslintTester.run 'no-unused-state', rule,
     '''
       class CtorStateTest extends React.Component
         constructor: ->
+          super()
           this.state = { foo: 0 }
         render: ->
           return <SomeComponent foo={this.state.foo} />
@@ -146,6 +147,7 @@ eslintTester.run 'no-unused-state', rule,
     '''
       class ComputedKeyFromVariableTest extends React.Component
         constructor: ->
+          super()
           this.state = { [foo]: 0 }
         render: ->
           return <SomeComponent />
@@ -153,6 +155,7 @@ eslintTester.run 'no-unused-state', rule,
     '''
       class ComputedKeyFromBooleanLiteralTest extends React.Component
         constructor: ->
+          super()
           this.state = { [false]: 0 }
         render: ->
           return <SomeComponent foo={this.state['false']} />
@@ -160,6 +163,7 @@ eslintTester.run 'no-unused-state', rule,
     '''
       class ComputedKeyFromNumberLiteralTest extends React.Component
         constructor: ->
+          super()
           this.state = { [345]: 0 }
         render: ->
           return <SomeComponent foo={this.state[345]} />
@@ -167,6 +171,7 @@ eslintTester.run 'no-unused-state', rule,
     '''
       class ComputedKeyFromExpressionTest extends React.Component
         constructor: ->
+          super()
           this.state = { [foo + bar]: 0 }
         render: ->
           return <SomeComponent />
@@ -174,6 +179,7 @@ eslintTester.run 'no-unused-state', rule,
     '''
       class ComputedKeyFromBinaryExpressionTest extends React.Component
         constructor: ->
+          super()
           this.state = { [1 + 2 * 8]: 0 }
         render: ->
           return <SomeComponent />
@@ -181,6 +187,7 @@ eslintTester.run 'no-unused-state', rule,
     '''
       class ComputedKeyFromStringLiteralTest extends React.Component
         constructor: ->
+          super()
           this.state = { ['foo']: 0 }
         render: ->
           return <SomeComponent foo={this.state.foo} />
@@ -189,6 +196,7 @@ eslintTester.run 'no-unused-state', rule,
     '''
       class ComputedKeyFromTemplateLiteralTest extends React.Component
         constructor: ->
+          super()
           this.state = { ["foo#{bar}"]: 0 }
         render: ->
           return <SomeComponent />
@@ -196,6 +204,7 @@ eslintTester.run 'no-unused-state', rule,
     '''
       class ComputedKeyFromTemplateLiteralTest extends React.Component
         constructor: ->
+          super()
           this.state = { ["foo"]: 0 }
         render: ->
           return <SomeComponent foo={this.state.foo} />
@@ -218,6 +227,7 @@ eslintTester.run 'no-unused-state', rule,
     '''
       class VariableDeclarationTest extends React.Component
           constructor: ->
+            super()
             @state = { foo: 0 }
           render: ->
             foo = @state.foo
@@ -226,6 +236,7 @@ eslintTester.run 'no-unused-state', rule,
     '''
       class DestructuringTest extends React.Component
           constructor: ->
+            super()
             this.state = { foo: 0 }
           render: ->
             {foo: myFoo} = this.state
@@ -234,6 +245,7 @@ eslintTester.run 'no-unused-state', rule,
     '''
       class ShorthandDestructuringTest extends React.Component
           constructor: ->
+            super()
             this.state = { foo: 0 }
           render: ->
             {foo} = this.state
@@ -242,6 +254,7 @@ eslintTester.run 'no-unused-state', rule,
     '''
       class AliasDeclarationTest extends React.Component
           constructor: ->
+            super()
             this.state = { foo: 0 }
           render: ->
             state = this.state
@@ -250,6 +263,7 @@ eslintTester.run 'no-unused-state', rule,
     '''
       class AliasAssignmentTest extends React.Component
           constructor: ->
+            super()
             this.state = { foo: 0 }
           render: ->
             state
@@ -259,6 +273,7 @@ eslintTester.run 'no-unused-state', rule,
     '''
       class DestructuringAliasTest extends React.Component
           constructor: ->
+            super()
             this.state = { foo: 0 }
           render: ->
             {state: myState} = this
@@ -267,6 +282,7 @@ eslintTester.run 'no-unused-state', rule,
     '''
       class ShorthandDestructuringAliasTest extends React.Component
           constructor: ->
+            super()
             this.state = { foo: 0 }
           render: ->
             {state} = this
@@ -275,6 +291,7 @@ eslintTester.run 'no-unused-state', rule,
     '''
       class RestPropertyTest extends React.Component
           constructor: ->
+            super()
             this.state = {
               foo: 0,
               bar: 1,
@@ -297,6 +314,7 @@ eslintTester.run 'no-unused-state', rule,
     '''
       class MethodArgFalseNegativeTest extends React.Component
           constructor: ->
+            super()
             this.state = { foo: 0 }
           consumeFoo: (foo) ->
           render: ->
@@ -306,6 +324,7 @@ eslintTester.run 'no-unused-state', rule,
     '''
       class AssignedToObjectFalseNegativeTest extends React.Component
           constructor: ->
+            super()
             this.state = { foo: 0 }
           render: ->
             obj = { foo: this.state.foo, bar: 0 }
@@ -314,6 +333,7 @@ eslintTester.run 'no-unused-state', rule,
     '''
       class ComputedAccessFalseNegativeTest extends React.Component
           constructor: ->
+            super()
             this.state = { foo: 0, bar: 1 }
           render: ->
             bar = 'bar'
@@ -322,6 +342,7 @@ eslintTester.run 'no-unused-state', rule,
     '''
       class JsxSpreadFalseNegativeTest extends React.Component
           constructor: ->
+            super()
             this.state = { foo: 0 }
           render: ->
             return <SomeComponent {...this.state} />
@@ -329,6 +350,7 @@ eslintTester.run 'no-unused-state', rule,
     '''
       class AliasedJsxSpreadFalseNegativeTest extends React.Component
           constructor: ->
+            super()
             this.state = { foo: 0 }
           render: ->
             state = this.state
@@ -337,6 +359,7 @@ eslintTester.run 'no-unused-state', rule,
     '''
       class ObjectSpreadFalseNegativeTest extends React.Component
           constructor: ->
+            super()
             this.state = { foo: 0 }
           render: ->
             attrs = { ...this.state, foo: 1 }
@@ -345,6 +368,7 @@ eslintTester.run 'no-unused-state', rule,
     '''
       class ShadowingFalseNegativeTest extends React.Component
           constructor: ->
+            super()
             this.state = { foo: 0 }
           render: ->
             state = this.state
@@ -357,6 +381,7 @@ eslintTester.run 'no-unused-state', rule,
     '''
       class NonRenderClassMethodFalseNegativeTest extends React.Component
           constructor: ->
+            super()
             this.state = { foo: 0, bar: 0 }
           doSomething: ->
             { foo } = this.state
@@ -380,6 +405,7 @@ eslintTester.run 'no-unused-state', rule,
     code: '''
       class ArrowFunctionClassMethodDestructuringFalseNegativeTest extends React.Component
           constructor: ->
+            super()
             this.state = { foo: 0 }
 
           doSomething: =>
@@ -556,6 +582,7 @@ eslintTester.run 'no-unused-state', rule,
     code: '''
       class UnusedCtorStateTest extends React.Component
         constructor: ->
+          super()
           this.state = { foo: 0 }
         render: ->
           return <SomeComponent />
@@ -637,6 +664,7 @@ eslintTester.run 'no-unused-state', rule,
     code: '''
       class UnusedStateWhenPropsAreSpreadTest extends React.Component
             constructor: ->
+              super()
               this.state = { foo: 0 }
             render: ->
               return <SomeComponent {...this.props} />
@@ -646,6 +674,7 @@ eslintTester.run 'no-unused-state', rule,
     code: '''
       class AliasOutOfScopeTest extends React.Component
             constructor: ->
+              super()
               this.state = { foo: 0 }
             render: ->
               state = this.state
@@ -658,6 +687,7 @@ eslintTester.run 'no-unused-state', rule,
     code: '''
       class MultipleErrorsTest extends React.Component
             constructor: ->
+              super()
               this.state = {
                 foo: 0,
                 bar: 1,
@@ -673,6 +703,7 @@ eslintTester.run 'no-unused-state', rule,
     code: '''
       class MultipleErrorsForSameKeyTest extends React.Component
             constructor: ->
+              super()
               this.state = { foo: 0 }
             onFooChange: (newFoo) ->
               this.setState({ foo: newFoo })
@@ -684,6 +715,7 @@ eslintTester.run 'no-unused-state', rule,
     code: '''
       class UnusedRestPropertyFieldTest extends React.Component
             constructor: ->
+              super()
               this.state = {
                 foo: 0,
                 bar: 1,
@@ -697,6 +729,7 @@ eslintTester.run 'no-unused-state', rule,
     code: '''
       class UnusedStateArrowFunctionMethodTest extends React.Component
             constructor: ->
+              super()
               this.state = { foo: 0 }
             doSomething: =>
               return null
@@ -729,6 +762,7 @@ eslintTester.run 'no-unused-state', rule,
     code: '''
       class UnusedDeepDestructuringTest extends React.Component
             constructor: ->
+              super()
               @state = { foo: 0, bar: 0 }
             render: ->
               {state: {foo}} = this

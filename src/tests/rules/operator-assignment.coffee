@@ -130,16 +130,34 @@ ruleTester.run 'operator-assignment', rule,
     output: 'x |= y'
     errors: EXPECTED_OPERATOR_ASSIGNMENT
   ,
-    code: 'x = x && y'
-    output: 'x &&= y'
+    code: '''
+      x = 1
+      x = x && y
+    '''
+    output: '''
+      x = 1
+      x &&= y
+    '''
     errors: EXPECTED_OPERATOR_ASSIGNMENT
   ,
-    code: 'x = x || y'
-    output: 'x ||= y'
+    code: '''
+      x = 1
+      x = x || y
+    '''
+    output: '''
+      x = 1
+      x ||= y
+    '''
     errors: EXPECTED_OPERATOR_ASSIGNMENT
   ,
-    code: 'x = x ? y'
-    output: 'x ?= y'
+    code: '''
+      x = 1
+      x = x ? y
+    '''
+    output: '''
+      x = 1
+      x ?= y
+    '''
     errors: EXPECTED_OPERATOR_ASSIGNMENT
   ,
     code: 'x[0] = x[0] - y'
@@ -240,8 +258,14 @@ ruleTester.run 'operator-assignment', rule,
     options: ['never']
     errors: UNEXPECTED_OPERATOR_ASSIGNMENT
   ,
-    code: 'foo ||= bar ? 1'
-    output: 'foo = foo || (bar ? 1)'
+    code: '''
+      foo = 1
+      foo ||= bar ? 1
+    '''
+    output: '''
+      foo = 1
+      foo = foo || (bar ? 1)
+    '''
     options: ['never']
     errors: UNEXPECTED_OPERATOR_ASSIGNMENT
   ,

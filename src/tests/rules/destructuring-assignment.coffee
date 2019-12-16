@@ -136,6 +136,7 @@ ruleTester.run 'destructuring-assignment', rule,
     code: '''
       Foo = class extends React.PureComponent
         constructor: ->
+          super()
           @state = {}
           @state.foo = 'bar'
     '''

@@ -49,12 +49,14 @@ ruleTester.run 'no-direct-mutation-state', rule,
     code: '''
       class Hello extends React.Component
         constructor: ->
+          super()
           this.state.foo = "bar"
     '''
   ,
     code: '''
       class Hello extends React.Component
         constructor: ->
+          super()
           this.state.foo = 1
     '''
   ,

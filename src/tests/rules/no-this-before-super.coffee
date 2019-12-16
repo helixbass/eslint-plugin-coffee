@@ -110,12 +110,12 @@ ruleTester.run 'no-this-before-super', rule,
           c = -> @d()
           super()
     '''
-    '''
-      class A extends B
-        constructor: ->
-          c = => @d()
-          super()
-    '''
+    # '''
+    #   class A extends B
+    #     constructor: ->
+    #       c = => @d()
+    #       super()
+    # '''
 
     # ignores out of constructors.
     '''
@@ -189,12 +189,12 @@ ruleTester.run 'no-this-before-super', rule,
           return
           this
     '''
-    '''
-      class A extends B
-        constructor: ->
-          return
-          this
-    '''
+    # '''
+    #   class A extends B
+    #     constructor: ->
+    #       return
+    #       this
+    # '''
 
     # https://github.com/eslint/eslint/issues/8848
     '''
@@ -210,58 +210,58 @@ ruleTester.run 'no-this-before-super', rule,
     '''
   ]
   invalid: [
-    # disallows all `this`/`super` if `super()` is missing.
-    code: '''
-      class A extends B
-        constructor: -> @c = 0
-    '''
-    errors: [
-      message: "'this' is not allowed before 'super()'.", type: 'ThisExpression'
-    ]
-  ,
-    code: '''
-      class A extends B
-        constructor: (@c) ->
-    '''
-    errors: [
-      message: "'this' is not allowed before 'super()'.", type: 'ThisExpression'
-    ]
-  ,
-    code: '''
-      class A extends B
-        constructor: -> this.c()
-    '''
-    errors: [
-      message: "'this' is not allowed before 'super()'.", type: 'ThisExpression'
-    ]
-  ,
+    # # disallows all `this`/`super` if `super()` is missing.
+    # code: '''
+    #   class A extends B
+    #     constructor: -> @c = 0
+    # '''
+    # errors: [
+    #   message: "'this' is not allowed before 'super()'.", type: 'ThisExpression'
+    # ]
+    # ,
+    #   code: '''
+    #     class A extends B
+    #       constructor: (@c) ->
+    #   '''
+    #   errors: [
+    #     message: "'this' is not allowed before 'super()'.", type: 'ThisExpression'
+    #   ]
+    # ,
+    #   code: '''
+    #     class A extends B
+    #       constructor: -> this.c()
+    #   '''
+    #   errors: [
+    #     message: "'this' is not allowed before 'super()'.", type: 'ThisExpression'
+    #   ]
+    # ,
     code: '''
       class A extends B
         constructor: -> super.c()
     '''
     errors: [message: "'super' is not allowed before 'super()'.", type: 'Super']
   ,
-    # disallows `this`/`super` before `super()`.
-    code: '''
-      class A extends B
-        constructor: ->
-          @c = 0
-          super()
-    '''
-    errors: [
-      message: "'this' is not allowed before 'super()'.", type: 'ThisExpression'
-    ]
-  ,
-    code: '''
-      class A extends B
-        constructor: ->
-          @c()
-          super()
-    '''
-    errors: [
-      message: "'this' is not allowed before 'super()'.", type: 'ThisExpression'
-    ]
-  ,
+    # ,
+    #   # disallows `this`/`super` before `super()`.
+    #   code: '''
+    #     class A extends B
+    #       constructor: ->
+    #         @c = 0
+    #         super()
+    #   '''
+    #   errors: [
+    #     message: "'this' is not allowed before 'super()'.", type: 'ThisExpression'
+    #   ]
+    # ,
+    #   code: '''
+    #     class A extends B
+    #       constructor: ->
+    #         @c()
+    #         super()
+    #   '''
+    #   errors: [
+    #     message: "'this' is not allowed before 'super()'.", type: 'ThisExpression'
+    #   ]
     code: '''
       class A extends B
         constructor: ->
@@ -270,15 +270,15 @@ ruleTester.run 'no-this-before-super', rule,
     '''
     errors: [message: "'super' is not allowed before 'super()'.", type: 'Super']
   ,
-    # disallows `this`/`super` in arguments of `super()`.
-    code: '''
-      class A extends B
-        constructor: -> super @c
-    '''
-    errors: [
-      message: "'this' is not allowed before 'super()'.", type: 'ThisExpression'
-    ]
-  ,
+    # ,
+    #   # disallows `this`/`super` in arguments of `super()`.
+    #   code: '''
+    #     class A extends B
+    #       constructor: -> super @c
+    #   '''
+    #   errors: [
+    #     message: "'this' is not allowed before 'super()'.", type: 'ThisExpression'
+    #   ]
     code: '''
       class A extends B
         constructor: -> super this.c()
@@ -292,40 +292,40 @@ ruleTester.run 'no-this-before-super', rule,
         constructor: -> super super.c()
     '''
     errors: [message: "'super' is not allowed before 'super()'.", type: 'Super']
-  ,
-    # even if is nested, reports correctly.
-    code: '''
-      class A extends B
-        constructor: ->
-          class C extends D
-            constructor: ->
-              super()
-              @e()
-          @f()
-          super()
-    '''
-    errors: [
-      message: "'this' is not allowed before 'super()'."
-      type: 'ThisExpression'
-      line: 7
-    ]
-  ,
-    code: '''
-      class A extends B
-        constructor: ->
-          class C extends D
-            constructor: ->
-              this.e()
-              super()
-          super()
-          this.f()
-    '''
-    errors: [
-      message: "'this' is not allowed before 'super()'."
-      type: 'ThisExpression'
-      line: 5
-    ]
-  ,
+    # ,
+    #   # even if is nested, reports correctly.
+    #   code: '''
+    #     class A extends B
+    #       constructor: ->
+    #         class C extends D
+    #           constructor: ->
+    #             super()
+    #             @e()
+    #         @f()
+    #         super()
+    #   '''
+    #   errors: [
+    #     message: "'this' is not allowed before 'super()'."
+    #     type: 'ThisExpression'
+    #     line: 7
+    #   ]
+    # ,
+    # ,
+    #   code: '''
+    #     class A extends B
+    #       constructor: ->
+    #         class C extends D
+    #           constructor: ->
+    #             this.e()
+    #             super()
+    #         super()
+    #         this.f()
+    #   '''
+    #   errors: [
+    #     message: "'this' is not allowed before 'super()'."
+    #     type: 'ThisExpression'
+    #     line: 5
+    #   ]
     # multi code path.
     code: '''
       class A extends B

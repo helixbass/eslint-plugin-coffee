@@ -183,6 +183,7 @@ ruleTester.run 'require-jsdoc', rule,
          * @param {object[]} xs - xs
          ###
         constructor: (xs) ->
+          super()
           this.a = xs
     '''
     options: [
@@ -201,6 +202,7 @@ ruleTester.run 'require-jsdoc', rule,
          * @param {object[]} xs - xs
          ###
         constructor: (xs) ->
+          super()
           this.a = xs
     '''
     options: [
@@ -219,6 +221,7 @@ ruleTester.run 'require-jsdoc', rule,
          * @param {object[]} xs - xs
          ###
         constructor: (xs) ->
+          super()
           this.a = xs
     '''
     options: [
@@ -353,6 +356,7 @@ ruleTester.run 'require-jsdoc', rule,
          * @param {object[]} xs - xs
          ###
         constructor: (xs) ->
+          super()
           this.a = xs
     '''
     options: [
@@ -372,6 +376,7 @@ ruleTester.run 'require-jsdoc', rule,
          * @param {object[]} xs - xs
          ###
         constructor: (xs) ->
+            super()
             this.a = xs
     '''
     options: [
@@ -391,6 +396,7 @@ ruleTester.run 'require-jsdoc', rule,
          * @param {object[]} xs - xs
          ###
         constructor: (xs) ->
+          super()
           this.a = xs
     '''
     options: [
