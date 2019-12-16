@@ -41,6 +41,9 @@ ruleTester.run 'spread-direction', rule,
     code: '[b...] = c'
     options: ['postfix']
   ,
+    code: '[a..., b] = c'
+    options: ['postfix']
+  ,
     code: '([b...]) ->'
     options: ['postfix']
   ,
