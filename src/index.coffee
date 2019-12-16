@@ -29,7 +29,6 @@ usable = [
   'no-unsafe-finally'
   'accessor-pairs' # wouldn't work for backticked get/set
   'default-case'
-  'dot-location'
   'max-classes-per-file'
   'no-alert'
   'no-caller'
@@ -555,6 +554,7 @@ rules =
       plugin: no
     'no-unnecessary-double-quotes':
       plugin: no
+    'dot-location': {}
   )
 
 configureAsError = flow(

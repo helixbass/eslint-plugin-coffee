@@ -9,7 +9,7 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-rule = require 'eslint/lib/rules/dot-location'
+rule = require '../../rules/dot-location'
 {RuleTester} = require 'eslint'
 path = require 'path'
 
@@ -35,6 +35,11 @@ ruleTester.run 'dot-location', rule,
   ,
     code: '(obj)\n.prop'
     options: ['property']
+  ,
+    '''
+      String::dasherize = ->
+        this.replace /_/g, "-"
+    '''
   ]
   invalid: [
     code: 'obj\n.property'
