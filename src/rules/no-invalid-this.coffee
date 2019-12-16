@@ -297,12 +297,22 @@ module.exports =
         valid: yes
       }
 
+    enterClass = (node) ->
+      stack.push {
+        init: not context.getScope().isStrict
+        node
+        valid: yes
+      }
+
     ###*
     # Pops the current checking context from the stack.
     # @returns {void}
     ###
     exitFunction = (node) ->
       return if isFatArrowFunction node
+      stack.pop()
+
+    exitClass = ->
       stack.pop()
 
     ###
@@ -331,6 +341,10 @@ module.exports =
     'FunctionExpression:exit': exitFunction
     ArrowFunctionExpression: enterFunction
     'ArrowFunctionExpression:exit': exitFunction
+    ClassDeclaration: enterClass
+    'ClassDeclaration:exit': exitClass
+    ClassExpression: enterClass
+    'ClassExpression:exit': exitClass
 
     # Reports if `this` of the current context is invalid.
     ThisExpression: (node) ->

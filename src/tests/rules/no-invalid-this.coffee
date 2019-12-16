@@ -280,6 +280,11 @@ ruleTester.run 'no-invalid-this', rule,
   ,
     code: '(@a) => @bcd'
     options: [fatArrowsOk: yes]
+  ,
+    '''
+      class A
+        @b = c
+    '''
   ]
   invalid: [
     {
