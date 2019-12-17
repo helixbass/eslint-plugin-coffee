@@ -98,6 +98,7 @@ isMethodWhichHasThisArg = (node) ->
 # @returns {boolean} The function node is the default `this` binding.
 ###
 isDefaultThisBinding = (node, sourceCode) ->
+  return no if /Class/.test node.type
   return no if isES5Constructor(node) or hasJSDocThisTag node, sourceCode
   isAnonymous = node.id is null
   currentNode = node
