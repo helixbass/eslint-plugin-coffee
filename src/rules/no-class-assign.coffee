@@ -29,7 +29,7 @@ module.exports =
       context.report {
         node
         messageId: 'class'
-        data: name: node.name
+        data: name: node.name ? node.id?.name
       }
 
     ###*

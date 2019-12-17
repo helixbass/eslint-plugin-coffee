@@ -105,4 +105,10 @@ ruleTester.run 'no-class-assign', rule,
       line: 3
       column: 1
     ]
+  ,
+    code: '''
+      class A
+      class A
+    '''
+    errors: [messageId: 'class', data: {name: 'A'}, type: 'ClassDeclaration']
   ]
