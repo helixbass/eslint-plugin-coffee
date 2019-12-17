@@ -22,6 +22,7 @@ module.exports =
     usePostfix = context.options?[0] is 'postfix'
 
     check = (node) ->
+      return unless node.argument
       if node.postfix and not usePostfix
         context.report {
           node

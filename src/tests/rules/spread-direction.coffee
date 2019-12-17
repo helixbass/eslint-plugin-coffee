@@ -58,6 +58,11 @@ ruleTester.run 'spread-direction', rule,
   ,
     code: '<div {b...} />'
     options: ['postfix']
+  ,
+    '[..., b] = c'
+  ,
+    code: '[..., b] = c'
+    options: ['postfix']
   ]
   invalid: [
     code: '[...b]'
