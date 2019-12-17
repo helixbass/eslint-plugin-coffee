@@ -177,6 +177,12 @@ ruleTester.run 'no-useless-escape', rule,
     '''
       """""surrounded by two quotes"\\""""
     '''
+    '''
+      /// [\\s] ///
+    '''
+    '''
+      /// #{a}[\\s] ///
+    '''
   ]
 
   invalid: [

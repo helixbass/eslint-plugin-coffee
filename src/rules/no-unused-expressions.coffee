@@ -96,6 +96,7 @@ module.exports =
     ###
     isValidExpression = (node) ->
       return yes if node.returns
+      return yes if node.type is 'PassthroughLiteral'
       return yes if (
         node.parent.type is 'ExpressionStatement' and
         node.parent is last(node.parent.parent.body) and

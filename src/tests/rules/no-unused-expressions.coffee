@@ -167,6 +167,9 @@ ruleTester.run 'no-unused-expressions', rule,
       a = ->
         <div />
     '''
+    '''
+      `a = 1`
+    '''
   ]
   invalid: [
     code: '0'
