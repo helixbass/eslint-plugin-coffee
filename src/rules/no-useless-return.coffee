@@ -64,6 +64,9 @@ isInFinally = (node) ->
 
   no
 
+isAwaitOrYieldReturn = (node) ->
+  node.parent.type in ['AwaitExpression', 'YieldExpression']
+
 #------------------------------------------------------------------------------
 # Rule Definition
 #------------------------------------------------------------------------------
@@ -237,7 +240,12 @@ module.exports =
     # Adds ReturnStatement node to check whether it's useless or not.
     ReturnStatement: (node) ->
       if node.argument then markReturnStatementsOnCurrentSegmentsAsUsed()
-      return if node.argument or utils.isInLoop(node) or isInFinally node
+      return if (
+        node.argument or
+        utils.isInLoop(node) or
+        isInFinally(node) or
+        isAwaitOrYieldReturn node
+      )
 
       for segment from scopeInfo.codePath.currentSegments
         info = segmentInfoMap.get segment

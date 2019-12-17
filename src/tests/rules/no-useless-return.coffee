@@ -130,6 +130,12 @@ ruleTester.run 'no-useless-return', rule,
           ;
       catch err
     '''
+    '''
+      -> yield return
+    '''
+    '''
+      -> await return
+    '''
   ]
 
   invalid: [
