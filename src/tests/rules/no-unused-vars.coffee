@@ -628,6 +628,16 @@ ruleTester.run 'no-unused-vars', rule,
       do ([x]) ->
         foo x
     '''
+    '''
+      current = 0
+      next = -> return ++current
+      next()
+    '''
+    '''
+      current = 0
+      next = -> ++current
+      next()
+    '''
   ]
   invalid: [
     code: 'foox = -> foox()', errors: [assignedError 'foox']
@@ -1103,7 +1113,9 @@ ruleTester.run 'no-unused-vars', rule,
     errors: [message: "'a' is assigned a value but never used."]
   ,
     code: '''
-      foo = (a) -> a++
+      foo = (a) ->
+        a++
+        1
       foo()
     '''
     errors: [message: "'a' is assigned a value but never used."]

@@ -325,6 +325,7 @@ module.exports =
           granpa.type is 'ExpressionStatement' and
           parent.left is id) or
           (parent.type is 'UpdateExpression' and
+            not parent.returns and
             granpa.type is 'ExpressionStatement') or
           # in RHS of an assignment for itself. e.g. `a = a + 1`
           (rhsNode and
