@@ -186,6 +186,15 @@ ruleTester.run 'no-useless-escape', rule,
     '''
       "\\#{b}"
     '''
+    '''
+      "#\\{b}"
+    '''
+    '''
+      /// \\#{b} ///
+    '''
+    '''
+      /// #\\{b} ///
+    '''
   ]
 
   invalid: [
@@ -592,6 +601,16 @@ ruleTester.run 'no-useless-escape', rule,
   ,
     code: '''
       '\\#{b}'
+    '''
+    errors: [
+      line: 1
+      column: 2
+      message: 'Unnecessary escape character: \\#.'
+      type: 'Literal'
+    ]
+  ,
+    code: '''
+      /\\#{b}/
     '''
     errors: [
       line: 1

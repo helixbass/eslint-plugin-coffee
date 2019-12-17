@@ -68,6 +68,7 @@ parseRegExp = (regExpText) ->
         inCharClass: state.inCharClass
         startsCharClass: state.startingCharClass
         endsCharClass: no
+        nextChar: regExpText[index + 1]
       }
       Object.assign state, escapeNextChar: no, startingCharClass: no
   ,
@@ -226,6 +227,13 @@ module.exports =
           not (charInfo.text is '^' and charInfo.startsCharClass)
           # Filter out characters that aren't escaped.
         .filter (charInfo) -> charInfo.escaped
+        # Filter out escaped heregex interpolations
+        .filter (charInfo) ->
+          not (
+            charInfo.text is '#' and
+            charInfo.nextChar is '{' and
+            (isInterpolatedRegex or node.delimiter is '///')
+          )
         # Filter out characters that are valid to escape, based on their position in the regular expression.
         .filter (charInfo) ->
           not (
