@@ -140,19 +140,20 @@ module.exports =
               getNumFoundQuotes(precedingQuotes) >=
               2
           )
+      else
+        isQuoteEscape = escapedChar is node.raw[0]
 
+      if isTemplateElement or node.extra?.raw?[0] is '"'
         if escapedChar is '#'
-          # Warn if `\$` is not followed by `{`
+          # Warn if `\#` is not followed by `{`
           isUnnecessaryEscape = match.input[match.index + 2] isnt '{'
         else if escapedChar is '{'
           ###
-          # Warn if `\{` is not preceded by `$`. If preceded by `$`, escaping
-          # is necessary and the rule should not warn. If preceded by `/$`, the rule
-          # will warn for the `/$` instead, as it is the first unnecessarily escaped character.
+          # Warn if `\{` is not preceded by `#`. If preceded by `#`, escaping
+          # is necessary and the rule should not warn. If preceded by `/#`, the rule
+          # will warn for the `/#` instead, as it is the first unnecessarily escaped character.
           ###
           isUnnecessaryEscape = match.input[match.index - 1] isnt '#'
-      else
-        isQuoteEscape = escapedChar is node.raw[0]
 
       if isUnnecessaryEscape and not isQuoteEscape
         report node, match.index + 1, match[0].slice 1
