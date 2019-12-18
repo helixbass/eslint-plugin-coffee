@@ -189,6 +189,11 @@ ruleTester.run 'comma-style', rule,
         b
       ) ->
     '''
+    '''
+      require('util').inspect obj,
+        depth: 10
+        colors: if process.env.NODE_DISABLE_COLORS then no else yes
+    '''
   ]
 
   invalid: [

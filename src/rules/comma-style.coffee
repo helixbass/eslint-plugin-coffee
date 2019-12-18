@@ -186,9 +186,9 @@ module.exports =
         # seed as opening [
         previousItemToken = sourceCode.getFirstToken node
 
-        items.forEach (item) ->
+        items.forEach (item, index) ->
           commaToken =
-            if item
+            if item and index > 0
               sourceCode.getTokenBefore item
             else
               previousItemToken
