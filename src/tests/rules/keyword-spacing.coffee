@@ -616,6 +616,13 @@ ruleTester.run 'keyword-spacing', rule,
     '''
       indentRegex = ///#{b}///g if indent
     '''
+    '''
+      class Base
+        @static: ->
+          await 1
+        method: ->
+          await 1
+    '''
   ]
 
   invalid: [

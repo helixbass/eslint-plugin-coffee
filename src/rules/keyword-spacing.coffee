@@ -513,23 +513,23 @@ module.exports =
     ###
     checkSpacingForProperty = (node) ->
       if node.static then checkSpacingAroundFirstToken node
-      if (
-        node.kind in ['get', 'set'] or
-        ((node.method or node.type is 'MethodDefinition') and node.value.async)
-      )
-        token = sourceCode.getTokenBefore node.key, (tok) ->
-          switch tok.value
-            when 'get', 'set', 'async'
-              return yes
-            else
-              return no
+      # if (
+      #   node.kind in ['get', 'set'] or
+      #   ((node.method or node.type is 'MethodDefinition') and node.value.async)
+      # )
+      #   token = sourceCode.getTokenBefore node.key, (tok) ->
+      #     switch tok.value
+      #       when 'get', 'set', 'async'
+      #         return yes
+      #       else
+      #         return no
 
-        unless token
-          throw new Error(
-            'Failed to find token get, set, or async beside method name'
-          )
+      #   unless token
+      #     throw new Error(
+      #       'Failed to find token get, set, or async beside method name'
+      #     )
 
-        checkSpacingAround token
+      #   checkSpacingAround token
 
     ###*
     # Reports `await` keyword of a given node if usage of spacing before
