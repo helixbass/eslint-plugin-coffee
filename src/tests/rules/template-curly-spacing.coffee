@@ -34,6 +34,8 @@ ruleTester.run 'template-curly-spacing', rule,
     code: 'tag"#{foo} #{bar} #{\n  baz\n}"', options: ['never']
   ,
     code: 'tag"#{ foo } #{ bar } #{\n  baz\n}"', options: ['always']
+  ,
+    '"#{}"'
   ]
   invalid: [
     code: '"#{ foo } #{ bar }"'

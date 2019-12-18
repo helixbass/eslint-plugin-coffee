@@ -34,6 +34,7 @@ module.exports =
 
     checkExpression = (node) ->
       firstToken = sourceCode.getFirstToken node
+      return unless firstToken?
       openingCurlyToken = sourceCode.getTokenBefore firstToken
       return unless openingCurlyToken?.value is '#{'
       if (
