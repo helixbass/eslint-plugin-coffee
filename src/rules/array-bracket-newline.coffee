@@ -183,6 +183,7 @@ module.exports =
       lastElementHasIndentedBody = do ->
         return no unless elements.length
         lastElement = elements[elements.length - 1]
+        return no unless lastElement
         return no unless lastElement.loc.start.line < lastElement.loc.end.line
         return yes if lastElement.loc.start.line is openBracket.loc.start.line
         hasIndentedLastLine {node: lastElement, sourceCode}

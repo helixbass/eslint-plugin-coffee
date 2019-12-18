@@ -634,6 +634,10 @@ ruleTester.run 'array-bracket-newline', rule,
       ] = foo
     '''
     options: [multiline: yes]
+  ,
+    '''
+      [, a, ,]
+    '''
   ]
 
   invalid: [
