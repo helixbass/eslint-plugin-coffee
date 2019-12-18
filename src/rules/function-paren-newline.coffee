@@ -168,10 +168,9 @@ module.exports =
 
 
         when 'FunctionDeclaration', 'FunctionExpression'
-          leftParen = sourceCode.getFirstToken(
-            node
-            astUtils.isOpeningParenToken
-          )
+          leftParen =
+            try
+              sourceCode.getFirstToken node, astUtils.isOpeningParenToken
           return null unless leftParen
           rightParen =
             if node.params.length

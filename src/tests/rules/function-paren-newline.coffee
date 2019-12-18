@@ -173,6 +173,14 @@ ruleTester.run 'function-paren-newline', rule,
   ,
     code: '->'
     options: ['always']
+  ,
+    code: '''
+      process.on 'exit', ->
+        try
+          fs.unlinkSync historyFile
+        catch exception # Already deleted, nothing else to do.
+    '''
+    options: ['always']
   ]
 
   invalid: [
