@@ -166,6 +166,29 @@ ruleTester.run 'comma-style', rule,
       exceptions:
         NewExpression: yes
     ]
+  ,
+    '''
+      depth: 10
+      colors: if process.env.NODE_DISABLE_COLORS then no else yes
+    '''
+    '''
+      [
+        a
+        b
+      ]
+    '''
+    '''
+      f(
+        a
+        b
+      )
+    '''
+    '''
+      (
+        a
+        b
+      ) ->
+    '''
   ]
 
   invalid: [

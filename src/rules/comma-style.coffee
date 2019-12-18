@@ -213,7 +213,7 @@ module.exports =
           # All comparisons are done based on these tokens directly, so
           # they are always valid regardless of an undefined item.
           ###
-          if astUtils.isCommaToken commaToken
+          if commaToken? and astUtils.isCommaToken commaToken
             validateCommaItemSpacing(
               previousItemToken
               commaToken
