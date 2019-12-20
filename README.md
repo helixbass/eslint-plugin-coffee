@@ -363,7 +363,7 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 
 |                    |          | Name                                    | Description |
 | ------------------ | -------- | --------------------------------------- | ----------- |
-|                    |          | [`callback-return`](https://eslint.org/docs/rules/callback-return) | require `return` statements after callbacks |
+|                    |          | [`coffee/callback-return`](https://eslint.org/docs/rules/callback-return) | require `return` statements after callbacks |
 |                    |          | [`global-require`](https://eslint.org/docs/rules/global-require) | require `require()` calls to be placed at top-level module scope |
 |                    |          | [`handle-callback-err`](https://eslint.org/docs/rules/handle-callback-err) | require error handling in callbacks |
 |                    |          | [`no-buffer-constructor`](https://eslint.org/docs/rules/no-buffer-constructor) | disallow use of the `Buffer()` constructor |
