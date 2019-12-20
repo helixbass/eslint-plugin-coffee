@@ -8,7 +8,7 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-rule = require 'eslint/lib/rules/callback-return'
+rule = require '../../rules/callback-return'
 {RuleTester} = require 'eslint'
 path = require 'path'
 
@@ -268,12 +268,19 @@ ruleTester.run 'callback-return', rule,
           process.nextTick (err) -> callback()
         callback()
     ''' # callback() called twice
+    # implicit returns
+    '''
+      (err) ->
+        if err
+          callback(err)
+    '''
   ]
   invalid: [
     code: '''
       (err) ->
         if err
           callback err
+        null
     '''
     errors: [
       messageId: 'missingReturn'
@@ -286,6 +293,7 @@ ruleTester.run 'callback-return', rule,
       (callback) ->
         if typeof callback isnt 'undefined'
           callback()
+        null
     '''
     errors: [
       messageId: 'missingReturn'
@@ -312,6 +320,7 @@ ruleTester.run 'callback-return', rule,
         x: (err) ->
           if err
             callback err
+          null
     '''
     errors: [
       messageId: 'missingReturn'
@@ -325,6 +334,7 @@ ruleTester.run 'callback-return', rule,
         if err
           log()
           callback err
+        null
     '''
     errors: [
       messageId: 'missingReturn'
@@ -392,6 +402,7 @@ ruleTester.run 'callback-return', rule,
         else if x
           callback(err)
           return
+        null
     '''
     errors: [
       messageId: 'missingReturn'
@@ -408,6 +419,7 @@ ruleTester.run 'callback-return', rule,
           callback()
         else
           return callback()
+        null
     '''
     errors: [
       messageId: 'missingReturn'
@@ -437,6 +449,7 @@ ruleTester.run 'callback-return', rule,
           callback()
         else
           callback()
+        null
     '''
     errors: [
       messageId: 'missingReturn'
@@ -456,6 +469,7 @@ ruleTester.run 'callback-return', rule,
           return callback()
         else
           callback()
+        null
     '''
     errors: [
       messageId: 'missingReturn'
@@ -469,6 +483,7 @@ ruleTester.run 'callback-return', rule,
         switch x
           when 'horse'
             callback()
+        null
     '''
     errors: [
       messageId: 'missingReturn'
@@ -482,6 +497,7 @@ ruleTester.run 'callback-return', rule,
         switch x
           when 'horse'
             move()
+        null
     '''
     options: [['move']]
     errors: [
@@ -496,6 +512,7 @@ ruleTester.run 'callback-return', rule,
       x = ->
         while x
           move()
+        null
     '''
     options: [['move']]
     errors: [
@@ -509,6 +526,7 @@ ruleTester.run 'callback-return', rule,
       (err) ->
         if err
           obj.method err
+        null
     '''
     options: [['obj.method']]
     errors: [
@@ -521,6 +539,7 @@ ruleTester.run 'callback-return', rule,
     code: '''
       (err) ->
         obj.prop.method err if err
+        null
     '''
     options: [['obj.prop.method']]
     errors: [
@@ -549,6 +568,7 @@ ruleTester.run 'callback-return', rule,
         if (err)
           #comment
           obj.method err
+        null
     '''
     options: [['obj.method']]
     errors: [
@@ -562,6 +582,7 @@ ruleTester.run 'callback-return', rule,
       (err) ->
         if err
           obj.method err ###comment###
+        null
     '''
     options: [['obj.method']]
     errors: [
@@ -575,6 +596,7 @@ ruleTester.run 'callback-return', rule,
       (err) ->
         if err
           obj.method err #comment
+        null
     '''
     options: [['obj.method']]
     errors: [

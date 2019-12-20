@@ -51,7 +51,6 @@ usable = [
   'radix'
   'no-delete-var'
   'no-restricted-globals'
-  'callback-return'
   'global-require'
   'handle-callback-err'
   'no-buffer-constructor'
@@ -555,6 +554,7 @@ rules =
     'no-whitespace-before-property': {}
     'no-useless-computed-key': {}
     'no-useless-constructor': {}
+    'callback-return': {}
   )
 
 configureAsError = flow(
