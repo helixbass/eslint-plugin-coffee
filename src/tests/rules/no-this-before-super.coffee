@@ -208,6 +208,11 @@ ruleTester.run 'no-this-before-super', rule,
               ;
           catch err
     '''
+    '''
+      class CoffeeClassWithDrinkOrder extends CoffeeClass
+        constructor: (@size = 'grande') ->
+          super()
+    '''
   ]
   invalid: [
     # # disallows all `this`/`super` if `super()` is missing.

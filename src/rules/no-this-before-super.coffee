@@ -167,6 +167,7 @@ module.exports =
       funcInfo ###:### = funcInfo.upper
       return unless isDerivedClass
 
+      hasSuperBeenCalled = no
       codePath.traverseSegments (segment, controller) ->
         info = segInfoMap[segment.id]
 
@@ -177,14 +178,16 @@ module.exports =
             data:
               kind: if invalidNode.type is 'Super' then 'super' else 'this'
 
-        unless info.superCalled
-          for thisParam in thisParams
-            context.report
-              message: "'{{kind}}' is not allowed before 'super()'."
-              node: thisParam
-              data: kind: 'this'
+        if info.superCalled
+          hasSuperBeenCalled ###:### = yes
+          controller.skip()
 
-        if info.superCalled then controller.skip()
+      unless hasSuperBeenCalled
+        for thisParam in thisParams
+          context.report
+            message: "'{{kind}}' is not allowed before 'super()'."
+            node: thisParam
+            data: kind: 'this'
 
     ###*
     # Initialize information of a given code path segment.
