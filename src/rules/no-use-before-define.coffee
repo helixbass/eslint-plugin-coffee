@@ -10,7 +10,7 @@
 #------------------------------------------------------------------------------
 
 SENTINEL_TYPE =
-  /^(?:(?:Function|Class)(?:Declaration|Expression)|ArrowFunctionExpression|CatchClause|ImportDeclaration|ExportNamedDeclaration)$/
+  /^(?:(?:Function|Class)(?:Declaration|Expression)|ArrowFunctionExpression|CatchClause|ImportDeclaration|ExportNamedDeclaration|For)$/
 FOR_IN_OF_TYPE = /^For(?:In|Of)Statement$/
 
 ###*

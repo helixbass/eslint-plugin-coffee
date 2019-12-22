@@ -102,6 +102,18 @@ ruleTester.run 'no-use-before-define', rule,
       bar = null
     '''
     options: [variables: no]
+  ,
+    '''
+      nums    = (y for n in [1, 2, 3] when n & 1)
+    '''
+    '''
+      odds  = (prop + '!' for prop, value of obj when value & 1)
+    '''
+    '''
+      ob =
+        a: for v, i in test then i
+        b: for v, i in test then i
+    '''
   ]
   invalid: [
     code: '''
