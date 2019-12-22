@@ -19,6 +19,8 @@ path = require 'path'
 
 ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 
+### eslint-disable coffee/no-template-curly-in-string ###
+
 ruleTester.run 'no-dupe-class-members', rule,
   valid: [
     '''
@@ -52,6 +54,11 @@ ruleTester.run 'no-dupe-class-members', rule,
       class A
         1: ->
         2: ->
+    '''
+    '''
+      class B extends Base
+        "#{'method'}": -> super?()
+        "#{'noMethod'}": -> super?() ? super['method']()
     '''
   ]
   invalid: [
