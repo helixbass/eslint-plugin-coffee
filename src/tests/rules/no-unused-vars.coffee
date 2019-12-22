@@ -49,6 +49,8 @@ assignedError = (varName, type) ->
   message: "'#{varName}' is assigned a value but never used."
   type: type or 'Identifier'
 
+### eslint-disable coffee/no-template-curly-in-string ###
+
 ruleTester.run 'no-unused-vars', rule,
   valid: [
     '''
@@ -637,6 +639,11 @@ ruleTester.run 'no-unused-vars', rule,
       current = 0
       next = -> ++current
       next()
+    '''
+    '''
+      foo = ->
+      { "#{foo()}": b } = c
+      b()
     '''
   ]
   invalid: [
