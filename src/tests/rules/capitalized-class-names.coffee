@@ -44,6 +44,7 @@ ruleTester.run 'capitalized-class-names', rule,
       class A
         class @b
     '''
+    'class Animals.boa'
   ,
     code: 'X = class x'
     errors: [
