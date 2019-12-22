@@ -98,13 +98,19 @@ class Referencer extends OriginalReferencer
   ClassPrototypeProperty: (node) ->
     @visitProperty node
 
+class ScopeManager extends escope.ScopeManager
+  # catch variables belong to outer scope in Coffeescript so don't create a
+  # separate "catch scope" for the catch variables.
+  __nestCatchScope: ->
+    @__currentScope
+
 module.exports = (ast, parserOptions) ->
   options =
     fallback: 'iteration'
     sourceType: ast.sourceType
     ecmaVersion: parserOptions.ecmaVersion or 2018 # TODO: what should this be? breaks without
     ignoreEval: yes
-  scopeManager = new escope.ScopeManager options
+  scopeManager = new ScopeManager options
   referencer = new Referencer options, scopeManager
   # dump {ast}
   referencer.visit ast

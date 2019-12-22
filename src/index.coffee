@@ -92,7 +92,9 @@ usable = [
   'prefer-spread'
   'sort-imports'
   'symbol-description'
-  'no-catch-shadow'
+  # Got deprecated so didn't bother creating Coffeescript-specific version
+  # after modifying catch variable scope behavior
+  # 'no-catch-shadow'
   'import/no-webpack-loader-syntax'
   'import/first'
   'import/no-amd'

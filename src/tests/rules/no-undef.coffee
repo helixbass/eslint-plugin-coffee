@@ -187,6 +187,11 @@ ruleTester.run 'no-undef', rule,
       class A
         prop: 3
     '''
+    '''
+      try
+      catch e
+      e
+    '''
   ]
   invalid: [
     code: "if (typeof anUndefinedVar is 'string') then ;"

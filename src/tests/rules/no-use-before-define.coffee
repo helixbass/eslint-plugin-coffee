@@ -42,12 +42,6 @@ ruleTester.run 'no-use-before-define', rule,
         alert a
     '''
     '''
-      a()
-      try
-        throw new Error()
-      catch a
-    '''
-    '''
       class A
       new A()
     '''
@@ -338,4 +332,12 @@ ruleTester.run 'no-use-before-define', rule,
       x = ''
     '''
     errors: ["'x' was used before it was defined."]
+  ,
+    code: '''
+      a()
+      try
+        throw new Error()
+      catch a
+    '''
+    errors: ["'a' was used before it was defined."]
   ]

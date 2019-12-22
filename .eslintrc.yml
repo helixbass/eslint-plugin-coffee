@@ -48,6 +48,7 @@ rules:
   no-multi-assign: off
   no-bitwise: off
   coffee/dot-location: off
+  max-classes-per-file: off
 env:
   node: true
   es6: true
