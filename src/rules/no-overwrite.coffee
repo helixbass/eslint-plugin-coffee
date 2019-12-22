@@ -28,14 +28,14 @@ module.exports =
     schema: [
       type: 'object'
       properties:
-        nullInitializers: type: 'boolean'
-        sameScope: type: 'boolean'
+        allowNullInitializers: type: 'boolean'
+        allowSameScope: type: 'boolean'
       additionalProperties: no
     ]
 
   create: (context) ->
-    nullInitializers = context.options[0]?.nullInitializers ? yes
-    sameScope = context.options[0]?.sameScope ? yes
+    allowNullInitializers = context.options[0]?.allowNullInitializers ? yes
+    allowSameScope = context.options[0]?.allowSameScope ? yes
     sourceCode = context.getSourceCode()
 
     getDeclaration = (node) ->
@@ -122,12 +122,12 @@ module.exports =
       return unless declaration?
       {scope, identifier, variable} = declaration
       if scope.variableScope is context.getScope().variableScope
-        return if sameScope
+        return if allowSameScope
       if (
         isNullInitializer(identifier) and
         not hasPrecedingNonInitialAssignment node, variable
       )
-        return if nullInitializers
+        return if allowNullInitializers
       context.report {
         node
         message: "Overwriting variable '#{node.name}' disallowed."

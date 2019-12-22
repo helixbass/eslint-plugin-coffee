@@ -51,7 +51,7 @@ ruleTester.run 'no-overwrite', rule,
     #     else
     #       a = 2
     #   '''
-    #   options: [sameScope: no]
+    #   options: [allowSameScope: no]
     '''
       a = 1
       a = 2 unless b
@@ -114,7 +114,7 @@ ruleTester.run 'no-overwrite', rule,
       a = 1
       a ###:=### = 2
     '''
-    options: [sameScope: no]
+    options: [allowSameScope: no]
   ,
     '''
       a = 1
@@ -167,28 +167,28 @@ ruleTester.run 'no-overwrite', rule,
       a = 2 unless b
     '''
     errors: [error]
-    options: [sameScope: no]
+    options: [allowSameScope: no]
   ,
     code: '''
       a = 1
       a = 2
     '''
     errors: [error]
-    options: [sameScope: no]
+    options: [allowSameScope: no]
   ,
     code: '''
       a = null
       a = 1
     '''
     errors: [error]
-    options: [sameScope: no, nullInitializers: no]
+    options: [allowSameScope: no, allowNullInitializers: no]
   ,
     code: '''
       a = null
       a = -> 1
     '''
     errors: [error]
-    options: [sameScope: no, nullInitializers: no]
+    options: [allowSameScope: no, allowNullInitializers: no]
   ,
     code: '''
       a = null
@@ -196,7 +196,7 @@ ruleTester.run 'no-overwrite', rule,
         a = 1
     '''
     errors: [error]
-    options: [nullInitializers: no]
+    options: [allowNullInitializers: no]
   ,
     code: '''
       class a
@@ -250,7 +250,7 @@ ruleTester.run 'no-overwrite', rule,
       for a in b
         ;
     '''
-    options: [sameScope: no]
+    options: [allowSameScope: no]
     errors: [error]
   ,
     code: '''
@@ -259,7 +259,7 @@ ruleTester.run 'no-overwrite', rule,
         for a in b
           ;
     '''
-    options: [nullInitializers: no]
+    options: [allowNullInitializers: no]
     errors: [error]
   ,
     code: '''
