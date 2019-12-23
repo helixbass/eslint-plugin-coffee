@@ -134,6 +134,12 @@ ruleTester.run 'no-shadow', rule,
         constructor: ->
           class A
     '''
+    '''
+      a class A
+    '''
+    '''
+      exports.Rewriter = class Rewriter
+    '''
   ]
   invalid: [
     code: '''

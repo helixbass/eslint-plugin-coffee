@@ -147,6 +147,17 @@ module.exports =
         return node.parent.type.indexOf('Export') is 0
       no
 
+    # Since Coffeescript always declares class names on the outer scope,
+    # ignore any non-statement (i.e. ClassExpression) class names.
+    isClassExpression = (variable) ->
+      definition = variable.defs[0]
+
+      return no unless definition
+
+      {node} = definition
+
+      node.type is 'ClassExpression'
+
     ###*
     # Determines if a variable has a sibling rest property
     # @param {Variable} variable - eslint-scope variable object.
@@ -487,6 +498,7 @@ module.exports =
           if (
             not isUsedVariable(variable) and
             not isExported(variable) and
+            not isClassExpression(variable) and
             not hasRestSpreadSibling variable
           )
             unusedVars.push variable

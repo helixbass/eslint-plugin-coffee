@@ -71,7 +71,8 @@ module.exports =
       {block} = variable.scope
 
       return yes if (
-        block.type is 'ClassDeclaration' and block.id is variable.identifiers[0]
+        block.type in ['ClassDeclaration', 'ClassExpression'] and
+        block.id is variable.identifiers[0]
       )
       return yes if (
         block.id?.type is 'Identifier' and
