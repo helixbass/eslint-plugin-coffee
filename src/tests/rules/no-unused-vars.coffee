@@ -645,6 +645,11 @@ ruleTester.run 'no-unused-vars', rule,
       { "#{foo()}": b } = c
       b()
     '''
+    '''
+      f = ->
+      x = class f().A
+      export {x}
+    '''
   ]
   invalid: [
     code: 'foox = -> foox()', errors: [assignedError 'foox']

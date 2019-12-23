@@ -16,10 +16,12 @@ class Referencer extends OriginalReferencer
 
     @scopeManager.__nestClassScope node
 
-    @currentScope().__define(
-      node.id
-      new Definition 'ClassName', node.id, node
-    ) if node.id
+    if node.id
+      @currentScope().__define(
+        node.id
+        new Definition 'ClassName', node.id, node
+      )
+      @visit node.id
 
     @visit node.body
     @close node
