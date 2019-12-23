@@ -17,10 +17,7 @@ module.exports =
       recommended: no
       # url: 'https://eslint.org/docs/rules/max-len'
 
-    schema: [
-      type: 'string'
-      enum: ['never']
-    ]
+    schema: []
 
   create: (context) ->
     check = (node) ->

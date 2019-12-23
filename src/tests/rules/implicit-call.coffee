@@ -34,7 +34,6 @@ ruleTester.run 'implicit-call', rule,
     'new A(b)'
   ,
     code: 'f()'
-    options: ['never']
   ]
   invalid: [
     code: 'f a'
@@ -52,7 +51,6 @@ ruleTester.run 'implicit-call', rule,
   ,
     code: 'f a'
     errors: 1
-    options: ['never']
   ,
     code: '''
       ->
