@@ -85,6 +85,25 @@ ruleTester.run 'implicit-object', rule,
           c: 1
     '''
     options: ['never', {allowOwnLine: yes}]
+  ,
+    code: '''
+      f
+        a: b
+    '''
+    options: ['never', {allowOwnLine: yes}]
+  ,
+    code: '''
+      f(
+        a: b
+      )
+    '''
+    options: ['never', {allowOwnLine: yes}]
+  ,
+    code: '''
+      a: b
+      c: d
+    '''
+    options: ['never', {allowOwnLine: yes}]
   ]
   invalid: [
     code: 'a: 1'
