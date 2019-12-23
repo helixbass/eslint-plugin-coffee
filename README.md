@@ -468,6 +468,17 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 |                    |          | [`symbol-description`](https://eslint.org/docs/rules/symbol-description) | require symbol descriptions |
 |                    | :wrench: | [`coffee/template-curly-spacing`](https://eslint.org/docs/rules/template-curly-spacing) | require or disallow spacing around embedded expressions of template strings |
 
+### CoffeeScript-specific rules
+
+|          | Name                                    | Description |
+| -------- | --------------------------------------- | ----------- |
+|          | [`coffee/capitalized-class-names`](./docs/rules/capitalized-class-names.md) | Enforce capitalization of the first letter of a class name |
+|          | [`coffee/no-backticks`](./docs/rules/no-backticks.md) | Disallow use of the backtick operator |
+|          | [`coffee/english-operators`](./docs/rules/english-operators.md) | Enforce or disallow use of "English" operators |          | [`coffee/no-unnecessary-fat-arrow`](./docs/rules/no-unnecessary-fat-arrow.md) | Disallow unnecessary use of `=>` |          | [`coffee/no-overwrite`](./docs/rules/no-overwrite.md) | Disallow modifying variables from the same or outer scopes |
+|          | [`coffee/implicit-object`](./docs/rules/implicit-object.md) | Disallow implicit objects |
+|          | [`coffee/implicit-call`](./docs/rules/implicit-call.md) | Disallow implicit function calls |
+|          | [`coffee/empty-func-parens`](./docs/rules/empty-func-parens.md) | Enforce or disallow the use of parentheses for empty parameter lists |
+
 ### eslint-plugin-react rules
 
 **Key**: :heavy_check_mark: = recommended, :wrench: = fixable
