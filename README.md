@@ -478,6 +478,12 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 |          | [`coffee/implicit-object`](./docs/rules/implicit-object.md) | Disallow implicit objects |
 |          | [`coffee/implicit-call`](./docs/rules/implicit-call.md) | Disallow implicit function calls |
 |          | [`coffee/empty-func-parens`](./docs/rules/empty-func-parens.md) | Enforce or disallow the use of parentheses for empty parameter lists |
+|          | [`coffee/shorthand-this`](./docs/rules/shorthand-this.md) | Enforce or disallow use of `@` vs `this` |
+|          | [`coffee/spread-direction`](./docs/rules/spread-direction.md) | Enforce consistent use of prefix vs postfix `...` |
+| :wrench: | [`coffee/postfix-comprehension-assign-parens`](./docs/rules/postfix-comprehension-assign-parens.md) | Require parentheses around potentially confusing assignments in postfix comprehensions |
+|          | [`coffee/no-nested-interpolation`](./docs/rules/no-nested-interpolation.md) | Disallow nesting interpolations |
+|          | [`coffee/no-private-function-fat-arrows`](./docs/rules/no-private-function-fat-arrows.md) | Disallow use of `=>` for "private" functions in class bodies |
+|          | [`coffee/no-unnecessary-double-quotes`](./docs/rules/no-unnecessary-double-quotes.md) | Disallow use of double quotes for strings when single quotes would suffice |
 
 ### eslint-plugin-react rules
 
@@ -709,39 +715,39 @@ Here is a mapping from CoffeeLint rules to their corresponding ESLint rules:
 | --------------- | ----------- |
 | `arrow_spacing` | [`coffee/arrow-spacing`](https://eslint.org/docs/rules/arrow-spacing) |
 | `braces_spacing` | [`coffee/object-curly-spacing`](https://eslint.org/docs/rules/object-curly-spacing) |
-| `camel_case_classes` | [`coffee/camelcase`](https://eslint.org/docs/rules/camelcase) + `coffee/capitalized-class-names` |
+| `camel_case_classes` | [`coffee/camelcase`](https://eslint.org/docs/rules/camelcase) + [`coffee/capitalized-class-names`](./docs/rules/capitalized-class-names.md) |
 | `coffeescript_error` | If the CoffeeScript compiler fails to parse/produce AST for a source file, ESLint will report it as a parsing error. |
 | `colon_assignment_spacing` | [`key-spacing`](https://eslint.org/docs/rules/key-spacing) |
 | `cyclomatic_complexity` | [`coffee/complexity`](https://eslint.org/docs/rules/complexity) |
 | `duplicate_key` | [`no-dupe-keys`](https://eslint.org/docs/rules/no-dupe-keys) |
 | `empty_constructor_needs_parens` | [`new-parens`](https://eslint.org/docs/rules/new-parens) |
-| `ensure_comprehensions` | `coffee/postfix-comprehension-assign-parens` <br> (this behavior is also covered if you're using [Prettier](https://github.com/helixbass/prettier-plugin-coffeescript)) |
+| `ensure_comprehensions` | [`coffee/postfix-comprehension-assign-parens`](./docs/rules/postfix-comprehension-assign-parens.md) <br> (this behavior is also covered if you're using [Prettier](https://github.com/helixbass/prettier-plugin-coffeescript)) |
 | `eol_last` | [`eol-last`](https://eslint.org/docs/rules/eol-last) |
 | `indentation` | Not yet implemented. <br> (this behavior is also covered if you're using [Prettier](https://github.com/helixbass/prettier-plugin-coffeescript)) |
 | `line_endings` | [`linebreak-style`](https://eslint.org/docs/rules/linebreak-style) |
 | `max_line_length` | [`coffee/max-len`](https://eslint.org/docs/rules/max-len) |
 | `missing_fat_arrows` | [`coffee/no-invalid-this`](https://eslint.org/docs/rules/no-invalid-this) |
 | `newlines_after_classes` | Not yet implemented. <br> (this behavior is also partially covered if you're using [Prettier](https://github.com/helixbass/prettier-plugin-coffeescript)) |
-| `no_backticks` | `coffee/no-backticks` |
+| `no_backticks` | [`coffee/no-backticks`](./docs/rules/no-backticks.md) |
 | `no_debugger` | [`no-debugger`](https://eslint.org/docs/rules/no-debugger) |
 | `no_empty_functions` | [`coffee/no-empty-function`](https://eslint.org/docs/rules/no-empty-function) |
 | `no_empty_param_list` | [`coffee/empty-func-parens`](https://eslint.org/docs/rules/no-empty-function) |
-| `no_implicit_braces` | `coffee/implicit-object` |
-| `no_implicit_parens` | `coffee/implicit-call` |
+| `no_implicit_braces` | [`coffee/implicit-object`](./docs/rules/implicit-object.md) |
+| `no_implicit_parens` | [`coffee/implicit-call`](./docs/rules/implicit-call.md) |
 | `no_interpolation_in_single_quotes` | [`coffee/no-template-curly-in-string`](https://eslint.org/docs/rules/no-template-curly-in-string) |
-| `no_nested_string_interpolation` | `coffee/no-nested-interpolation` |
+| `no_nested_string_interpolation` | [`coffee/no-nested-interpolation`](./docs/rules/no-nested-interpolation.md) |
 | `no_plusplus` | [`no-plusplus`](https://eslint.org/docs/rules/no-plusplus) |
-| `no_private_function_fat_arrows` | `coffee/no-private-function-fat-arrows` |
-| `no_stand_alone_at` | `coffee/shorthand-this` |
+| `no_private_function_fat_arrows` | [`coffee/no-private-function-fat-arrows`](./docs/rules/no-private-function-fat-arrows.md) |
+| `no_stand_alone_at` | [`coffee/shorthand-this`](./docs/rules/shorthand-this.md) |
 | `no_tabs` | [`no-tabs`](https://eslint.org/docs/rules/no-tabs) |
-| `no_this` | `coffee/shorthand-this` |
+| `no_this` | [`coffee/shorthand-this`](./docs/rules/shorthand-this.md) |
 | `no_throwing_strings` | [`no-throw-literal`](https://eslint.org/docs/rules/no-throw-literal) |
 | `no_trailing_semicolons` | Not yet implemented. <br> (this behavior is also covered if you're using [Prettier](https://github.com/helixbass/prettier-plugin-coffeescript)) |
 | `no_trailing_whitespace` | [`no-trailing-spaces`](https://eslint.org/docs/rules/no-trailing-spaces) |
-| `no_unnecessary_double_quotes` | `coffee/no-unnecessary-double-quotes` |
-| `no_unnecessary_fat_arrows` | `coffee/no-unnecessary-fat-arrow` |
-| `non_empty_constructor_needs_parens` | `coffee/implicit-call` |
-| `prefer_english_operator` | `coffee/english-operators` |
+| `no_unnecessary_double_quotes` | [`coffee/no-unnecessary-double-quotes`](./docs/rules/no-unnecessary-double-quotes.md) |
+| `no_unnecessary_fat_arrows` | [`coffee/no-unnecessary-fat-arrow`](./docs/rules/no-unnecessary-fat-arrow.md) |
+| `non_empty_constructor_needs_parens` | [`coffee/implicit-call`](./docs/rules/implicit-call.md) |
+| `prefer_english_operator` | [`coffee/english-operators`](./docs/rules/english-operators.md) |
 | `space_operators` | [`coffee/space-infix-ops`](https://eslint.org/docs/rules/space-infix-ops) + [`coffee/space-unary-ops`](https://eslint.org/docs/rules/space-unary-ops) |
 | `spacing_after_comma` | [`comma-spacing`](https://eslint.org/docs/rules/comma-spacing) |
 | `transform_messes_up_line_numbers` | Doesn't apply. |
