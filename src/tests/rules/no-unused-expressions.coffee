@@ -170,6 +170,20 @@ ruleTester.run 'no-unused-expressions', rule,
     '''
       `a = 1`
     '''
+    '''
+      x =
+        if true
+          unless false
+            nonce
+    '''
+    '''
+      x =
+        if true
+          unless false
+            if false then false else
+              if true
+                nonce
+    '''
   ]
   invalid: [
     code: '0'

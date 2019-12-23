@@ -77,7 +77,10 @@ module.exports =
     shouldTreatAsConditional = (node) ->
       return yes if node.type is 'ConditionalExpression'
       return no unless node.type is 'IfStatement'
-      return no if node.parent.type in ['BlockStatement', 'Program']
+      return no if node.parent.type is 'Program'
+      return shouldTreatAsConditional node.parent.parent if (
+        node.parent.type is 'BlockStatement'
+      )
       return shouldTreatAsConditional node.parent if (
         node.parent.type is 'IfStatement'
       )
