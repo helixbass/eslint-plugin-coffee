@@ -453,7 +453,7 @@ ExportMap.parse = (path, content, context) ->
             unless n.source
               m.namespace.set s.exported.name, addNamespace exportMeta, s.local
               return
-          # else falls through
+            local = s.local.name
           else
             local = s.local.name
 

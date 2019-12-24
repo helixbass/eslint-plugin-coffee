@@ -32,9 +32,7 @@ runResolverTests = (resolver) ->
         code: "import('fs')"
         # parser: require.resolve 'babel-eslint'
 
-        # TODO: couldn't discern how this would work/why it was added in
-        # https://github.com/benmosher/eslint-plugin-import/commit/5cdfb1
-        # rest code: 'import * as foo from "a"'
+      rest code: 'import * as foo from "a"'
 
       rest code: 'export { foo } from "./bar"'
       rest code: 'export * from "./bar"'
