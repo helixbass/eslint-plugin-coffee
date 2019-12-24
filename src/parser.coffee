@@ -252,7 +252,11 @@ exports.getParser = getParser = (getAst) -> (code, opts) ->
     CodePathAnalyzer
   }
 
-exports.parseForESLint = getParser (code, opts) ->
+exports.parseForESLint = parseForESLint = getParser (code, opts) ->
   CoffeeScript.compile code, {...opts, ast: yes}
+
+# eslint-plugin-import expects to fall back to calling parse() if
+# parseForESLint() fails.
+exports.parse = (...args) -> parseForESLint(...args).ast
 
 # dump = (obj) -> console.log require('util').inspect obj, no, null

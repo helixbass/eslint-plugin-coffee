@@ -5,7 +5,7 @@ extends:
 rules:
   coffee/prefer-destructuring: [error, {object: true}]
   coffee/no-unused-vars: [error, {varsIgnorePattern: ^_+$}]
-  require-jsdoc: error
+  require-jsdoc: off
   prefer-rest-params: error
   # no-else-return: error
   # id-length: error
@@ -53,6 +53,10 @@ rules:
   coffee/lines-between-class-members: off
   coffee/guard-for-in: off
   callback-return: off
+  coffee/no-use-before-define: off
+  coffee/prefer-object-spread: off
+  coffee/no-nested-interpolation: off
+  coffee/class-methods-use-this: off
 env:
   node: true
   es6: true

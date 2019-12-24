@@ -159,6 +159,7 @@ usable = [
   'react/require-optimization'
   'react/self-closing-comp'
   'react/jsx-sort-props'
+  'import/default'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
@@ -193,7 +194,6 @@ yet = [
   'react/jsx-space-before-closing'
   'import/no-unresolved'
   'import/named'
-  'import/default'
   'import/namespace'
   'import/no-restricted-paths'
   'import/no-absolute-path'

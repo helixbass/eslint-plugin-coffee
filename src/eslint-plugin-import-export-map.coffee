@@ -159,12 +159,23 @@ class ExportMap
   # todo: keys, values, entries?
 
   reportErrors: (context, declaration) ->
+    getErrorLineNumber = (e) ->
+      return e.lineNumber if e.lineNumber?
+      return unless e.location?
+      e.location.first_line + 1
+
+    getErrorColumnNumber = (e) ->
+      return e.column if e.column?
+      return unless e.location?
+      e.location.first_column + 1
+
     context.report
       node: declaration.source
       message:
         "Parse errors in imported module '#{declaration.source.value}': " +
         "#{@errors
-        .map (e) -> "#{e.message} (#{e.lineNumber}:#{e.column})"
+        .map (e) ->
+          "#{e.message} (#{getErrorLineNumber e}:#{getErrorColumnNumber e})"
         .join ', '}"
 
 ###*
