@@ -583,6 +583,9 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 
 | Name                                    | Description |
 | --------------------------------------- | ----------- |
+| [`import/no-unresolved`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-unresolved.md) | Ensure imports point to a file/module that can be resolved |
+| [`import/named`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/named.md) | Ensure named imports correspond to a named export in the remote file |
+| [`import/default`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/default.md) | Ensure a default export is present, given a default import |
 | [`import/no-webpack-loader-syntax`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-webpack-loader-syntax.md) | Forbid webpack loader syntax in imports |
 
 #### Helpful warnings
