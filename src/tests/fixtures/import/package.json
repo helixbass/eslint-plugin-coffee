@@ -2,10 +2,10 @@
   "dummy": true,
   "devDependencies": {
     "glob": "1.0.0",
-    "eslint": "2.x"
+    "eslint": "6.x"
   },
   "peerDependencies": {
-    "eslint": "2.x"
+    "eslint": "6.x"
   },
   "dependencies": {
     "@org/package": "^1.0.0",
