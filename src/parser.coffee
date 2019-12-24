@@ -9,6 +9,7 @@ babelTraverse = require('babel-traverse').default
 babylonTokenTypes = require('babylon').tokTypes
 {flatten, assign: extend, repeat} = require 'lodash'
 patchCodePathAnalysis = require './patch-code-path-analysis'
+patchImportExportMap = require './patch-import-export-map'
 # patchReact = require './patch-react'
 analyzeScope = require './analyze-scope'
 CodePathAnalyzer = require './code-path-analysis/code-path-analyzer'
@@ -210,6 +211,7 @@ tokensForESLint = ({tokens}) ->
 
 exports.getParser = getParser = (getAst) -> (code, opts) ->
   patchCodePathAnalysis() unless opts.eslintCodePathAnalyzer
+  patchImportExportMap()
   # patchReact()
   # ESLint replaces shebang #! with //, but leading // could be part of a heregex
   if /// ^ // ///.test code
