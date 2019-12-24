@@ -9,7 +9,7 @@ rule = require 'eslint-plugin-import/lib/rules/default'
 
 ruleTester.run 'default', rule,
   valid: [
-    test code: 'import "./malformed.coffee"'
+    test code: 'import "./malformed.koffee"'
 
     test code: 'import foo from "./empty-folder"'
     test code: 'import { foo } from "./default-export"'
@@ -88,9 +88,9 @@ ruleTester.run 'default', rule,
   invalid: [
     test
       # code: "import Foo from './jsx/FooES7.js';"
-      code: "import Foo from './malformed.coffee'"
+      code: "import Foo from './malformed.koffee'"
       errors: [
-        "Parse errors in imported module './malformed.coffee': unexpected implicit function call (1:8)"
+        "Parse errors in imported module './malformed.koffee': unexpected implicit function call (1:8)"
       ]
     test
       code: 'import baz from "./named-exports"'

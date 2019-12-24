@@ -1,7 +1,7 @@
 path = require 'path'
 {default: eslintPkg} = require 'eslint/package.json'
 {default: semver} = require 'semver'
-{merge} = require 'lodash'
+{mergeWith} = require 'lodash'
 
 # warms up the module cache. this import takes a while (>500ms)
 # import 'babel-eslint'
@@ -27,24 +27,29 @@ exports.testVersion = (specifier, t) ->
   semver.satisfies(eslintPkg.version, specifier) and test t()
 
 exports.test = test = (t) ->
-  merge
+  mergeWith
     filename: FILENAME
     settings:
       'import/extensions': ['.coffee', '.js', '.jsx']
       'import/parsers':
         # 'eslint-plugin-coffee/lib/parser': ['.coffee']
-        '../../lib/parser': ['.coffee']
+        '../../lib/parser': ['.coffee', '.koffee']
       'import/resolver':
         node:
           extensions: ['.coffee', '.js', '.jsx']
   ,
     t
-  # parserOptions: Object.assign(
-  #   sourceType: 'module'
-  #   ecmaVersion: 6
-  # ,
-  #   t.parserOptions
-  # )
+    # parserOptions: Object.assign(
+    #   sourceType: 'module'
+    #   ecmaVersion: 6
+    # ,
+    #   t.parserOptions
+    # )
+    (a, b, key) ->
+      return unless key is 'import/resolver'
+      return if b.node?
+      # allow webpack import/resolver to "replace" node default
+      b
 
 exports.testContext = (settings) ->
   getFilename: -> FILENAME
@@ -98,9 +103,9 @@ exports.SYNTAX_CASES = [
   test
     code: 'import foo from "./foobar.json"'
     settings: 'import/extensions': ['.coffee']  # breaking: remove for v2
-  test
-    code: 'import foo from "./foobar"'
-    settings: 'import/extensions': ['.coffee']  # breaking: remove for v2
+  # test
+  #   code: 'import foo from "./foobar"'
+  #   settings: 'import/extensions': ['.coffee']  # breaking: remove for v2
 
   # issue #370: deep commonjs import
   test
