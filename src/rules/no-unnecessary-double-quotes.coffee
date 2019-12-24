@@ -34,6 +34,9 @@ isDirective = (node, ancestors) ->
       /Function/.test(greatgrandparent.type) and
       getDirectives(grandparent).indexOf(node.parent) >= 0)
 
+isJsxAttributeValue = (node) ->
+  node.parent.type is 'JSXAttribute'
+
 module.exports =
   meta:
     docs:
@@ -53,6 +56,7 @@ module.exports =
 
     Literal: (node) ->
       return unless isString node.value
+      return if isJsxAttributeValue node
       return if isDirective node, context.getAncestors()
       return unless /^"/.test node.extra.raw
       return if /'/.test node.value

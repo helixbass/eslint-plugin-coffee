@@ -552,7 +552,8 @@ rules =
       plugin: no
     'no-unnecessary-double-quotes':
       plugin: no
-    'dot-location': {}
+    'dot-location':
+      prettier: yes
     'no-whitespace-before-property': {}
     'no-useless-computed-key': {}
     'no-useless-constructor': {}

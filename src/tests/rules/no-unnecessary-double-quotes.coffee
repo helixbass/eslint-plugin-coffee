@@ -59,6 +59,9 @@ ruleTester.run 'no-unnecessary-double-quotes', rule,
       ///i
     '''
     'c = RegExp(".*#{a}0-9")'
+    '''
+      <div data-testid="wrapper" />
+    '''
   ]
   invalid: [
     code: 'foo = "double"'
