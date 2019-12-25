@@ -169,6 +169,7 @@ usable = [
   'import/no-self-import'
   'import/no-cycle'
   'import/no-useless-path-segments'
+  'import/no-relative-parent-imports'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
@@ -201,7 +202,6 @@ yet = [
   'react/jsx-fragments'
   'react/jsx-props-no-spreading'
   'react/jsx-space-before-closing'
-  'import/no-relative-parent-imports'
   'import/no-unused-modules'
   'import/no-named-as-default'
   'import/no-named-as-default-member'
