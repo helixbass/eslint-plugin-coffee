@@ -125,35 +125,47 @@ projects by the ESLint team) with this plugin, add `plugin:coffee/eslint-recomme
 }
 ```
 
-If you want to use rules from `eslint-plugin-react`, `eslint-plugin-import` and/or `eslint-plugin-react-native`
-(whether rules that "just work" or CoffeeScript custom overrides), install supported versions of those dependencies:
+#### eslint-plugin-import
 
+If you want to use rules from `eslint-plugin-import` (whether rules that "just work" or CoffeeScript custom overrides),
+add `plugin:coffee/import` (which configures `eslint-plugin-import` to work with CoffeeScript) to your config, along with the rules you want to use:
 ```
-npm install --save-dev eslint-plugin-react
-npm install --save-dev eslint-plugin-import
-npm install --save-dev eslint-plugin-react-native
+{
+  "extends": [
+    "plugin:coffee/import"
+  ],
+  "rules": {
+    // Can include existing rules that "just work":
+    "import/no-unresolved": "error",
+    // ...and CoffeeScript custom overriding rules.
+    // For these, the corresponding existing rule should also be disabled if need be:
+    "import/no-anonymous-default-export": "off",
+    "coffee/no-anonymous-default-export": "error",
+  }
+}
 ```
 
-And correspondingly add those plugins and rules to your config:
+See [below](#eslint-plugin-import-rules) for a list of all supported rules from `eslint-plugin-import`.
+
+#### eslint-plugin-react/eslint-plugin-react-native
+
+If you want to use rules from `eslint-plugin-react` and/or `eslint-plugin-react-native`
+(whether rules that "just work" or CoffeeScript custom overrides), add those plugins and rules to your config:
 ```
 {
   "plugins": [
     "coffee",
     "react",
-    "import",
     "react-native"
   ],
   "rules": {
     // Can include existing rules that "just work":
     "react/no-array-index-key": "error",
-    "import/prefer-default-export": "error",
     "react-native/no-inline-styles": "error",
     // ...and CoffeeScript custom overriding rules.
     // For these, the corresponding existing rule should also be disabled if need be:
     "react/prop-types": "off",
     "coffee/prop-types": "error",
-    "import/no-anonymous-default-export": "off",
-    "coffee/no-anonymous-default-export": "error",
     "react-native/no-unused-styles": "off",
     "coffee/no-unused-styles": "error",
   }
@@ -181,6 +193,8 @@ add `plugin:coffee/react-all` to your config:
   ]
 }
 ```
+
+See [below](#eslint-plugin-react-rules) for a list of all supported rules from `eslint-plugin-react` and `eslint-plugin-react-native`.
 
 ### Running from the command line
 
