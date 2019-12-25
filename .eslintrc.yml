@@ -57,6 +57,7 @@ rules:
   coffee/prefer-object-spread: off
   coffee/no-nested-interpolation: off
   coffee/class-methods-use-this: off
+  no-process-env: off
 env:
   node: true
   es6: true
