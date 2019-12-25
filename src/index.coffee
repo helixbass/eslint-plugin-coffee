@@ -203,7 +203,6 @@ yet = [
   'react/jsx-fragments'
   'react/jsx-props-no-spreading'
   'react/jsx-space-before-closing'
-  'import/no-named-as-default-member'
   'import/no-deprecated'
   'import/no-extraneous-dependencies'
   'import/unambiguous'
@@ -559,6 +558,8 @@ rules =
     namespace:
       plugin: 'import'
     'no-unused-modules':
+      plugin: 'import'
+    'no-named-as-default-member':
       plugin: 'import'
   )
 
