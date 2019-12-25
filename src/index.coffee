@@ -207,7 +207,6 @@ yet = [
   'react/jsx-props-no-spreading'
   'react/jsx-space-before-closing'
   'import/unambiguous'
-  'import/order'
   'import/no-unassigned-import'
   'import/no-named-default'
   'import/no-named-export'
@@ -563,6 +562,8 @@ rules =
     'no-deprecated--import':
       plugin: 'import'
       originalRuleName: 'no-deprecated'
+    order:
+      plugin: 'import'
   )
 
 configureAsError = flow(
