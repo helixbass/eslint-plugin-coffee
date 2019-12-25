@@ -24,11 +24,13 @@
   "author": "Julian Rosse <@helixbass>",
   "license": "MIT",
   "devDependencies": {
+    "chai": "^4.2.0",
     "eslint": "^6.1.0",
     "eslint-config-prettier": "^3.0.1",
     "eslint-import-resolver-webpack": "^0.12.0",
     "eslint-plugin-coffee": "^0.1.0",
     "eslint-plugin-prettier": "^2.6.2",
+    "lodash.isarray": "^4.0.0",
     "mocha": "^5.2.0",
     "prettier": "github:helixbass/prettier#9105f5f1",
     "prettier-plugin-coffeescript": "^0.1.1"
