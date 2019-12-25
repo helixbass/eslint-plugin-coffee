@@ -173,6 +173,7 @@ usable = [
   'import/no-named-as-default'
   'import/no-extraneous-dependencies'
   'import/no-duplicates'
+  'import/extensions'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
@@ -206,7 +207,6 @@ yet = [
   'react/jsx-props-no-spreading'
   'react/jsx-space-before-closing'
   'import/unambiguous'
-  'import/extensions'
   'import/order'
   'import/no-unassigned-import'
   'import/no-named-default'
