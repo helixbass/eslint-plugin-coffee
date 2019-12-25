@@ -6,5 +6,10 @@ module.exports = ->
   catch
     throw new ReferenceError "Couldn't resolve eslint-plugin-import ExportMap"
   return if ESLintPluginImportExportMap.__monkeypatched
-  ESLintPluginImportExportMap.default.parse = ExportMap.default.parse
+  for key in [
+    'parse'
+    # 'get'
+    # 'for'
+  ]
+    ESLintPluginImportExportMap.default[key] = ExportMap.default[key]
   ESLintPluginImportExportMap.__monkeypatched = yes

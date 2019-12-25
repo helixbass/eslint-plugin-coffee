@@ -194,7 +194,6 @@ yet = [
   'react/jsx-fragments'
   'react/jsx-props-no-spreading'
   'react/jsx-space-before-closing'
-  'import/namespace'
   'import/no-restricted-paths'
   'import/no-absolute-path'
   'import/no-dynamic-require'
@@ -558,6 +557,8 @@ rules =
     'no-useless-computed-key': {}
     'no-useless-constructor': {}
     'callback-return': {}
+    namespace:
+      plugin: 'import'
   )
 
 configureAsError = flow(

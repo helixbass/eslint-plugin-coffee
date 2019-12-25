@@ -13,11 +13,13 @@ fs = require 'fs'
 {hashObject} = require 'eslint-module-utils/hash'
 unambiguous = require 'eslint-module-utils/unambiguous'
 
+# {default: BaseExportMap} = require 'eslint-plugin-import/lib/ExportMap'
+
 log = debug 'eslint-plugin-import:ExportMap'
 
 exportCache = new Map()
 
-class ExportMap
+class ExportMap # extends BaseExportMap
   constructor: (path) ->
     @path = path
     @namespace = new Map()
