@@ -586,7 +586,17 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 | [`import/no-unresolved`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-unresolved.md) | Ensure imports point to a file/module that can be resolved |
 | [`import/named`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/named.md) | Ensure named imports correspond to a named export in the remote file |
 | [`import/default`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/default.md) | Ensure a default export is present, given a default import |
+| [`coffee/namespace`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/namespace.md) | Ensure imported namespaces contain dereferenced properties as they are dereferenced |
+| [`import/no-restricted-paths`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-restricted-paths.md) | Restrict which files can be imported in a given folder |
+| [`import/no-absolute-path`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-absolute-path.md) | Forbid import of modules using absolute paths |
+| [`import/no-dynamic-require`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-dynamic-require.md) | Forbid `require()` calls with expressions |
+| [`import/no-internal-modules`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-internal-modules.md) | Prevent importing the submodules of other modules |
 | [`import/no-webpack-loader-syntax`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-webpack-loader-syntax.md) | Forbid webpack loader syntax in imports |
+| [`import/no-self-import`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-self-import.md) | Forbid a module from importing itself |
+| [`import/no-cycle`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-cycle.md) | Forbid a module from importing a module with a dependency path back to itself |
+| [`import/no-useless-path-segments`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-useless-path-segments.md) | Prevent unnecessary path segments in import and require statements |
+| [`import/no-relative-parent-imports`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-relative-parent-imports.md) | Forbid importing modules from parent directories |
+| [`coffee/no-unused-modules`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-unused-modules.md) | Forbid modules without any export, and exports not imported by any modules |
 
 #### Helpful warnings
 
