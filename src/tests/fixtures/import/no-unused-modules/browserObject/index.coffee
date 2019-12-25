@@ -1,0 +1,1 @@
+export browserObject = 'browserObject'

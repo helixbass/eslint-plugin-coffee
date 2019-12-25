@@ -202,7 +202,6 @@ yet = [
   'react/jsx-fragments'
   'react/jsx-props-no-spreading'
   'react/jsx-space-before-closing'
-  'import/no-unused-modules'
   'import/no-named-as-default'
   'import/no-named-as-default-member'
   'import/no-deprecated'
@@ -558,6 +557,8 @@ rules =
     'no-useless-constructor': {}
     'callback-return': {}
     namespace:
+      plugin: 'import'
+    'no-unused-modules':
       plugin: 'import'
   )
 

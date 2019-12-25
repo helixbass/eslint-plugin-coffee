@@ -1,0 +1,1 @@
+export binObject = 'binObject'
