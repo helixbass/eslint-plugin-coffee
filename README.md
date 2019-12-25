@@ -603,6 +603,10 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 | Name                                    | Description |
 | --------------------------------------- | ----------- |
 | [`coffee/export`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/export.md) | Report any invalid exports, i.e. re-export of the same name |
+| [`import/no-named-as-default`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-named-as-default.md) | Report use of exported name as identifier of default export |
+| [`coffee/no-named-as-default-member`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-named-as-default-member.md) | Report use of exported name as property of default export |
+| [`coffee/no-deprecated--import`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-deprecated.md) | Report imported names marked with `@deprecated` documentation tag |
+| [`import/no-extraneous-dependencies`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-extraneous-dependencies.md) | Forbid the use of extraneous packages |
 
 #### Module systems
 
@@ -618,11 +622,17 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 | -------- | --------------------------------------- | ----------- |
 | :wrench: | [`import/first`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/first.md) | Ensure all imports appear before other statements |
 |          | [`import/exports-last`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/exports-last.md) | Ensure all exports appear after other statements |
+| :wrench: | [`import/no-duplicates`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-duplicates.md) | Report repeated import of the same module in multiple places |
 |          | [`import/no-namespace`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-namespace.md) | Forbid namespace (a.k.a. "wildcard" `*`) imports <br> :warning: Unlike the eslint-plugin-import rule, the CoffeeScript version is not fixable |
+|          | [`import/extensions`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/extensions.md) | Ensure consistent use of file extension within the import path |
+| :wrench: | [`coffee/order`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/order.md) | Enforce a convention in module import order |
 | :wrench: | [`import/newline-after-import`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/newline-after-import.md) | Enforce a newline after import statements |
 |          | [`import/prefer-default-export`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/prefer-default-export.md) | Prefer a default export if module exports a single name |
 |          | [`import/max-dependencies`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/max-dependencies.md) | Limit the maximum number of dependencies a module can have |
+|          | [`import/no-unassigned-import`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-unassigned-import.md) | Forbid unassigned imports |
+|          | [`import/no-named-default`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-named-default.md) | Forbid named default exports |
 |          | [`coffee/no-default-export`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-default-export.md) | Forbid default exports |
+|          | [`coffee/no-named-export`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-named-export.md) | Forbid named exports |
 |          | [`coffee/no-anonymous-default-export`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-anonymous-default-export.md) | Forbid anonymous values as default exports |
 |          | [`import/group-exports`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/group-exports.md) | Prefer named exports to be grouped together in a single export declaration |
 |          | [`coffee/dynamic-import-chunkname`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/dynamic-import-chunkname.md) | Enforce a leading comment with the webpackChunkName for dynamic imports |
