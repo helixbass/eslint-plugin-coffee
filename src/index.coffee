@@ -209,7 +209,6 @@ yet = [
   'react/jsx-props-no-spreading'
   'react/jsx-space-before-closing'
   'import/unambiguous'
-  'import/no-named-export'
   'react-native/sort-styles'
   'react-native/no-raw-text'
   'react-native/no-single-element-style-arrays'
@@ -563,6 +562,8 @@ rules =
       plugin: 'import'
       originalRuleName: 'no-deprecated'
     order:
+      plugin: 'import'
+    'no-named-export':
       plugin: 'import'
   )
 
