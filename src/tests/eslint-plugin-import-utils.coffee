@@ -30,14 +30,14 @@ exports.test = test = (t) ->
   mergeWith
     filename: FILENAME
     settings:
-      'import/extensions': ['.coffee', '.js', '.jsx']
+      'import/extensions': ['.coffee', '.koffee', '.js', '.jsx']
       'import/parsers':
         # 'eslint-plugin-coffee/lib/parser': ['.coffee']
         '../../lib/parser': ['.coffee', '.koffee']
         'babel-eslint': ['.js', '.jsx']
       'import/resolver':
         node:
-          extensions: ['.coffee', '.js', '.jsx']
+          extensions: ['.coffee', '.koffee', '.js', '.jsx']
   ,
     t
     # parserOptions: Object.assign(
