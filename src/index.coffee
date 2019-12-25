@@ -203,7 +203,6 @@ yet = [
   'react/jsx-fragments'
   'react/jsx-props-no-spreading'
   'react/jsx-space-before-closing'
-  'import/no-deprecated'
   'import/no-extraneous-dependencies'
   'import/unambiguous'
   'import/no-duplicates'
@@ -561,17 +560,20 @@ rules =
       plugin: 'import'
     'no-named-as-default-member':
       plugin: 'import'
+    'no-deprecated--import':
+      plugin: 'import'
+      originalRuleName: 'no-deprecated'
   )
 
 configureAsError = flow(
-  mapWithKey ({plugin}, rule) -> [
+  mapWithKey ({plugin, originalRuleName}, rule) -> [
     ["coffee/#{rule}", 'error']
     ...(
       unless plugin is no
         [
           [
             if plugin
-              "#{plugin}/#{rule}"
+              "#{plugin}/#{originalRuleName ? rule}"
             else
               rule
           ,

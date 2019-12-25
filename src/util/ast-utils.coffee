@@ -231,6 +231,9 @@ isBoundMethod = (node) ->
   {parent} = node
   parent?.type is 'MethodDefinition' and parent.bound
 
+convertCommentToJsStyleJsdoc = (comment) ->
+  comment.replace /^(\s*)#/gm, '$1*'
+
 module.exports = {
   getPrecedence
   isInLoop
@@ -241,4 +244,5 @@ module.exports = {
   isDeclarationAssignment
   isFatArrowFunction
   isBoundMethod
+  convertCommentToJsStyleJsdoc
 }

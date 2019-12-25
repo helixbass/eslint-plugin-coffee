@@ -10,6 +10,8 @@
 
 doctrine = require 'doctrine'
 
+{convertCommentToJsStyleJsdoc} = require '../util/ast-utils'
+
 #------------------------------------------------------------------------------
 # Rule Definition
 #------------------------------------------------------------------------------
@@ -215,9 +217,6 @@ module.exports =
                 typeToCheck.expectedTypeName
               )
 
-    convertToJsStyleJsdoc = (comment) ->
-      comment.replace /^(\s*)#/gm, '$1*'
-
     ###*
     # Validate the JSDoc node and output warnings if anything is wrong.
     # @param {ASTNode} node The AST node to check.
@@ -241,7 +240,7 @@ module.exports =
       # make sure only to validate JSDoc comments
       if jsdocNode
         try
-          jsdoc = doctrine.parse convertToJsStyleJsdoc(jsdocNode.value),
+          jsdoc = doctrine.parse convertCommentToJsStyleJsdoc(jsdocNode.value),
             strict: yes
             unwrap: yes
             sloppy: yes

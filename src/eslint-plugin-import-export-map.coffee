@@ -1,6 +1,6 @@
 fs = require 'fs'
 
-{default: doctrine} = require 'doctrine'
+doctrine = require 'doctrine'
 
 {default: debug} = require 'debug'
 
@@ -12,6 +12,8 @@ fs = require 'fs'
 
 {hashObject} = require 'eslint-module-utils/hash'
 unambiguous = require 'eslint-module-utils/unambiguous'
+
+{convertCommentToJsStyleJsdoc} = require './util/ast-utils'
 
 # {default: BaseExportMap} = require 'eslint-plugin-import/lib/ExportMap'
 
@@ -195,7 +197,7 @@ captureDoc = (source, docStyleParsers, ...nodes) ->
       else if n.range
         leadingComments = source.getCommentsBefore n
 
-      if not leadingComments or leadingComments.length is 0 then return no
+      return no unless leadingComments?.length
 
       for name, docStyleParser of docStyleParsers
         doc = docStyleParser leadingComments
@@ -205,10 +207,6 @@ captureDoc = (source, docStyleParsers, ...nodes) ->
     catch err then return no
 
   metadata
-
-availableDocStyleParsers =
-  jsdoc: captureJsDoc
-  tomdoc: captureTomDoc
 
 ###*
 # parse JSDoc from leading comments
@@ -221,9 +219,13 @@ captureJsDoc = (comments) ->
   # capture XSDoc
   comments.forEach (comment) ->
     # skip non-block comments
-    unless comment.type is 'Block' then return
+    return unless comment.type is 'Block'
     try
-      doc = doctrine.parse comment.value, unwrap: yes
+      doc = doctrine.parse convertCommentToJsStyleJsdoc(comment.value),
+        unwrap: yes
+        # sloppy: yes
+        # range: yes
+        # strict: yes
     catch err
       ### don't care, for now? maybe add to `errors?` ###
 
@@ -251,6 +253,10 @@ captureTomDoc = (comments) ->
       description: statusMatch[2]
     ]
   } if statusMatch
+
+availableDocStyleParsers =
+  jsdoc: captureJsDoc
+  tomdoc: captureTomDoc
 
 ExportMap.get = (source, context) ->
   path = resolve source, context
@@ -325,7 +331,7 @@ ExportMap.parse = (path, content, context) ->
     ast.comments.some (c) ->
       unless c.type is 'Block' then return no
       try
-        doc = doctrine.parse c.value, unwrap: yes
+        doc = doctrine.parse convertCommentToJsStyleJsdoc(c.value), unwrap: yes
         if doc.tags.some((t) -> t.title is 'module')
           m.doc = doc
           return yes
