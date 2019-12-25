@@ -174,6 +174,7 @@ usable = [
   'import/no-extraneous-dependencies'
   'import/no-duplicates'
   'import/extensions'
+  'import/no-unassigned-import'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
@@ -207,7 +208,6 @@ yet = [
   'react/jsx-props-no-spreading'
   'react/jsx-space-before-closing'
   'import/unambiguous'
-  'import/no-unassigned-import'
   'import/no-named-default'
   'import/no-named-export'
   'react-native/sort-styles'
