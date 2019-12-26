@@ -178,6 +178,7 @@ usable = [
   'import/no-unassigned-import'
   'import/no-named-default'
   'no-useless-catch'
+  'react/static-property-placement'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
@@ -236,8 +237,6 @@ yet = [
   'function-call-argument-newline'
   'prefer-exponentiation-operator'
   'react/prefer-read-only-props'
-  'react/state-in-constructor'
-  'react/static-property-placement'
   'react/jsx-no-script-url'
   'react/jsx-no-useless-fragment'
   'react/jsx-props-no-spreading'
@@ -317,6 +316,7 @@ dontApply = [
   'react/require-render-return'
   'no-eq-null'
   'no-multi-str'
+  'react/state-in-constructor'
 ]
 
 rules =
