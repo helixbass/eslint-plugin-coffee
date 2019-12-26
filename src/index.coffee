@@ -177,6 +177,7 @@ usable = [
   'import/extensions'
   'import/no-unassigned-import'
   'import/no-named-default'
+  'no-useless-catch'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
@@ -195,7 +196,6 @@ yet = [
   'default-param-last'
   'grouped-accessor-pairs'
   'no-constructor-return'
-  'no-useless-catch'
   'prefer-named-capture-group'
   'prefer-regex-literals'
   'function-call-argument-newline'
@@ -298,13 +298,15 @@ rules =
   )(
     'use-isnan':
       'eslint-recommended': yes
-    'no-self-compare': {}
+    'no-self-compare':
+      airbnb: yes
     'valid-typeof':
       'eslint-recommended': yes
     'no-negated-condition': {}
     yoda: {}
     camelcase: {}
-    'dot-notation': {}
+    'dot-notation':
+      airbnb: ['error', {allowKeywords: yes}]
     'no-compare-neg-zero':
       'eslint-recommended': yes
     'no-unreachable':
@@ -320,9 +322,18 @@ rules =
     'no-magic-numbers': {}
     'no-self-assign':
       'eslint-recommended': yes
+      airbnb: ['error', {props: yes}]
     'operator-assignment': {}
-    'no-unused-expressions': {}
-    'class-methods-use-this': {}
+    'no-unused-expressions':
+      airbnb: [
+        'error'
+      ,
+        allowShortCircuit: no
+        allowTernary: no
+        allowTaggedTemplates: no
+      ]
+    'class-methods-use-this':
+      airbnb: yes
     'no-await-in-loop': {}
     'prefer-destructuring': {}
     'no-constant-condition':
@@ -335,7 +346,8 @@ rules =
     'no-use-before-define': {}
     'max-depth': {}
     'vars-on-top': {}
-    'guard-for-in': {}
+    'guard-for-in':
+      airbnb: yes
     'no-useless-return': {}
     'arrow-spacing':
       prettier: yes
@@ -374,7 +386,8 @@ rules =
     'prefer-template': {}
     'no-useless-escape':
       'eslint-recommended': yes
-    'no-return-await': {}
+    'no-return-await':
+      airbnb: yes
     'no-anonymous-default-export':
       plugin: 'import'
     export:
@@ -386,21 +399,27 @@ rules =
     'dynamic-import-chunkname':
       plugin: 'import'
     'no-lonely-if': {}
-    'no-loop-func': {}
+    'no-loop-func':
+      airbnb: yes
     'valid-jsdoc': {}
     'require-jsdoc': {}
     'multiline-comment-style': {}
     'no-div-regex': {}
-    'no-extra-bind': {}
-    'no-return-assign': {}
+    'no-extra-bind':
+      airbnb: yes
+    'no-return-assign':
+      airbnb: ['error', 'always']
     'no-shadow': {}
     'no-class-assign':
       'eslint-recommended': yes
     'no-overwrite':
       plugin: no
-    'block-scoped-var': {}
-    'no-sequences': {}
-    'no-empty-function': {}
+    'block-scoped-var':
+      airbnb: yes
+    'no-sequences':
+      airbnb: yes
+    'no-empty-function':
+      airbnb: ['error', {allow: ['arrowFunctions', 'functions', 'methods']}]
     'no-async-promise-executor': {}
     'array-bracket-newline':
       prettier: yes
@@ -417,6 +436,7 @@ rules =
       prettier: yes
     'no-multi-spaces':
       prettier: yes
+      airbnb: ['error', {ignoreEOLComments: no}]
     'array-element-newline':
       prettier: yes
     'wrap-regex':
@@ -483,7 +503,8 @@ rules =
     'jsx-max-props-per-line':
       plugin: 'react'
       prettier: yes
-    'no-else-return': {}
+    'no-else-return':
+      airbnb: ['error', {allowElseIf: no}]
     'operator-linebreak':
       prettier: yes
     'jsx-no-bind':
@@ -538,7 +559,8 @@ rules =
       plugin: no
     'id-length':
       'eslint-recommended': yes
-    'no-new': {}
+    'no-new':
+      airbnb: yes
     'postfix-comprehension-assign-parens':
       plugin: no
     'no-nested-interpolation':
@@ -549,6 +571,7 @@ rules =
       plugin: no
     'dot-location':
       prettier: yes
+      airbnb: ['error', 'property']
     'no-whitespace-before-property': {}
     'no-useless-computed-key': {}
     'no-useless-constructor': {}
