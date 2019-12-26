@@ -183,13 +183,48 @@ usable = [
 # eslint-disable-next-line coffee/no-unused-vars
 yet = [
   'no-extra-parens' # prettier: yes
-  'strict'
-  'comma-dangle' # prettier: yes
-  'indent' # prettier: yes
+  'strict' # airbnb-base: ['error', 'never']
+  'comma-dangle' # prettier: yes, airbnb-base: ['error', {
+  # arrays: 'always-multiline',
+  # objects: 'always-multiline',
+  # imports: 'always-multiline',
+  # exports: 'always-multiline',
+  # functions: 'always-multiline',
+  # }]
+  'indent' # prettier: yes, airbnb-base: ['error', 2, {
+  # SwitchCase: 1,
+  # VariableDeclarator: 1,
+  # outerIIFEBody: 1,
+  # // MemberExpression: null,
+  # FunctionDeclaration: {
+  #   parameters: 1,
+  #   body: 1
+  # },
+  # FunctionExpression: {
+  #   parameters: 1,
+  #   body: 1
+  # },
+  # CallExpression: {
+  #   arguments: 1
+  # },
+  # ArrayExpression: 1,
+  # ObjectExpression: 1,
+  # ImportDeclaration: 1,
+  # flatTernaryExpressions: false,
+  # // list derived from https://github.com/benjamn/ast-types/blob/HEAD/def/jsx.js
+  # ignoredNodes: ['JSXElement', 'JSXElement > *', 'JSXAttribute', 'JSXIdentifier', 'JSXNamespacedName', 'JSXMemberExpression', 'JSXSpreadAttribute', 'JSXExpressionContainer', 'JSXOpeningElement', 'JSXClosingElement', 'JSXText', 'JSXEmptyExpression', 'JSXSpreadChild'],
+  # ignoreComments: false
+  # }]
   'multiline-ternary' # prettier: yes maybe this should be multiline-control and check all "inline" (non-postfix) forms of control structures (which use then)?
-  'padded-blocks' # prettier: yes I think only leading padding would apply (since trailing padding is considered outside the block)
+  'padded-blocks' # prettier: yes I think only leading padding would apply (since trailing padding is considered outside the block) airbnb-base: ['error', {
+  # blocks: 'never',
+  # classes: 'never',
+  # switches: 'never',
+  # }, {
+  # allowSingleLineBlocks: true,
+  # }]
   'padding-line-between-statements' # I think only leading padding would apply (since trailing padding is considered outside the block)
-  'quotes' # prettier: yes
+  'quotes' # prettier: yes, airbnb-base: ['error', 'single', {avoidEscape: true}]
   'no-dupe-else-if'
   'no-import-assign'
   'no-setter-return'
@@ -213,6 +248,8 @@ yet = [
   'react-native/sort-styles'
   'react-native/no-raw-text'
   'react-native/no-single-element-style-arrays'
+  'lines-around-directive' # this is deprecated but is turned on by airbnb
+  'no-spaced-func' # this is deprecated but is turned on by airbnb
 ]
 
 dontApply = [
@@ -298,34 +335,56 @@ rules =
   )(
     'use-isnan':
       'eslint-recommended': yes
+      'airbnb-base': yes
     'no-self-compare':
-      airbnb: yes
+      'airbnb-base': yes
     'valid-typeof':
       'eslint-recommended': yes
+      'airbnb-base': ['error', {requireStringLiterals: yes}]
     'no-negated-condition': {}
-    yoda: {}
-    camelcase: {}
+    yoda:
+      'airbnb-base': yes
+    camelcase:
+      'airbnb-base': [
+        'error'
+      ,
+        properties: 'never'
+        ignoreDestructuring: no
+      ]
     'dot-notation':
-      airbnb: ['error', {allowKeywords: yes}]
+      'airbnb-base': ['error', {allowKeywords: yes}]
     'no-compare-neg-zero':
       'eslint-recommended': yes
+      'airbnb-base': yes
     'no-unreachable':
       'eslint-recommended': yes
-    'object-shorthand': {}
+      'airbnb-base': yes
+    'object-shorthand':
+      'airbnb-base': [
+        'error'
+        'always'
+      ,
+        ignoreConstructors: no
+        avoidQuotes: yes
+      ]
     'no-empty-character-class':
       'eslint-recommended': yes
+      'airbnb-base': yes
     'no-extra-boolean-cast':
       'eslint-recommended': yes
+      'airbnb-base': yes
     'no-regex-spaces':
       'eslint-recommended': yes
+      'airbnb-base': yes
     'no-implicit-coercion': {}
     'no-magic-numbers': {}
     'no-self-assign':
       'eslint-recommended': yes
-      airbnb: ['error', {props: yes}]
-    'operator-assignment': {}
+      'airbnb-base': ['error', {props: yes}]
+    'operator-assignment':
+      'airbnb-base': ['error', 'always']
     'no-unused-expressions':
-      airbnb: [
+      'airbnb-base': [
         'error'
       ,
         allowShortCircuit: no
@@ -333,126 +392,252 @@ rules =
         allowTaggedTemplates: no
       ]
     'class-methods-use-this':
-      airbnb: yes
-    'no-await-in-loop': {}
-    'prefer-destructuring': {}
+      'airbnb-base': yes
+    'no-await-in-loop':
+      'airbnb-base': yes
+    'prefer-destructuring':
+      'airbnb-base': [
+        'error'
+      ,
+        VariableDeclarator:
+          array: false
+          object: true
+        AssignmentExpression:
+          array: true
+          object: false
+      ,
+        enforceForRenamedProperties: false
+      ]
     'no-constant-condition':
       'eslint-recommended': yes
-    'no-template-curly-in-string': {}
-    'no-unneeded-ternary': {}
+      'airbnb-base': ['warn']
+    'no-template-curly-in-string':
+      'airbnb-base': yes
+    'no-unneeded-ternary':
+      'airbnb-base': ['error', {defaultAssignment: no}]
     'no-unmodified-loop-condition': {}
     'no-unused-vars':
       'eslint-recommended': yes
-    'no-use-before-define': {}
+      'airbnb-base': [
+        'error'
+      ,
+        vars: 'all'
+        args: 'after-used'
+        ignoreRestSiblings: yes
+      ]
+    'no-use-before-define':
+      'airbnb-base': [
+        'error'
+      ,
+        functions: yes
+        classes: yes
+        variables: yes
+      ]
     'max-depth': {}
-    'vars-on-top': {}
+    'vars-on-top':
+      'airbnb-base': yes
     'guard-for-in':
-      airbnb: yes
-    'no-useless-return': {}
+      'airbnb-base': yes
+    'no-useless-return':
+      'airbnb-base': yes
     'arrow-spacing':
       prettier: yes
+      'airbnb-base': ['error', {before: yes, after: yes}]
     'object-curly-spacing':
       prettier: yes
+      'airbnb-base': ['error', 'always']
     'capitalized-class-names':
       plugin: no
     complexity: {}
     'max-len':
       prettier: yes
+      'airbnb-base': [
+        'error'
+        100
+        2
+      ,
+        ignoreUrls: true
+        ignoreComments: false
+        ignoreRegExpLiterals: true
+        ignoreStrings: true
+        ignoreTemplateLiterals: true
+      ]
     'no-invalid-this': {}
-    'lines-between-class-members': {}
+    'lines-between-class-members':
+      'airbnb-base': ['error', 'always', {exceptAfterSingleLine: no}]
     'max-lines-per-function': {}
     'no-backticks':
       plugin: no
     'space-infix-ops':
       prettier: yes
+      'airbnb-base': yes
     'space-unary-ops':
       prettier: yes
+      'airbnb-base': [
+        'error'
+      ,
+        words: yes
+        nonwords: no
+        overrides: {}
+      ]
     'english-operators':
       plugin: no
     'no-unnecessary-fat-arrow':
       plugin: no
     'no-this-before-super':
       'eslint-recommended': yes
+      'airbnb-base': yes
     'no-cond-assign':
       'eslint-recommended': yes
+      'airbnb-base': ['error', 'always']
     'no-inner-declarations':
       'eslint-recommended': yes
+      'airbnb-base': yes
     'consistent-this': {}
     'no-unsafe-negation':
       'eslint-recommended': yes
-    'spaced-comment': {}
+      'airbnb-base': yes
+    'spaced-comment':
+      'airbnb-base': [
+        'error'
+        'always'
+      ,
+        line:
+          exceptions: ['-', '+']
+          markers: ['=', '!'] # space here to support sprockets directives
+        block:
+          exceptions: ['-', '+']
+          markers: ['=', '!', ':', '::'] # space here to support sprockets directives and flow comment types
+          balanced: true
+      ]
     'capitalized-comments': {}
-    'no-underscore-dangle': {}
-    'prefer-template': {}
+    'no-underscore-dangle':
+      'airbnb-base': [
+        'error'
+      ,
+        allow: []
+        allowAfterThis: false
+        allowAfterSuper: false
+        enforceInMethodNames: true
+      ]
+    'prefer-template':
+      'airbnb-base': yes
     'no-useless-escape':
       'eslint-recommended': yes
+      'airbnb-base': yes
     'no-return-await':
-      airbnb: yes
+      'airbnb-base': yes
     'no-anonymous-default-export':
       plugin: 'import'
     export:
       plugin: 'import'
+      'airbnb-base': yes
     'no-commonjs':
       plugin: 'import'
     'no-default-export':
       plugin: 'import'
     'dynamic-import-chunkname':
       plugin: 'import'
-    'no-lonely-if': {}
+    'no-lonely-if':
+      'airbnb-base': yes
     'no-loop-func':
-      airbnb: yes
+      'airbnb-base': yes
     'valid-jsdoc': {}
     'require-jsdoc': {}
     'multiline-comment-style': {}
     'no-div-regex': {}
     'no-extra-bind':
-      airbnb: yes
+      'airbnb-base': yes
     'no-return-assign':
-      airbnb: ['error', 'always']
-    'no-shadow': {}
+      'airbnb-base': ['error', 'always']
+    'no-shadow':
+      'airbnb-base': yes
     'no-class-assign':
       'eslint-recommended': yes
+      'airbnb-base': yes
     'no-overwrite':
       plugin: no
     'block-scoped-var':
-      airbnb: yes
+      'airbnb-base': yes
     'no-sequences':
-      airbnb: yes
+      'airbnb-base': yes
     'no-empty-function':
-      airbnb: ['error', {allow: ['arrowFunctions', 'functions', 'methods']}]
-    'no-async-promise-executor': {}
+      'airbnb-base': [
+        'error'
+      ,
+        allow: ['arrowFunctions', 'functions', 'methods']
+      ]
+    'no-async-promise-executor':
+      'airbnb-base': yes
     'array-bracket-newline':
       prettier: yes
     'array-bracket-spacing':
       prettier: yes
-    'prefer-object-spread': {}
+      'airbnb-base': ['error', 'never']
+    'prefer-object-spread':
+      'airbnb-base': yes
     'template-curly-spacing':
       prettier: yes
+      'airbnb-base': yes
     'rest-spread-spacing':
       prettier: yes
+      'airbnb-base': ['error', 'never']
     'no-multiple-empty-lines':
       prettier: yes
+      'airbnb-base': ['error', {max: 2, maxBOF: 1, maxEOF: 0}]
     'newline-per-chained-call':
       prettier: yes
+      'airbnb-base': ['error', {ignoreChainWithDepth: 4}]
     'no-multi-spaces':
       prettier: yes
-      airbnb: ['error', {ignoreEOLComments: no}]
+      'airbnb-base': ['error', {ignoreEOLComments: no}]
     'array-element-newline':
       prettier: yes
     'wrap-regex':
       prettier: yes
     'keyword-spacing':
       prettier: yes
+      'airbnb-base': [
+        'error'
+      ,
+        before: true
+        after: true
+        overrides:
+          return: after: true
+          throw: after: true
+          case: after: true
+      ]
     'object-property-newline':
       prettier: yes
+      'airbnb-base': ['error', {allowAllPropertiesOnSameLine: true}]
     'lines-around-comment':
       prettier: yes
     'function-paren-newline':
       prettier: yes
+      'airbnb-base': ['error', 'consistent']
     'implicit-arrow-linebreak':
       prettier: yes
+      'airbnb-base': ['error', 'beside']
     'no-mixed-operators':
       prettier: yes
+      'airbnb-base': [
+        'error'
+      ,
+        # the list of arthmetic groups disallows mixing `%` and `**`
+        # with other arithmetic operators.
+        groups: [
+          ['%', '**']
+          ['%', '+']
+          ['%', '-']
+          ['%', '*']
+          ['%', '/']
+          ['/', '*']
+          ['&', '|', '<<', '>>', '>>>']
+          ['==', '!=', '===', '!==']
+          ['&&', '||']
+        ]
+        allowSamePrecedence: false
+      ]
     'boolean-prop-naming':
       plugin: 'react'
     'default-props-match-prop-types':
@@ -504,9 +689,10 @@ rules =
       plugin: 'react'
       prettier: yes
     'no-else-return':
-      airbnb: ['error', {allowElseIf: no}]
+      'airbnb-base': ['error', {allowElseIf: no}]
     'operator-linebreak':
       prettier: yes
+      'airbnb-base': ['error', 'before', {overrides: '=': 'none'}]
     'jsx-no-bind':
       plugin: 'react'
     'jsx-no-comment-textnodes':
@@ -547,6 +733,23 @@ rules =
     'id-match': {}
     'comma-style':
       prettier: yes
+      'airbnb-base': [
+        'error'
+        'last'
+      ,
+        exceptions:
+          ArrayExpression: no
+          ArrayPattern: no
+          ArrowFunctionExpression: no
+          CallExpression: no
+          FunctionDeclaration: no
+          FunctionExpression: no
+          ImportDeclaration: no
+          ObjectExpression: no
+          ObjectPattern: no
+          VariableDeclaration: no
+          NewExpression: no
+      ]
     'no-unused-styles':
       plugin: 'react-native'
     'split-platform-components':
@@ -560,7 +763,7 @@ rules =
     'id-length':
       'eslint-recommended': yes
     'no-new':
-      airbnb: yes
+      'airbnb-base': yes
     'postfix-comprehension-assign-parens':
       plugin: no
     'no-nested-interpolation':
@@ -571,10 +774,13 @@ rules =
       plugin: no
     'dot-location':
       prettier: yes
-      airbnb: ['error', 'property']
-    'no-whitespace-before-property': {}
-    'no-useless-computed-key': {}
-    'no-useless-constructor': {}
+      'airbnb-base': ['error', 'property']
+    'no-whitespace-before-property':
+      'airbnb-base': yes
+    'no-useless-computed-key':
+      'airbnb-base': yes
+    'no-useless-constructor':
+      'airbnb-base': yes
     'callback-return': {}
     namespace:
       plugin: 'import'
@@ -582,11 +788,13 @@ rules =
       plugin: 'import'
     'no-named-as-default-member':
       plugin: 'import'
+      'airbnb-base': yes
     'no-deprecated--import':
       plugin: 'import'
       originalRuleName: 'no-deprecated'
     order:
       plugin: 'import'
+      'airbnb-base': ['error', {groups: [['builtin', 'external', 'internal']]}]
     'no-named-export':
       plugin: 'import'
   )
@@ -647,6 +855,13 @@ importConfig =
       node:
         extensions: ['.coffee', '.js', '.jsx']
 
+# would be "in the spirit" of the airbnb config to make changes:
+# - import/extensions should include coffee: 'never'
+# airbnbConfig =
+#   settings:
+#     # override airbnb's .coffee ignore
+#     'import/ignore': ['node_modules', '\\.(scss|css|less|hbs|svg|json)$']
+
 module.exports = {
   rules: mapValues('module') rules
   configs:
@@ -657,6 +872,7 @@ module.exports = {
         ...configureAsError(omitBy('plugin') rules)
         ...turnOn(reject((rule) -> /\//.test rule) usable)
         ...turnOff(dontApply)
+        ...turnOff(yet)
       }
     'eslint-recommended':
       plugins: ['coffee']
@@ -665,6 +881,7 @@ module.exports = {
       rules: {
         ...configureAsError(pickBy('eslint-recommended') rules)
         ...turnOff(dontApply)
+        ...turnOff(yet)
       }
     'react-recommended':
       plugins: ['coffee']
@@ -673,6 +890,7 @@ module.exports = {
       rules: {
         ...configureAsError(pickBy(plugin: 'react', recommended: yes) rules)
         ...turnOff(dontApply)
+        ...turnOff(yet)
       }
     'react-all':
       plugins: ['coffee']
@@ -681,6 +899,7 @@ module.exports = {
       rules: {
         ...configureAsError(pickBy(plugin: 'react') rules)
         ...turnOff(dontApply)
+        ...turnOff(yet)
       }
     import: importConfig
     'import-all': {
@@ -689,6 +908,7 @@ module.exports = {
         ...turnOn(filter((rule) -> /^import\//.test rule) usable)
         ...configureAsError(pickBy(plugin: 'import') rules)
         ...turnOff(dontApply)
+        ...turnOff(yet)
       }
     }
     prettier: prettierConfig
