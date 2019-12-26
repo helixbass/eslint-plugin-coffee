@@ -241,7 +241,6 @@ yet = [
   'react/jsx-curly-newline'
   'react/jsx-no-script-url'
   'react/jsx-no-useless-fragment'
-  'react/jsx-fragments'
   'react/jsx-props-no-spreading'
   'react/jsx-space-before-closing'
   'import/unambiguous'
@@ -393,6 +392,28 @@ rules =
       ]
     'class-methods-use-this':
       'airbnb-base': yes
+      airbnb: [
+        'error'
+      ,
+        exceptMethods: [
+          'render'
+          'getInitialState'
+          'getDefaultProps'
+          'getChildContext'
+          'componentWillMount'
+          'UNSAFE_componentWillMount'
+          'componentDidMount'
+          'componentWillReceiveProps'
+          'UNSAFE_componentWillReceiveProps'
+          'shouldComponentUpdate'
+          'componentWillUpdate'
+          'UNSAFE_componentWillUpdate'
+          'componentDidUpdate'
+          'componentWillUnmount'
+          'componentDidCatch'
+          'getSnapshotBeforeUpdate'
+        ]
+      ]
     'no-await-in-loop':
       'airbnb-base': yes
     'prefer-destructuring':
@@ -520,6 +541,14 @@ rules =
         allowAfterSuper: false
         enforceInMethodNames: true
       ]
+      airbnb: [
+        'error'
+      ,
+        allow: ['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__']
+        allowAfterThis: false
+        allowAfterSuper: false
+        enforceInMethodNames: true
+      ]
     'prefer-template':
       'airbnb-base': yes
     'no-useless-escape':
@@ -642,52 +671,75 @@ rules =
       plugin: 'react'
     'default-props-match-prop-types':
       plugin: 'react'
+      airbnb: ['error', {allowRequiredDefaults: no}]
     'destructuring-assignment':
       plugin: 'react'
+      airbnb: ['error', 'always']
     'display-name':
       plugin: 'react'
       recommended: yes
     'forbid-prop-types':
       plugin: 'react'
+      airbnb: [
+        'error'
+      ,
+        forbid: ['any', 'array', 'object']
+        checkContextTypes: true
+        checkChildContextTypes: true
+      ]
     'no-access-state-in-setstate':
       plugin: 'react'
+      airbnb: yes
     'no-danger-with-children':
       plugin: 'react'
+      airbnb: yes
     'no-deprecated':
       plugin: 'react'
+      airbnb: yes
     'no-multi-comp':
       plugin: 'react'
     'no-redundant-should-component-update':
       plugin: 'react'
+      airbnb: yes
     'no-render-return-value':
       plugin: 'react'
+      airbnb: yes
     'no-typos':
       plugin: 'react'
+      airbnb: yes
     'no-this-in-sfc':
       plugin: 'react'
+      airbnb: yes
     'no-unescaped-entities':
       plugin: 'react'
+      airbnb: yes
     'prefer-stateless-function':
       plugin: 'react'
+      airbnb: ['error', {ignorePureComponents: yes}]
     'jsx-boolean-value':
       plugin: 'react'
+      airbnb: ['error', 'never', {always: []}]
     'jsx-closing-bracket-location':
       plugin: 'react'
       prettier: yes
+      airbnb: ['error', 'line-aligned']
     'jsx-first-prop-new-line':
       plugin: 'react'
       prettier: yes
+      airbnb: ['error', 'multiline-multiprop']
     'jsx-handler-names':
       plugin: 'react'
     'jsx-indent':
       plugin: 'react'
       prettier: yes
+      airbnb: ['error', 2]
     'jsx-key':
       plugin: 'react'
       recommended: yes
     'jsx-max-props-per-line':
       plugin: 'react'
       prettier: yes
+      airbnb: ['error', {maximum: 1, when: 'multiline'}]
     'no-else-return':
       'airbnb-base': ['error', {allowElseIf: no}]
     'operator-linebreak':
@@ -695,32 +747,124 @@ rules =
       'airbnb-base': ['error', 'before', {overrides: '=': 'none'}]
     'jsx-no-bind':
       plugin: 'react'
+      airbnb: [
+        'error'
+      ,
+        ignoreRefs: true
+        allowArrowFunctions: true
+        allowFunctions: false
+        allowBind: false
+        ignoreDOMComponents: true
+      ]
     'jsx-no-comment-textnodes':
       plugin: 'react'
+      airbnb: yes
     'jsx-one-expression-per-line':
       plugin: 'react'
       prettier: yes
+      airbnb: ['error', {allow: 'single-child'}]
     'jsx-sort-default-props':
       plugin: 'react'
     'jsx-tag-spacing':
       plugin: 'react'
+      airbnb: [
+        'error'
+      ,
+        closingSlash: 'never'
+        beforeSelfClosing: 'always'
+        afterOpening: 'never'
+        beforeClosing: 'never'
+      ]
     'jsx-wrap-multilines':
       plugin: 'react'
       prettier: yes
+      airbnb: [
+        'error'
+      ,
+        declaration: 'parens-new-line'
+        assignment: 'parens-new-line'
+        return: 'parens-new-line'
+        arrow: 'parens-new-line'
+        condition: 'parens-new-line'
+        logical: 'parens-new-line'
+        prop: 'parens-new-line'
+      ]
     'no-unused-prop-types':
       plugin: 'react'
+      airbnb: [
+        'error'
+      ,
+        customValidators: []
+        skipShapeProps: true
+      ]
     'no-unused-state':
       plugin: 'react'
+      airbnb: yes
     'prop-types':
       plugin: 'react'
+      airbnb: [
+        'error'
+      ,
+        ignore: []
+        customValidators: []
+        skipUndeclared: false
+      ]
     'style-prop-object':
       plugin: 'react'
+      airbnb: yes
     'sort-prop-types':
       plugin: 'react'
     'sort-comp':
       plugin: 'react'
+      airbnb: [
+        'error'
+      ,
+        order: [
+          'static-variables'
+          'static-methods'
+          'instance-variables'
+          'lifecycle'
+          '/^on.+$/'
+          'getters'
+          'setters'
+          '/^(get|set)(?!(InitialState$|DefaultProps$|ChildContext$)).+$/'
+          'instance-methods'
+          'everything-else'
+          'rendering'
+        ]
+        groups:
+          lifecycle: [
+            'displayName'
+            'propTypes'
+            'contextTypes'
+            'childContextTypes'
+            'mixins'
+            'statics'
+            'defaultProps'
+            'constructor'
+            'getDefaultProps'
+            'getInitialState'
+            'state'
+            'getChildContext'
+            'getDerivedStateFromProps'
+            'componentWillMount'
+            'UNSAFE_componentWillMount'
+            'componentDidMount'
+            'componentWillReceiveProps'
+            'UNSAFE_componentWillReceiveProps'
+            'shouldComponentUpdate'
+            'componentWillUpdate'
+            'UNSAFE_componentWillUpdate'
+            'getSnapshotBeforeUpdate'
+            'componentDidUpdate'
+            'componentDidCatch'
+            'componentWillUnmount'
+          ]
+          rendering: ['/^render.+$/', 'render']
+      ]
     'require-default-props':
       plugin: 'react'
+      airbnb: ['error', {forbidDefaultForRequired: yes}]
     'implicit-object':
       plugin: no
       prettier: yes
@@ -797,6 +941,9 @@ rules =
       'airbnb-base': ['error', {groups: [['builtin', 'external', 'internal']]}]
     'no-named-export':
       plugin: 'import'
+    'jsx-fragments':
+      plugin: 'react'
+      airbnb: ['error', 'syntax']
   )
 
 configureAsError = flow(
@@ -857,6 +1004,8 @@ importConfig =
 
 # would be "in the spirit" of the airbnb config to make changes:
 # - import/extensions should include coffee: 'never'
+# need to override these:
+# - turn off jsx-filename-extension (since needs to be .coffee)
 # airbnbConfig =
 #   settings:
 #     # override airbnb's .coffee ignore

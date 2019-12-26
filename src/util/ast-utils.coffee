@@ -219,6 +219,18 @@ isDeclarationAssignment = (node) ->
   return no unless node?.type is 'AssignmentExpression'
   containsDeclaration node.left
 
+getDeclarationAssignmentAncestor = (node) ->
+  current = node
+  while current
+    switch current?.type
+      when 'AssignmentExpression'
+        return current
+      when 'ObjectPattern', 'ArrayPattern', 'Property', 'RestElement', 'Identifier', 'AssignmentPattern'
+        current = current.parent
+      else
+        return null
+  null
+
 isFatArrowFunction = (node) ->
   return unless node?
   {bound, type, parent} = node
@@ -245,4 +257,5 @@ module.exports = {
   isFatArrowFunction
   isBoundMethod
   convertCommentToJsStyleJsdoc
+  getDeclarationAssignmentAncestor
 }

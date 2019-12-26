@@ -4,6 +4,8 @@
 ###
 'use strict'
 
+{getDeclarationAssignmentAncestor} = require '../ast-utils'
+
 ###*
 # Search a particular variable in a list
 # @param {Array} variables The variables list.
@@ -62,6 +64,8 @@ findVariableByName = (context, name) ->
   return node.parent.right if (
     node.declaration and node.parent.type is 'AssignmentExpression'
   )
+  if node.type is 'Identifier' and node.declaration
+    return getDeclarationAssignmentAncestor(node)?.right
   null
 
 module.exports = {
