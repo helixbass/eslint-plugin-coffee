@@ -44,6 +44,7 @@
     "coffeescript": "github:jashkenas/coffeescript#05d45e9b",
     "doctrine": "^2.1.0",
     "eslint-plugin-import": "^2.19.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-native": "^3.8.0",
     "eslint-scope": "~3.7.3",
