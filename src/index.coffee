@@ -179,6 +179,7 @@ usable = [
   'import/no-named-default'
   'no-useless-catch'
   'react/static-property-placement'
+  'react/jsx-props-no-spreading'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
@@ -239,7 +240,6 @@ yet = [
   'react/prefer-read-only-props'
   'react/jsx-no-script-url'
   'react/jsx-no-useless-fragment'
-  'react/jsx-props-no-spreading'
   'react/jsx-space-before-closing'
   'import/unambiguous'
   'react-native/sort-styles'
