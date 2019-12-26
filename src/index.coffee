@@ -7,6 +7,7 @@
   mapValues
   pickBy
   reject
+  filter
   omitBy
 } = require 'lodash/fp'
 mapWithKey = map.convert cap: no
@@ -613,6 +614,16 @@ prettierConfig =
     ) rules
   )
 
+importConfig =
+  plugins: ['import']
+  settings:
+    'import/extensions': ['.coffee', '.js', '.jsx']
+    'import/parsers':
+      'eslint-plugin-coffee/lib/parser': ['.coffee']
+    'import/resolver':
+      node:
+        extensions: ['.coffee', '.js', '.jsx']
+
 module.exports = {
   rules: mapValues('module') rules
   configs:
@@ -648,6 +659,15 @@ module.exports = {
         ...configureAsError(pickBy(plugin: 'react') rules)
         ...turnOff(dontApply)
       }
+    import: importConfig
+    'import-all': {
+      ...importConfig
+      rules: {
+        ...turnOn(filter((rule) -> /^import\//.test rule) usable)
+        ...configureAsError(pickBy(plugin: 'import') rules)
+        ...turnOff(dontApply)
+      }
+    }
     prettier: prettierConfig
     'prettier-run-as-rule': {
       ...prettierConfig
