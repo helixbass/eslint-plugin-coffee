@@ -554,6 +554,7 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 |                    | :wrench: | [`react/self-closing-comp`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/self-closing-comp.md) | Prevent extra closing tags for components without children |
 |                    |          | [`coffee/sort-comp`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-comp.md) | Enforce component methods order <br> :warning: Unlike the eslint-plugin-react rule, the CoffeeScript version is not fixable |
 |                    |          | [`coffee/sort-prop-types`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-prop-types.md) | Enforce propTypes declarations alphabetical sorting |
+|                    |          | [`react/static-property-placement`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/static-property-placement.md) | Enforces where React component static properties should be positioned |
 |                    |          | [`coffee/style-prop-object`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/style-prop-object.md) | Enforce style prop value being an object |
 |                    |          | [`react/void-dom-elements-no-children`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/void-dom-elements-no-children.md) | Prevent void DOM elements (e.g. `<img />`, `<br />`) from receiving children |
 
@@ -565,6 +566,7 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 |                    |          | [`react/jsx-child-element-spacing`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-child-element-spacing.md) | Enforce or disallow spaces inside of curly braces in JSX attributes and expressions. |
 |                    | :wrench: | [`coffee/jsx-closing-bracket-location`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-closing-bracket-location.md) | Validate closing bracket location in JSX |
 |                    | :wrench: | [`react/jsx-closing-tag-location`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-closing-tag-location.md) | Validate closing tag location in JSX |
+|                    |          | [`coffee/jsx-curly-newline`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-curly-newline.md) | Enforce or disallow newlines inside of curly braces in JSX attributes and expressions <br> :warning: Unlike the eslint-plugin-react rule, the CoffeeScript version is not fixable |
 |                    | :wrench: | [`react/jsx-curly-spacing`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-curly-spacing.md) | Enforce or disallow spaces inside of curly braces in JSX attributes and expressions |
 |                    | :wrench: | [`react/jsx-equals-spacing`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-equals-spacing.md) | Enforce or disallow spaces around equal signs in JSX attributes |
 |                    |          | [`react/jsx-filename-extension`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-filename-extension.md) | Restrict file extensions that may contain JSX |
@@ -583,8 +585,10 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 | :heavy_check_mark: |          | [`react/jsx-no-undef`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-undef.md) | Disallow undeclared variables in JSX |
 |                    |          | [`coffee/jsx-one-expression-per-line`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-one-expression-per-line.md) | Limit to one expression per line in JSX |
 |                    | :wrench: | [`react/jsx-curly-brace-presence`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-curly-brace-presence.md) | Enforce curly braces or disallow unnecessary curly braces in JSX |
+|                    | :wrench: | [`coffee/jsx-fragments`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-fragments.md) | Enforce shorthand or standard form for React fragments |
 |                    |          | [`react/jsx-pascal-case`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-pascal-case.md) | Enforce PascalCase for user-defined JSX components |
 |                    | :wrench: | [`react/jsx-props-no-multi-spaces`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-props-no-multi-spaces.md) | Disallow multiple spaces between inline JSX props |
+|                    |          | [`react/jsx-props-no-spreading`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-props-no-spreading.md) | Disallow JSX props spreading |
 |                    |          | [`coffee/jsx-sort-default-props`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-sort-default-props.md) | Enforce default props alphabetical sorting |
 |                    | :wrench: | [`react/jsx-sort-props`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-sort-props.md) | Enforce props alphabetical sorting |
 |                    | :wrench: | [`coffee/jsx-tag-spacing`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-tag-spacing.md) | Validate whitespace in and around the JSX opening and closing brackets |
@@ -730,6 +734,7 @@ Some rules included with ESLint, `eslint-plugin-react` and `eslint-plugin-import
 - [`yield-star-spacing`](https://eslint.org/docs/rules/yield-star-spacing)
 - [`no-multi-str`](https://eslint.org/docs/rules/no-multi-str)
 - [`react/require-render-return`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/require-render-return.md)
+- [`react/state-in-constructor`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/state-in-constructor.md)
 - [`import/no-mutable-exports`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-mutable-exports.md)
 
 ## Supported CoffeeScript version
