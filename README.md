@@ -362,6 +362,7 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 |                    |          | [`coffee/no-unmodified-loop-condition`](https://eslint.org/docs/rules/no-unmodified-loop-condition) | disallow unmodified loop conditions |
 |                    |          | [`coffee/no-unused-expressions`](https://eslint.org/docs/rules/no-unused-expressions) | disallow unused expressions |
 |                    |          | [`no-useless-call`](https://eslint.org/docs/rules/no-useless-call) | disallow unnecessary calls to `.call()` and `.apply()` |
+| :heavy_check_mark: |          | [`no-useless-catch`](https://eslint.org/docs/rules/no-useless-catch) | disallow unnecessary `catch` clauses |
 |                    |          | [`no-useless-concat`](https://eslint.org/docs/rules/no-useless-concat) | disallow unnecessary concatenation of literals or template literals |
 | :heavy_check_mark: |          | [`coffee/no-useless-escape`](https://eslint.org/docs/rules/no-useless-escape) | disallow unnecessary escape characters |
 |                    | :wrench: | [`coffee/no-useless-return`](https://eslint.org/docs/rules/no-useless-return) | disallow redundant return statements |
