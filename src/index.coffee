@@ -238,7 +238,6 @@ yet = [
   'react/prefer-read-only-props'
   'react/state-in-constructor'
   'react/static-property-placement'
-  'react/jsx-curly-newline'
   'react/jsx-no-script-url'
   'react/jsx-no-useless-fragment'
   'react/jsx-props-no-spreading'
@@ -944,6 +943,15 @@ rules =
     'jsx-fragments':
       plugin: 'react'
       airbnb: ['error', 'syntax']
+    'jsx-curly-newline':
+      plugin: 'react'
+      prettier: yes
+      airbnb: [
+        'error'
+      ,
+        multiline: 'consistent'
+        singleline: 'consistent'
+      ]
   )
 
 configureAsError = flow(
