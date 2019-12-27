@@ -195,6 +195,7 @@ usable = [
   'jsx-a11y/iframe-has-title'
   'jsx-a11y/img-redundant-alt'
   'jsx-a11y/interactive-supports-focus'
+  'jsx-a11y/label-has-associated-control'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
