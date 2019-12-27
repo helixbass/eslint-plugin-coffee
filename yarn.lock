@@ -566,6 +566,10 @@ cli-width@^2.0.0:
   version "2.4.1"
   resolved "https://codeload.github.com/jashkenas/coffeescript/tar.gz/05d45e9b270faa2343e8b1277a7067252c15b0a2"
 
+"coffeescript@github:jashkenas/coffeescript#26351096":
+  version "2.4.1"
+  resolved "https://codeload.github.com/jashkenas/coffeescript/tar.gz/26351096a685600c3e6f9795a4640f35d73351fe"
+
 collapse-white-space@^1.0.2:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/collapse-white-space/-/collapse-white-space-1.0.5.tgz#c2495b699ab1ed380d29a1091e01063e75dbbe3a"
