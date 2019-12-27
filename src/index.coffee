@@ -205,6 +205,7 @@ usable = [
   'jsx-a11y/no-interactive-element-to-noninteractive-role'
   'jsx-a11y/no-noninteractive-element-interactions'
   'jsx-a11y/no-noninteractive-element-to-interactive-role'
+  'jsx-a11y/no-noninteractive-tabindex'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
