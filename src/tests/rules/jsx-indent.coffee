@@ -192,6 +192,30 @@ ruleTester.run 'jsx-indent', rule,
     '''
     # parser: 'babel-eslint'
     options: [2]
+  ,
+    code: '''
+      render: ->
+        <div>abc</div>
+    '''
+    options: [2]
+  ,
+    code: '''
+      render: ->
+        console.log 'here'
+        <div>abc</div>
+    '''
+    options: [2]
+  ,
+    code: '''
+      render: ->
+        if a
+          console.log 'here'
+          <div>abc</div>
+        else
+          console.log 'there'
+          <div>def</div>
+    '''
+    options: [2]
   ]
 
   invalid: [

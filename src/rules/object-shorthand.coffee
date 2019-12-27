@@ -34,6 +34,19 @@ module.exports =
         items: [enum: ['always', 'never', 'consistent', 'consistent-as-needed']]
         minItems: 0
         maxItems: 1
+      ,
+        type: 'array'
+        items: [
+          enum: ['always']
+        ,
+          type: 'object'
+          properties:
+            avoidQuotes:
+              type: 'boolean'
+          additionalProperties: no
+        ]
+        minItems: 0
+        maxItems: 2
       ]
 
   create: (context) ->
@@ -42,6 +55,9 @@ module.exports =
     APPLY_CONSISTENT = APPLY is OPTIONS.consistent
     APPLY_CONSISTENT_AS_NEEDED = APPLY is OPTIONS.consistentAsNeeded
     APPLY_PROPERTIES = not APPLY or APPLY is OPTIONS.always
+
+    PARAMS = context.options[1] ? {}
+    AVOID_QUOTES = PARAMS.avoidQuotes
 
     #--------------------------------------------------------------------------
     # Helpers
@@ -169,6 +185,8 @@ module.exports =
         node.key.value is node.value.name and
         APPLY_PROPERTIES
       )
+        return if AVOID_QUOTES
+
         # {"x": x} should be written as {x}
         context.report {
           node

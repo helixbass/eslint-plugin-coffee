@@ -78,6 +78,16 @@ ruleTester.run 'object-shorthand', rule,
     code: 'x = {a: ->, b: {c: d}}'
     options: ['never']
   ,
+    # avoidQuotes
+    code: "x = 'a': ->"
+    options: ['always', {avoidQuotes: yes}]
+  ,
+    code: "x = ['a']: ->"
+    options: ['always', {avoidQuotes: yes}]
+  ,
+    code: "'y': y"
+    options: ['always', {avoidQuotes: yes}]
+  ,
     # ignore object shorthand
     code: '{a, b} = o'
     options: ['never']
@@ -203,6 +213,11 @@ ruleTester.run 'object-shorthand', rule,
     code: 'x = {foo, bar: baz, ...qux}'
     options: ['never']
     errors: [LONGFORM_PROPERTY_ERROR]
+  ,
+    # avoidQuotes
+    code: 'x = {a: a}'
+    options: ['always', {avoidQuotes: yes}]
+    errors: [PROPERTY_ERROR]
   ,
     # consistent
     code: 'x = {a: a, b}'

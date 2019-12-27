@@ -38,7 +38,7 @@ getKind = (node) ->
   {parent} = node
   kind = ''
 
-  return 'arrowFunctions' if node.type is 'ArrowFunctionExpression'
+  # return 'arrowFunctions' if node.type is 'ArrowFunctionExpression'
 
   # Detects main kind.
   if parent.type is 'Property'

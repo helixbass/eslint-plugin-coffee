@@ -1,3 +1,4 @@
+{merge} = require 'lodash'
 {
   flow
   map
@@ -9,6 +10,7 @@
   reject
   filter
   omitBy
+  mergeAll
 } = require 'lodash/fp'
 mapWithKey = map.convert cap: no
 
@@ -395,7 +397,7 @@ rules =
         'error'
         'always'
       ,
-        ignoreConstructors: no
+        # ignoreConstructors: no
         avoidQuotes: yes
       ]
     'no-empty-character-class':
@@ -419,7 +421,7 @@ rules =
         'error'
       ,
         allowShortCircuit: no
-        allowTernary: no
+        # allowTernary: no
         allowTaggedTemplates: no
       ]
     'class-methods-use-this':
@@ -452,12 +454,14 @@ rules =
       'airbnb-base': [
         'error'
       ,
-        VariableDeclarator:
-          array: false
-          object: true
-        AssignmentExpression:
-          array: true
-          object: false
+        # VariableDeclarator:
+        #   array: false
+        #   object: true
+        # AssignmentExpression:
+        #   array: true
+        #   object: false
+        array: false
+        object: true
       ,
         enforceForRenamedProperties: false
       ]
@@ -626,7 +630,11 @@ rules =
       'airbnb-base': [
         'error'
       ,
-        allow: ['arrowFunctions', 'functions', 'methods']
+        allow: [
+          # 'arrowFunctions',
+          'functions'
+          'methods'
+        ]
       ]
     'no-async-promise-executor':
       'airbnb-base': yes
@@ -694,8 +702,10 @@ rules =
           ['%', '/']
           ['/', '*']
           ['&', '|', '<<', '>>', '>>>']
-          ['==', '!=', '===', '!==']
-          ['&&', '||']
+          # ['==', '!=', '===', '!==']
+          ['==', '!=', 'is', 'isnt']
+          # ['&&', '||']
+          ['&&', '||', 'and', 'or']
         ]
         allowSamePrecedence: false
       ]
@@ -802,9 +812,9 @@ rules =
       airbnb: [
         'error'
       ,
-        closingSlash: 'never'
+        # closingSlash: 'never'
         beforeSelfClosing: 'always'
-        afterOpening: 'never'
+        # afterOpening: 'never'
         beforeClosing: 'never'
       ]
     'jsx-wrap-multilines':
@@ -813,11 +823,11 @@ rules =
       airbnb: [
         'error'
       ,
-        declaration: 'parens-new-line'
+        # declaration: 'parens-new-line'
         assignment: 'parens-new-line'
         return: 'parens-new-line'
         arrow: 'parens-new-line'
-        condition: 'parens-new-line'
+        # condition: 'parens-new-line'
         logical: 'parens-new-line'
         prop: 'parens-new-line'
       ]
@@ -987,29 +997,32 @@ rules =
       ]
   )
 
-configureAsError = flow(
-  mapWithKey ({plugin, originalRuleName}, rule) -> [
-    ["coffee/#{rule}", 'error']
-    ...(
-      unless plugin is no
-        [
+configureAs = (ruleSettings) ->
+  flow(
+    mapWithKey ({plugin, originalRuleName}, rule) -> [
+      ["coffee/#{rule}", ruleSettings]
+      ...(
+        unless plugin is no
           [
-            if plugin
-              "#{plugin}/#{originalRuleName ? rule}"
-            else
-              rule
-          ,
-            'off'
+            [
+              if plugin
+                "#{plugin}/#{originalRuleName ? rule}"
+              else
+                rule
+            ,
+              'off'
+            ]
           ]
-        ]
-      else
-        []
-    )
-  ]
-,
-  flatten
-  fromPairs
-)
+        else
+          []
+      )
+    ]
+  ,
+    flatten
+    fromPairs
+  )
+
+configureAsError = configureAs ['error']
 
 turnOn = flow(
   map (rule) -> [rule, 'error']
@@ -1035,6 +1048,7 @@ prettierConfig =
 
 importConfig =
   plugins: ['import']
+  parser: 'eslint-plugin-coffee'
   settings:
     'import/extensions': ['.coffee', '.js', '.jsx']
     'import/parsers':
@@ -1043,14 +1057,57 @@ importConfig =
       node:
         extensions: ['.coffee', '.js', '.jsx']
 
-# would be "in the spirit" of the airbnb config to make changes:
-# - import/extensions should include coffee: 'never'
-# need to override these:
-# - turn off jsx-filename-extension (since needs to be .coffee)
-# airbnbConfig =
-#   settings:
-#     # override airbnb's .coffee ignore
-#     'import/ignore': ['node_modules', '\\.(scss|css|less|hbs|svg|json)$']
+airbnbBaseOverridesConfig =
+  rules:
+    # Coffeescript doesn't (currently) support linebreaking before operators
+    'coffee/operator-linebreak': 'off'
+    'import/extensions': [
+      'error'
+      'ignorePackages'
+    ,
+      js: 'never'
+      mjs: 'never'
+      jsx: 'never'
+      coffee: 'never'
+    ]
+
+airbnbOverridesConfig =
+  rules:
+    'react/jsx-filename-extension': 'off'
+
+getAirbnbRules = (airbnbKey) ->
+  flow(
+    pickBy airbnbKey
+    mapWithKey ({[airbnbKey]: ruleSettings, ...opts}, ruleName) ->
+      configureAs(if ruleSettings is yes then ['error'] else ruleSettings)
+        [ruleName]: opts
+  ,
+    mergeAll
+  ) rules
+
+airbnbBaseConfig = merge(
+  {}
+  importConfig
+,
+  extends: ['airbnb-base']
+  rules: {
+    ...getAirbnbRules('airbnb-base')
+    ...turnOff(dontApply)
+    ...turnOff(yet)
+  }
+  settings:
+    # override airbnb's .coffee ignore
+    'import/ignore': ['node_modules', '\\.(scss|css|less|hbs|svg|json)$']
+,
+  airbnbBaseOverridesConfig
+)
+
+airbnbConfig = merge(
+  extends: ['airbnb', 'plugin:coffee/airbnb-base']
+  rules: getAirbnbRules 'airbnb'
+,
+  airbnbOverridesConfig
+)
 
 module.exports = {
   rules: mapValues('module') rules
@@ -1110,5 +1167,7 @@ module.exports = {
         ...prettierConfig.rules
       }
     }
+    'airbnb-base': airbnbBaseConfig
+    airbnb: airbnbConfig
   parseForESLint
 }

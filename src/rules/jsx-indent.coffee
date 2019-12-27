@@ -206,6 +206,13 @@ module.exports =
       parentElementIndent = getNodeIndent prevToken
       indent =
         if (
+          node.parent.parent.type is 'ExpressionStatement' and
+          node.parent.parent.parent.type is 'BlockStatement' and
+          node.parent.parent.parent.body.length > 1 and
+          node.parent.parent isnt node.parent.parent.parent.body[0]
+        )
+          0
+        else if (
           prevToken.loc.start.line is node.loc.start.line # or
         )
           # isRightInLogicalExp(node) or
