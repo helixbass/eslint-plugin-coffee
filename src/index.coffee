@@ -184,6 +184,7 @@ usable = [
   'jsx-a11y/alt-text'
   'jsx-a11y/anchor-has-content'
   'jsx-a11y/anchor-is-valid'
+  'jsx-a11y/aria-activedescendant-has-tabindex'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
