@@ -201,6 +201,7 @@ usable = [
   'jsx-a11y/mouse-events-have-key-events'
   'jsx-a11y/no-access-key'
   'jsx-a11y/no-autofocus'
+  'jsx-a11y/no-distracting-elements'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
