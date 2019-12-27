@@ -200,6 +200,7 @@ usable = [
   'jsx-a11y/media-has-caption'
   'jsx-a11y/mouse-events-have-key-events'
   'jsx-a11y/no-access-key'
+  'jsx-a11y/no-autofocus'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
