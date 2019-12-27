@@ -183,6 +183,7 @@ usable = [
   'jsx-a11y/accessible-emoji'
   'jsx-a11y/alt-text'
   'jsx-a11y/anchor-has-content'
+  'jsx-a11y/anchor-is-valid'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
