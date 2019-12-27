@@ -193,6 +193,7 @@ usable = [
   'jsx-a11y/heading-has-content'
   'jsx-a11y/html-has-lang'
   'jsx-a11y/iframe-has-title'
+  'jsx-a11y/img-redundant-alt'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
