@@ -188,6 +188,7 @@ usable = [
   'jsx-a11y/aria-props'
   'jsx-a11y/aria-proptypes'
   'jsx-a11y/aria-role'
+  'jsx-a11y/aria-unsupported-elements'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
