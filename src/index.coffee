@@ -212,6 +212,7 @@ usable = [
   'jsx-a11y/role-has-required-aria-props'
   'jsx-a11y/role-supports-aria-props'
   'jsx-a11y/scope'
+  'jsx-a11y/tabindex-no-positive'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
