@@ -126,6 +126,26 @@ projects by the ESLint team) with this plugin, add `plugin:coffee/eslint-recomme
 }
 ```
 
+To apply the well-known [Airbnb config](https://www.npmjs.com/package/eslint-config-airbnb) with this plugin, add
+`plugin:coffee/airbnb` (for React projects) or `plugin:coffee/airbnb-base` (for non-React projects) to your config:
+```
+{
+  "extends": [
+    // for React projects:
+    "plugin:coffee/airbnb",
+    // OR for non-React projects:
+    "plugin:coffee/airbnb-base"
+  ],
+  "rules": {
+    // You may then want to disable some of the more "controversial" Airbnb rules
+    // when applied to CoffeeScript, e.g.:
+    "coffee/implicit-arrow-linebreak": "off",
+    "coffee/comma-style": "off",
+    "coffee/jsx-wrap-multilines": "off"
+  }
+}
+```
+
 #### eslint-plugin-import
 
 If you want to use rules from `eslint-plugin-import` (whether rules that "just work" or CoffeeScript custom overrides),
