@@ -181,6 +181,7 @@ usable = [
   'react/static-property-placement'
   'react/jsx-props-no-spreading'
   'jsx-a11y/accessible-emoji'
+  'jsx-a11y/alt-text'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
