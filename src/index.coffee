@@ -192,6 +192,7 @@ usable = [
   'jsx-a11y/click-events-have-key-events'
   'jsx-a11y/heading-has-content'
   'jsx-a11y/html-has-lang'
+  'jsx-a11y/iframe-has-title'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
