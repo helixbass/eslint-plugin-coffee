@@ -187,6 +187,7 @@ usable = [
   'jsx-a11y/aria-activedescendant-has-tabindex'
   'jsx-a11y/aria-props'
   'jsx-a11y/aria-proptypes'
+  'jsx-a11y/aria-role'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
