@@ -202,6 +202,7 @@ usable = [
   'jsx-a11y/no-access-key'
   'jsx-a11y/no-autofocus'
   'jsx-a11y/no-distracting-elements'
+  'jsx-a11y/no-interactive-element-to-noninteractive-role'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
