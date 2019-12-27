@@ -39,6 +39,7 @@
     "eslint": ">=6.0.0"
   },
   "dependencies": {
+    "axe-core": "^3.4.1",
     "babel-eslint": "^7.2.2",
     "babylon": "^7.0.0-beta.44",
     "coffeescript": "github:jashkenas/coffeescript#05d45e9b",
