@@ -16,9 +16,10 @@ ESLint custom parser + rules for linting CoffeeScript source files
   - [eslint-plugin-react rules](#eslint-plugin-react-rules)
   - [eslint-plugin-import rules](#eslint-plugin-import-rules)
   - [eslint-plugin-react-native rules](#eslint-plugin-react-native-rules)
+  - [eslint-plugin-jsx-a11y rules](#eslint-plugin-jsx-a11y-rules)
 - [Supported CoffeeScript version](#supported-coffeescript-version)
 - [Supported ESLint version](#supported-eslint-version)
-- [Supported versions of eslint-plugin-react, eslint-plugin-import, eslint-plugin-react-native](#supported-versions-of-eslint-plugin-react-eslint-plugin-import-eslint-plugin-react-native)
+- [Supported versions of eslint-plugin-react, eslint-plugin-import, eslint-plugin-react-native, eslint-plugin-jsx-a11y](#supported-versions-of-eslint-plugin-react-eslint-plugin-import-eslint-plugin-react-native-eslint-plugin-jsx-a11y)
 - [Migrating from CoffeeLint](#migrating-from-coffeelint)
 - [How can I help?](#how-can-i-help)
 - [License](#license)
@@ -60,7 +61,7 @@ or provide any custom alternatives.
 For rules which don't "just work" for CoffeeScript, `eslint-plugin-coffee` aims to provide a CoffeeScript-compatible
 custom alternative rule - this includes rules that come with ESLint, as well as from the popular ESLint plugins
 [`eslint-plugin-react`](https://github.com/yannickcr/eslint-plugin-react), [`eslint-plugin-import`](https://github.com/benmosher/eslint-plugin-import),
-and [`eslint-plugin-react-native`](https://github.com/intellicode/eslint-plugin-react-native).
+[`eslint-plugin-react-native`](https://github.com/intellicode/eslint-plugin-react-native), and [`eslint-plugin-jsx-a11y`](https://github.com/evcohen/eslint-plugin-jsx-a11y).
 
 **Here's a [guide to all of the supported rules](#supported-rules).**
 
@@ -147,21 +148,23 @@ add `plugin:coffee/import` (which configures `eslint-plugin-import` to work with
 
 See [below](#eslint-plugin-import-rules) for a list of all supported rules from `eslint-plugin-import`.
 
-#### eslint-plugin-react/eslint-plugin-react-native
+#### eslint-plugin-react, eslint-plugin-react-native, eslint-plugin-jsx-a11y
 
-If you want to use rules from `eslint-plugin-react` and/or `eslint-plugin-react-native`
+If you want to use rules from `eslint-plugin-react`, `eslint-plugin-react-native` and/or `eslint-plugin-jsx-a11y`
 (whether rules that "just work" or CoffeeScript custom overrides), add those plugins and rules to your config:
 ```
 {
   "plugins": [
     "coffee",
     "react",
-    "react-native"
+    "react-native",
+    "jsx-a11y"
   ],
   "rules": {
     // Can include existing rules that "just work":
     "react/no-array-index-key": "error",
     "react-native/no-inline-styles": "error",
+    "jsx-a11y/accessible-emoji": "error",
     // ...and CoffeeScript custom overriding rules.
     // For these, the corresponding existing rule should also be disabled if need be:
     "react/prop-types": "off",
@@ -194,7 +197,7 @@ add `plugin:coffee/react-all` to your config:
 }
 ```
 
-See [below](#eslint-plugin-react-rules) for a list of all supported rules from `eslint-plugin-react` and `eslint-plugin-react-native`.
+See below for a list of all supported rules from [`eslint-plugin-react`](#eslint-plugin-react-rules), [`eslint-plugin-react-native`](#eslint-plugin-react-native-rules) and [`eslint-plugin-jsx-a11y`](#eslint-plugin-jsx-a11y-rules).
 
 ### Running from the command line
 
@@ -665,6 +668,27 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 | [`react-native/no-inline-styles`](https://github.com/Intellicode/eslint-plugin-react-native/blob/master/docs/rules/no-inline-styles.md) | Detect JSX components with inline styles that contain literal values |
 | [`coffee/no-color-literals`](https://github.com/Intellicode/eslint-plugin-react-native/blob/master/docs/rules/no-color-literals.md) | Detect `StyleSheet` rules and inline styles containing color literals instead of variables |
 
+### eslint-plugin-jsx-a11y rules
+
+| Name                                    | Description |
+| --------------------------------------- | ----------- |
+| [`jsx-a11y/accessible-emoji`](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/accessible-emoji.md) | Enforce emojis are wrapped in `<span>` and provide screenreader access |
+| [`jsx-a11y/alt-text`](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/alt-text.md) | Enforce all elements that require alternative text have meaningful information to relay back to end user |
+| [`jsx-a11y/anchor-has-content`](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-has-content.md) | Enforce all anchors to contain accessible content |
+| [`jsx-a11y/anchor-is-valid`](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md) | Enforce all anchors are valid, navigable elements |
+| [`jsx-a11y/aria-activedescendant-has-tabindex`](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/aria-activedescendant-has-tabindex.md) | Enforce elements with aria-activedescendant are tabbable |
+| [`jsx-a11y/aria-props`](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/aria-props.md) | Enforce all `aria-*` props are valid |
+| [`jsx-a11y/aria-proptypes`](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/aria-proptypes.md) | Enforce ARIA state and property values are valid |
+| [`jsx-a11y/aria-role`](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/aria-role.md) | Enforce that elements with ARIA roles must use a valid, non-abstract ARIA role |
+| [`jsx-a11y/aria-unsupported-elements`](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/aria-unsupported-elements.md) | Enforce that elements that do not support ARIA roles, states, and properties do not have those attributes |
+| [`jsx-a11y/click-events-have-key-events`](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/click-events-have-key-events.md) | Enforce a clickable non-interactive element has at least one keyboard event listener |
+| [`jsx-a11y/heading-has-content`](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/heading-has-content.md) | Enforce heading (`h1`, `h2`, etc) elements contain accessible content |
+| [`jsx-a11y/html-has-lang`](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/html-has-lang.md) | Enforce `<html>` element has `lang` prop |
+| [`jsx-a11y/iframe-has-title`](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/iframe-has-title.md) | Enforce iframe elements have a title attribute |
+| [`jsx-a11y/img-redundant-alt`](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/img-redundant-alt.md) | Enforce `<img>` alt prop does not contain the word "image", "picture", or "photo" |
+| [`jsx-a11y/interactive-supports-focus`](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/interactive-supports-focus.md) | Enforce that elements with interactive handlers like `onClick` must be focusable |
+| [`jsx-a11y/label-has-associated-control`](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/label-has-associated-control.md) | Enforce that a label tag has a text label and an associated control |
+
 ### Non-applicable ESLint-included rules
 
 Some rules included with ESLint, `eslint-plugin-react` and `eslint-plugin-import` don't apply to CoffeeScript. These include:
@@ -747,13 +771,15 @@ We will always endeavor to support the latest stable version of CoffeeScript.
 
 **The version range of ESLint currently supported by this plugin is `>=6.0.0`.**
 
-## Supported versions of eslint-plugin-react, eslint-plugin-import, eslint-plugin-react-native
+## Supported versions of eslint-plugin-react, eslint-plugin-import, eslint-plugin-react-native, eslint-plugin-jsx-a11y
 
 **The version range of `eslint-plugin-react` currently supported by this plugin is `>=7.17.0`.**
 
 **The version range of `eslint-plugin-import` currently supported by this plugin is `>=2.19.0`.**
 
 **The version range of `eslint-plugin-react-native` currently supported by this plugin is `>=3.8.0`.**
+
+**The version range of `eslint-plugin-jsx-a11y` currently supported by this plugin is `>=6.2.3`.**
 
 ## Migrating from CoffeeLint
 
