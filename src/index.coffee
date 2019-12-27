@@ -182,6 +182,7 @@ usable = [
   'react/jsx-props-no-spreading'
   'jsx-a11y/accessible-emoji'
   'jsx-a11y/alt-text'
+  'jsx-a11y/anchor-has-content'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
