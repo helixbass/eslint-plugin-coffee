@@ -198,6 +198,7 @@ usable = [
   'jsx-a11y/label-has-associated-control'
   'jsx-a11y/lang'
   'jsx-a11y/media-has-caption'
+  'jsx-a11y/mouse-events-have-key-events'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
