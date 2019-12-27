@@ -190,6 +190,7 @@ usable = [
   'jsx-a11y/aria-role'
   'jsx-a11y/aria-unsupported-elements'
   'jsx-a11y/click-events-have-key-events'
+  'jsx-a11y/heading-has-content'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
