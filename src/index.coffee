@@ -209,6 +209,7 @@ usable = [
   'jsx-a11y/no-onchange'
   'jsx-a11y/no-redundant-roles'
   'jsx-a11y/no-static-element-interactions'
+  'jsx-a11y/role-has-required-aria-props'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
