@@ -197,6 +197,36 @@ add `plugin:coffee/react-all` to your config:
 }
 ```
 
+To apply the [`recommended`](https://github.com/evcohen/eslint-plugin-jsx-a11y#usage) config from `eslint-plugin-jsx-a11y`,
+add `plugin:jsx-a11y/recommended` to your config:
+
+```
+{
+  "plugins: [
+    "coffee",
+    "jsx-a11y"
+  ],
+  "extends": [
+    "plugin:jsx-a11y/recommended"
+  ]
+}
+```
+
+To apply the [`strict`](https://github.com/evcohen/eslint-plugin-jsx-a11y#usage) config from `eslint-plugin-jsx-a11y`,
+add `plugin:jsx-a11y/strict` to your config:
+
+```
+{
+  "plugins: [
+    "coffee",
+    "jsx-a11y"
+  ],
+  "extends": [
+    "plugin:jsx-a11y/strict"
+  ]
+}
+```
+
 See below for a list of all supported rules from [`eslint-plugin-react`](#eslint-plugin-react-rules), [`eslint-plugin-react-native`](#eslint-plugin-react-native-rules) and [`eslint-plugin-jsx-a11y`](#eslint-plugin-jsx-a11y-rules).
 
 ### Running from the command line
