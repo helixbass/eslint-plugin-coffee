@@ -196,6 +196,7 @@ usable = [
   'jsx-a11y/img-redundant-alt'
   'jsx-a11y/interactive-supports-focus'
   'jsx-a11y/label-has-associated-control'
+  'jsx-a11y/lang'
 ]
 
 # eslint-disable-next-line coffee/no-unused-vars
