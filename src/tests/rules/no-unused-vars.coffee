@@ -656,6 +656,11 @@ ruleTester.run 'no-unused-vars', rule,
     '''
       doSomething(class Rewriter)
     '''
+    '''
+      f = ->
+      export class A
+        [f()]: 2
+    '''
   ]
   invalid: [
     code: 'foox = -> foox()', errors: [assignedError 'foox']

@@ -192,6 +192,21 @@ ruleTester.run 'no-undef', rule,
       catch e
       e
     '''
+    '''
+      a = null
+      a?.get x: 10
+    '''
+    '''
+      @?.get x: 10
+    '''
+    '''
+      do (b = (c) -> c) -> a: 3
+      ?.a
+    '''
+    '''
+      class A
+        category:  (type: 'string')
+    '''
   ]
   invalid: [
     code: "if (typeof anUndefinedVar is 'string') then ;"
@@ -240,6 +255,12 @@ ruleTester.run 'no-undef', rule,
     code: '''
       class A
         prop: b
+    '''
+    errors: [message: "'b' is not defined."]
+  ,
+    code: '''
+      class A
+        [b]: 1
     '''
     errors: [message: "'b' is not defined."]
   ]

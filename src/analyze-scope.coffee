@@ -48,6 +48,16 @@ class Referencer extends OriginalReferencer
     @visit node.object
     @visit node.property if node.computed
 
+  OptionalCallExpression: (node) ->
+    {callee} = node
+    if (
+      not @scopeManager.__ignoreEval() and
+      callee.type is 'Identifier' and
+      callee.name is 'eval'
+    )
+      @currentScope().variableScope.__detectEval()
+    @visitChildren node
+
   AssignmentExpression: (node) ->
     # @visit node.left if node.left.type is 'Identifier'
     @visitPattern node.left, (identifier) =>

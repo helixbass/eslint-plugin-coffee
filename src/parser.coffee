@@ -21,6 +21,9 @@ extendVisitorKeys = ->
     For: ['index', 'name', 'source', 'step', 'guard', 'body']
     InterpolatedRegExpLiteral: ['expressions']
     Range: ['from', 'to']
+    OptionalMemberExpression: ['object', 'property']
+    OptionalCallExpression: ['callee', 'arguments']
+    ClassPrototypeProperty: ['key', 'value']
 espreeTokenTypes =
   '{': 'Punctuator'
   '}': 'Punctuator'
