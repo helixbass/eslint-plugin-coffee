@@ -5,32 +5,21 @@
 - eslint-env comments don't work because eslint is searching explicitly for /* eslint-env ... */
   I guess documented workaround could be to embed eg ### /* eslint-env ... ### # */?
 - the // -> # at the beginning of the file (to counteract ESLint transforming #! -> //) would break code that actually starts with a heregex
-- should eslint-plugin-react be a dependency?
-- should no-unused-vars allow/have an option for eg key in for key, val of b ...?
 
 todo:
   - add test like eslint-plugin-react (?) that checks that everything in src/rules/ is exposed and has tests
     and that everything in usable has tests
     and that no rules are categorized more than once
   - comprehensively go through expected token types and include in espreeTokenTypes
-  - include tests from coffeelint?
-  - documentation
   - get added to docs Configuring list of compatible parsers
   - attributions in files originally from other projects?
   - `recommended` config?
   - get config added to eslint-config-prettier so can use `prettier/coffee` like `prettier/@typescript-eslint`?
-  - target Airbnb rules first (among remaining non-covered rules)? And add "Usage with Airbnb" section to README (like typescript-eslint)
   - what's up with recommended + plugin: react (eg display-name)? Is that rule included when using eslint-recommended (shouldn't be)? If not, what does recommended do?
 bugs:
   - code path analysis needs to actually understand for when, since it considers anything after a for when whose body returns to be unreachable? or is eslint-plugin-known-imports using outdated?
-  - no-unused-vars doesn't understand do (x) -> as a usage of outer x
-    - does no-loop-func understand do (x) -> ?
   - no-useless-escape should flag unnecessary escapes in heredocs/heregexes (delimiters)
   - add more keywords to quote-props (eg unless)?
-  - code path chokes on empty try eg
-    try
-      # comment
-    b
   - no-useless-escape is flagging ///^(#{pragma}\.)?#{createClass}$/// (I guess because it gets exposed as a new RegExp call? should it escape differently in the AST? or should the rule handle that case differently?)
   - looks like the version of babel-eslint doesn't understand fragments so doesn't eg transform children JSXText of fragments into Literal (worked around in jsx-no-comment-textnodes by also checking JSXText, which some other existing tests seem to do - is that for a similar reason (ie support older version of babel-eslint)?)
 nice to have:
