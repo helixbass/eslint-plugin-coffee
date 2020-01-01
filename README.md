@@ -71,19 +71,13 @@ Make sure you have supported versions of CoffeeScript and ESLint installed and i
 
 yarn:
 ```
-# yarn seems to occasionally get confused by Github dependencies, so I'd recommend clearing your lockfile first
-rm yarn.lock
-# then explicitly install the dependencies and plugin
-yarn add --dev github:jashkenas/coffeescript#05d45e9b eslint@^6.0.0 eslint-plugin-coffee
+yarn add --dev coffeescript@^2.5.0 eslint@^6.0.0 eslint-plugin-coffee
 ```
 
 npm:
 
 ```
-# npm also seems to occasionally get confused by Github dependencies, so I'd recommend clearing your lockfile first
-rm package-lock.json
-# then explicitly install the dependencies
-npm install --save-dev github:jashkenas/coffeescript#05d45e9b eslint@^6.0.0 eslint-plugin-coffee
+npm install --save-dev coffeescript@^2.5.0 eslint@^6.0.0 eslint-plugin-coffee
 ```
 
 ## Usage
@@ -830,7 +824,7 @@ Some rules included with ESLint, `eslint-plugin-react` and `eslint-plugin-import
 
 We will always endeavor to support the latest stable version of CoffeeScript.
 
-**Currently to run this plugin you need to use the latest Coffeescript `ast` branch: github:jashkenas/coffeescript#05d45e9b.**
+**The version range of CoffeeScript currently supported by this plugin is `>=2.5.0`.**
 
 ## Supported ESLint version
 
