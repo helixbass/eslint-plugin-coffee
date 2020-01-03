@@ -946,8 +946,7 @@ rules =
       plugin: no
     'spread-direction':
       plugin: no
-    'id-length':
-      'eslint-recommended': yes
+    'id-length': {}
     'no-new':
       'airbnb-base': yes
     'postfix-comprehension-assign-parens':

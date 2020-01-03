@@ -560,10 +560,6 @@ coffeescript@^2.5.0:
   resolved "https://registry.yarnpkg.com/coffeescript/-/coffeescript-2.5.0.tgz#9ce853766fa8363384d80f06f79fa8d5b13f566f"
   integrity sha512-RgTKZhAeKVFuGtce/d3U1x1h5W75AoYFQszNlGrtSIbexC9jowaZo574uUvc9zoNQSDLMWXVtsus9usMtbFU+w==
 
-"coffeescript@github:jashkenas/coffeescript#05d45e9b":
-  version "2.4.1"
-  resolved "https://codeload.github.com/jashkenas/coffeescript/tar.gz/05d45e9b270faa2343e8b1277a7067252c15b0a2"
-
 collapse-white-space@^1.0.2:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/collapse-white-space/-/collapse-white-space-1.0.5.tgz#c2495b699ab1ed380d29a1091e01063e75dbbe3a"
@@ -962,15 +958,22 @@ eslint-module-utils@^2.4.1:
     debug "^2.6.9"
     pkg-dir "^2.0.0"
 
-eslint-plugin-coffee@^0.1.0:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-coffee/-/eslint-plugin-coffee-0.1.2.tgz#28bf3dffccad0dd46c78df4caa4a386364e3a44e"
-  integrity sha512-OL5sVgVUv6xqPQkZjp/z1W7BjwDMiSvblnBl9nHss63jFlU0OBu4plzyK+fr6zCFkEY8tfpGiHTRUut2Q9HcDA==
+eslint-plugin-coffee@^0.1.12:
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-coffee/-/eslint-plugin-coffee-0.1.12.tgz#1bb2f41b62fd75b258062cd8dfa230c41eaff2c1"
+  integrity sha512-ThsCQLHhuxpQrqV7mH5+Xlf6Zt3rrzAgkvoduhdzoIwa8xRLxXUahAW1R3FGT/ci04f+8Z9kqlz52/9QtVWxtw==
   dependencies:
+    axe-core "^3.4.1"
     babel-eslint "^7.2.2"
     babylon "^7.0.0-beta.44"
-    coffeescript "github:jashkenas/coffeescript#05d45e9b"
+    coffeescript "^2.5.0"
     doctrine "^2.1.0"
+    eslint-config-airbnb "^18.0.1"
+    eslint-config-airbnb-base "^14.0.0"
+    eslint-plugin-import "^2.19.0"
+    eslint-plugin-jsx-a11y "^6.2.3"
+    eslint-plugin-react "^7.17.0"
+    eslint-plugin-react-native "^3.8.0"
     eslint-scope "~3.7.3"
     eslint-utils "^1.4.3"
     eslint-visitor-keys "^1.0.0"
