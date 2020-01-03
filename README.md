@@ -551,6 +551,7 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 |          | [`coffee/no-nested-interpolation`](./docs/rules/no-nested-interpolation.md) | Disallow nesting interpolations |
 |          | [`coffee/no-private-function-fat-arrows`](./docs/rules/no-private-function-fat-arrows.md) | Disallow use of `=>` for "private" functions in class bodies |
 |          | [`coffee/no-unnecessary-double-quotes`](./docs/rules/no-unnecessary-double-quotes.md) | Disallow use of double quotes for strings when single quotes would suffice |
+| :wrench: | [`coffee/boolean-keywords`](./docs/rules/boolean-keywords.md) | Require or disallow usage of specific boolean keywords |
 
 ### eslint-plugin-react rules
 
