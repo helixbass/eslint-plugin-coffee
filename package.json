@@ -28,7 +28,7 @@
     "eslint": "^6.1.0",
     "eslint-config-prettier": "^3.0.1",
     "eslint-import-resolver-webpack": "^0.12.0",
-    "eslint-plugin-coffee": "^0.1.0",
+    "eslint-plugin-coffee": "^0.1.12",
     "eslint-plugin-prettier": "^2.6.2",
     "lodash.isarray": "^4.0.0",
     "mocha": "^5.2.0",
