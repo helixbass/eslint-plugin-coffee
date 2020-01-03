@@ -994,6 +994,8 @@ rules =
         multiline: 'consistent'
         singleline: 'consistent'
       ]
+    'boolean-keywords':
+      plugin: no
   )
 
 configureAs = (ruleSettings) ->
