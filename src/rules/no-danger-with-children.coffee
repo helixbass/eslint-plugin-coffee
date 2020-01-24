@@ -39,8 +39,8 @@ module.exports =
           variable = findSpreadVariable prop.argument.name
           if (
             val =
-              variable.defs[0]?.node.init ?
-              (isDeclarationAssignment(variable?.defs[0]?.node.parent) and
+              variable?.defs?[0]?.node.init ?
+              (isDeclarationAssignment(variable?.defs?[0]?.node.parent) and
                 variable.defs[0].node.parent.right)
           )
             return no if seenProps.indexOf(prop.argument.name) > -1
@@ -59,7 +59,7 @@ module.exports =
         if attribute.type is 'JSXSpreadAttribute'
           variable = findSpreadVariable attribute.argument.name
           return findObjectProp variable.defs[0].node.init, propName, [] if (
-            variable.defs[0]?.node.init
+            variable?.defs?[0]?.node.init
           )
           return findObjectProp(
             variable.defs[0].node.parent.right
