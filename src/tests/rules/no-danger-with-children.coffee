@@ -73,6 +73,27 @@ ruleTester.run 'no-danger-with-children', rule,
       props = {...props, scratch: {mode: 'edit'}}
       component = shallow(<TaskEditableTitle {...props} />)
     '''
+  ,
+    # #35
+    '''
+      import React from 'react'
+
+      export default class ReactView
+        props: label: 'test'
+
+        render: ->
+          <div>
+            <span {@props...}>test</span>
+          </div>
+    '''
+    '''
+      import React from 'react'
+
+      render = ->
+        <div>
+          <span {foo...}>test</span>
+        </div>
+    '''
   ]
   invalid: [
     code: '''
