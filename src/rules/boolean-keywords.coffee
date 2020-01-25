@@ -25,7 +25,7 @@ module.exports =
       # url: 'https://eslint.org/docs/rules/space-unary-ops'
 
     schema: [
-      anyOf: [
+      oneOf: [
         type: 'object'
         properties:
           allow:
@@ -51,6 +51,8 @@ module.exports =
     fixable: 'code'
 
   create: (context) ->
+    # TODO: why isn't oneOf flagging an empty options as a schema error (eg when using plugin:coffee/all)?
+    return {} unless context.options[0]?
     {allow, disallow} = context.options[0]
 
     getReplacement = (trueOrFalse) ->
