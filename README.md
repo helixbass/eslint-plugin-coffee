@@ -286,6 +286,24 @@ Then add to your VS Code [`settings.json`](https://code.visualstudio.com/docs/ge
 ]
 ```
 
+#### Sublime Text
+
+From [@PatrickKing](https://github.com/PatrickKing):
+
+- Enable [Package Control](https://packagecontrol.io/installation) (if it is not already enabled).
+- Enable CoffeeScript language support by installing [Better CoffeeScript](https://packagecontrol.io/packages/Better%20CoffeeScript) with Package Control (if it is not already installed).
+- Install [SublimeLinter](https://packagecontrol.io/packages/SublimeLinter) and [SublimeLinter-eslint](https://packagecontrol.io/packages/SublimeLinter-eslint) with Package Control.
+- Ensure eslint and eslint-plugin-coffee are installed locally with package.json or globally. (If globally, Try `eslint some_file.coffee` at your terminal to make sure.)
+- Open "Preferences: SublimeLinter settings", and add/modify your user settings with:
+
+```
+"linters": {
+    "eslint": {
+        "selector": "source.js - meta.attribute-with-value, source.coffee"
+    }
+}
+```
+
 #### Other editors
 
 We will add instructions for different code editors here as they become supported.
