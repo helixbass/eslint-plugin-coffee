@@ -71,6 +71,31 @@ ruleTester.run 'shorthand-this', rule,
         b: (@c) ->
     '''
     options: ['never']
+  ,
+    # should never flag static method/property @
+    code: '''
+      class A
+        @b: (c) ->
+        @d = 1
+        @e: 2
+    '''
+    options: ['never']
+  ,
+    code: '''
+      class A
+        @b: (c) ->
+        @d = 1
+        @e: 2
+    '''
+    options: ['always']
+  ,
+    code: '''
+      class A
+        @b: (c) ->
+        @d = 1
+        @e: 2
+    '''
+    options: ['allow', {forbidStandalone: yes}]
   ]
   invalid: [
     code: '@'

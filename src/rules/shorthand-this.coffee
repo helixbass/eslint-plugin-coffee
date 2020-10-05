@@ -18,6 +18,10 @@ isObjectShorthand = (node) ->
   {parent} = node
   parent.parent.type is 'Property' and parent.parent.shorthand
 
+isStaticProperty = (node) ->
+  {parent} = node
+  parent?.type is 'ClassProperty' and node is parent.staticClassName
+
 #------------------------------------------------------------------------------
 # Rule Definition
 #------------------------------------------------------------------------------
@@ -53,7 +57,11 @@ module.exports =
     ThisExpression: (node) ->
       isShorthand = !!node.shorthand
       isStandalone = not isProperty node
-      return if isThisParam(node) or isObjectShorthand node
+      return if (
+        isThisParam(node) or
+        isObjectShorthand(node) or
+        isStaticProperty node
+      )
       if isShorthand
         if forbidShorthand
           context.report {
