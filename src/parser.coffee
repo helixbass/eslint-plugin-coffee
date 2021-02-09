@@ -8,7 +8,10 @@ babylonToEspree = require 'babel-eslint/babylon-to-espree'
 babelTraverse = require('babel-traverse').default
 babylonTokenTypes = require('babylon').tokTypes
 {flatten, assign: extend, repeat} = require 'lodash'
-patchCodePathAnalysis = require './patch-code-path-analysis'
+{
+  patchCodePathAnalysis
+  PATCH_CODE_PATH_ANALYSIS_PROGRAM_NODE_KEY
+} = require './patch-code-path-analysis'
 patchImportExportMap = require './patch-import-export-map'
 # patchReact = require './patch-react'
 analyzeScope = require './analyze-scope'
@@ -108,7 +111,7 @@ getEspreeTokenType = (token) ->
 getTokenValue = (token) ->
   [type, value, {range}] = token
   if type is 'INTERPOLATION_START'
-    return if range[1] - range[0] is 1 then '{' else '#{'
+    return (if range[1] - range[0] is 1 then '{' else '#{')
   return '}' if type is 'INTERPOLATION_END'
   return repeat '"', range[1] - range[0] if type in [
     'STRING_START'
@@ -243,6 +246,8 @@ exports.getParser = getParser = (getAst) -> (code, opts) ->
     ast.program?.range[1] = ast.program.end
   # eslint-scope will fail eg on ImportDeclaration's unless treated as module
   ast.sourceType = 'module'
+  # hack to enable "dynamic monkeypatching" of code path analysis
+  ast[PATCH_CODE_PATH_ANALYSIS_PROGRAM_NODE_KEY] = yes
   # dump espreeAst: ast
   {
     ast
