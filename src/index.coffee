@@ -1113,6 +1113,13 @@ airbnbConfig = merge(
 module.exports = {
   rules: mapValues('module') rules
   configs:
+    'disable-incompatible':
+      plugins: ['coffee']
+      parser: 'eslint-plugin-coffee'
+      rules: {
+        ...turnOff(dontApply)
+        ...turnOff(yet)
+      }
     all:
       plugins: ['coffee']
       parser: 'eslint-plugin-coffee'

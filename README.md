@@ -82,12 +82,16 @@ npm install --save-dev coffeescript@^2.5.0 eslint@^6.0.0 eslint-plugin-coffee
 
 ## Usage
 
-Add `eslint-plugin-coffee` to the `parser` field and `coffee` to the plugins section of your `.eslintrc` configuration file:
+Add `eslint-plugin-coffee` to the `parser` field and `coffee` to the plugins section of your `.eslintrc` configuration file,
+and disable ESLint rules that aren't compatible with CoffeeScript:
 
 ```
 {
   "parser": "eslint-plugin-coffee",
-  "plugins": ["coffee"]
+  "plugins": ["coffee"],
+  "extends": [
+    "plugin/coffee:disable-incompatible"
+  ]
 }
 ```
 
