@@ -1152,6 +1152,7 @@ module.exports = {
       parser: 'eslint-plugin-coffee'
       extends: ['plugin:react/all']
       rules: {
+        ...turnOn(filter((rule) -> /^react\//.test rule) usable)
         ...configureAsError(pickBy(plugin: 'react') rules)
         ...turnOff(dontApply)
         ...turnOff(yet)
