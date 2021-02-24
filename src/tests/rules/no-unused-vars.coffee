@@ -661,6 +661,14 @@ ruleTester.run 'no-unused-vars', rule,
       export class A
         [f()]: 2
     '''
+    '''
+      for v, i in a by f()
+        forCompile.push i
+    '''
+    '''
+      for k, v of a
+        x(v)
+    '''
   ]
   invalid: [
     code: 'foox = -> foox()', errors: [assignedError 'foox']
@@ -1268,4 +1276,11 @@ ruleTester.run 'no-unused-vars', rule,
     code: 'do (_a) ->'
     options: [args: 'all', caughtErrorsIgnorePattern: '^_']
     errors: [message: "'_a' is defined but never used."]
+  ,
+    # flag single unused for variable
+    code: '''
+      for k of a
+        x()
+    '''
+    errors: [message: "'k' is assigned a value but never used."]
   ]
