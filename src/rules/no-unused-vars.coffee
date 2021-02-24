@@ -158,6 +158,19 @@ module.exports =
 
       node.type is 'ClassExpression'
 
+    isFirstOfTwoForVariables = (variable) ->
+      definition = variable.defs[0]
+
+      return no unless definition
+
+      {node} = definition
+      {parent} = node
+      return no unless parent?
+
+      parent.type is 'For' and
+        ((parent.style is 'in' and node is parent.name and parent.index?) or
+          (parent.style is 'of' and node is parent.index and parent.name?))
+
     ###*
     # Determines if a variable has a sibling rest property
     # @param {Variable} variable - eslint-scope variable object.
@@ -499,6 +512,7 @@ module.exports =
             not isUsedVariable(variable) and
             not isExported(variable) and
             not isClassExpression(variable) and
+            not isFirstOfTwoForVariables(variable) and
             not hasRestSpreadSibling variable
           )
             unusedVars.push variable
