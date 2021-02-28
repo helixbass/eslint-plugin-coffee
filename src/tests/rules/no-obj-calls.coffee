@@ -27,7 +27,7 @@ ruleTester.run 'no-obj-calls', rule,
   ,
     code: 'x = JSON()'
     errors: [message: "'JSON' is not a function.", type: 'CallExpression']
-  ,
-    code: 'x = Reflect()'
-    errors: [message: "'Reflect' is not a function.", type: 'CallExpression']
+    # ,
+    #   code: 'x = Reflect()'
+    #   errors: [message: "'Reflect' is not a function.", type: 'CallExpression']
   ]
