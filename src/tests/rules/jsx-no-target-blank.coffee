@@ -54,6 +54,15 @@ ruleTester.run 'jsx-no-target-blank', rule,
   ,
     code: '<a target="_blank" href={ dynamicLink }></a>'
     options: [enforceDynamicLinks: 'never']
+  ,
+    code: '''
+      <a
+        href={annotation.url or '#'}
+        target={if annotation.url then '_blank'}
+        rel={if annotation.url then 'noreferrer'}
+        onClick={onClick}
+      />
+    '''
   ]
   invalid: [
     code: '<a target="_blank" href="http://example.com"></a>'
