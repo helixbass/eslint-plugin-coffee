@@ -67,6 +67,7 @@ module.exports =
         func: new Set()
 
     getNodeViolationType = (node) ->
+      return null unless node?
       nodeType = node.type
 
       return 'bindCall' if (
