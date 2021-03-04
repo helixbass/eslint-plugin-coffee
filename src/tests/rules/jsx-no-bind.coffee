@@ -191,10 +191,12 @@ ruleTester.run 'jsx-no-bind', rule,
   ,
     code: '<div onClick={-> alert("1337")}></div>'
     options: [ignoreDOMComponents: yes]
+  ,
     # ,
     #   code: '<div foo={::this.onChange} />'
     #   options: [ignoreDOMComponents: yes]
     #   parser: 'babel-eslint'
+    code: '<a href={if user? then path}>My Posts</a>'
   ]
 
   invalid: [
