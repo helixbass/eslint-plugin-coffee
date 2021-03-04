@@ -54,6 +54,8 @@ ruleTester.run 'no-constant-condition', rule,
   ,
     code: 'loop then ;', options: [checkLoops: no]
   ,
+    code: 'loop then ;'
+  ,
     '''
       foo = ->
         while true
@@ -120,8 +122,6 @@ ruleTester.run 'no-constant-condition', rule,
   ,
     code: 'while (true) then ;'
     errors: [messageId: 'unexpected', type: 'Literal']
-  ,
-    code: 'loop then ;', errors: [messageId: 'unexpected', type: 'Literal']
   ,
     # #5228 , typeof conditions
     code: 'if (typeof x) then ;'

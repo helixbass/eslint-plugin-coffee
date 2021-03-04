@@ -176,7 +176,10 @@ module.exports =
     # @returns {void}
     # @private
     ###
-    checkLoop = (node) -> if checkLoops then trackConstantConditionLoop node
+    checkLoop = (node) ->
+      return if node.type is 'WhileStatement' and node.loop
+      return unless checkLoops
+      trackConstantConditionLoop node
 
     #--------------------------------------------------------------------------
     # Public
