@@ -4,7 +4,7 @@ CoffeeScript = require 'coffeescript'
   # traverseBabylonAst
 } = require 'coffeescript/lib/coffeescript/nodes'
 # babylonToEspree = require '../node_modules/babel-eslint/babylon-to-espree'
-babylonToEspree = require 'babel-eslint/babylon-to-espree'
+babylonToEspree = require './babylon-to-espree'
 babelTraverse = require('babel-traverse').default
 babylonTokenTypes = require('babylon').tokTypes
 {flatten, assign: extend, repeat} = require 'lodash'

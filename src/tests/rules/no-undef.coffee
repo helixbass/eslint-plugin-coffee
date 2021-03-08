@@ -207,6 +207,13 @@ ruleTester.run 'no-undef', rule,
       class A
         category:  (type: 'string')
     '''
+    # eslint-disable-next-line coffee/no-template-curly-in-string
+    '''
+      inner =
+        <>
+          <span dangerouslySetInnerHTML={__html: 'abc'}/>
+        </>
+    '''
   ]
   invalid: [
     code: "if (typeof anUndefinedVar is 'string') then ;"
