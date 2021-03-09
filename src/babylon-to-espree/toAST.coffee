@@ -19,7 +19,7 @@ changeToLiteral = (node, state) ->
 astTransformVisitor =
   noScope: yes
   enter: (path) ->
-    node = path.node
+    {node} = path
 
     node.range = [node.start, node.end]
 
@@ -40,15 +40,15 @@ astTransformVisitor =
     Object.defineProperty node, '_paths', value: node._paths, writable: yes
     undefined
   exit: (path, state) ->
-    node = path.node
+    {node} = path
 
     # fixDirectives
     if path.isFunction() or path.isProgram()
       directivesContainer = node
-      body = node.body
+      {body} = node
       unless node.type is 'Program'
         directivesContainer = body
-        body = body.body
+        {body} = body
       if directivesContainer.directives
         i = directivesContainer.directives.length - 1
         while i >= 0
