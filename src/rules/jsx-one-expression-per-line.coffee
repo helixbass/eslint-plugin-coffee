@@ -77,8 +77,7 @@ module.exports =
         countNewLinesAfterContent = 0
 
         if child.type in ['Literal', 'JSXText']
-          # TODO: this is only necessary b/c JSXFragments aren't currently getting transformed Babel -> espree
-          raw = child.extra?.raw ? child.raw
+          {raw} = child
           return if /^\s*$/.test raw
 
           countNewLinesBeforeContent = (raw.match(/^ *\n/g) or []).length
