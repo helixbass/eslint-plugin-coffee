@@ -143,7 +143,6 @@ usable = [
   'react/jsx-child-element-spacing'
   'react/jsx-closing-tag-location'
   'react/jsx-pascal-case'
-  'react/jsx-no-target-blank'
   'react/jsx-curly-spacing'
   'react/jsx-equals-spacing'
   'react/jsx-filename-extension'
@@ -782,6 +781,9 @@ rules =
       plugin: 'react'
       prettier: yes
       airbnb: ['error', {maximum: 1, when: 'multiline'}]
+    'jsx-no-target-blank':
+      plugin: 'react'
+      airbnb: ['error', {enforceDynamicLinks: 'always'}]
     'no-else-return':
       'airbnb-base': ['error', {allowElseIf: no}]
     'operator-linebreak':

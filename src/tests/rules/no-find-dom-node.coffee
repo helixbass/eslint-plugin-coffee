@@ -16,6 +16,9 @@ path = require 'path'
 # Tests
 # ------------------------------------------------------------------------------
 
+message =
+  'Do not use findDOMNode. It doesn’t work with function components and is deprecated in StrictMode. See https://reactjs.org/docs/react-dom.html#finddomnode'
+
 ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'no-find-dom-node', rule,
   valid: [
@@ -59,7 +62,7 @@ ruleTester.run 'no-find-dom-node', rule,
           return <div>Hello</div>
       })
     '''
-    errors: [message: 'Do not use findDOMNode']
+    errors: [{message}]
   ,
     code: '''
       Hello = createReactClass({
@@ -69,7 +72,7 @@ ruleTester.run 'no-find-dom-node', rule,
           return <div>Hello</div>
       })
     '''
-    errors: [message: 'Do not use findDOMNode']
+    errors: [{message}]
   ,
     code: '''
       class Hello extends Component
@@ -78,7 +81,7 @@ ruleTester.run 'no-find-dom-node', rule,
         render: ->
           return <div>Hello</div>
     '''
-    errors: [message: 'Do not use findDOMNode']
+    errors: [{message}]
   ,
     code: '''
       class Hello extends Component
@@ -87,5 +90,5 @@ ruleTester.run 'no-find-dom-node', rule,
         render: ->
           return <div>Hello</div>
     '''
-    errors: [message: 'Do not use findDOMNode']
+    errors: [{message}]
   ]

@@ -17,7 +17,7 @@ require 'babel-eslint'
 # Tests
 # -----------------------------------------------------------------------------
 
-ID_ERROR_MESSAGE = 'Prop `id` is forbidden on DOM Nodes'
+ID_ERROR_MESSAGE = 'Prop "id" is forbidden on DOM Nodes'
 
 ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'forbid-element-props', rule,

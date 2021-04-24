@@ -8,7 +8,7 @@
 # Requirements
 # ------------------------------------------------------------------------------
 
-rule = require 'eslint-plugin-react/lib/rules/jsx-no-target-blank'
+rule = require '../../rules/jsx-no-target-blank'
 {RuleTester} = require 'eslint'
 path = require 'path'
 
@@ -19,8 +19,8 @@ path = require 'path'
 ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 defaultErrors = [
   message:
-    'Using target="_blank" without rel="noopener noreferrer" is a security risk:' +
-    ' see https://mathiasbynens.github.io/rel-noopener'
+    'Using target="_blank" without rel="noreferrer" is a security risk:' +
+    ' see https://html.spec.whatwg.org/multipage/links.html#link-type-noopener'
 ]
 
 ruleTester.run 'jsx-no-target-blank', rule,
@@ -32,6 +32,10 @@ ruleTester.run 'jsx-no-target-blank', rule,
     # ,
     #   code: '<a target />'
     code: '<a href="foobar" target="_blank" rel="noopener noreferrer"></a>'
+  ,
+    code: '<a href="foobar" target="_blank" rel="noreferrer"></a>'
+  ,
+    code: '<a href="foobar" target="_blank" rel={"noreferrer"}></a>'
   ,
     code: '<a target="_blank" {...spreadProps} rel="noopener noreferrer"></a>'
   ,
@@ -57,6 +61,9 @@ ruleTester.run 'jsx-no-target-blank', rule,
   ]
   invalid: [
     code: '<a target="_blank" href="http://example.com"></a>'
+    errors: defaultErrors
+  ,
+    code: '<a target={if b then "_blank"} href="http://example.com"></a>'
     errors: defaultErrors
   ,
     code: '<a target="_blank" rel="" href="http://example.com"></a>'
