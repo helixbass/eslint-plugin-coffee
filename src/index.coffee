@@ -784,6 +784,7 @@ rules =
     'jsx-no-target-blank':
       plugin: 'react'
       airbnb: ['error', {enforceDynamicLinks: 'always'}]
+      recommended: yes
     'no-else-return':
       'airbnb-base': ['error', {allowElseIf: no}]
     'operator-linebreak':
