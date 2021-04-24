@@ -651,7 +651,7 @@ Then use the `prettier-run-as-rule` config exposed by this plugin:
 | :heavy_check_mark: |          | [`coffee/jsx-no-comment-textnodes`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-comment-textnodes.md) | Prevent comments from being inserted as text nodes |
 | :heavy_check_mark: |          | [`react/jsx-no-duplicate-props`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-duplicate-props.md) | Prevent duplicate props in JSX |
 |                    |          | [`react/jsx-no-literals`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-literals.md) | Prevent usage of unwrapped JSX strings |
-| :heavy_check_mark: |          | [`react/jsx-no-target-blank`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-target-blank.md) | Prevent usage of unsafe `target='_blank'` |
+| :heavy_check_mark: |          | [`coffee/jsx-no-target-blank`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-target-blank.md) | Prevent usage of unsafe `target='_blank'` |
 | :heavy_check_mark: |          | [`react/jsx-no-undef`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-undef.md) | Disallow undeclared variables in JSX |
 |                    |          | [`coffee/jsx-one-expression-per-line`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-one-expression-per-line.md) | Limit to one expression per line in JSX |
 |                    | :wrench: | [`react/jsx-curly-brace-presence`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-curly-brace-presence.md) | Enforce curly braces or disallow unnecessary curly braces in JSX |
