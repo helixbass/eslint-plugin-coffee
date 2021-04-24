@@ -42,35 +42,35 @@ ruleTester.run 'jsx-props-no-multi-spaces', rule,
   invalid: [
     code: ['<App  foo />'].join '\n'
     output: ['<App foo />'].join '\n'
-    errors: [message: 'Expected only one space between "App" and "foo"']
+    errors: [message: 'Expected only one space between “App” and “foo”']
   ,
     code: ['<App foo="with  spaces   "   bar />'].join '\n'
     output: ['<App foo="with  spaces   " bar />'].join '\n'
-    errors: [message: 'Expected only one space between "foo" and "bar"']
+    errors: [message: 'Expected only one space between “foo” and “bar”']
   ,
     code: ['<App foo  bar />'].join '\n'
     output: ['<App foo bar />'].join '\n'
-    errors: [message: 'Expected only one space between "foo" and "bar"']
+    errors: [message: 'Expected only one space between “foo” and “bar”']
   ,
     code: ['<App  foo   bar />'].join '\n'
     output: ['<App foo bar />'].join '\n'
     errors: [
-      message: 'Expected only one space between "App" and "foo"'
+      message: 'Expected only one space between “App” and “foo”'
     ,
-      message: 'Expected only one space between "foo" and "bar"'
+      message: 'Expected only one space between “foo” and “bar”'
     ]
   ,
     code: ['<App foo  {...test}  bar />'].join '\n'
     output: ['<App foo {...test} bar />'].join '\n'
     errors: [
-      message: 'Expected only one space between "foo" and "test"'
+      message: 'Expected only one space between “foo” and “test”'
     ,
-      message: 'Expected only one space between "test" and "bar"'
+      message: 'Expected only one space between “test” and “bar”'
     ]
   ,
     code: '<Foo.Bar  baz="quux" />'
     output: '<Foo.Bar baz="quux" />'
-    errors: [message: 'Expected only one space between "Foo.Bar" and "baz"']
+    errors: [message: 'Expected only one space between “Foo.Bar” and “baz”']
   ,
     code:
       '<Foobar.Foo.Bar.Baz.Qux.Quux.Quuz.Corge.Grault.Garply.Waldo.Fred.Plugh  xyzzy="thud" />'
@@ -78,6 +78,6 @@ ruleTester.run 'jsx-props-no-multi-spaces', rule,
       '<Foobar.Foo.Bar.Baz.Qux.Quux.Quuz.Corge.Grault.Garply.Waldo.Fred.Plugh xyzzy="thud" />'
     errors: [
       message:
-        'Expected only one space between "Foobar.Foo.Bar.Baz.Qux.Quux.Quuz.Corge.Grault.Garply.Waldo.Fred.Plugh" and "xyzzy"'
+        'Expected only one space between “Foobar.Foo.Bar.Baz.Qux.Quux.Quuz.Corge.Grault.Garply.Waldo.Fred.Plugh” and “xyzzy”'
     ]
   ]

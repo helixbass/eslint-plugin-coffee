@@ -62,11 +62,14 @@ ruleTester.run 'button-has-type', rule,
     errors: [message: '"foo" is an invalid value for button type attribute']
   ,
     code: '<button type={foo}/>'
-    errors: [message: '`foo` is an invalid value for button type attribute']
+    errors: [
+      message:
+        'The button type attribute must be specified by a static string or a trivial ternary expression'
+    ]
   ,
     code: '<button type="reset"/>'
     options: [reset: no]
-    errors: [message: '"reset" is a forbidden value for button type attribute']
+    errors: [message: '"reset" is an invalid value for button type attribute']
   ,
     code: 'React.createElement("button")'
     errors: [message: 'Missing an explicit type attribute for button']
@@ -79,7 +82,7 @@ ruleTester.run 'button-has-type', rule,
   ,
     code: 'React.createElement("button", {type: "reset"})'
     options: [reset: no]
-    errors: [message: '"reset" is a forbidden value for button type attribute']
+    errors: [message: '"reset" is an invalid value for button type attribute']
   ,
     code: 'Foo.createElement("button")'
     errors: [message: 'Missing an explicit type attribute for button']

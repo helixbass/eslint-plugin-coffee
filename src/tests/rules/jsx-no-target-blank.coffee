@@ -19,8 +19,8 @@ path = require 'path'
 ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 defaultErrors = [
   message:
-    'Using target="_blank" without rel="noopener noreferrer" is a security risk:' +
-    ' see https://mathiasbynens.github.io/rel-noopener'
+    'Using target="_blank" without rel="noreferrer" is a security risk:' +
+    ' see https://html.spec.whatwg.org/multipage/links.html#link-type-noopener'
 ]
 
 ruleTester.run 'jsx-no-target-blank', rule,

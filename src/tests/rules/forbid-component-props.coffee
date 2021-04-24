@@ -15,8 +15,8 @@ path = require 'path'
 # Tests
 # -----------------------------------------------------------------------------
 
-CLASSNAME_ERROR_MESSAGE = 'Prop `className` is forbidden on Components'
-STYLE_ERROR_MESSAGE = 'Prop `style` is forbidden on Components'
+CLASSNAME_ERROR_MESSAGE = 'Prop "className" is forbidden on Components'
+STYLE_ERROR_MESSAGE = 'Prop "style" is forbidden on Components'
 
 ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 ruleTester.run 'forbid-component-props', rule,

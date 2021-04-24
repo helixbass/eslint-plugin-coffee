@@ -159,12 +159,6 @@ ruleTester.run 'jsx-curly-brace-presence', rule,
     code: '<MyComponent>{"<Foo />"}</MyComponent>'
     options: ['never']
   ,
-    code: '<MyComponent prop={"{ style: true }"}>bar</MyComponent>'
-    options: ['never']
-  ,
-    code: '<MyComponent prop={"< style: true >"}>foo</MyComponent>'
-    options: ['never']
-  ,
     code: '<MyComponent prop={"Hello \\u1026 world"}>bar</MyComponent>'
     options: ['never']
   ,
@@ -382,4 +376,14 @@ ruleTester.run 'jsx-curly-brace-presence', rule,
     ].join '\n'
     errors: [{message: missingCurlyMessage}, {message: missingCurlyMessage}]
     options: ['always']
+  ,
+    code: '<MyComponent prop={"{ style: true }"}>bar</MyComponent>'
+    output: '<MyComponent prop="{ style: true }">bar</MyComponent>'
+    errors: [message: unnecessaryCurlyMessage]
+    options: ['never']
+  ,
+    code: '<MyComponent prop={"< style: true >"}>foo</MyComponent>'
+    output: '<MyComponent prop="< style: true >">foo</MyComponent>'
+    errors: [message: unnecessaryCurlyMessage]
+    options: ['never']
   ]
