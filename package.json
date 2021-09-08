@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-coffee",
-  "version": "0.1.15-dev.8",
+  "version": "0.1.15",
   "description": "ESLint plugin for Coffeescript",
   "main": "lib/index.js",
   "scripts": {
