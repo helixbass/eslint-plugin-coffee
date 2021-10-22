@@ -1,13 +1,13 @@
 {
   "name": "eslint-plugin-coffee",
-  "version": "0.1.15",
+  "version": "0.1.16-dev.2",
   "description": "ESLint plugin for Coffeescript",
   "main": "lib/index.js",
   "scripts": {
     "test": "node_modules/mocha/bin/_mocha lib/tests/**/*.js",
     "watch": "coffee -o lib/ -wc src/",
     "build": "coffee -o lib/ -c src/",
-    "prepublish": "npm run build",
+    "prepublishOnly": "npm run build",
     "lint": "eslint 'src/**/*.coffee'",
     "lint-fix": "eslint --fix src/*.coffee src/*/*.coffee src/*/*/*.coffee",
     "lint-js": "eslint src/*.coffee src/*/*.coffee -c .eslintrc-js.yml"
