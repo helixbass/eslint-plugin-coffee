@@ -1,0 +1,68 @@
+{
+  "name": "eslint-plugin-coffee",
+  "version": "0.1.16-dev.4",
+  "description": "ESLint plugin for Coffeescript",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "node_modules/mocha/bin/_mocha lib/tests/**/*.js",
+    "watch": "coffee -o lib/ -wc src/",
+    "build": "coffee -o lib/ -c src/",
+    "prepublishOnly": "npm run build",
+    "lint": "eslint 'src/**/*.coffee'",
+    "lint-fix": "eslint --fix src/*.coffee src/*/*.coffee src/*/*/*.coffee",
+    "lint-js": "eslint src/*.coffee src/*/*.coffee -c .eslintrc-js.yml"
+  },
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "eslint",
+    "coffeescript",
+    "eslint-plugin",
+    "eslintplugin"
+  ],
+  "author": "Julian Rosse <@helixbass>",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^6.1.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-import-resolver-webpack": "^0.12.0",
+    "eslint-plugin-coffee": "^0.1.12",
+    "eslint-plugin-prettier": "^2.6.2",
+    "lodash.isarray": "^4.0.0",
+    "mocha": "^5.2.0",
+    "prettier": "github:helixbass/prettier#b8818ebd",
+    "prettier-plugin-coffeescript": "^0.1.4"
+  },
+  "peerDependencies": {
+    "eslint": ">=6.0.0"
+  },
+  "dependencies": {
+    "axe-core": "^3.4.1",
+    "babel-eslint": "^7.2.2",
+    "babylon": "^7.0.0-beta.44",
+    "coffeescript": "^2.5.0",
+    "doctrine": "^2.1.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "2.19.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "7.23.2",
+    "eslint-plugin-react-native": "^3.8.0",
+    "eslint-scope": "~3.7.3",
+    "eslint-utils": "^1.4.3",
+    "eslint-visitor-keys": "^1.0.0",
+    "jsx-ast-utils": "^2.0.1",
+    "lodash": "^4.17.10",
+    "read-pkg-up": "2.0.0"
+  },
+  "homepage": "https://github.com/helixbass/eslint-plugin-coffee",
+  "bugs": {
+    "url": "https://github.com/helixbass/eslint-plugin-coffee/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/helixbass/eslint-plugin-coffee"
+  }
+}
