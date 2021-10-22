@@ -46,7 +46,7 @@
     "doctrine": "^2.1.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.19.0",
+    "eslint-plugin-import": "2.19.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "7.23.2",
     "eslint-plugin-react-native": "^3.8.0",
@@ -55,7 +55,7 @@
     "eslint-visitor-keys": "^1.0.0",
     "jsx-ast-utils": "^2.0.1",
     "lodash": "^4.17.10",
-    "read-pkg-up": "^2.0.0"
+    "read-pkg-up": "2.0.0"
   },
   "homepage": "https://github.com/helixbass/eslint-plugin-coffee",
   "bugs": {
