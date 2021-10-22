@@ -1007,7 +1007,7 @@ eslint-plugin-coffee@^0.1.12:
     jsx-ast-utils "^2.0.1"
     lodash "^4.17.10"
 
-eslint-plugin-import@^2.19.0:
+eslint-plugin-import@2.19.1, eslint-plugin-import@^2.19.0:
   version "2.19.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-import/-/eslint-plugin-import-2.19.1.tgz#5654e10b7839d064dd0d46cd1b88ec2133a11448"
   integrity sha512-x68131aKoCZlCae7rDXKSAQmbT5DQuManyXo2sK6fJJ0aK5CWAkv6A6HJZGgqC8IhjQxYPgo6/IY4Oz8AFsbBw==
@@ -2590,7 +2590,7 @@ react-is@^16.8.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-read-pkg-up@^2.0.0:
+read-pkg-up@2.0.0, read-pkg-up@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/read-pkg-up/-/read-pkg-up-2.0.0.tgz#6b72a8048984e0c41e79510fd5e9fa99b3b549be"
   integrity sha1-a3KoBImE4MQeeVEP1en6mbO1Sb4=
