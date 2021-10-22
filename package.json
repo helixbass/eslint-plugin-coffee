@@ -54,7 +54,8 @@
     "eslint-utils": "^1.4.3",
     "eslint-visitor-keys": "^1.0.0",
     "jsx-ast-utils": "^2.0.1",
-    "lodash": "^4.17.10"
+    "lodash": "^4.17.10",
+    "read-pkg-up": "^2.0.0"
   },
   "homepage": "https://github.com/helixbass/eslint-plugin-coffee",
   "bugs": {
