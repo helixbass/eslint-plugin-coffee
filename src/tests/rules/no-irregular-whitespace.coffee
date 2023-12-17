@@ -9,7 +9,8 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-rule = require 'eslint/lib/rules/no-irregular-whitespace'
+{loadInternalEslintModule} = require '../../load-internal-eslint-module'
+rule = loadInternalEslintModule 'lib/rules/no-irregular-whitespace'
 {RuleTester} = require 'eslint'
 path = require 'path'
 

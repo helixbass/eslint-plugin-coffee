@@ -12,7 +12,8 @@ path = require 'path'
 # Requirements
 #------------------------------------------------------------------------------
 
-rule = require 'eslint/lib/rules/no-useless-catch'
+{loadInternalEslintModule} = require '../../load-internal-eslint-module'
+rule = loadInternalEslintModule 'lib/rules/no-useless-catch'
 {RuleTester} = require 'eslint'
 
 #------------------------------------------------------------------------------

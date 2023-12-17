@@ -12,8 +12,9 @@
 assert = require 'assert'
 fs = require 'fs'
 path = require 'path'
+{loadInternalEslintModule} = require '../../load-internal-eslint-module'
 Linter = do ->
-  linterModule = require 'eslint/lib/linter'
+  linterModule = loadInternalEslintModule 'lib/linter'
   linterModule.Linter ? linterModule
 
 EventGeneratorTester = require(
@@ -21,18 +22,18 @@ EventGeneratorTester = require(
 )
 createEmitter =
   try
-    require 'eslint/lib/util/safe-emitter'
+    loadInternalEslintModule 'lib/util/safe-emitter'
   catch
-    require 'eslint/lib/linter/safe-emitter'
+    loadInternalEslintModule 'lib/linter/safe-emitter'
 debug = require '../../eslint-code-path-analysis-debug-helpers'
 CodePath = require '../../eslint-code-path-analysis-code-path'
 CodePathAnalyzer = require '../../eslint-code-path-analysis-code-path-analyzer'
 CodePathSegment = require '../../eslint-code-path-analysis-code-path-segment'
 NodeEventGenerator =
   try
-    require 'eslint/lib/util/node-event-generator'
+    loadInternalEslintModule 'lib/util/node-event-generator'
   catch
-    require 'eslint/lib/linter/node-event-generator'
+    loadInternalEslintModule 'lib/linter/node-event-generator'
 
 #------------------------------------------------------------------------------
 # Helpers

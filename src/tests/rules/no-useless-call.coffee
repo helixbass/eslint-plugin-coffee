@@ -9,7 +9,8 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-rule = require 'eslint/lib/rules/no-useless-call'
+{loadInternalEslintModule} = require '../../load-internal-eslint-module'
+rule = loadInternalEslintModule 'lib/rules/no-useless-call'
 {RuleTester} = require 'eslint'
 path = require 'path'
 

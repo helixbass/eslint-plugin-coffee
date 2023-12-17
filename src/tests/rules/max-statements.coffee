@@ -9,7 +9,8 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-rule = require 'eslint/lib/rules/max-statements'
+{loadInternalEslintModule} = require '../../load-internal-eslint-module'
+rule = loadInternalEslintModule 'lib/rules/max-statements'
 {RuleTester} = require 'eslint'
 path = require 'path'
 

@@ -8,7 +8,8 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-rule = require 'eslint/lib/rules/comma-spacing'
+{loadInternalEslintModule} = require '../../load-internal-eslint-module'
+rule = loadInternalEslintModule 'lib/rules/comma-spacing'
 {RuleTester} = require 'eslint'
 path = require 'path'
 

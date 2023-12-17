@@ -9,7 +9,8 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-rule = require 'eslint/lib/rules/prefer-rest-params'
+{loadInternalEslintModule} = require '../../load-internal-eslint-module'
+rule = loadInternalEslintModule 'lib/rules/prefer-rest-params'
 {RuleTester} = require 'eslint'
 path = require 'path'
 

@@ -8,7 +8,8 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-rule = require 'eslint/lib/rules/line-comment-position'
+{loadInternalEslintModule} = require '../../load-internal-eslint-module'
+rule = loadInternalEslintModule 'lib/rules/line-comment-position'
 {RuleTester} = require 'eslint'
 path = require 'path'
 

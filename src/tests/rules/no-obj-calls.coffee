@@ -9,7 +9,8 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-rule = require 'eslint/lib/rules/no-obj-calls'
+{loadInternalEslintModule} = require '../../load-internal-eslint-module'
+rule = loadInternalEslintModule 'lib/rules/no-obj-calls'
 {RuleTester} = require 'eslint'
 path = require 'path'
 

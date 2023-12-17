@@ -8,7 +8,8 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-rule = require 'eslint/lib/rules/no-process-env'
+{loadInternalEslintModule} = require '../../load-internal-eslint-module'
+rule = loadInternalEslintModule 'lib/rules/no-process-env'
 {RuleTester} = require 'eslint'
 path = require 'path'
 

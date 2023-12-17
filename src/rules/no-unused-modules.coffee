@@ -12,12 +12,13 @@
 readPkgUp = require 'read-pkg-up'
 values = require 'object.values'
 includes = require 'array-includes'
+{loadInternalEslintModule} = require '../load-internal-eslint-module'
 
 # eslint/lib/util/glob-util has been moved to eslint/lib/util/glob-utils with version 5.3
 # and has been moved to eslint/lib/cli-engine/file-enumerator in version 6
 try
   FileEnumerator =
-    require('eslint/lib/cli-engine/file-enumerator').FileEnumerator
+    loadInternalEslintModule('lib/cli-engine/file-enumerator').FileEnumerator
   listFilesToProcess = (src, extensions) ->
     e = new FileEnumerator extensions: extensions
     Array.from e.iterateFiles(src), ({filePath, ignored}) -> {

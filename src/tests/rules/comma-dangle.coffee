@@ -11,7 +11,8 @@
 
 ### eslint-disable ###
 
-rule = require 'eslint/lib/rules/comma-dangle'
+{loadInternalEslintModule} = require '../../load-internal-eslint-module'
+rule = loadInternalEslintModule 'lib/rules/comma-dangle'
 {RuleTester} = require 'eslint'
 path = require 'path'
 

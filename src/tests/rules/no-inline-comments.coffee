@@ -8,7 +8,8 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-rule = require 'eslint/lib/rules/no-inline-comments'
+{loadInternalEslintModule} = require '../../load-internal-eslint-module'
+rule = loadInternalEslintModule 'lib/rules/no-inline-comments'
 {RuleTester} = require 'eslint'
 path = require 'path'
 

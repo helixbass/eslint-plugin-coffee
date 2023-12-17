@@ -8,7 +8,8 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-rule = require 'eslint/lib/rules/space-in-parens'
+{loadInternalEslintModule} = require '../../load-internal-eslint-module'
+rule = loadInternalEslintModule 'lib/rules/space-in-parens'
 {RuleTester} = require 'eslint'
 path = require 'path'
 

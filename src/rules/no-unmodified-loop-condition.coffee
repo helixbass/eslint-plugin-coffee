@@ -5,15 +5,17 @@
 
 'use strict'
 
+{loadInternalEslintModule} = require '../load-internal-eslint-module'
+
 #------------------------------------------------------------------------------
 # Requirements
 #------------------------------------------------------------------------------
 
 Traverser =
   try
-    require 'eslint/lib/util/traverser'
+    loadInternalEslintModule 'lib/util/traverser'
   catch
-    require 'eslint/lib/shared/traverser'
+    loadInternalEslintModule 'lib/shared/traverser'
 astUtils = require '../eslint-ast-utils'
 
 #------------------------------------------------------------------------------

@@ -4,15 +4,17 @@
 ###
 'use strict'
 
+{loadInternalEslintModule} = require '../load-internal-eslint-module'
+
 #------------------------------------------------------------------------------
 # Requirements
 #------------------------------------------------------------------------------
 
 LETTER_PATTERN =
   try
-    require 'eslint/lib/util/patterns/letters'
+    loadInternalEslintModule 'lib/util/patterns/letters'
   catch
-    require 'eslint/lib/rules/utils/patterns/letters'
+    loadInternalEslintModule 'lib/rules/utils/patterns/letters'
 astUtils = require '../eslint-ast-utils'
 
 #------------------------------------------------------------------------------

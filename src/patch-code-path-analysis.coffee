@@ -1,4 +1,5 @@
 CodePathAnalyzer = require './code-path-analysis/code-path-analyzer'
+{loadInternalEslintModule} = require './load-internal-eslint-module'
 
 PROGRAM_NODE_KEY = '__coffee__'
 
@@ -24,13 +25,13 @@ monkeypatchMethod = (ESLintCodePathAnalyzer, isCurrentFileCoffeescript, key) ->
 module.exports =
   patchCodePathAnalysis: ->
     try
-      ESLintCodePathAnalyzer = require(
-        'eslint/lib/code-path-analysis/code-path-analyzer'
+      ESLintCodePathAnalyzer = loadInternalEslintModule(
+        'lib/code-path-analysis/code-path-analyzer'
       )
     catch
       try
-        ESLintCodePathAnalyzer = require(
-          'eslint/lib/linter/code-path-analysis/code-path-analyzer'
+        ESLintCodePathAnalyzer = loadInternalEslintModule(
+          'lib/linter/code-path-analysis/code-path-analyzer'
         )
       catch
         throw new ReferenceError "Couldn't resolve eslint CodePathAnalyzer"

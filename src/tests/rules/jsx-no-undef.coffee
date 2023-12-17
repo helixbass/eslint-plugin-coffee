@@ -13,6 +13,7 @@ eslint = require 'eslint'
 rule = require 'eslint-plugin-react/lib/rules/jsx-no-undef'
 {RuleTester} = eslint
 path = require 'path'
+{loadInternalEslintModule} = require '../../load-internal-eslint-module'
 
 # -----------------------------------------------------------------------------
 # Tests
@@ -20,7 +21,7 @@ path = require 'path'
 
 ruleTester = new RuleTester parser: path.join __dirname, '../../..'
 linter = ruleTester.linter or eslint.linter
-linter.defineRule 'no-undef', require 'eslint/lib/rules/no-undef'
+linter.defineRule 'no-undef', loadInternalEslintModule 'lib/rules/no-undef'
 ruleTester.run 'jsx-no-undef', rule,
   valid: [
     code: '''

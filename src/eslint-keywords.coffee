@@ -1,5 +1,7 @@
+{loadInternalEslintModule} = require './load-internal-eslint-module'
+
 module.exports =
   try
-    require 'eslint/lib/util/keywords'
+    loadInternalEslintModule 'lib/util/keywords'
   catch
-    require 'eslint/lib/rules/utils/keywords'
+    loadInternalEslintModule 'lib/rules/utils/keywords'

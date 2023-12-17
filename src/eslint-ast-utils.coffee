@@ -1,8 +1,10 @@
+{loadInternalEslintModule} = require './load-internal-eslint-module'
+
 module.exports =
   try
-    require 'eslint/lib/ast-utils'
+    loadInternalEslintModule 'lib/ast-utils'
   catch
     try
-      require 'eslint/lib/util/ast-utils'
+      loadInternalEslintModule 'lib/util/ast-utils'
     catch
-      require 'eslint/lib/rules/utils/ast-utils'
+      loadInternalEslintModule 'lib/rules/utils/ast-utils'

@@ -1,5 +1,7 @@
+{loadInternalEslintModule} = require './load-internal-eslint-module'
+
 module.exports =
   try
-    require 'eslint/lib/code-path-analysis/code-path'
+    loadInternalEslintModule 'lib/code-path-analysis/code-path'
   catch
-    require 'eslint/lib/linter/code-path-analysis/code-path'
+    loadInternalEslintModule 'lib/linter/code-path-analysis/code-path'

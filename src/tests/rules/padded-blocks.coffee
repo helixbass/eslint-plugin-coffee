@@ -11,7 +11,8 @@
 
 ### eslint-disable ###
 
-rule = require 'eslint/lib/rules/padded-blocks'
+{loadInternalEslintModule} = require '../../load-internal-eslint-module'
+rule = loadInternalEslintModule 'lib/rules/padded-blocks'
 {RuleTester} = require 'eslint'
 path = require 'path'
 

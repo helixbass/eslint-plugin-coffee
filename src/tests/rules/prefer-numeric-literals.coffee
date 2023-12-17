@@ -9,7 +9,8 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-rule = require 'eslint/lib/rules/prefer-numeric-literals'
+{loadInternalEslintModule} = require '../../load-internal-eslint-module'
+rule = loadInternalEslintModule 'lib/rules/prefer-numeric-literals'
 {RuleTester} = require 'eslint'
 path = require 'path'
 

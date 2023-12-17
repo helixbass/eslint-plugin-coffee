@@ -8,7 +8,8 @@
 # Requirements
 #------------------------------------------------------------------------------
 
-rule = require 'eslint/lib/rules/prefer-promise-reject-errors'
+{loadInternalEslintModule} = require '../../load-internal-eslint-module'
+rule = loadInternalEslintModule 'lib/rules/prefer-promise-reject-errors'
 {RuleTester} = require 'eslint'
 path = require 'path'
 
